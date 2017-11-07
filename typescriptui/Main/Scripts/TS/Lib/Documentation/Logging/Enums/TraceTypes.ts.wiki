@@ -1,0 +1,28 @@
+{anchor:TraceTypes}
+!! {"TraceTypes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Logging/Enums/TraceTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Enums/TraceTypes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The internal list of trace types for logs."}
+
+----
+
+!!!! {"Values"}
+
+* *{"LOG"}* = 0 - {""}
+* *{"COMMON"}* = 1 - {""}
+* *{"LOGIC_TRACE"}* = 2 - {""}
+* *{"DATA_TRACE"}* = 3 - {""}
+* *{"ERROR_TRACE"}* = 4 - {""}
+
+----
+

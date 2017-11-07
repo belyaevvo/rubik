@@ -1,0 +1,63 @@
+﻿{anchor:IEvent}
+!! {"IEvent"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an Event. See Event class."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: Events.IEventHandler[];"}
+{"See Event class for more details."}
+
+!!!!!! {"OnHandlerAttached: () => void;"}
+{"See Event class for more details."}
+
+!!!!!! {"OnHandlerAttachedContext: any;"}
+{"See Event class for more details."}
+
+!!!!!! {"OnHandlerDettached: () => void;"}
+{"See Event class for more details."}
+
+!!!!!! {"OnHandlerDettachedContext: any;"}
+{"See Event class for more details."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: Events.IEventHandler): void"}
+{"See Event class for more details."}
+* *{"handler:"}* {"Events.IEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: Events.IEventHandler): void"}
+{"See Event class for more details."}
+* *{"handler:"}* {"Events.IEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: Events.IEventArgs)"}
+{"See Event class for more details."}
+* *{"args:"}* {"Events.IEventArgs - "}
+
+!!!!!! {"IsAttached(handler: Events.IEventHandler): boolean"}
+{"See Event class for more details."}
+* *{"handler:"}* {"Events.IEventHandler - "}
+* *Returns:* {"boolean - "}
+
+
+----
+

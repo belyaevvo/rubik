@@ -1,0 +1,40 @@
+﻿{anchor:UpdateBeginEventArgs}
+!! {"UpdateBeginEventArgs"}
+*Module:* [TSUI.Events]
+*Extends:* [EventArgs]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateBeginEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateBeginEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See EventArgs for more details."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Sender: TSUI.Data.IDataUpdater)"}
+{""}
+* *{"Sender:"}* {"TSUI.Data.IDataUpdater - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Sender: TSUI.Data.IDataUpdater;"}
+{""}
+
+
+----
+

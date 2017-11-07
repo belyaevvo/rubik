@@ -1,0 +1,31 @@
+{anchor:MobileLoginWindow}
+!! {"MobileLoginWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [DesktopLoginWindow]
+*Implements:* [ILoginWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/StackPanel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanel.ts]
+* [url:UI/Classes/StackPanelRow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanelRow.ts]
+* [url:UI/Classes/TextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TextBox.ts]
+* [url:UI/Classes/Windows/LoginWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/LoginWindow.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/ILoginWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/ILoginWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+

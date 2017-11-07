@@ -1,0 +1,67 @@
+﻿{anchor:ToggleIndicatorBox}
+!! {"ToggleIndicatorBox"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IToggleIndicator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/ToggleIndicator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleIndicator.ts]
+* [url:UI/Interfaces/IToggleIndicator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IToggleIndicator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_InnerDivElement: JQuery;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsOn(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"SetIndicatorToOff(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"SetIndicatorToOn(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

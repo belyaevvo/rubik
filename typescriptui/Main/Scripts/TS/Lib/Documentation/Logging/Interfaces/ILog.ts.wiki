@@ -1,0 +1,52 @@
+{anchor:ILog}
+!! {"ILog"}
+*Module:* [TSUI.Logging]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Logging/Enums/RecoveryModes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Enums/RecoveryModes.ts]
+* [url:Logging/Interfaces/ILog.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Interfaces/ILog.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure of a log."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"DataTrace?: {
+Value:any;
+Type:string;
+}
+;"}
+{"The data trace for this log."}
+
+!!!!!! {"ErrorTrace?: {
+RawError:any;
+Message:string;
+Type:string;
+RecoveryInfo:{
+Mode:Logging.RecoveryModes;
+Info?:string;
+}
+;
+}
+;"}
+{"The error trace for this log."}
+
+!!!!!! {"Message: string;"}
+{"The message for the log."}
+
+!!!!!! {"StackTrace?: string;"}
+{"The stack trace string for this log."}
+
+!!!!!! {"TraceType: string;"}
+{"The type of the log."}
+
+
+----
+

@@ -1,0 +1,27 @@
+﻿{anchor:ProgressSpinnerTypes}
+!! {"ProgressSpinnerTypes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/ProgressSpinnerTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/ProgressSpinnerTypes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The types of progress spinners.
+Note: To reverse direction, see IProgressSpinner.Reverse"}
+
+----
+
+!!!! {"Values"}
+
+* *{"Circular"}* = 0 - {"A circular, clockwise progress spinner"}
+* *{"Horizontal"}* = 1 - {"A horizontal, left-to-right progress spinner"}
+* *{"Vertical"}* = 2 - {"A vertical, top-to-bottom progress spinner"}
+
+----
+

@@ -1,0 +1,38 @@
+﻿{anchor:TileIcon}
+!! {"TileIcon"}
+*Module:* [TSUI.UI]
+*Extends:* [ImageBox]
+*Implements:* [ITileIcon]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/ImageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ImageBox.ts]
+* [url:UI/Classes/TileIcon.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TileIcon.ts]
+* [url:UI/Interfaces/ITileIcon.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileIcon.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Source(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+
+----
+

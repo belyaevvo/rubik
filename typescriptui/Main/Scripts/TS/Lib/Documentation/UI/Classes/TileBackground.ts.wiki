@@ -1,0 +1,39 @@
+﻿{anchor:TileBackground}
+!! {"TileBackground"}
+*Module:* [TSUI.UI]
+*Extends:* [ImageBox]
+*Implements:* [ITileBackground]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/ImageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ImageBox.ts]
+* [url:UI/Classes/TileBackground.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TileBackground.ts]
+* [url:UI/Interfaces/ITileBackground.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileBackground.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(source?: string)"}
+{""}
+* [OPTIONAL] *{"source:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"SetPosition(value: UI.TileBackgroundPositions): void"}
+{""}
+* *{"value:"}* {"UI.TileBackgroundPositions - "}
+* *Returns:* {"void - "}
+
+
+----
+

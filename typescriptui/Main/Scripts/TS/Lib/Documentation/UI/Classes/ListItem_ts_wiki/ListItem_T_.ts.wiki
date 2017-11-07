@@ -1,0 +1,61 @@
+﻿{anchor:ListItem<T>}
+!! {"ListItem<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Implements:* [IListItem]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/ListItem.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ListItem.ts]
+* [url:UI/Interfaces/IListItem.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListItem.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(text: string, value: T)"}
+{""}
+* *{"text:"}* {"string - "}
+* *{"value:"}* {"T - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Index: number;"}
+{""}
+
+!!!!!! {"OnTextChange: TSUI.Events.ListItem_TextChangeEvent<T>;"}
+{""}
+
+!!!!!! {"_Text: string;"}
+{""}
+
+!!!!!! {"_Value: T;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Value(value?: T): T"}
+{""}
+* [OPTIONAL] *{"value:"}* {"T - "}
+* *Returns:* {"T - "}
+
+
+----
+

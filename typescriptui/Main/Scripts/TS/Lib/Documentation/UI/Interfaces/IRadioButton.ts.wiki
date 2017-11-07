@@ -1,0 +1,52 @@
+﻿{anchor:IRadioButton}
+!! {"IRadioButton"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TextAlignments.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TextAlignments.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IRadioButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IRadioButton.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a RadionButton control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnCheckedChange: TSUI.Events.CheckedChangeEvent;"}
+{"Fired when the checked state of the control is changed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Checked(value?: boolean): boolean"}
+{"The checked status of the check box."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the checked status to."}
+* *Returns:* {"boolean - The actual status of the check box."}
+
+!!!!!! {"Group(value?: string): string"}
+{"Gets or sets the group this radio button belongs to."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the group to."}
+* *Returns:* {"string - The actual value of the group the cotnrol belongs to."}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the text of the check box."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the text to."}
+* *Returns:* {"string - The actual value of the text."}
+
+!!!!!! {"TextAlign(value?: UI.TextAlignments): UI.TextAlignments"}
+{"The text align for the check box. Whether the text is to the left or right of the check box."}
+* [OPTIONAL] *{"value:"}* {"UI.TextAlignments - The value to set the text alignment to."}
+* *Returns:* {"TSUI.UI.TextAlignments - The actual text alignment of the check box."}
+
+
+----
+

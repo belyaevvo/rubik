@@ -1,0 +1,25 @@
+﻿{anchor:StackPanelOrientations}
+!! {"StackPanelOrientations"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/StackPanelOrientations.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/StackPanelOrientations.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The orientations of stacking in a stack panel."}
+
+----
+
+!!!! {"Values"}
+
+* *{"Horizontal"}* = 0 - {"Horizontally stack items i.e. in stack in columns"}
+* *{"Vertical"}* = 1 - {"Vertically stack items i.e. in stack in rows"}
+
+----
+

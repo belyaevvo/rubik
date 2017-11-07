@@ -1,0 +1,375 @@
+﻿{anchor:IControl}
+!! {"IControl"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Data/Data_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Data_BuildRefs.d.ts]
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+* [url:Events/Classes/Events.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Events.ts]
+* [url:UI/CSSNumber.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/CSSNumber.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a user interface control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Bindings: TSUI.Data.IBindingCollection;"}
+{"The collection containing all the binding groups (and thus bindings) for this control."}
+
+!!!!!! {"Children: TSUI.Collections.IList<IControl>;"}
+{"The children of the control. Adding/removing to/from this list automatically constructs/destroys the required DOM."}
+
+!!!!!! {"DOMConstructed: boolean;"}
+{"Whether the DOM has been constructed for the control."}
+
+!!!!!! {"OnBlur: TSUI.Events.BlurEvent;"}
+{"Event fired when the control loses focus. Occurs either from tab key or mouse de-focus."}
+
+!!!!!! {"OnClick: TSUI.Events.ClickEvent;"}
+{"Event fired when the control is clicked. (Also, normally, when default action is invoked)."}
+
+!!!!!! {"OnFocus: TSUI.Events.FocusEvent;"}
+{"Event fired when the control gains focus. Occurs either from tab key or mouse focus."}
+
+!!!!!! {"OnHide: TSUI.Events.HideEvent;"}
+{"Event fired when the control is hidden. Does not include jQuery animation or direct DOM manipulation."}
+
+!!!!!! {"OnKeyDown: TSUI.Events.KeyDownEvent;"}
+{"Event fired when a key is pushed down and the control has focus."}
+
+!!!!!! {"OnKeyPress: TSUI.Events.KeyPressEvent;"}
+{"Event fired when a key is pushed down and held (i.e. pressed) and the control has focus."}
+
+!!!!!! {"OnKeyUp: TSUI.Events.KeyUpEvent;"}
+{"Event fired when a key is released and the control has focus."}
+
+!!!!!! {"OnMouseDown: TSUI.Events.MouseDownEvent;"}
+{"Event fired when the mouse left-click goes down on the control."}
+
+!!!!!! {"OnMouseMove: TSUI.Events.MouseMoveEvent;"}
+{"Event fired when the mouse moves over the control."}
+
+!!!!!! {"OnMouseUp: TSUI.Events.MouseUpEvent;"}
+{"Event fired when the mouse left-click goes up on the control."}
+
+!!!!!! {"OnMove: TSUI.Events.MoveEvent;"}
+{"Event fired when the control is moved. Does not include jQuery animation or direct DOM manipulation."}
+
+!!!!!! {"OnResize: TSUI.Events.ResizeEvent;"}
+{"Event fired when the control is resized. Does not include jQuery animation or direct DOM manipulation."}
+
+!!!!!! {"OnShow: TSUI.Events.ShowEvent;"}
+{"Event fired when the control is shown. Does not include jQuery animation or direct DOM manipulation."}
+
+!!!!!! {"OptimiseConstructForGraphics: boolean;"}
+{"Whether to optimise construct calls for reducing interuptions to on-screen animation.
+(Uses setTimeout to delay construction allowing time for browser to fire graphics events e.g. requestAnimationFrame responses.)"}
+
+!!!!!! {"TargetDocumentFor_MouseMove: boolean;"}
+{"Whether the document element should be used for mouse move events."}
+
+!!!!!! {"TargetDocumentFor_MouseUp: boolean;"}
+{"Whether the document element should be used for mouse up events."}
+
+!!!!!! {"__UID: number;"}
+{"The unique identifier for the control."}
+
+!!!!!! {"_rootElement: JQuery;"}
+{"The root jQuery element for the control. This shouldn't generally be accessed outside of the library."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ActualHeight(): number"}
+{"Gets the pixel height of the control."}
+* *Returns:* {"number - The pixel height of the control."}
+
+!!!!!! {"ActualWidth(): number"}
+{"Gets the pixel width of the control."}
+* *Returns:* {"number - The pixel width of the control."}
+
+!!!!!! {"ActuallyEnabled(): boolean"}
+{"Gets whether the control is actually enabled or not taking into account parent enabled state."}
+* *Returns:* {"boolean - The actual value of enabled state taking into account parent enabled state."}
+
+!!!!!! {"ActuallyVisible(): boolean"}
+{"Gets whether the control is actually visible i.e. it and its parent are visible."}
+* *Returns:* {"boolean - Whether the control is actually visible or not."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup, bindingDirection: TSUI.Data.BindingDirections): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *{"bindingDirection:"}* {"TSUI.Data.BindingDirections - The binding direction to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup, bindingDirection: TSUI.Data.BindingDirections, adapter: TSUI.Data.IDataAdapter<any, any>): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *{"bindingDirection:"}* {"TSUI.Data.BindingDirections - The binding direction to use for the new binding."}
+* *{"adapter:"}* {"TSUI.Data.IDataAdapter<any, any> - The data adapter to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBindingGroup(updater?: TSUI.Data.IDataUpdater): TSUI.Data.IBindingGroup"}
+{"Adds a new binding group to Bindings."}
+* [OPTIONAL] *{"updater:"}* {"TSUI.Data.IDataUpdater - The data updater to use for the new binding group."}
+* *Returns:* {"TSUI.Data.IBindingGroup - The new binding group."}
+
+!!!!!! {"AddClass(name: string): void"}
+{"Adds the specified class to the control."}
+* *{"name:"}* {"string - The name of the class to add."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"AnimationElement(): JQuery"}
+{"The jQuery element to use when animating the control. (Often the root element)"}
+* *Returns:* {"JQuery - "}
+
+!!!!!! {"ApplyStyle(name: string, value: string): void"}
+{"Applies the specified css style with the specified value."}
+* *{"name:"}* {"string - The name of the css value to set."}
+* *{"value:"}* {"string - The value to set the css style to."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"ApplyStyles(cssProps: any): void"}
+{"Applies the specified css styles to the control. cssProps relates to the jQuery parameter."}
+* *{"cssProps:"}* {"any - The properties and values to set. See jQuery .css method."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"BackColor(color?: string): string"}
+{"Gets or sets the background colour of the control."}
+* [OPTIONAL] *{"color:"}* {"string - The colour to set to."}
+* *Returns:* {"string - The actual value of the background color."}
+
+!!!!!! {"Blur(): void"}
+{"Blurs the control - removes focus from the control."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Bottom(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the bottom position of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the bottom position to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the bottom position."}
+
+!!!!!! {"CSSNumberStyle(style: string, value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets a css style that is (or can be) numerical (e.g. 10px, 10% or auto)."}
+* *{"style:"}* {"string - The name of the style to set."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the style to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the css style."}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{"Constructs the DOM for control adding the root element to the specified parent."}
+* *{"parent:"}* {"JQuery - The element to add the control to."}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - The method to call when the control and its children have been constructed."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"DestroyDOM(): void"}
+{"Destroys the DOM for the control."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"DisableByParent(): void"}
+{"Call when the parent control is disabled."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"DisableSelection(): void"}
+{"Disables selection (highlighting) of the control."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"EnableByParent(): void"}
+{"Call when the parent control is enabled."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"EnableSelection(): void"}
+{"Enables selection (highlighting) of the control."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"Enabled(value?: boolean): boolean"}
+{"Gets or sets whether the control is enabled or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to enabled to."}
+* *Returns:* {"boolean - The actual value of enabled state. Ignores parent enabled state."}
+
+!!!!!! {"Focus(): void"}
+{"Focuses the control - gives focus to the control."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Focusable(value?: boolean): boolean"}
+{"Gets or sets whether the control is focusable or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to focusable to."}
+* *Returns:* {"boolean - The actual value of focusable state."}
+
+!!!!!! {"ForeColor(color?: string): string"}
+{"Gets or sets the fore (text) colour of the control."}
+* [OPTIONAL] *{"color:"}* {"string - The colour to set to."}
+* *Returns:* {"string - The actual value of the fore (text) color."}
+
+!!!!!! {"GetDefaultBindingGroup(): TSUI.Data.IBindingGroup"}
+{"Returns the default binding group for the control."}
+* *Returns:* {"TSUI.Data.IBindingGroup - "}
+
+!!!!!! {"GetStyle(name: string): string"}
+{"Gets the value of the specified css style."}
+* *{"name:"}* {"string - The name of the css style to get."}
+* *Returns:* {"string - The value of the specified css style."}
+
+!!!!!! {"HasClass(name: string): boolean"}
+{"Whether the control has the specified class or not."}
+* *{"name:"}* {"string - The class to look for."}
+* *Returns:* {"boolean - Whether the control has the class or not."}
+
+!!!!!! {"Height(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the height of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the height to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the height."}
+
+!!!!!! {"Hide(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{"Hides the current control using the specified animator. Some controls have a different default animator."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback function to call when hiding is complete."}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - The animator to use to hide the control."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"ID(value?: string): string"}
+{"The ID for the control. Sets the 'id' attribute (not __UID)"}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the ID to."}
+* *Returns:* {"string - The actual value of the ID."}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{"Invokes the default action on the control."}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsRelativeLayout(): boolean"}
+{"Whether the control is using relative layout or absolute positioning."}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Left(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the left position of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the left position to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the left position."}
+
+!!!!!! {"MaxHeight(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the max-height of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the max-height to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the max-height."}
+
+!!!!!! {"MaxWidth(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the max-width of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the max-width to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the max-width."}
+
+!!!!!! {"MinHeight(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the min-height of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the min-height to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the min-height."}
+
+!!!!!! {"MinWidth(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the min-width of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the min-width to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the min-width."}
+
+!!!!!! {"PageBottom(): number"}
+{"Gets the pixel bottom position of the control relative to the document."}
+* *Returns:* {"number - The pixel bottom position of the control."}
+
+!!!!!! {"PageLeft(): number"}
+{"Gets the pixel left position of the control relative to the document."}
+* *Returns:* {"number - The pixel left position of the control."}
+
+!!!!!! {"PageRight(): number"}
+{"Gets the pixel right position of the control relative to the document."}
+* *Returns:* {"number - The pixel right position of the control."}
+
+!!!!!! {"PageTop(): number"}
+{"Gets the pixel top position of the control relative to the document."}
+* *Returns:* {"number - The pixel top position of the control."}
+
+!!!!!! {"RelativeLayoutOff(): void"}
+{"Switches the control to absolute positioning - position:absolute."}
+* *Returns:* {"void - "}
+
+!!!!!! {"RelativeLayoutOn(): void"}
+{"Switches the control to relative positioning - position:relative."}
+* *Returns:* {"void - "}
+
+!!!!!! {"RemoveBinding(binding: TSUI.Data.IDataBinding<any, any>): void"}
+{"Removes a data binding from all binding groups in the binding collection."}
+* *{"binding:"}* {"TSUI.Data.IDataBinding<any, any> - The binding to remove."}
+* *Returns:* {"void - Void"}
+
+!!!!!! {"RemoveBindingGroup(group: TSUI.Data.IBindingGroup): TSUI.Data.IBindingGroup"}
+{"Removes a binding group from Bindings and calls unbind on all the bindings in the group."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The group to remove."}
+* *Returns:* {"TSUI.Data.IBindingGroup - The binding group that was removed."}
+
+!!!!!! {"RemoveClass(name: string): void"}
+{"Removes the specified class from the control."}
+* *{"name:"}* {"string - The name of the class to remove."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"Right(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the right position of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the right position to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the right position."}
+
+!!!!!! {"SetParentVisible(value: boolean): void"}
+{"Sets the underlying value as to whether the parent control is visible or not."}
+* *{"value:"}* {"boolean - The value to set the parent visible value to."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"Show(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{"Shows the current control using the specified animator. Some controls have a different default animator."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback function to call when showing is complete."}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - The animator to use to show the control."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"TabIndex(value?: number): number"}
+{"Gets or sets the tab index of the control."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the tab index to."}
+* *Returns:* {"number - The actual value of the control's tab index."}
+
+!!!!!! {"Top(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the top position of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the top position to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the top position."}
+
+!!!!!! {"Visible(value?: boolean): boolean"}
+{"Gets or sets whether the control is visible or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to visibility to. Uses visibility: hidden."}
+* *Returns:* {"boolean - The actual value of visibility taking into account css visibility and display. Ignores parent visibility."}
+
+!!!!!! {"Width(value?: UI.CSSNumber): UI.CSSNumber"}
+{"Gets or sets the width of the control."}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - The value to set the width to."}
+* *Returns:* {"TSUI.UI.CSSNumber - The actual value of the width."}
+
+
+----
+

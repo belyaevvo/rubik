@@ -1,0 +1,25 @@
+﻿{anchor:IEventArgs}
+!! {"IEventArgs"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines EventArgs. See EventArgs class."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Sender: any;"}
+{"See EventArgs class for more details."}
+
+
+----
+

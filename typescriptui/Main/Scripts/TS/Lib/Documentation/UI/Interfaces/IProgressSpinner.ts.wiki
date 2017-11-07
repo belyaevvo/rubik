@@ -1,0 +1,34 @@
+﻿{anchor:IProgressSpinner}
+!! {"IProgressSpinner"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/ProgressSpinnerTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/ProgressSpinnerTypes.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IProgressSpinner.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IProgressSpinner.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ProgressSpinner control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AnimationDuration(value?: number): number"}
+{"Gets or sets the duration (in milliseconds) of the spinner animation."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the duration to."}
+* *Returns:* {"number - The actual value of the duration."}
+
+!!!!!! {"Reverse(value?: boolean): boolean"}
+{"Gets or sets whether the animation runs in reverse."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the reversal state to."}
+* *Returns:* {"boolean - The actual value of the reversal state."}
+
+
+----
+

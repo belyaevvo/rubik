@@ -1,0 +1,65 @@
+﻿{anchor:BindingGroup}
+!! {"BindingGroup"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Implements:* [IBindingGroup]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Interfaces/IList.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Interfaces/IList.d.ts]
+* [url:Data/Classes/BindingGroup.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/BindingGroup.ts]
+* [url:Data/Interfaces/IBindingGroup.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IBindingGroup.d.ts]
+* [url:Data/Interfaces/IDataBinding.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataBinding.d.ts]
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for a binding group. A binding group is a collection of data bindings (one or more) and an associated updater. It provides an easy way to block update data bindings."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{"Creates a new BindingGroup."}
+
+!!!!!! constructor{"(updater: Data.IDataUpdater)"}
+{"Creates a new BindingGroup."}
+* *{"updater:"}* {"Data.IDataUpdater - The data updater to use for the group."}
+
+!!!!!! constructor{"(updater: Data.IDataUpdater, bindings: Data.IDataBinding<any, any>[])"}
+{"Creates a new BindingGroup."}
+* *{"updater:"}* {"Data.IDataUpdater - The data updater to use for the group."}
+* *{"bindings:"}* {"Data.IDataBinding<any, any>[] - An existing array of data bindings to include in the group."}
+
+!!!!!! constructor{"(updater?: Data.IDataUpdater, bindings?: Data.IDataBinding<any, any>[])"}
+{"Creates a new BindingGroup."}
+* [OPTIONAL] *{"updater:"}* {"Data.IDataUpdater - The data updater to use for the group."}
+* [OPTIONAL] *{"bindings:"}* {"Data.IDataBinding<any, any>[] - An existing array of data bindings to include in the group."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"DataBindings: TSUI.Collections.IList<Data.IDataBinding<any, any>>;"}
+{"The list of data bindings in the group."}
+
+!!!!!! {"Updater: Data.IDataUpdater;"}
+{"The data updater associated with the group."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"UpdateAllBindings(abortOnFailure?: boolean): boolean"}
+{"Forces the data updater to update all the bindings in the group."}
+* [OPTIONAL] *{"abortOnFailure:"}* {"boolean - Whether to abort updating bindings if a binding fails to update."}
+* *Returns:* {"boolean - Whether the update completed successfully (all bindings must complete successfuly for this to be true.)"}
+
+
+----
+

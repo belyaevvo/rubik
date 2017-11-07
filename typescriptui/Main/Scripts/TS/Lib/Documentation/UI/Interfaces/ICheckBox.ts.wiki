@@ -1,0 +1,47 @@
+﻿{anchor:ICheckBox}
+!! {"ICheckBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TextAlignments.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TextAlignments.ts]
+* [url:UI/Interfaces/ICheckBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ICheckBox.d.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Check Box control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnCheckedChange: TSUI.Events.CheckedChangeEvent;"}
+{"Event fired when the Checked status of the check box changes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Checked(value?: boolean): boolean"}
+{"The checked status of the check box."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the checked status to."}
+* *Returns:* {"boolean - The actual status of the check box."}
+
+!!!!!! {"Text(value?: string): string"}
+{"The text to put next to the check box."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the text to."}
+* *Returns:* {"string - The actual value of the text."}
+
+!!!!!! {"TextAlign(value?: UI.TextAlignments): UI.TextAlignments"}
+{"The text align for the check box. Whether the text is to the left or right of the check box."}
+* [OPTIONAL] *{"value:"}* {"UI.TextAlignments - The value to set the text alignment to."}
+* *Returns:* {"TSUI.UI.TextAlignments - The actual text alignment of the check box."}
+
+
+----
+

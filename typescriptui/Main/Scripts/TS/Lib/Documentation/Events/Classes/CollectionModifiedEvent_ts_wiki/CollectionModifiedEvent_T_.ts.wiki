@@ -1,0 +1,58 @@
+﻿{anchor:CollectionModifiedEvent<T>}
+!! {"CollectionModifiedEvent<T>"}
+*Module:* [TSUI.Events]
+*Extends:* [Event]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Events/Classes/CollectionModifiedEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/CollectionModifiedEvent.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Enums/CollectionModifications.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Enums/CollectionModifications.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Event to be fired when a collection (e.g. IList) is modified e.g. added to, removed from, re-ordered.
+Note: This event has been put into a separate class ro prevent reference loops with Collections namespace that result in compiler failures/errors."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: CollectionModifiedEventHandler<T>[];"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: CollectionModifiedEventHandler<T>): void"}
+{""}
+* *{"handler:"}* {"CollectionModifiedEventHandler<T> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: CollectionModifiedEventHandler<T>): void"}
+{""}
+* *{"handler:"}* {"CollectionModifiedEventHandler<T> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: CollectionModifiedEventArgs<T>): void"}
+{""}
+* *{"args:"}* {"CollectionModifiedEventArgs<T> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsAttached(handler: CollectionModifiedEventHandler<T>): boolean"}
+{""}
+* *{"handler:"}* {"CollectionModifiedEventHandler<T> - "}
+* *Returns:* {"boolean - "}
+
+
+----
+

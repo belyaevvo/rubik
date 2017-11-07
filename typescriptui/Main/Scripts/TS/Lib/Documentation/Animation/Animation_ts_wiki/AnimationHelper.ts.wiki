@@ -1,0 +1,38 @@
+﻿{anchor:AnimationHelper}
+!! {"AnimationHelper"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animation.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animation.ts]
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Definitions/html2canvas.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/html2canvas.d.ts]
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Provides functions for animation including preparing and destroying canvases for HTML2Canvas animation."}
+
+----
+
+!!!! {"Private Static Methods"}
+
+!!!!!! {"PrepareHTML2CanvasForAnimation(elem: JQuery, callback: (canvas: JQuery) => void): void"}
+{"Takes an jQuery element (must be contained within the actual page DOM) and prepares it for HTML2Cnavas animation.It does not overlay the canvas on top of the original element but does attempt to position it so it can be faded in.Calls the callback once the canvas has been generated."}
+* *{"elem:"}* {"JQuery - The element to generate an image of."}
+* *{"callback:"}* {"(canvas: JQuery) => void - The callback to invoke once the canvas has been generated. Context is not retained."}
+* *Returns:* {"void - "}
+
+!!!!!! {"RestoreAfterAnimationHTML2Canvas(elem: JQuery, canvas: JQuery): void"}
+{"Restores the original element after HTML2Canvas is no longer required.Fades in the element over the top of the canvas then quickly fades out the canvas from underneath.Canvas is then destroyed."}
+* *{"elem:"}* {"JQuery - The element (JQuery reference) to restore."}
+* *{"canvas:"}* {"JQuery - The canvas (JQuery reference) that is an image of the element. Must already be positioned on top of the element."}
+* *Returns:* {"void - "}
+
+
+----
+

@@ -1,0 +1,50 @@
+﻿{anchor:PageWindowAnimator}
+!! {"PageWindowAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:Animation/PageWindowAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/PageWindowAnimator.ts]
+* [url:UI/UI Static.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/UI Static.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Animator for a StaticPageWindow."}
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use
+Default: easeOutQuad"}
+
+!!!!!! {"AnimationTime: number;"}
+{"The length of time (milliseconds) to spend animating the window.
+Default: 250ms"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Fades out the page window and the PageWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'"}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Fades in the page window and the PageWindow_DisableOverlay. Clears CSS 'display' and 'visibility'"}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+
+----
+

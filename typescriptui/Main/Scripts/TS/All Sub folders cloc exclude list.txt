@@ -1,0 +1,5 @@
+Lib/Build
+Lib/Build_Temp
+Lib/Documentation
+Lib/TypeScriptUI.js
+Lib/TypeScriptUI.min.js

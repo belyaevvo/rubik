@@ -1,0 +1,46 @@
+﻿{anchor:DataPulledEventArgs<T>}
+!! {"DataPulledEventArgs<T>"}
+*Module:* [TSUI.Events]
+*Extends:* [EventArgs]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Interfaces/IDataAccessResult.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessResult.d.ts]
+* [url:Data/Interfaces/IDataAccessor.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessor.d.ts]
+* [url:Events/Classes/DataPulledEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/DataPulledEvent.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See EventArgs for more details."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Sender: TSUI.Data.IDataAccessor<T>, Result: TSUI.Data.IDataAccessResult<T>)"}
+{""}
+* *{"Sender:"}* {"TSUI.Data.IDataAccessor<T> - "}
+* *{"Result:"}* {"TSUI.Data.IDataAccessResult<T> - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Result: TSUI.Data.IDataAccessResult<T>;"}
+{""}
+
+!!!!!! {"Sender: TSUI.Data.IDataAccessor<T>;"}
+{""}
+
+
+----
+

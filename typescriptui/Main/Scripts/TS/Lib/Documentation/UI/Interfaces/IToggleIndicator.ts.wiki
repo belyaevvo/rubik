@@ -1,0 +1,35 @@
+﻿{anchor:IToggleIndicator}
+!! {"IToggleIndicator"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IToggleIndicator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IToggleIndicator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ToggleIndicator."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"IsOn(): boolean"}
+{"Gets whether the toggle indicator is on or off."}
+* *Returns:* {"boolean - True if the indicator is on."}
+
+!!!!!! {"SetIndicatorToOff(): void"}
+{"Sets the toggle indicator to off."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"SetIndicatorToOn(): void"}
+{"Sets the toggle indicator to on."}
+* *Returns:* {"void - Void."}
+
+
+----
+

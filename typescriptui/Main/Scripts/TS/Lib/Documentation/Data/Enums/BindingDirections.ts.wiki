@@ -1,0 +1,27 @@
+﻿{anchor:BindingDirections}
+!! {"BindingDirections"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/BindingDirections.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/BindingDirections.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The directions of data flow that control the data binding."}
+
+----
+
+!!!! {"Values"}
+
+* *{"S2U"}* = 0 - {"Indicates the data flow is from source to user."}
+* *{"U2S"}* = 1 - {"Indicates the data flow is from user to source."}
+* *{"BOTH_S2UDefault"}* = 2 - {"Indicates the data flow is in both directions with default direction as source to user."}
+* *{"BOTH_U2SDefault"}* = 3 - {"Indicates the data flow is in both directions with default direction as user to source."}
+
+----
+

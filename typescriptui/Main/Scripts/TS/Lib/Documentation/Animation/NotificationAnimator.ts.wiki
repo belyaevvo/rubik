@@ -1,0 +1,49 @@
+﻿{anchor:NotificationAnimator}
+!! {"NotificationAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:Animation/NotificationAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/NotificationAnimator.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Animator for a Notification."}
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use
+Default: linear"}
+
+!!!!!! {"AnimationTime: number;"}
+{"The length of time (milliseconds) to spend animating the notification.
+Default: 1000ms"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Slides the notification off to the right - does not set "top". Sets CSS 'visibility:hidden' and 'display:none'; Restores CSS 'right'."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Slides the notification in from the right - does not set "top". Clears CSS 'visibility' and 'display' values."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+
+----
+

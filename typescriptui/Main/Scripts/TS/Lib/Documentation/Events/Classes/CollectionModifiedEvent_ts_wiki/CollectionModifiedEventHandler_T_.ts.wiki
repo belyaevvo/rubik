@@ -1,0 +1,55 @@
+﻿{anchor:CollectionModifiedEventHandler<T>}
+!! {"CollectionModifiedEventHandler<T>"}
+*Module:* [TSUI.Events]
+*Extends:* [EventHandler]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Events/Classes/CollectionModifiedEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/CollectionModifiedEvent.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Enums/CollectionModifications.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Enums/CollectionModifications.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Callback: (args: CollectionModifiedEventArgs<T>) => void, Context: any)"}
+{""}
+* *{"Callback:"}* {"(args: CollectionModifiedEventArgs<T>) => void - "}
+* *{"Context:"}* {"any - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Callback: (args: CollectionModifiedEventArgs<T>) => void;"}
+{""}
+
+!!!!!! {"Context: any;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Invoke(args: CollectionModifiedEventArgs<T>): void"}
+{""}
+* *{"args:"}* {"CollectionModifiedEventArgs<T> - "}
+* *Returns:* {"void - "}
+
+
+----
+

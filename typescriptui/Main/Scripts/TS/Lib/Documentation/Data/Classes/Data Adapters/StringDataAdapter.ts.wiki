@@ -1,0 +1,34 @@
+﻿{anchor:StringDataAdapter}
+!! {"StringDataAdapter"}
+*Module:* [TSUI.Data]
+*Extends:* [DataAdapter]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Classes/Data Adapters/StringDataAdapter.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/Data Adapters/StringDataAdapter.ts]
+* [url:Data/Classes/DataAdapter.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/DataAdapter.ts]
+
+----
+
+!!!! {"Description"}
+
+{"String Data Adapter is a string pass-through adapter - it doesn't actually do anything. Use this as a fill-in adapter."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"I2O(input: string): string"}
+{"Converts raw data to JavaScript object data.Note: This implementation always returns the input unless the input is "undefined" or "null" in which case it returns undefined or null respectively."}
+* *{"input:"}* {"string - The raw string data."}
+* *Returns:* {"string - The processed string data or undefined or null."}
+
+!!!!!! {"O2I(output: string): string"}
+{"Converts JavaScript object data to raw data.Note: This implementation always returns the output unless the output is undefined or null in which case it returns "undefined" or "null" respectively."}
+* *{"output:"}* {"string - "}
+* *Returns:* {"string - The raw string data."}
+
+
+----
+

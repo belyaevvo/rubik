@@ -1,0 +1,128 @@
+﻿{anchor:TabControl}
+!! {"TabControl"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ITabControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Button.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Button.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/TabControl.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TabControl.ts]
+* [url:UI/Interfaces/ITab.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITab.d.ts]
+* [url:UI/Interfaces/ITabControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITabControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{""}
+
+!!!!!! {"Tabs: TSUI.Collections.IList<UI.ITab>;"}
+{""}
+
+!!!!!! {"_FocusIndex: number;"}
+{""}
+
+!!!!!! {"_GetElementWithHighestSequentialTabIndex_Cache: UI.IControl;"}
+{""}
+
+!!!!!! {"_SelectedIndex: number;"}
+{""}
+
+!!!!!! {"_SelectedTabBar: UI.IPanel;"}
+{""}
+
+!!!!!! {"_TabButtons: any[];"}
+{""}
+
+!!!!!! {"_TabButtonsInnerPanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"_TabButtonsPanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"_TabsContainer: UI.IPanel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_ConstructTab(tab: UI.ITab): void"}
+{""}
+* *{"tab:"}* {"UI.ITab - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_DestroyTab(tab: UI.ITab): void"}
+{""}
+* *{"tab:"}* {"UI.ITab - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_GetElementWithHighestSequentialTabIndex(): UI.IControl"}
+{""}
+* *Returns:* {"TSUI.UI.IControl - "}
+
+!!!!!! {"_HideTab(index: number, callback?: () => void): void"}
+{""}
+* *{"index:"}* {"number - "}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_ShowTab(index: number, callback?: () => void): void"}
+{""}
+* *{"index:"}* {"number - "}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_TabButton_Clicked(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Tab_NameChanged(eventArgs: TSUI.Events.NameChangeEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.NameChangeEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Tabs_OnModified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.ITab>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.ITab> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_KeyDown(eventArgs: TSUI.Events.KeyDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.KeyDownEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

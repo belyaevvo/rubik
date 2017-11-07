@@ -1,0 +1,60 @@
+﻿{anchor:ResizeGrip}
+!! {"ResizeGrip"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IResizeGrip]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/CanvasBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/CanvasBox.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/ResizeGrip.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ResizeGrip.ts]
+* [url:UI/Interfaces/IResizeGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IResizeGrip.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"GripColor: string;"}
+{""}
+
+!!!!!! {"_GripCanvas: UI.ICanvasBox;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Enabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Render(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

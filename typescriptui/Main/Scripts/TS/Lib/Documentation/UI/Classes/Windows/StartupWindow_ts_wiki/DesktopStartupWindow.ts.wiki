@@ -1,0 +1,33 @@
+{anchor:DesktopStartupWindow}
+!! {"DesktopStartupWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [StartupWindow]
+*Implements:* [IStartupWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/StackPanel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanel.ts]
+* [url:UI/Classes/StackPanelRow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanelRow.ts]
+* [url:UI/Classes/TextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TextBox.ts]
+* [url:UI/Classes/Tile.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Tile.ts]
+* [url:UI/Classes/Windows/StartupWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/StartupWindow.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/IStartupWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStartupWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(title?: string)"}
+{""}
+* [OPTIONAL] *{"title:"}* {"string - "}
+
+
+----
+

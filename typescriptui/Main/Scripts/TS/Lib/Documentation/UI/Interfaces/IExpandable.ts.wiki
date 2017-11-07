@@ -1,0 +1,60 @@
+﻿{anchor:IExpandable}
+!! {"IExpandable"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IExpandable.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IExpandable.d.ts]
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+* [url:UI/Interfaces/ITitleBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITitleBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an Expandable control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"ContentPanel: UI.IPanel;"}
+{"The content panel for the expandable which children should be added to."}
+
+!!!!!! {"MainTitleBar: UI.ITitleBar;"}
+{"The main title bar for the expandable."}
+
+!!!!!! {"MainToggleIndiciator: UI.IControl;"}
+{"The main toggle indicator for the expandable."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Collapse(): void"}
+{"Collapses the expandable or does nothing if it is already closed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Expand(): void"}
+{"Expands the expandable or does nothing if it is already open."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Expanded(): boolean"}
+{"Whether the expandable is expanded or not."}
+* *Returns:* {"boolean - Whether the expandable is expanded or not."}
+
+!!!!!! {"Title(value?: string): string"}
+{"Gets or sets the title of the expandable."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the title to."}
+* *Returns:* {"string - The actual value of the expandable's title."}
+
+!!!!!! {"Toggle(): void"}
+{"Toggles the expandable. If it is open it closes, if it is closed it opens."}
+* *Returns:* {"void - "}
+
+
+----
+

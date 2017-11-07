@@ -1,0 +1,28 @@
+﻿{anchor:Panel}
+!! {"Panel"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IPanel]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+

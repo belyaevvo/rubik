@@ -1,0 +1,26 @@
+﻿{anchor:TileBackgroundPositions}
+!! {"TileBackgroundPositions"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TileBackgroundPositions.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileBackgroundPositions.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The positions for a Tile Background. (Used in animation)"}
+
+----
+
+!!!! {"Values"}
+
+* *{"OffTop"}* = 0 - {"Position the background off the tile to the top i.e. CSS top:-100%, left:0%"}
+* *{"In"}* = 1 - {"Position the background inside the tile to the top-left i.e. CSS top:0%, left:0%"}
+* *{"OffBottom"}* = 2 - {"Position the background off the tile to the bottom i.e. CSS top:100%, left:0%"}
+
+----
+

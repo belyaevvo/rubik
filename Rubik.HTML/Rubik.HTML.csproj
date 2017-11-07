@@ -1,0 +1,254 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2574F603-4B6C-4A30-BFDD-E3BC09EEDFDF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rubik</RootNamespace>
+    <AssemblyName>Rubik.HTML</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\Rubik.css" />
+    <Content Include="Content\Skins\Blue.css" />
+    <Content Include="Global.asax" />
+    <Content Include="package.json" />
+    <Content Include="Lib\tsconfig.json" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="tsconfig.json" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Server\Schema\SchemaClassDiagram.cd" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.css" />
+    <Content Include="index.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Lib\Animation\Animation.ts" />
+    <TypeScriptCompile Include="Lib\Animation\Animation_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Lib\Animation\Animator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\AppWindowAnimator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\FadeAnimator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\IAnimator.d.ts" />
+    <TypeScriptCompile Include="Lib\Animation\NotificationAnimator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\NotificationRestackAnimator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\PageWindowAnimator.ts" />
+    <TypeScriptCompile Include="Lib\Animation\SelectionWindowAnimator.ts" />
+    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Lib\Collections\Collections_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Lib\Collections\IComparer.d.ts" />
+    <TypeScriptCompile Include="Lib\Collections\IList.d.ts" />
+    <TypeScriptCompile Include="Lib\Collections\List.ts" />
+    <TypeScriptCompile Include="Lib\Collections\ToStringComparer.ts" />
+    <Content Include="Lib\Data\Data Accessors\HTTPDataAccessor.ts" />
+    <Content Include="Lib\Data\Data Accessors\JSDataAccessor.ts" />
+    <Content Include="Lib\Data\Data Adapters\ArrayDataAdapter.ts" />
+    <Content Include="Lib\Data\Data Adapters\BooleanDataAdapter.ts" />
+    <Content Include="Lib\Data\Data Adapters\JSONDataAdapter.ts" />
+    <Content Include="Lib\Data\Data Adapters\NumberDataAdapter.ts" />
+    <Content Include="Lib\Data\Data Adapters\StringDataAdapter.ts" />
+    <Content Include="Lib\Data\DataAccessor.ts" />
+    <Content Include="Lib\Data\DataAccessResult.ts" />
+    <Content Include="Lib\Data\DataAdapter.ts" />
+    <TypeScriptCompile Include="Lib\Data\DataAccessStatuses.ts" />
+    <TypeScriptCompile Include="Lib\Data\DataPulledEvent.ts" />
+    <TypeScriptCompile Include="Lib\Data\DataPushedEvent.ts" />
+    <TypeScriptCompile Include="Lib\Data\IAccessInfo.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\IDataAccessor.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\IDataAccessResult.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\IDataAdapter.d.ts" />
+    <TypeScriptCompile Include="Lib\IApp.d.ts" />
+    <Content Include="Lib\UI\Panel.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Axis.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Cube.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Dimension.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Hierarchy.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Level.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Measure.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Member.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Schema.ts" />
+    <TypeScriptCompile Include="Lib\Schema\SchemaObject.ts" />
+    <TypeScriptCompile Include="Lib\UI\Grid\Cell.ts" />
+    <TypeScriptCompile Include="Lib\UI\Grid\Grid.ts" />
+    <TypeScriptCompile Include="Lib\UI\Grid\Panel.ts" />
+    <TypeScriptCompile Include="Lib\UI\Grid\CellsScrollPanel.ts" />
+    <TypeScriptCompile Include="Lib\UI\IPanel.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\ISplitContainer.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\ISplitterGrip.d.ts" />
+    <Content Include="Lib\UI\SplitContainer.ts" />
+    <Content Include="Lib\UI\SplitterGrip.ts" />
+    <TypeScriptCompile Include="Lib\UI\SplitterGrip_Orientations.ts" />
+    <TypeScriptCompile Include="Scripts\typings\html2canvas\html2canvas.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\CSSNumber.ts" />
+    <TypeScriptCompile Include="Lib\Collections\CollectionModifications.ts" />
+    <TypeScriptCompile Include="Lib\Collections\CollectionModifiedEvent.ts" />
+    <TypeScriptCompile Include="Lib\Events\Event.ts" />
+    <TypeScriptCompile Include="Lib\Events\Events.ts" />
+    <TypeScriptCompile Include="Lib\Events\IEvent.d.ts" />
+    <TypeScriptCompile Include="Lib\Events\IEventArgs.d.ts" />
+    <TypeScriptCompile Include="Lib\Events\IEventHandler.d.ts" />
+    <TypeScriptCompile Include="Lib\Exceptions\ArgumentException.ts" />
+    <TypeScriptCompile Include="Lib\Exceptions\Exception.ts" />
+    <TypeScriptCompile Include="Lib\Exceptions\IException.d.ts" />
+    <TypeScriptCompile Include="Lib\Exceptions\IncorrectTypeException.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\Control.ts" />
+    <TypeScriptCompile Include="Lib\UI\IControl.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\UI Static.ts" />
+    <TypeScriptCompile Include="Lib\Utils.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Build\" />
+    <Folder Include="Lib\Common\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResultMember.cs" />
+    <Compile Include="Server\Schema\Cell.cs" />
+    <Compile Include="Server\Schema\CellSet.cs" />
+    <Compile Include="Server\Schema\Position.cs" />
+    <Compile Include="Server\Schema\ResultAxis.cs" />
+    <Compile Include="Server\Schema\CalculatedMember.cs" />
+    <Compile Include="Server\Schema\CalculatedSet.cs" />
+    <Compile Include="Server\Schema\Axis.cs" />
+    <Compile Include="Server\Schema\CubeInfo.cs" />
+    <Compile Include="Server\Schema\DimensionInfo.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Schema\HierarchyInfo.cs" />
+    <Compile Include="Server\Schema\InfoObject.cs" />
+    <Compile Include="JsonContent.cs" />
+    <Compile Include="Server\Schema\LevelInfo.cs" />
+    <Compile Include="Server\Schema\MeasureInfo.cs" />
+    <Compile Include="Server\Schema\MemberInfo.cs" />
+    <Compile Include="Server\Schema\MemberSelectionEnum.cs" />
+    <Compile Include="Server\Schema\Schema.cs" />
+    <Compile Include="Server\Schema\SelectedMember.cs" />
+    <Compile Include="Server\MDXController.cs" />
+    <Compile Include="Server\Schema\SchemaObject.cs" />
+    <Compile Include="Server\Schema\HierarchySet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AnalysisServices.AdomdClient.12.0.2000.8\lib\net40\Microsoft.AnalysisServices.AdomdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10202</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10202/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

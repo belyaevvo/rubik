@@ -1,0 +1,27 @@
+{anchor:IStartupWindow}
+!! {"IStartupWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/ITile.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITile.d.ts]
+* [url:UI/Interfaces/Windows/IStartupWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStartupWindow.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a generic startup window."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Rows: TSUI.Collections.IList<IStartupWindow_Row>;"}
+{"The startup window rows (rows of tiles) for this startup window."}
+
+
+----
+

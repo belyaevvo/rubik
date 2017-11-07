@@ -1,0 +1,57 @@
+{anchor:StartupWindow_Row}
+!! {"StartupWindow_Row"}
+*Module:* [TSUI.UI]
+*Extends:* [StackPanelRow]
+*Implements:* [IStartupWindow_Row]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/StackPanel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanel.ts]
+* [url:UI/Classes/StackPanelRow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanelRow.ts]
+* [url:UI/Classes/TextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TextBox.ts]
+* [url:UI/Classes/Tile.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Tile.ts]
+* [url:UI/Classes/Windows/StartupWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/StartupWindow.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/IStartupWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStartupWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(MobileMode?: boolean)"}
+{""}
+* [OPTIONAL] *{"MobileMode:"}* {"boolean - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Groups: TSUI.Collections.IList<UI.IStartupWindow_Group>;"}
+{""}
+
+!!!!!! {"MobileMode: boolean;"}
+{""}
+
+!!!!!! {"_InnerStackPanel: UI.IStackPanel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"_This_OnGroupsChanged(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.IStartupWindow_Group>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.IStartupWindow_Group> - "}
+* *Returns:* {"void - "}
+
+
+----
+

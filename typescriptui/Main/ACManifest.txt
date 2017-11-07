@@ -1,0 +1,40 @@
+﻿CACHE MANIFEST
+      
+# Version 1.0.5
+
+FALLBACK:
+/ /Static/Pages/Offline.html
+
+NETWORK:
+*
+
+CACHE:
+Scripts/JS/jQuery/jquery-2.0.1.min.js
+Scripts/JS/jQuery/jquery-ui-1.10.3.custom.min.js
+Scripts/TS/App%20Starters/DemoAppStarter.min.js
+Scripts/TS/DemoApp.min.js
+Scripts/TypescriptUI.min.js
+Images/DownloadIcon.png
+Images/InfoIcon.png
+Images/Logo/TypescriptUI.png
+Images/Screenshots/200x200/SMW-Ad.png
+Images/Screenshots/200x200/Buttons.png
+Images/Screenshots/200x200/Check-Boxes.png
+Images/Screenshots/200x200/Image-Box.png
+Images/Screenshots/200x200/Progress-Bars.png
+Images/Screenshots/200x200/Window-And-Tabs.png
+Images/Screenshots/420x200/SMW-Ad.png
+Images/Screenshots/420x200/Buttons.png
+Images/Screenshots/420x200/Check-Boxes.png
+Images/Screenshots/420x200/Image-Box.png
+Images/Screenshots/420x200/Progress-Bars.png
+Images/Screenshots/420x200/Window-And-Tabs.png
+Images/Tiles/Demo-Tile-Background.png
+SVG/Circle.txt
+Static/Pages/Demo%20App/About.html
+Index.min.html
+Static/Pages/Offline.html
+CSS/Apps/Demo.css
+CSS/UI.css
+CSS/Skins/Blue.css
+SVG/Circle.svg

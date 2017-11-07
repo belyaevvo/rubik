@@ -1,0 +1,570 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>TypeScript UI</title>
+
+    <link href="CSS/UI.css" rel="stylesheet" type="text/css">
+    <link href="CSS/App.css" rel="stylesheet" type="text/css">
+    <link href="CSS/Skins/Blue.css" rel="stylesheet" type="text/css">
+    <link href="CSS/Apps/TypescriptUI.css" rel="stylesheet">
+    <link href="CSS/Apps/Skins/TypescriptUI.css" rel="stylesheet">
+
+    <script src="Scripts/JS/html2canvas.js"></script>
+    <script src="Scripts/JS/jQuery/jquery-2.0.0.js" type="text/javascript"></script>
+    <script src="Scripts/JS/jQuery/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+    <script src="Scripts/JS/jQuery/jquery.numeric.js"></script>
+
+    <script src="Scripts/TS/Lib/Build/Utils.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Lib/Build/Exceptions.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Lib/Build/Collections.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Lib/Build/Events.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Lib/Build/Animation.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Lib/Build/UI.min.js" type="text/javascript"></script>
+    <script src="Scripts/TS/Apps.min.js" type="text/javascript"></script>
+</head>
+<body style="">
+    <script src="Scripts/TS/App%20Starters/TestAppStarter.min.js" type="text/javascript"></script>
+
+    <div class="Bg"></div>
+
+    <div class="Control Window" style="visibility: visible; min-width: 725px; min-height: 645px; max-width: 100%; max-height: 100%; width: 100%; height: 100%; z-index: 0; opacity: 1;">
+        <div class="Control TitleBar">
+            <div class="Control Label Title">UI Designer</div>
+        </div>
+        <div class="Control Button WindowCloseButton" tabindex="2">
+            <div class="Control Label">X</div>
+        </div>
+        <div class="Control Panel" style="height: 903px;">
+            <div class="Control SplitContainer" style="width: 100%; height: 100%;">
+                <div class="Control Panel Panel1" style="width: 6.784968684759916%; min-width: 130px; height: 100%; top: 0px;">
+                    <div class="Control Button" tabindex="3" style="top: 15px; left: 15px; width: 100px; height: 100px;">
+                        <div class="Control Label">A Button 0</div>
+                    </div>
+                    <div class="Control Button Disabled" style="top: 130px; left: 15px; width: 100px; height: 100px;">
+                        <div class="Control Label Disabled">A Button 1</div>
+                    </div>
+                    <div class="Control Button" tabindex="5" style="top: 245px; left: 15px; width: 100px; height: 100px;">
+                        <div class="Control Label">A Button 2</div>
+                    </div>
+                    <div class="Control Button Disabled" style="top: 360px; left: 15px; width: 100px; height: 100px;">
+                        <div class="Control Label Disabled">A Button 3</div>
+                    </div>
+                    <div class="Control Button" tabindex="7" style="top: 475px; left: 15px; width: 100px; height: 100px;">
+                        <div class="Control Label">A Button 4</div>
+                    </div>
+                    <div class="Control StackPanel Horizontal" style="top: 10px; left: 130px; width: 230px; height: 345px;">
+                        <div class="Control Row" style="width: 115px;">
+                            <div class="Control Button RelativeLayout" tabindex="8" style="width: 100px; height: 100px; margin-bottom: 15px;">
+                                <div class="Control Label">Hrz Stk Pan Btn 0</div>
+                            </div>
+                            <div class="Control Button RelativeLayout" tabindex="9" style="width: 100px; height: 100px; margin-top: 0px; margin-bottom: 15px;">
+                                <div class="Control Label">Hrz Stk Pan Btn 1</div>
+                            </div>
+                        </div>
+                        <div class="Control Row" style="width: 110px;">
+                            <div class="Control Button RelativeLayout" tabindex="10" style="width: 100px; height: 100px; margin-bottom: 15px;">
+                                <div class="Control Label">Hrz Stk Pan Btn 3</div>
+                            </div>
+                            <div class="Control Button RelativeLayout" tabindex="11" style="width: 100px; height: 100px; margin-top: 0px; margin-bottom: 15px;">
+                                <div class="Control Label">Hrz Stk Pan Btn 4</div>
+                            </div>
+                            <div class="Control Button RelativeLayout" tabindex="12" style="width: 100px; height: 100px; margin-top: 0px; margin-bottom: 15px;">
+                                <div class="Control Label">Hrz Stk Pan Btn 5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Control Panel Panel2" style="width: 93.21503131524008%; left: 6.784968684759916%; min-width: 590px; height: 100%; top: 0px;">
+                    <div class="Control SplitContainer" style="width: 100%; height: 100%;">
+                        <div class="Control Panel Panel1" style="width: 100%; left: 0px; height: 85.60354374307863%; min-height: 330px;">
+                            <div class="Control Expandable" style="height: 130px; width: 48%; top: 25px; left: 25px; min-width: 200px;">
+                                <div class="Control TitleBar">
+                                    <div class="Control Label Title">Expandable 1</div>
+                                </div>
+                                <div class="Control Label ToggleIndicatorLabel ToggleIndicator On" tabindex="13">
+                                    &lt;
+                                </div>
+                                <div class="Control Panel" style="height: 70px;">
+                                    <div class="Control Label">Test label</div>
+                                </div>
+                            </div>
+                            <div class="Control Expandable" style="height: 130px; width: 48%; top: 175px; left: 25px; min-width: 200px;">
+                                <div class="Control TitleBar">
+                                    <div class="Control Label Title">Expandable 2</div>
+                                </div>
+                                <div class="Control Label ToggleIndicatorLabel ToggleIndicator On" tabindex="14">
+                                    &lt;
+                                </div>
+                                <div class="Control Panel" style="height: 70px;">
+                                    <div class="Control Label">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Curabitur pharetra felis nec erat fermentum malesuada gravida odio pulvinar. Fusce
+                                        elit massa, hendrerit sit amet vehicula vitae, porta in lorem. Suspendisse volutpat
+                                        eros sed nibh elementum tincidunt. Nam nulla nibh, dapibus.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Control StackPanel Vertical" style="top: 25px; left: 52%; width: 47%;">
+                                <div class="Control Row">
+                                    <div class="Control Expandable Collapsed" style="height: 30px;">
+                                        <div class="Control TitleBar">
+                                            <div class="Control Label Title">Expandable 3</div>
+                                        </div>
+                                        <div class="Control Label ToggleIndicatorLabel ToggleIndicator Off" tabindex="15">
+                                            &lt;
+                                        </div>
+                                        <div class="Control Panel Disabled" style="height: 70px;">
+                                            <div class="Control Label Disabled">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                elit. Curabitur pharetra felis nec erat fermentum malesuada gravida odio pulvinar.
+                                                Fusce elit massa, hendrerit sit amet vehicula vitae, porta in lorem. Suspendisse
+                                                volutpat eros sed nibh elementum tincidunt. Nam nulla nibh, dapibus.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control Expandable Collapsed" style="height: 30px;">
+                                        <div class="Control TitleBar">
+                                            <div class="Control Label Title">Expandable 4</div>
+                                        </div>
+                                        <div class="Control Label ToggleIndicatorLabel ToggleIndicator Off" tabindex="16">
+                                            &lt;
+                                        </div>
+                                        <div class="Control Panel RelativeLayout Disabled">
+                                            <div class="Control Label RelativeLayout Disabled">
+                                                Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Curabitur pharetra felis nec erat fermentum malesuada gravida odio
+                                                pulvinar. Fusce elit massa, hendrerit sit amet vehicula vitae, porta in lorem. Suspendisse
+                                                volutpat eros sed nibh elementum tincidunt. Nam nulla nibh, dapibus.
+                                            </div>
+                                            <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                                <div class="Control Label Disabled">Exp Button 0</div>
+                                            </div>
+                                            <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                                <div class="Control Label Disabled">Exp Button 1</div>
+                                            </div>
+                                            <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                                <div class="Control Label Disabled">Exp Button 2</div>
+                                            </div>
+                                            <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                                <div class="Control Label Disabled">Exp Button 3</div>
+                                            </div>
+                                            <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                                <div class="Control Label Disabled">Exp Button 4</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                        <div class="Control Label Disabled">A Button 5</div>
+                                    </div>
+                                    <div class="Control Button RelativeLayout" tabindex="23" style="width: 100px; height: 100px;">
+                                        <div class="Control Label">A Button 6</div>
+                                    </div>
+                                    <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                        <div class="Control Label Disabled">A Button 7</div>
+                                    </div>
+                                    <div class="Control Button RelativeLayout" tabindex="25" style="width: 100px; height: 100px;">
+                                        <div class="Control Label">A Button 8</div>
+                                    </div>
+                                    <div class="Control Button RelativeLayout Disabled" style="width: 100px; height: 100px;">
+                                        <div class="Control Label Disabled">A Button 9</div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control Panel" style="height: 100px; border: 1px solid rgb(0, 0, 0);">
+                                        <div class="Control Label" style="width: auto; height: auto; top: 15px; bottom: 15px; left: 15px; right: 15px;">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Curabitur pharetra felis nec erat fermentum malesuada gravida odio pulvinar. Fusce
+                                            elit massa, hendrerit sit amet vehicula vitae, porta in lorem. Suspendisse volutpat
+                                            eros sed nibh elementum tincidunt. Nam nulla nibh, dapibus.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control Label RelativeLayout" tabindex="27">
+                                        <a href="http://www.google.co.uk"
+                                            target="_blank">Visit Google.co.uk!</a>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control Label RelativeLayout">
+                                        <span style="color: #F00">A label with HTML
+                                        set.</span>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ImageBox RelativeLayout" style="width: 200px; height: 100px;">
+                                        <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg"
+                                            alt="Google Images Logo" />
+                                    </div>
+                                    <div class="Control ImageBox RelativeLayout Clickable" tabindex="28" style="width: 200px; height: 100px;">
+                                        <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg"
+                                            alt="Google Images Logo" />
+                                    </div>
+                                    <div class="Control ImageBox RelativeLayout Clickable Disabled" style="width: 200px; height: 100px;">
+                                        <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg"
+                                            alt="Google Images Logo" />
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ImageBox CanvasBox RelativeLayout" style="width: 200px; height: 100px;">
+                                        <canvas width="100%" height="100%">
+                                            <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg" /></canvas>
+                                    </div>
+                                    <div class="Control ImageBox CanvasBox RelativeLayout Clickable" tabindex="30" style="width: 200px; height: 100px;">
+                                        <canvas width="100%" height="100%">
+                                            <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg" /></canvas>
+                                    </div>
+                                    <div class="Control ImageBox CanvasBox RelativeLayout Clickable Disabled" style="width: 200px; height: 100px;">
+                                        <canvas width="100%" height="100%">
+                                            <img src="http://rack.0.mshcdn.com/media/ZgkyMDEyLzEyLzA0L2I1L3doZXJlZG9nb29nLmJoTi5qcGcKcAl0aHVtYgk5NTB4NTM0IwplCWpwZw/4931e287/304/where-do-google-doodles-come-from--ff2932470c.jpg" /></canvas>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ImageBox SVGBox RelativeLayout" style="width: 200px; height: 100px;">
+                                        <object type="image/svg+xml" data="SVG/Circle.svg"></object>
+                                        <div class="Overlay"></div>
+                                    </div>
+                                    <div class="Control ImageBox SVGBox RelativeLayout Clickable" tabindex="32" style="width: 200px; height: 100px;">
+                                        <object type="image/svg+xml" data="SVG/Circle.svg"></object>
+                                        <div class="Overlay"></div>
+                                    </div>
+                                    <div class="Control ImageBox SVGBox RelativeLayout Clickable Disabled" style="width: 200px; height: 100px;">
+                                        <object type="image/svg+xml" data="SVG/Circle.svg"></object>
+                                        <div class="Overlay"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Control StackPanel Vertical" style="top: 330px; width: 48%; left: 25px; min-width: 200px;">
+                                <div class="Control Row">
+                                    <div class="Control CheckBox RelativeLayout Disabled LeftAlign">
+                                        <div class="Control Label RelativeLayout Disabled">Check box 0</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout On Disabled">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="Control CheckBox RelativeLayout Disabled RightAlign">
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Off Disabled">
+                                            <div></div>
+                                        </div>
+                                        <div class="Control Label RelativeLayout Disabled">Check box 1</div>
+                                    </div>
+                                    <div class="Control CheckBox RelativeLayout LeftAlign" tabindex="38">
+                                        <div class="Control Label RelativeLayout">Check box 2</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout On">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="Control CheckBox RelativeLayout RightAlign" tabindex="40">
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Off">
+                                            <div></div>
+                                        </div>
+                                        <div class="Control Label RelativeLayout">Check box 3</div>
+                                    </div>
+                                    <div class="Control CheckBox RelativeLayout LeftAlign" tabindex="42">
+                                        <div class="Control Label RelativeLayout">Check box 4</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout On">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control RadioButton RelativeLayout Disabled LeftAlign">
+                                        <div class="Control Label RelativeLayout Disabled">Radio button 0</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Disabled Off">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="Control RadioButton RelativeLayout Disabled RightAlign">
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Off Disabled">
+                                            <div></div>
+                                        </div>
+                                        <div class="Control Label RelativeLayout Disabled">Radio button 1</div>
+                                    </div>
+                                    <div class="Control RadioButton RelativeLayout LeftAlign" tabindex="48">
+                                        <div class="Control Label RelativeLayout">Radio button 2</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Off">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="Control RadioButton RelativeLayout RightAlign" tabindex="50">
+                                        <div class="Control ToggleIndicatorBox RelativeLayout Off">
+                                            <div></div>
+                                        </div>
+                                        <div class="Control Label RelativeLayout">Radio button 3</div>
+                                    </div>
+                                    <div class="Control RadioButton RelativeLayout LeftAlign" tabindex="52">
+                                        <div class="Control Label RelativeLayout">Radio button 4</div>
+                                        <div class="Control ToggleIndicatorBox RelativeLayout On">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ToggleButton On RelativeLayout Disabled">
+                                        <div class="Control Panel TogglePanel Disabled">
+                                            <div class="Control Panel TogglePanelInner Disabled">
+                                                <div class="Control Panel White Disabled"></div>
+                                                <div class="Control Panel Blue Disabled"></div>
+                                            </div>
+                                        </div>
+                                        <div class="Control Panel Grip Disabled"></div>
+                                        <div class="Control Label Disabled">On</div>
+                                    </div>
+                                    <div class="Control ToggleButton RelativeLayout Disabled">
+                                        <div class="Control Panel TogglePanel Disabled">
+                                            <div class="Control Panel TogglePanelInner Disabled">
+                                                <div class="Control Panel White Disabled"></div>
+                                                <div class="Control Panel Blue Disabled"></div>
+                                            </div>
+                                        </div>
+                                        <div class="Control Panel Grip Disabled"></div>
+                                        <div class="Control Label Disabled">Off</div>
+                                    </div>
+                                    <div class="Control ToggleButton On RelativeLayout" tabindex="56">
+                                        <div class="Control Panel TogglePanel">
+                                            <div class="Control Panel TogglePanelInner">
+                                                <div class="Control Panel White"></div>
+                                                <div class="Control Panel Blue"></div>
+                                            </div>
+                                        </div>
+                                        <div class="Control Panel Grip"></div>
+                                        <div class="Control Label">On</div>
+                                    </div>
+                                    <div class="Control ToggleButton RelativeLayout" tabindex="57">
+                                        <div class="Control Panel TogglePanel">
+                                            <div class="Control Panel TogglePanelInner">
+                                                <div class="Control Panel White"></div>
+                                                <div class="Control Panel Blue"></div>
+                                            </div>
+                                        </div>
+                                        <div class="Control Panel Grip"></div>
+                                        <div class="Control Label">Off</div>
+                                    </div>
+                                    <div class="Control ToggleButton On RelativeLayout" tabindex="58">
+                                        <div class="Control Panel TogglePanel">
+                                            <div class="Control Panel TogglePanelInner">
+                                                <div class="Control Panel White"></div>
+                                                <div class="Control Panel Blue"></div>
+                                            </div>
+                                        </div>
+                                        <div class="Control Panel Grip"></div>
+                                        <div class="Control Label">On</div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control TextBox RelativeLayout">
+                                        <input type="password" maxlength="10" tabindex="59">
+                                    </div>
+                                    <div class="Control TextBox RelativeLayout">
+                                        <input type="text" maxlength="20" tabindex="60">
+                                    </div>
+                                    <div class="Control TextBox RelativeLayout Disabled">
+                                        <input type="text" maxlength="30">
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control DropDownBox RelativeLayout">
+                                        <div class="Control Panel">
+                                            <div class="Control TextBox">
+                                                <input type="text" tabindex="62">
+                                            </div>
+                                            <div class="Control Label ToggleIndicatorLabel Off">&lt;</div>
+                                        </div>
+                                    </div>
+                                    <div class="Control DropDownBox RelativeLayout">
+                                        <div class="Control Panel">
+                                            <div class="Control TextBox">
+                                                <input type="text" tabindex="65">
+                                            </div>
+                                            <div class="Control Label ToggleIndicatorLabel Off">&lt;</div>
+                                        </div>
+                                    </div>
+                                    <div class="Control DropDownBox RelativeLayout Disabled">
+                                        <div class="Control Panel Disabled">
+                                            <div class="Control TextBox Disabled">
+                                                <input type="text">
+                                            </div>
+                                            <div class="Control Label ToggleIndicatorLabel Off Disabled">&lt;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control NumericUpDown RelativeLayout">
+                                        <div class="Control TextBox Numeric">
+                                            <input type="text" tabindex="76">
+                                        </div>
+                                        <div class="Control Button Up" tabindex="77">
+                                            <div class="Control Label">^</div>
+                                        </div>
+                                        <div class="Control Button Down" tabindex="78">
+                                            <div class="Control Label">^</div>
+                                        </div>
+                                    </div>
+                                    <div class="Control NumericUpDown RelativeLayout">
+                                        <div class="Control TextBox Numeric">
+                                            <input type="text" tabindex="80">
+                                        </div>
+                                        <div class="Control Button Up" tabindex="81">
+                                            <div class="Control Label">^</div>
+                                        </div>
+                                        <div class="Control Button Down" tabindex="82">
+                                            <div class="Control Label">^</div>
+                                        </div>
+                                    </div>
+                                    <div class="Control NumericUpDown RelativeLayout Disabled">
+                                        <div class="Control TextBox Numeric Disabled">
+                                            <input type="text">
+                                        </div>
+                                        <div class="Control Button Up Disabled">
+                                            <div class="Control Label Disabled">^</div>
+                                        </div>
+                                        <div class="Control Button Down Disabled">
+                                            <div class="Control Label Disabled">^</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control TextBox Multiline RelativeLayout">
+                                        <textarea maxlength="25" tabindex="88"></textarea>
+                                    </div>
+                                    <div class="Control TextBox Multiline RelativeLayout">
+                                        <textarea tabindex="89"></textarea>
+                                    </div>
+                                    <div class="Control TextBox Multiline RelativeLayout Disabled">
+                                        <textarea></textarea>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ProgressSpinner RelativeLayout Circular">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="40" height="40" top="1px">
+                                                <img></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="Control ProgressSpinner RelativeLayout Circular">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="40" height="40" top="1px">
+                                                <img></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="Control ProgressSpinner RelativeLayout Horizontal">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="200" height="10" top="1px">
+                                                <img></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="Control ProgressSpinner RelativeLayout Vertical">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="10" height="200" top="1px">
+                                                <img></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Control Row">
+                                    <div class="Control ProgressBar RelativeLayout Circular">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="40" height="40">
+                                                <img></canvas>
+                                        </div>
+                                        <span class="Bar"></span>
+                                    </div>
+                                    <div class="Control ProgressBar RelativeLayout Circular">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="40" height="40">
+                                                <img></canvas>
+                                        </div>
+                                        <span class="Bar"></span>
+                                    </div>
+                                    <div class="Control ProgressBar RelativeLayout Horizontal">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="198" height="38">
+                                                <img></canvas>
+                                        </div>
+                                        <span class="Bar"></span>
+                                    </div>
+                                    <div class="Control ProgressBar RelativeLayout Vertical">
+                                        <div class="Control ImageBox CanvasBox">
+                                            <canvas width="38" height="198">
+                                                <img></canvas>
+                                        </div>
+                                        <span class="Bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Control Panel Panel2" style="width: 100%; left: 0px; height: 14.396456256921368%; top: 85.60354374307863%; min-height: 130px;">
+                            <div class="Control Button" tabindex="91" style="left: 15px; top: 15px; width: 100px; height: 100px;">
+                                <div class="Control Label">A Button 10</div>
+                            </div>
+                            <div class="Control Button Disabled" style="left: 130px; top: 15px; width: 100px; height: 100px;">
+                                <div class="Control Label Disabled">A Button 11</div>
+                            </div>
+                            <div class="Control Button" tabindex="93" style="left: 245px; top: 15px; width: 100px; height: 100px;">
+                                <div class="Control Label">A Button 12</div>
+                            </div>
+                            <div class="Control Button Disabled" style="left: 360px; top: 15px; width: 100px; height: 100px;">
+                                <div class="Control Label Disabled">A Button 13</div>
+                            </div>
+                            <div class="Control Button" tabindex="95" style="left: 475px; top: 15px; width: 100px; height: 100px;">
+                                <div class="Control Label">A Button 14</div>
+                            </div>
+                        </div>
+                        <div class="Control SplitterGrip Horizontal" style="top: 85.60354374307863%; left: 0px; height: 15px; width: 100%;">
+                            &amp;nbsp;
+                        </div>
+                    </div>
+                </div>
+                <div class="Control SplitterGrip Vertical" style="top: 0px; left: 6.784968684759916%; height: 100%; width: 15px;">
+                    &amp;nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="Control ResizeGrip">
+            <div class="Control ImageBox CanvasBox">
+                <canvas width="100%" height="100%">
+                    <img /></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="Control StackPanel Vertical DropDownList" style="visibility: hidden; z-index: 200; display: none; top: 548px; left: 162px;">
+    </div>
+    <div class="Control StackPanel Vertical DropDownList" style="visibility: hidden; z-index: 200; display: none; top: 548px; left: 365px;">
+        <div class="Control Row" tabindex="68">
+            <div class="Control Label RelativeLayout">Drop Item 0</div>
+        </div>
+        <div class="Control Row" tabindex="69">
+            <div class="Control Label RelativeLayout">Drop Item 1</div>
+        </div>
+        <div class="Control Row" tabindex="70">
+            <div class="Control Label RelativeLayout">Drop Item 2</div>
+        </div>
+        <div class="Control Row" tabindex="71">
+            <div class="Control Label RelativeLayout">Drop Item 3</div>
+        </div>
+        <div class="Control Row" tabindex="72">
+            <div class="Control Label RelativeLayout">Drop Item 4</div>
+        </div>
+        <div class="Control Row" tabindex="96">
+            <div class="Control Label RelativeLayout">Drop Item 5</div>
+        </div>
+        <div class="Control Row" tabindex="97">
+            <div class="Control Label RelativeLayout">Drop Item 6</div>
+        </div>
+        <div class="Control Row" tabindex="98">
+            <div class="Control Label RelativeLayout">Drop Item 7</div>
+        </div>
+        <div class="Control Row" tabindex="99">
+            <div class="Control Label RelativeLayout">Drop Item 8</div>
+        </div>
+        <div class="Control Row" tabindex="100">
+            <div class="Control Label RelativeLayout">Drop Item 9</div>
+        </div>
+    </div>
+    <div class="Control StackPanel Vertical DropDownList Disabled" style="visibility: hidden; z-index: 200; display: none; top: 548px; left: 568px;">
+    </div>
+</body>
+</html>

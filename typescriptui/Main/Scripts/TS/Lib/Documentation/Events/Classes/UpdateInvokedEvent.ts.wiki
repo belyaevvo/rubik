@@ -1,0 +1,56 @@
+﻿{anchor:UpdateInvokedEvent}
+!! {"UpdateInvokedEvent"}
+*Module:* [TSUI.Events]
+*Extends:* [Event]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateInvokedEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateInvokedEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See Event for more details."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: UpdateInvokedEventHandler[];"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: UpdateInvokedEventHandler): void"}
+{""}
+* *{"handler:"}* {"UpdateInvokedEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: UpdateInvokedEventHandler): void"}
+{""}
+* *{"handler:"}* {"UpdateInvokedEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: UpdateInvokedEventArgs): void"}
+{""}
+* *{"args:"}* {"UpdateInvokedEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsAttached(handler: UpdateInvokedEventHandler): boolean"}
+{""}
+* *{"handler:"}* {"UpdateInvokedEventHandler - "}
+* *Returns:* {"boolean - "}
+
+
+----
+

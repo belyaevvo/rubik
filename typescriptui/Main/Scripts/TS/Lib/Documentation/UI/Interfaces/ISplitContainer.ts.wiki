@@ -1,0 +1,43 @@
+﻿{anchor:ISplitContainer}
+!! {"ISplitContainer"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+* [url:UI/Interfaces/ISplitContainer.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISplitContainer.d.ts]
+* [url:UI/Interfaces/ISplitterGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISplitterGrip.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a SplitContainer control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"MainSplitterGrip: UI.ISplitterGrip;"}
+{"The main splitter grip for the control."}
+
+!!!!!! {"Panel1: UI.IPanel;"}
+{"The top or left panel of the split container."}
+
+!!!!!! {"Panel2: UI.IPanel;"}
+{"The bottom or right panel of the split container."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Orientation(value?: UI.SplitterGrip_Orientations): UI.SplitterGrip_Orientations"}
+{"Gets or sets the splitter orientation."}
+* [OPTIONAL] *{"value:"}* {"UI.SplitterGrip_Orientations - The value to set the splitter grip orientation to."}
+* *Returns:* {"TSUI.UI.SplitterGrip_Orientations - The actual value of the splitter grip orientation."}
+
+
+----
+

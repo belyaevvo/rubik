@@ -1,0 +1,27 @@
+﻿{anchor:IPageWindow}
+!! {"IPageWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/Windows/IPageWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IPageWindow.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a basic page window for displaying static HTML."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"PositionCenterWindow(): void"}
+{"Positions the message box in the centre of the window (use before calling Show)."}
+* *Returns:* {"void - Void."}
+
+
+----
+

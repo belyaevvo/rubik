@@ -1,0 +1,18 @@
+﻿{anchor:IPanel}
+!! {"IPanel"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Panel control."}
+
+----
+

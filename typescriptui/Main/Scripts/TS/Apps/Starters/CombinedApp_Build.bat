@@ -1,0 +1,2 @@
+tsc "CombinedAppStarter.ts"
+pause

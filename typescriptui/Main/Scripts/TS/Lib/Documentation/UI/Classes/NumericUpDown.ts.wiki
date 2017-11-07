@@ -1,0 +1,141 @@
+﻿{anchor:NumericUpDown}
+!! {"NumericUpDown"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [INumericUpDown]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Button.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Button.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/NumericTextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/NumericTextBox.ts]
+* [url:UI/Classes/NumericUpDown.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/NumericUpDown.ts]
+* [url:UI/Interfaces/INumericUpDown.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/INumericUpDown.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnValueChange: TSUI.Events.ValueChangeEvent;"}
+{""}
+
+!!!!!! {"_DownButton: UI.IButton;"}
+{""}
+
+!!!!!! {"_Increment: number;"}
+{""}
+
+!!!!!! {"_PrevSeenValue: number;"}
+{""}
+
+!!!!!! {"_UnderlyingTextBox: UI.NumericTextBox;"}
+{""}
+
+!!!!!! {"_UpButton: UI.IButton;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AllowDecimals(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"AllowNegatives(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Blur(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"DecimalPlaces(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"DecimalSeparator(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Focus(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Increment(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Max(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Min(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Value(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_DownButton_OnClick(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_HandleFocusableSet(focusable: boolean): void"}
+{""}
+* *{"focusable:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_OnKeyDown_IncrementHandler(eventArgs: TSUI.Events.KeyDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.KeyDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_OnKeyUp_IncrementHandler(eventArgs: TSUI.Events.KeyUpEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.KeyUpEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnBlur(eventArgs: TSUI.Events.BlurEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.BlurEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnFocus(eventArgs: TSUI.Events.FocusEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.FocusEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UpButton_OnClick(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

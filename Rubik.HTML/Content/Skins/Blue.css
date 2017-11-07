@@ -1,0 +1,414 @@
+﻿/*
+Copyright © Edward Nutting 2013
+Author: Edward Nutting 
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+
+a
+{
+    color: #0072C6;
+}
+a:hover,
+a:focus
+{
+    color: #004c84;
+}
+a:visited
+{
+    color: #00237d;
+}
+
+.Control > .DisableOverlay
+{
+    background-color: #FFF;
+}
+
+.Control.TabFocused
+{
+    outline: 2px solid #ffd800;
+}
+
+.Window
+{
+    border-color: #CCC;
+    background-color: #FFF;
+}
+
+.SelectionWindow,
+.PageWindow
+{
+    background: none;
+}
+    .SelectionWindow > .StackPanel,
+    .PageWindow > .Panel
+    {
+        background: #FFF;
+    }
+    .SelectionWindow > .Button.WindowCloseButton,
+    .PageWindow > .Button.WindowCloseButton
+    {
+        color: #000;
+        background-color: #FFF;
+    }
+    .SelectionWindow > .Button.WindowCloseButton:hover,
+    .PageWindow > .Button.WindowCloseButton:hover
+    {
+        color: #FFF;
+    }
+
+.TitleBar
+{
+    background-color: #0072C6;
+    color: #FFF;
+}
+
+    .TitleBar > .Title
+    {
+        color: inherit;
+    }
+
+.Label
+{
+    color: inherit;
+}
+
+.ResizeGrip > .CanvasBox
+{
+    border: none;
+}
+
+.SplitContainer > .Panel1
+{
+    background-color: #FCFCFC;
+}
+
+.SplitContainer > .Panel2
+{
+    background-color: #FCFCFC;
+}
+
+
+.SplitterGrip
+{
+    background: transparent;
+    color: transparent;
+}
+
+    .SplitterGrip.Horizontal
+    {
+        border-top: 1px dashed #000;
+    }
+
+    .SplitterGrip.Vertical
+    {
+        border-left: 1px dashed #000;
+    }
+
+.Expandable
+{
+    border-color: #EEE;
+}
+
+    .Expandable.Collapsed > .TitleBar
+    {
+        background-color: #FAFAFA;
+    }
+
+        .Expandable.Collapsed > .TitleBar > .Title
+        {
+            color: #000;
+        }
+
+
+.ToggleIndicatorLabel
+{
+    color: #FFF;
+}
+
+    .ToggleIndicatorLabel.Off
+    {
+        color: #000;
+    }
+
+.ToggleIndicatorBox
+{
+    border-color: #DDD;
+    background: none;
+}
+
+    .ToggleIndicatorBox > div
+    {
+        background-color: none;
+    }
+
+    .ToggleIndicatorBox.On > div
+    {
+        background-color: #999;
+    }
+
+.Button
+{
+    outline: none;
+    background-color: #0072C6;
+    color: #FFF;
+}
+
+    .Button:hover
+    {
+        outline: 5px solid #DDD;
+        -moz-transition: outline 0.5s linear;
+        -o-transition: outline 0.5s linear;
+        -webkit-transition: outline 0.5s linear;
+        transition: outline 0.5s linear;
+    }
+
+    .Button.Disabled:hover
+    {
+        outline: none;
+    }
+
+    .Button.WindowCloseButton
+    {
+        background-color: transparent;
+    }
+
+        .Button.WindowCloseButton:hover
+        {
+            outline: none;
+            background-color: #003b66;
+        }
+
+    .Button.NotificationCloseButton
+    {
+        z-index: 2;
+    }
+
+        .Button.NotificationCloseButton:hover
+        {
+            outline: none;
+            background-color: #003b66;
+        }
+
+.TextBox
+{
+    border-color: #AAA;
+    background-color: #FFF;
+}
+
+    .TextBox.Focused
+    {
+        border-color: #000;
+    }
+
+.DropDownBox,
+.DropDownBox.Disabled:hover
+{
+    border-color: #999;
+    background-color: #FFF;
+    color: #000;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.DropDownBox:hover,
+.DropDownBox.Focused
+{
+    border-color: #666;
+}
+
+.DropDownBox.Disabled.Focused
+{
+    border-color: #AAA;
+}
+
+.DropDownBox > select
+{
+    border: none;
+    background-color: transparent;
+    color: inherit;
+}
+
+.NumericUpDown > .Button,
+.NumericUpDown > .TextBox
+{
+    border-color: #AAA;
+}
+
+.NumericUpDown:hover > .Button,
+.NumericUpDown:hover > .Button:hover,
+.NumericUpDown:hover > .TextBox,
+.NumericUpDown.Focused > .Button,
+.NumericUpDown.Focused > .Button:hover,
+.NumericUpDown.Focused > .TextBox
+{
+    border-color: #333;
+}
+
+.NumericUpDown > .Button:hover,
+.NumericUpDown > .Button.Focused
+{
+    color: #333;
+}
+
+.NumericUpDown.Disabled:hover > .Button,
+.NumericUpDown.Disabled:hover > .Button:hover,
+.NumericUpDown.Disabled:hover > .TextBox,
+.NumericUpDown.Disabled.Focused > .Button,
+.NumericUpDown.Disabled.Focused > .Button:hover,
+.NumericUpDown.Disabled.Focused > .TextBox
+{
+    border-color: #AAA;
+    color: #FFF;
+}
+
+.ImageBox
+{
+    border-color: #333;
+}
+
+
+.ProgressSpinner
+{
+    color: #0072C6;
+}
+
+.ProgressBar
+{
+    color: #000;
+    border-color: #0072C6;
+}
+
+    .ProgressBar > .Bar
+    {
+        background-color: #0072C6;
+    }
+
+.Notification
+{
+    background-color: #FFF;
+    border-color: #0072C6;
+}
+
+.ToggleButton
+{
+}
+
+    .ToggleButton .Panel.TogglePanel
+    {
+        border: 2px solid #BBB;
+        background-color: #FFF;
+    }
+
+    .ToggleButton .Panel.White,
+    .ToggleButton .Panel.Blue
+    {
+        border: 1px solid #FFF;
+    }
+
+    .ToggleButton .Panel.White
+    {
+        background-color: #BBB;
+    }
+
+    .ToggleButton .Panel.Blue
+    {
+        background-color: #0072C6;
+    }
+
+    .ToggleButton > .Panel.Grip
+    {
+        background-color: #000;
+    }
+    
+.TrackBar > .Panel.Bar
+{
+    background-color: #FFF;
+    border: 1px solid #CCC;
+}
+.TrackBar > .Panel.Grip
+{
+    background-color: #0072C6;
+    border: 1px solid #CCC;
+}
+
+.TabControl > .TabButtons > .Panel > .Button > .Label
+{
+    color: #000;
+}
+.TabControl > .TabButtons > .Panel > .SelectedTabBar
+{
+    background-color: #0072C6;
+}
+.Tab
+{
+    background-color: #FFF;
+}
+
+.StackPanel.ListBox,
+.StackPanel.ListBox.Disabled:hover
+{
+    border-color: #999;
+    background-color: #FFF;
+    color: #000;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.StackPanel.ListBox:hover,
+.StackPanel.ListBox.Focused
+{
+    border-color: #666;
+}
+
+.StackPanel.ListBox.Disabled.Focused
+{
+    border-color: #AAA;
+}
+    .StackPanel.ListBox > .Row
+    {
+        border-bottom: 1px solid #666;
+    }
+
+        .StackPanel.ListBox > .Row:last-child
+        {
+            border-bottom: none;
+        }
+
+        .StackPanel.ListBox > .Row:hover,
+        .StackPanel.ListBox > .Row.TabFocused
+        {
+            outline: none;
+            background-color: #2da6ff;
+        }
+
+        .StackPanel.ListBox > .Row.Selected
+        {
+            background-color: #0072C6;
+            color: #FFF;
+        }
+
+.Tile
+{
+    background-color: #0072C6;
+}
+    .Tile:hover,
+    .Tile.Focused
+    {
+        background-color: #006ab8;
+    }
+    
+.SplashScreen
+{
+    border: 7px solid #0072C6;
+}
+
+    .SplashScreen .NameLabel
+    {
+        color: #0072C6;
+    }

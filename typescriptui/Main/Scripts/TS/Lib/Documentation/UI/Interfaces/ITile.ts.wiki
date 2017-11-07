@@ -1,0 +1,73 @@
+﻿{anchor:ITile}
+!! {"ITile"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TileSizes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileSizes.ts]
+* [url:UI/Enums/TileTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileTypes.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ILabel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ILabel.d.ts]
+* [url:UI/Interfaces/ITile.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITile.d.ts]
+* [url:UI/Interfaces/ITileBackground.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileBackground.d.ts]
+* [url:UI/Interfaces/ITileCounter.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileCounter.d.ts]
+* [url:UI/Interfaces/ITileIcon.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileIcon.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Tile control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Backgrounds: TSUI.Collections.IList<UI.ITileBackground>;"}
+{"The list of backgrounds for the tile."}
+
+!!!!!! {"Counter: UI.ITileCounter;"}
+{"The counter control for the tile."}
+
+!!!!!! {"IconBox: UI.ITileIcon;"}
+{"The icon for the tile."}
+
+!!!!!! {"MaxTime: number;"}
+{"The maximum length of tile (in ms) to show a background for."}
+
+!!!!!! {"MinTime: number;"}
+{"The minimum length of time (in ms) to show a background for."}
+
+!!!!!! {"NameLabel: UI.ILabel;"}
+{"The name label for the tile."}
+
+!!!!!! {"ShouldCycle: boolean;"}
+{"Whether the backgrounds should cycle or not."}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{"The text label for the tile."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ShowCounter(value?: boolean): boolean"}
+{"Gets or sets whether to show the tile counter."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether to show the counter or not."}
+* *Returns:* {"boolean - Whether the counter is shown or not."}
+
+!!!!!! {"Size(value?: UI.TileSizes): UI.TileSizes"}
+{"Gets or sets the tile size."}
+* [OPTIONAL] *{"value:"}* {"UI.TileSizes - The value to set the size to."}
+* *Returns:* {"TSUI.UI.TileSizes - The actual tile size."}
+
+!!!!!! {"Type(value?: UI.TileTypes): UI.TileTypes"}
+{"Gets or sets the tile type."}
+* [OPTIONAL] *{"value:"}* {"UI.TileTypes - The value to set the type to."}
+* *Returns:* {"TSUI.UI.TileTypes - The actual tile type."}
+
+
+----
+

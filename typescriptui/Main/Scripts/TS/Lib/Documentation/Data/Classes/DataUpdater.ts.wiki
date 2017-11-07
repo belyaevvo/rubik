@@ -1,0 +1,90 @@
+﻿{anchor:DataUpdater}
+!! {"DataUpdater"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Implements:* [IDataUpdater]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Classes/List.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Classes/List.ts]
+* [url:Data/Classes/DataUpdater.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/DataUpdater.ts]
+* [url:Data/Interfaces/IDataBinding.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataBinding.d.ts]
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+* [url:Events/Classes/UpdateBeginEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateBeginEvent.ts]
+* [url:Events/Classes/UpdateEndEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateEndEvent.ts]
+* [url:Events/Classes/UpdateInvokedEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateInvokedEvent.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for a data updater. Data updaters can be used to call updates on all the bindings in a binding group either manually or at a regular interval."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{"Creates a new DataUpdater."}
+
+!!!!!! constructor{"(getBindings: () => TSUI.Collections.IList<Data.IDataBinding<any, any>>)"}
+{"Creates a new DataUpdater."}
+* *{"getBindings:"}* {"() => TSUI.Collections.IList<Data.IDataBinding<any, any>> - A function which returns the list of data bindings to update."}
+
+!!!!!! constructor{"(getBindings: () => TSUI.Collections.IList<Data.IDataBinding<any, any>>, interval: number)"}
+{"Creates a new DataUpdater."}
+* *{"getBindings:"}* {"() => TSUI.Collections.IList<Data.IDataBinding<any, any>> - A function which returns the list of data bindings to update."}
+* *{"interval:"}* {"number - The interval with which to update the bindings."}
+
+!!!!!! constructor{"(getBindings?: () => TSUI.Collections.IList<Data.IDataBinding<any, any>>, interval?: number)"}
+{"Creates a new DataUpdater."}
+* [OPTIONAL] *{"getBindings:"}* {"() => TSUI.Collections.IList<Data.IDataBinding<any, any>> - A function which returns the list of data bindings to update. Default: null meaning automatic updates will not work."}
+* [OPTIONAL] *{"interval:"}* {"number - The interval with which to update the bindings. Default: -1 indicating no automatic udpates."}
+
+
+----
+
+!!!! {"Private Properties"}
+
+!!!!!! {"_interval;"}
+{"The underlying interval value."}
+
+!!!!!! {"intervalRef;"}
+{"The setInterval reference number."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"GetBindings: () => TSUI.Collections.IList<Data.IDataBinding<any, any>>;"}
+{"Set this delegate to a method which returns the data bindings to be updated when UpdateBindings is called (must be set for updaters which user intervals)."}
+
+!!!!!! {"OnUpdateBegin: TSUI.Events.UpdateBeginEvent;"}
+{"Fired when update of a data bindings begins. This should be attached to for detecting when an update actually begins."}
+
+!!!!!! {"OnUpdateEnd: TSUI.Events.UpdateEndEvent;"}
+{"Fired when update of a data bindings ends. This should be attached to for detecting when an update ends and the status on that update."}
+
+!!!!!! {"OnUpdateInvoked: TSUI.Events.UpdateInvokedEvent;"}
+{"Fired when an update is invoked (either from timer or externally using UpdateBindings). This occurs before OnUpdateBegin. Some invokes may be ignored and in those cases OnUpdateBegin/OnUpdateEnd will not be fired."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Interval(value?: number): number"}
+{"Gets or sets the interval with which to update the bindings. Set to -1 to disable periodic updating."}
+* [OPTIONAL] *{"value:"}* {"number - The interval (time in seconds) to wait between updates."}
+* *Returns:* {"number - The interval time (in seconds) or -1 (indicates no interval)"}
+
+!!!!!! {"UpdateBindings(abortOnFailure?: boolean, bindings?: TSUI.Collections.IList<Data.IDataBinding<any, any>>): number"}
+{"Updates all the bindings in the specified collection. May abort updating any remaining bindings if a binding fails to update."}
+* [OPTIONAL] *{"abortOnFailure:"}* {"boolean - Whether to abort updating bindings if a binding fails to update."}
+* [OPTIONAL] *{"bindings:"}* {"TSUI.Collections.IList<Data.IDataBinding<any, any>> - The collection of bindings to update."}
+* *Returns:* {"number - The number of bindings which failed to update (or start to update if accessors are asynchronous)."}
+
+
+----
+

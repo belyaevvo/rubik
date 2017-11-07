@@ -1,0 +1,56 @@
+﻿{anchor:UpdateEndEvent}
+!! {"UpdateEndEvent"}
+*Module:* [TSUI.Events]
+*Extends:* [Event]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateEndEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateEndEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See Event for more details."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: UpdateEndEventHandler[];"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: UpdateEndEventHandler): void"}
+{""}
+* *{"handler:"}* {"UpdateEndEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: UpdateEndEventHandler): void"}
+{""}
+* *{"handler:"}* {"UpdateEndEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: UpdateEndEventArgs): void"}
+{""}
+* *{"args:"}* {"UpdateEndEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsAttached(handler: UpdateEndEventHandler): boolean"}
+{""}
+* *{"handler:"}* {"UpdateEndEventHandler - "}
+* *Returns:* {"boolean - "}
+
+
+----
+

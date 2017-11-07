@@ -1,0 +1,74 @@
+﻿/*
+Copyright © Edward Nutting 2013
+Author: Edward Nutting 
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+
+@font-face
+{
+    font-family: SegoeUI;
+    src: local('Segoe UI'), local('Helvetica Neue');
+}
+
+@font-face
+{
+    font-family: SegoeUILight;
+    src: local('Segoe UI Light'), local('Segoe UI Semilight'), local('Segoe UI'), local('Helvetica Neue');
+    font-weight: 100;
+}
+
+@font-face
+{
+    font-family: SegoeUISemibold;
+    src: local('Segoe UI Semibold'), local('Segoe UI'), local('Helvetica Neue');
+    font-weight: 600;
+}
+
+#TilesWindow
+{
+}
+
+    #TilesWindow .TilesContainer
+    {
+        top: 10%;
+        left: 10%;
+        right: 10%;
+        bottom: 10%;
+        overflow: visible;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+#AboutPage
+{
+}
+
+    #AboutPage .StackPanel
+    {
+        right: 20px;
+        left: 20px;
+        top: 20px;
+        bottom: 20px;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    #AboutPage .Title
+    {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    #AboutPage .Label
+    {
+        text-align: justify;
+    }

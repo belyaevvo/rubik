@@ -1,0 +1,57 @@
+﻿{anchor:SVGBox}
+!! {"SVGBox"}
+*Module:* [TSUI.UI]
+*Extends:* [ImageBox]
+*Implements:* [ISVGBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/ImageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ImageBox.ts]
+* [url:UI/Classes/SVGBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/SVGBox.ts]
+* [url:UI/Interfaces/ISVGBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISVGBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(source?: string)"}
+{""}
+* [OPTIONAL] *{"source:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_OverlayElement: JQuery;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Source(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+
+----
+

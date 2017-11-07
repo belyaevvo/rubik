@@ -1,0 +1,25 @@
+﻿{anchor:TextAlignments}
+!! {"TextAlignments"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TextAlignments.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TextAlignments.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Text alignments"}
+
+----
+
+!!!! {"Values"}
+
+* *{"Left"}* = 0 - {"Align text to the left."}
+* *{"Right"}* = 1 - {"Align text to the right."}
+
+----
+

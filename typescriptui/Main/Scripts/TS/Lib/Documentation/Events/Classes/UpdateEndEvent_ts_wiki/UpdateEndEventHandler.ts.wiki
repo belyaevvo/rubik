@@ -1,0 +1,54 @@
+﻿{anchor:UpdateEndEventHandler}
+!! {"UpdateEndEventHandler"}
+*Module:* [TSUI.Events]
+*Extends:* [EventHandler]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Interfaces/IDataUpdater.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataUpdater.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateEndEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateEndEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See EventHandler for more details."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Callback: (args: UpdateEndEventArgs) => void, Context: any)"}
+{""}
+* *{"Callback:"}* {"(args: UpdateEndEventArgs) => void - "}
+* *{"Context:"}* {"any - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Callback: (args: UpdateEndEventArgs) => void;"}
+{""}
+
+!!!!!! {"Context: any;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Invoke(args: UpdateEndEventArgs): void"}
+{""}
+* *{"args:"}* {"UpdateEndEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

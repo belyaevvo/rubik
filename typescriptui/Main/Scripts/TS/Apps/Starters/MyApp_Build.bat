@@ -1,0 +1,2 @@
+tsc MyAppStarter.ts
+pause

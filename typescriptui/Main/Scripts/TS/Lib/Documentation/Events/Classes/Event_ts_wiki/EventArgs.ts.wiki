@@ -1,0 +1,40 @@
+﻿{anchor:EventArgs}
+!! {"EventArgs"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Implements:* [IEventArgs]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Fundamental implementation of an EventArgs. All EventArgs should inherit from this class.
+Note: See ClickEventArgs for sample derived class.
+Note: See List for sample usage."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Sender: any)"}
+{"Creates new EventArgs.Note: Should be overridden in derived classes to add extra properties to the event and more specifically type Sender property."}
+* *{"Sender:"}* {"any - The object which caused this event (or which is passing on an underlying event)."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Sender: any;"}
+{"The object which caused this event (or which is passing on an underlying event)."}
+
+
+----
+

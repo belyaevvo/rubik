@@ -1,0 +1,45 @@
+﻿{anchor:IListItem<T>}
+!! {"IListItem<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IListItem.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListItem.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ListItem control.
+T: The type of the value of the list item."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Index: number;"}
+{"The index of the item in the list. Set internally, do not modify."}
+
+!!!!!! {"OnTextChange: TSUI.Events.ListItem_TextChangeEvent<T>;"}
+{"Fired when the text of the list item is changed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the text of the list item."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the list item's text to."}
+* *Returns:* {"string - The actual text of the list item."}
+
+!!!!!! {"Value(value?: T): T"}
+{"Gets ro sets the value of the list item."}
+* [OPTIONAL] *{"value:"}* {"T - "}
+* *Returns:* {"T - The actual value of the list item."}
+
+
+----
+

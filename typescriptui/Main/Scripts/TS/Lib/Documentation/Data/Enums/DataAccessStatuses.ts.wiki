@@ -1,0 +1,28 @@
+{anchor:DataAccessStatuses}
+!! {"DataAccessStatuses"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+
+----
+
+!!!! {"Description"}
+
+{"FLAGS: The statuses that a data push or data pull request can have."}
+
+----
+
+!!!! {"Values"}
+
+* *{"Unkown"}* = 0 - {"Indicates the status of the request is not known."}
+* *{"Pending"}* = 1 - {"Indicates that the request is pending completion."}
+* *{"Complete"}* = 2 - {"Indicates that the request has completed succesffuly."}
+* *{"Failed"}* = 4 - {"Indicates that the request has completed but failed."}
+* *{"Error"}* = 8 - {"Indicates that an error occurred other than request failure."}
+
+----
+

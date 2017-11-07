@@ -1,0 +1,27 @@
+﻿{anchor:ProgressBarTypes}
+!! {"ProgressBarTypes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/ProgressBarTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/ProgressBarTypes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The types of progress bars.
+Note: To reverse direction, see IProgressBar.Reverse"}
+
+----
+
+!!!! {"Values"}
+
+* *{"Circular"}* = 0 - {"A circular, clockwise progress bar"}
+* *{"Horizontal"}* = 1 - {"A horizontal, left-to-right progress bar"}
+* *{"Vertical"}* = 2 - {"A vertical, top-to-bottom progress bar"}
+
+----
+

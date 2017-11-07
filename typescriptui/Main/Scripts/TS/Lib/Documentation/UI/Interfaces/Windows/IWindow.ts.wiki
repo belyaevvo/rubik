@@ -1,0 +1,69 @@
+﻿{anchor:IWindow}
+!! {"IWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IButton.d.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+* [url:UI/Interfaces/IResizeGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IResizeGrip.d.ts]
+* [url:UI/Interfaces/ITitleBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITitleBar.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a window."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"CloseButton: UI.IButton;"}
+{"The close button for the window."}
+
+!!!!!! {"ContentPanel: UI.IPanel;"}
+{"The content panel that all children should be added to."}
+
+!!!!!! {"DestroyDOMOnClose: boolean;"}
+{"Whether the window should destroy its DOM when it closes."}
+
+!!!!!! {"MainResizeGrip: UI.IResizeGrip;"}
+{"The main resize grip for the window."}
+
+!!!!!! {"MainTitleBar: UI.ITitleBar;"}
+{"The main title bar of the window."}
+
+!!!!!! {"OnClose: TSUI.Events.CloseEvent;"}
+{"Event fired when the window closes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"DragEnabled(value?: boolean): boolean"}
+{"Whether dragging to reposition the window is enabled.@retruns The final value of whether dragging is enabled or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether to enable dragging or not."}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"ResizeEnabled(value?: boolean): boolean"}
+{"Whether dragging to resize the window is enabled.@retruns The final value of whether resizing is enabled or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether to enable resizing or not."}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Title(): string"}
+{"Gets the title of the window."}
+* *Returns:* {"string - The title of the window."}
+
+!!!!!! {"Title(value: string): string"}
+{"Sets the title of the window."}
+* *{"value:"}* {"string - The value to set the title to."}
+* *Returns:* {"string - The final value of the title of the window."}
+
+
+----
+

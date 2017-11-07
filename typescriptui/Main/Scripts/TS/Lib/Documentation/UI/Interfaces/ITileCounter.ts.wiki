@@ -1,0 +1,18 @@
+﻿{anchor:ITileCounter}
+!! {"ITileCounter"}
+*Module:* [TSUI.UI]
+*Extends:* [ILabel]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/ILabel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ILabel.d.ts]
+* [url:UI/Interfaces/ITileCounter.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileCounter.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TileCounter control."}
+
+----
+

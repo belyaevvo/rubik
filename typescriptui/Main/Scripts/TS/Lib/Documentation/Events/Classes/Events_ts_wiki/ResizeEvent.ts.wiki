@@ -1,0 +1,61 @@
+﻿{anchor:ResizeEvent}
+!! {"ResizeEvent"}
+*Module:* [TSUI.Events]
+*Extends:* [Event]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Interfaces/IDataAccessResult.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessResult.d.ts]
+* [url:Data/Interfaces/IDataAccessor.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessor.d.ts]
+* [url:Definitions/jquery_all.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery_all.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/Events.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Events.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IListItem.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListItem.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See Event for more details."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: ResizeEventHandler[];"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: ResizeEventHandler): void"}
+{""}
+* *{"handler:"}* {"ResizeEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: ResizeEventHandler): void"}
+{""}
+* *{"handler:"}* {"ResizeEventHandler - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: ResizeEventArgs): void"}
+{""}
+* *{"args:"}* {"ResizeEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsAttached(handler: ResizeEventHandler): boolean"}
+{""}
+* *{"handler:"}* {"ResizeEventHandler - "}
+* *Returns:* {"boolean - "}
+
+
+----
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle minify="true" runOnBuild="true" output="TypescriptUI.js">
+  <!--The order of the <file> elements determines the order of them when bundled.-->
+  
+	<file>/Scripts/JS/detectmobilebrowser.js</file>
+	<file>/Scripts/JS/modernizr.CSS3.min.js</file>
+	<file>/Scripts/JS/html2canvas.js</file>
+  
+	<file>/Scripts/JS/jQuery/jquery.numeric.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/Utils.js</file> 
+  
+  <!-- Exceptions -->
+  <file>/Scripts/TS/Lib/Build/Exceptions/Classes/Exception.js</file>
+  <file>/Scripts/TS/Lib/Build/Exceptions/Classes/ArgumentException.js</file>
+	<file>/Scripts/TS/Lib/Build/Exceptions/Classes/IncorrectTypeException.js</file>
+  <!--End Exceptions -->
+  
+  <!-- Collections -->
+  <file>/Scripts/TS/Lib/Build/Collections/Classes/ToStringComparer.js</file>
+  <file>/Scripts/TS/Lib/Build/Collections/Classes/List.js</file>
+  <!-- End Collections -->
+  
+  <!-- Events -->
+  <file>/Scripts/TS/Lib/Build/Events/Classes/Event.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/Events.js</file>
+	<file>/Scripts/TS/Lib/Build/Events/Enums/CollectionModifications.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/CollectionModifiedEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/DataPulledEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/UpdateBeginEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/UpdateEndEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/UpdateInvokedEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/UpdateFromSourceEvent.js</file>
+  <file>/Scripts/TS/Lib/Build/Events/Classes/UpdateFromUserEvent.js</file>
+  <!-- End Events -->
+
+  <!-- Data -->
+  <file>/Scripts/TS/Lib/Build/Data/Enums/BindingDirections.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Enums/DataAccessStatuses.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Enums/UpdateTriggers.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Enums/DelayModes.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/DataAccessResult.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/DataAccessor.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Accessors/HTTPDataAccessor.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Accessors/JSDataAccessor.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/DataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Adapters/ArrayDataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Adapters/BooleanDataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Adapters/JSONDataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Adapters/NumberDataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/Data Adapters/StringDataAdapter.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/DataBinding.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/DataUpdater.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/BindingGroup.js</file>
+  <file>/Scripts/TS/Lib/Build/Data/Classes/BindingCollection.js</file>
+  <!-- End Data -->
+  
+  <!-- Animation -->
+  <file>/Scripts/TS/Lib/Build/Animation/Animation.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/Animator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/AppWindowAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/ExpandableAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/FadeAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/NotificationAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/NotificationRestackAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/PageWindowAnimator.js</file>
+  <file>/Scripts/TS/Lib/Build/Animation/SelectionWindowAnimator.js</file>  
+  <!-- End Animation -->
+
+  <!-- Logging -->
+  <file>/Scripts/TS/Lib/Build/Logging/Enums/RecoveryModes.js</file>
+  <file>/Scripts/TS/Lib/Build/Logging/Enums/TraceTypes.js</file>
+  <file>/Scripts/TS/Lib/Build/Logging/Classes/Logger.js</file>
+  <!-- End Logging -->
+  
+  <!-- UI -->
+	<file>/Scripts/TS/Lib/Build/UI/CSSNumber.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Enums/ProgressBarTypes.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Enums/ProgressSpinnerTypes.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Enums/SplitterGrip_Orientations.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Enums/StackPanelOrientations.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Enums/TextAlignments.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Enums/TileBackgroundPositions.js</file>
+	<file>/Scripts/TS/Lib/Build/UI/Enums/TileSizes.js</file>
+	<file>/Scripts/TS/Lib/Build/UI/Enums/TileTypes.js</file>
+	<file>/Scripts/TS/Lib/Build/UI/Enums/TrackBarModes.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Control.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Panel.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Label.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Button.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TextBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/MultilineTextBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/NumericTextBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/NumericUpDown.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ImageBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/CanvasBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/SVGBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TileBackground.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ToggleIndicator.js</file>  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/CheckBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/RadioButton.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ToggleButton.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/StackPanel.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/StackPanelRow.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ListItem.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ListBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/DropDownBox.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ProgressBar.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ProgressSpinner.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/SplitContainer.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/SplitterGrip.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Tab.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TabControl.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Tile.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TileCounter.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TileIcon.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TrackBar.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/TitleBar.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/ResizeGrip.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Expandable.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/Window.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/MessageBox.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/PageWindow.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/SelectionWindow.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/StaticPageWindow.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/SplashScreen.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/LoginWindow.js</file>
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Windows/StartupWindow.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Notification.js</file>
+
+  <file>/Scripts/TS/Lib/Build/UI/Classes/Static Description/WindowDescription.js</file>
+  
+  <file>/Scripts/TS/Lib/Build/UI/UI Static.js</file>
+  <!-- End UI -->
+</bundle>

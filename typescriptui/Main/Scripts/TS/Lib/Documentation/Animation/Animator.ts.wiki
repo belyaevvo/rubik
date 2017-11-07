@@ -1,0 +1,36 @@
+﻿{anchor:Animator}
+!! {"Animator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Basic implementation of an IAnimator."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Sets the value of 'visibility' to 'hidden' and clears the value of 'display' - does not set 'display:none'.This implementation does a basic hide of a control."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to hide."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The function to call when hiding is complete."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Clears the values of 'visibility' and 'display' - does not force them to 'visible'.This implementation restores the control to its stylesheet state of visibility."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to show."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The function to call when showing is complete."}
+* *Returns:* {"void - "}
+
+
+----
+

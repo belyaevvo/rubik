@@ -1,0 +1,172 @@
+﻿{anchor:Tile}
+!! {"Tile"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ITile]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animation_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animation_BuildRefs.d.ts]
+* [url:Definitions/modernizr.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/modernizr.d.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/Tile.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Tile.ts]
+* [url:UI/Classes/TileBackground.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TileBackground.ts]
+* [url:UI/Classes/TileCounter.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TileCounter.ts]
+* [url:UI/Classes/TileIcon.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TileIcon.ts]
+* [url:UI/Interfaces/ITile.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITile.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(size?: UI.TileSizes, type?: UI.TileTypes)"}
+{""}
+* [OPTIONAL] *{"size:"}* {"UI.TileSizes - "}
+* [OPTIONAL] *{"type:"}* {"UI.TileTypes - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Backgrounds: TSUI.Collections.IList<UI.ITileBackground>;"}
+{""}
+
+!!!!!! {"Counter: UI.ITileCounter;"}
+{""}
+
+!!!!!! {"IconBox: UI.ITileIcon;"}
+{""}
+
+!!!!!! {"MaxTime: number;"}
+{""}
+
+!!!!!! {"MinTime: number;"}
+{""}
+
+!!!!!! {"NameLabel: UI.ILabel;"}
+{""}
+
+!!!!!! {"ShouldCycle: boolean;"}
+{""}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{""}
+
+!!!!!! {"_CurrBgIndex: number;"}
+{""}
+
+!!!!!! {"_CycleCallback: TSUI.Animation.AnimationCallback;"}
+{""}
+
+!!!!!! {"_CycleRef: number;"}
+{""}
+
+!!!!!! {"_CycleTime: number;"}
+{""}
+
+!!!!!! {"_HidingBg: boolean;"}
+{""}
+
+!!!!!! {"_ShowingBg: boolean;"}
+{""}
+
+!!!!!! {"_Size: UI.TileSizes;"}
+{""}
+
+!!!!!! {"_Type: UI.TileTypes;"}
+{""}
+
+!!!!!! {"doCycle: boolean;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"CycleBackground(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Flip(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Flipped(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"HideBackground(callback?: () => void): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"ShowBackground(index: number): void"}
+{""}
+* *{"index:"}* {"number - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ShowCounter(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Size(value?: UI.TileSizes): UI.TileSizes"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.TileSizes - "}
+* *Returns:* {"TSUI.UI.TileSizes - "}
+
+!!!!!! {"StartCycle(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"StopCycle(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Type(value?: UI.TileTypes): UI.TileTypes"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.TileTypes - "}
+* *Returns:* {"TSUI.UI.TileTypes - "}
+
+!!!!!! {"_Backgrounds_Modified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.ITileBackground>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.ITileBackground> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_ConstructBackground(bg: UI.ITileBackground): void"}
+{""}
+* *{"bg:"}* {"UI.ITileBackground - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnCycle(TotalElapsedTime: number): void"}
+{""}
+* *{"TotalElapsedTime:"}* {"number - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_SetupCycleTimeout(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

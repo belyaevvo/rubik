@@ -1,0 +1,50 @@
+﻿{anchor:ExpandableAnimator}
+!! {"ExpandableAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/ExpandableAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/ExpandableAnimator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:UI/Interfaces/IExpandable.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IExpandable.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Animator for an Expandable."}
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use
+Default: easeOutQuad"}
+
+!!!!!! {"AnimationTime: number;"}
+{"The length of time (milliseconds) to spend expanding the expandable.
+Default: 450ms"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IExpandable, callback?: () => void): void"}
+{"Collapses the main body of the expandable to the correct (calculated) height i.e. just the title bar showing."}
+* *{"control:"}* {"TSUI.UI.IExpandable - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IExpandable, callback?: () => void): void"}
+{"Expands the main body of the expandable to the correct (calculated) height."}
+* *{"control:"}* {"TSUI.UI.IExpandable - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+
+----
+

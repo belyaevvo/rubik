@@ -1,0 +1,47 @@
+﻿{anchor:UpdateFromSourceEventArgs<I, O>}
+!! {"UpdateFromSourceEventArgs<I, O>"}
+*Module:* [TSUI.Events]
+*Extends:* [EventArgs]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Interfaces/IDataAccessResult.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessResult.d.ts]
+* [url:Data/Interfaces/IDataBinding.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataBinding.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateFromSourceEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateFromSourceEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See EventArgs for more details."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Sender: TSUI.Data.IDataBinding<I, O>, Status: TSUI.Data.DataAccessStatuses)"}
+{""}
+* *{"Sender:"}* {"TSUI.Data.IDataBinding<I, O> - "}
+* *{"Status:"}* {"TSUI.Data.DataAccessStatuses - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Sender: TSUI.Data.IDataBinding<I, O>;"}
+{""}
+
+!!!!!! {"Status: TSUI.Data.DataAccessStatuses;"}
+{""}
+
+
+----
+

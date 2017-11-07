@@ -1,0 +1,31 @@
+{anchor:IStartupWindow_Row}
+!! {"IStartupWindow_Row"}
+*Module:* [TSUI.UI]
+*Extends:* [IStackPanelRow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/ITile.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITile.d.ts]
+* [url:UI/Interfaces/Windows/IStartupWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStartupWindow.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a row of tiles in a startup window."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Groups: TSUI.Collections.IList<IStartupWindow_Group>;"}
+{"The groups of tiles in the row."}
+
+!!!!!! {"MobileMode: boolean;"}
+{"Whether the row is in a mobile mode it not.
+If it is, the row automatically reduces the size of child tiles by one level."}
+
+
+----
+

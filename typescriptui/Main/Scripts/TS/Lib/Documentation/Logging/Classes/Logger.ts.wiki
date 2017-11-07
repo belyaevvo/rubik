@@ -1,0 +1,61 @@
+{anchor:Logger}
+!! {"Logger"}
+*Module:* [TSUI.Logging]
+*Extends:* [None]
+*Implements:* [ILogger]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Classes/Events.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Events.ts]
+* [url:Logging/Classes/Logger.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Classes/Logger.ts]
+* [url:Logging/Interfaces/ILogger.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Interfaces/ILogger.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Main implementation of an ILogger for TypeScript UI. Outputs logs to the browser's console."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Enabled: boolean;"}
+{"Whether the logger is enabled or not."}
+
+!!!!!! {"Logs: Logging.ILog[];"}
+{"The array of logs for this logger."}
+
+!!!!!! {"OnLog: TSUI.Events.TextChangeEvent;"}
+{"Text changed event for when a log is added. Sender object is the added log (not a control)."}
+
+!!!!!! {"TraceTypesToShow: string[];"}
+{"The types of log to actually output to the console. Turn these on/off to filter logs."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"GetFullLog(): string"}
+{"Gets the text for all the logs in the logger."}
+* *Returns:* {"string - "}
+
+!!!!!! {"Log(log: Logging.ILog): void"}
+{"Add the specified log to this logger and outputs it to the console."}
+* *{"log:"}* {"Logging.ILog - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"WriteLine(text: string): void"}
+{"Writes a line to the console and adds a text-only log."}
+* *{"text:"}* {"string - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_buildLog(log: Logging.ILog): string"}
+{"Builds the text for the specified log."}
+* *{"log:"}* {"Logging.ILog - "}
+* *Returns:* {"string - "}
+
+
+----
+

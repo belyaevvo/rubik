@@ -1,0 +1,37 @@
+﻿{anchor:ITab}
+!! {"ITab"}
+*Module:* [TSUI.UI]
+*Extends:* [IPanel]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IPanel.d.ts]
+* [url:UI/Interfaces/ITab.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITab.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Tab page control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnNameChange: TSUI.Events.NameChangeEvent;"}
+{"Fired when the name of the tab changes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Name(value?: string): string"}
+{"Gets or sets the name of the tab displayed in the tab selector bar."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the name to."}
+* *Returns:* {"string - The actual name of the tab."}
+
+
+----
+

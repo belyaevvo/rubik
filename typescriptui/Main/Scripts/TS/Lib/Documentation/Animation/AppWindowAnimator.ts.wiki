@@ -1,0 +1,103 @@
+﻿{anchor:AppWindowAnimator}
+!! {"AppWindowAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animation.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animation.ts]
+* [url:Animation/AppWindowAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/AppWindowAnimator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Animator for an AppWindow
+Note: Makes use if HTML2Canvas animation if specified."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_CanvasElem: JQuery;"}
+{"Private: The HTML2Canvas canvas element (as jQuery reference) to be animated."}
+
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use for flying and resizing.
+Default: easeOutCubic"}
+
+!!!!!! {"DelayTime: number;"}
+{"The length of time (milliseconds) to delay between resizing and flying the window.
+Default: 500ms"}
+
+!!!!!! {"FlyTime: number;"}
+{"The length of time (milliseconds) to spend moving the window on/off the screen ('flying' the window).
+Default: 500ms"}
+
+!!!!!! {"ResizeTime: number;"}
+{"The length of time (milliseconds) to spend shrinking/enlarging the window before/after flying ('resizing' the window).
+Default: 100ms"}
+
+!!!!!! {"ShrinkAmount: number;"}
+{"The amount (as decimal percentage e.g. 0.01 = 1%) to shrink the window (width & height).
+Default: 0.01 (i.e. 1%)"}
+
+!!!!!! {"UseCanvasRenderIfSensible: boolean;"}
+{"Indicates whether HTML2Canvas animation should be used if it is deemed better than standard animation. Set to false to disable use of HTML2Canvas.
+Default: false"}
+
+
+----
+
+!!!! {"Private Methods"}
+
+!!!!!! {"DoHTML2CanvasHide(element, canvas, callback)"}
+{"Animates the passed canvas and handles switching between the canvas and the element. For more details see Show."}
+* *{"element:"}* {"JQuery - The element to "animate" - should already prepared using HTML2Canvas."}
+* *{"canvas:"}* {"JQuery - The prepared HTML2Canvas canvas element to be animated."}
+* *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+
+!!!!!! {"DoHTML2CanvasShow(element, canvas, callback)"}
+{"Animates the passed canvas and handles switching between the canvas and the element. For more details see Show."}
+* *{"element:"}* {"JQuery - The element to "animate" - should already prepared using HTML2Canvas."}
+* *{"canvas:"}* {"JQuery - The prepared HTML2Canvas canvas element to be animated."}
+* *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Hides the control and invokes the callback (context not restored) after the animation is completed.Window is shrunk, delay, then flown off to the right, hidden properly, restored to original position & size and finally callback called.If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"PrepareHTML2CanvasForAnimation(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Prepares a window with HTML2Canvas for animation without actually showing the canvas. Allows window to be prepared for animation then switched smoothly with another window. Preparation can take up to 30 seconds in older/slower browsers or on slow hardware. Use callback to wait for preparation to complete."}
+* *{"control:"}* {"TSUI.UI.IControl - The control (i.e. window) to prepare"}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after preparation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Shows the control and invokes the callback (context not restored) after the animation is completed.Window is shrunk before being shown, then flown on from the right, delay then expanded and finally callback called.If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used. If HTML2Canvas is used, RestoreAfterAnimationHTML2Canvas is called."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"_EvaluateUseCanvasRender(control: TSUI.UI.IControl): boolean"}
+{"Determines whether HTML2Canvas should be used to animate specified control (i.e. window) - takes into account UseCanvasRenderIfSensible."}
+* *{"control:"}* {"TSUI.UI.IControl - The control (i.e. window) to determine whether to animate using HTML2Canvas."}
+* *Returns:* {"boolean - "}
+
+
+----
+

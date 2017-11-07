@@ -1,0 +1,37 @@
+﻿{anchor:ITitleBar}
+!! {"ITitleBar"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ITitleBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITitleBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TitleBar control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Draggable(value?: boolean): boolean"}
+{"Gets or sets whether the title bar is draggable or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether the title bar should be draggable or not."}
+* *Returns:* {"boolean - Whether the title bar is draggable or not."}
+
+!!!!!! {"Title(value?: string): string"}
+{"Gets or sets the title text."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the title to."}
+* *Returns:* {"string - The actual title."}
+
+!!!!!! {"WindowMinSuitableWidth(): number"}
+{"Gets the minimum suitable window width to display the full title bar."}
+* *Returns:* {"number - The width in pixels."}
+
+
+----
+

@@ -1,0 +1,33 @@
+﻿{anchor:IMessageBox}
+!! {"IMessageBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/Windows/IMessageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IMessageBox.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a basic message box window."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"PositionCenterParent(parent: UI.IControl): void"}
+{"Positions the message box in the centre of the parent (use before calling Show)."}
+* *{"parent:"}* {"UI.IControl - The control to centre in."}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"Text(value?: string): string"}
+{"The message box text."}
+* [OPTIONAL] *{"value:"}* {"string - The text to set to."}
+* *Returns:* {"string - Void."}
+
+
+----
+

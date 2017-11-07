@@ -1,0 +1,49 @@
+﻿{anchor:AnimationCallback}
+!! {"AnimationCallback"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animation.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animation.ts]
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Definitions/html2canvas.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/html2canvas.d.ts]
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"A callback for animation rendering when requestAnimationFrame is answered."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(callback: (TotalElapsedTime: number) => void, context: any, single?: boolean)"}
+{"Creates a new Animation Callback."}
+* *{"callback:"}* {"(TotalElapsedTime: number) => void - The function to call when requestAnimationFrame is answered."}
+* *{"context:"}* {"any - The context to use when calling callback (sets the value of "this" in callback)."}
+* [OPTIONAL] *{"single:"}* {"boolean - Indicates whether the callback should occur once or should repeat."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"AnimationStartTime: number;"}
+{"The time at which animation began i.e. the time at which the first invoke of the callback occurred."}
+
+!!!!!! {"callback: (TotalElapsedTime: number) => void;"}
+{"The function to call when requestAnimationFrame is answered."}
+
+!!!!!! {"context: any;"}
+{"The context to use when calling callback (sets the value of "this" in callback)."}
+
+!!!!!! {"single: boolean;"}
+{"Indicates whether the callback should occur once or should repeat."}
+
+
+----
+

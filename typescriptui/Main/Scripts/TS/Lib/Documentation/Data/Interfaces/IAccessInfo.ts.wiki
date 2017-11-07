@@ -1,0 +1,29 @@
+{anchor:IAccessInfo}
+!! {"IAccessInfo"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Classes/List.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Classes/List.ts]
+* [url:Data/Interfaces/IAccessInfo.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IAccessInfo.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for DataAccessInfo which is used to specify how to access a particular data source for particular bits of data."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Params: TSUI.Collections.IList<string>;"}
+{"The list of parameters (including paramname=value)"}
+
+!!!!!! {"URL: string;"}
+{"The URL to the data source."}
+
+
+----
+

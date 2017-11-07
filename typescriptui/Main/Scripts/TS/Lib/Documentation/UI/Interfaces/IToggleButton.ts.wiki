@@ -1,0 +1,36 @@
+﻿{anchor:IToggleButton}
+!! {"IToggleButton"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IToggleButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IToggleButton.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ToggleButton control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnCheckedChange: TSUI.Events.CheckedChangeEvent;"}
+{"Fired when the check state changes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Checked(value?: boolean): boolean"}
+{"Gets or sets whether the toggle button is on or off."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the toggle state to."}
+* *Returns:* {"boolean - The checked state - true for on."}
+
+
+----
+

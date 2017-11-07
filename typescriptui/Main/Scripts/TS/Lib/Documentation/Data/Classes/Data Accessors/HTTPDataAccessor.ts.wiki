@@ -1,0 +1,57 @@
+﻿{anchor:HTTPDataAccessor}
+!! {"HTTPDataAccessor"}
+*Module:* [TSUI.Data]
+*Extends:* [DataAccessor]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Classes/Data Accessors/HTTPDataAccessor.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/Data Accessors/HTTPDataAccessor.ts]
+* [url:Data/Classes/DataAccessor.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/DataAccessor.ts]
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"A basic data accessor which can send HTTP GET/POST requests for pul/push. Data accessors push or pull data to/from a data source such as a page on a web server."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{"Creates a new DataAccessor."}
+
+!!!!!! constructor{"(baseAccessInfo: Data.IAccessInfo)"}
+{"Creates a new DataAccessor with specified BaseAccessInfo."}
+* *{"baseAccessInfo:"}* {"Data.IAccessInfo - "}
+
+!!!!!! constructor{"(baseAccessInfo?: Data.IAccessInfo)"}
+{""}
+* [OPTIONAL] *{"baseAccessInfo:"}* {"Data.IAccessInfo - "}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"BuildFullURL(accessInfo: Data.IAccessInfo): string"}
+{"Builds the full HTTP requestable URL from the access info."}
+* *{"accessInfo:"}* {"Data.IAccessInfo - The access info to build the URL for."}
+* *Returns:* {"string - The URL"}
+
+!!!!!! {"PullData(accessInfo?: Data.IAccessInfo): Data.IDataAccessResult<string>"}
+{"HTTP request implementation of PullData."}
+* [OPTIONAL] *{"accessInfo:"}* {"Data.IAccessInfo - The AccessInfo to use for the data source."}
+* *Returns:* {"TSUI.Data.IDataAccessResult<string> - The status of the request. Will return an initially empty result with status Pending."}
+
+!!!!!! {"PushData(data: string, accessInfo?: Data.IAccessInfo): Data.IDataAccessResult<string>"}
+{"HTTP request implementation of PushData."}
+* *{"data:"}* {"string - The data to push to the server."}
+* [OPTIONAL] *{"accessInfo:"}* {"Data.IAccessInfo - The AccessInfo to use for the data source."}
+* *Returns:* {"TSUI.Data.IDataAccessResult<string> - The result of the request. Will return an initially empty result with status Pending."}
+
+
+----
+

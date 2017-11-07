@@ -1,0 +1,29 @@
+﻿{anchor:ITileBackground}
+!! {"ITileBackground"}
+*Module:* [TSUI.UI]
+*Extends:* [IImageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TileBackgroundPositions.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileBackgroundPositions.ts]
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+* [url:UI/Interfaces/ITileBackground.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileBackground.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TileBackground control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"SetPosition(value: UI.TileBackgroundPositions): void"}
+{"Sets the position of the tile background."}
+* *{"value:"}* {"UI.TileBackgroundPositions - The value to set the background position to."}
+* *Returns:* {"void - Void."}
+
+
+----
+

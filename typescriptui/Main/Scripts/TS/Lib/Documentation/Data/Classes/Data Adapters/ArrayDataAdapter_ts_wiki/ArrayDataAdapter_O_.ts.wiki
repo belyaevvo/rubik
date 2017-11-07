@@ -1,0 +1,56 @@
+﻿{anchor:ArrayDataAdapter<O>}
+!! {"ArrayDataAdapter<O>"}
+*Module:* [TSUI.Data]
+*Extends:* [DataAdapter]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Classes/Data Adapters/ArrayDataAdapter.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/Data Adapters/ArrayDataAdapter.ts]
+* [url:Data/Classes/DataAdapter.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/DataAdapter.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Array Data Adapter converts a raw input string to an array or vice-versa. Use JSONDataAdapter to handle JSON-formatted arrays/objects.
+O: The type of the items in the output array"}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(ItemAdapter: Data.IDataAdapter<string, O>, Delimiter?: string)"}
+{"Creates a new ArrayDataAdapter<O>"}
+* *{"ItemAdapter:"}* {"Data.IDataAdapter<string, O> - The data adapter to use for converting array item strings into actual item objects."}
+* [OPTIONAL] *{"Delimiter:"}* {"string - The delimiter to use for splitting the input string into seperate items. Default: ",""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Delimiter: string;"}
+{"The delimiter to use for splitting the input string into seperate items. Default: ",""}
+
+!!!!!! {"ItemAdapter: Data.IDataAdapter<string, O>;"}
+{"The data adapter to use for converting array item strings into actual item objects."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"I2O(input: string): O[]"}
+{"Converts raw data to JavaScript object data.Note: This implementation does not check for a valid array with the exception that it does handle null and undefined.Note: This implementation splits by the specified delimiter then uses the item adapter to convert each item individually."}
+* *{"input:"}* {"string - The raw string data."}
+* *Returns:* {"O[] - The array data or null or undefined."}
+
+!!!!!! {"O2I(output: O[]): string"}
+{"Converts JavaScript object data to raw data.Note: This implementation does handle null and undefined."}
+* *{"output:"}* {"O[] - "}
+* *Returns:* {"string - The raw string."}
+
+
+----
+

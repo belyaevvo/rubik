@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{74818E35-DF43-4360-A6BF-56D1572A5A51}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Creating_an_App</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55422</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptIncludeComments>true</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptIncludeComments>false</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Copyright Notice.txt" />
+    <Content Include="CSS\Apps\MyApp.css" />
+    <Content Include="CSS\Skins\Blue.css" />
+    <Content Include="CSS\UI.css" />
+    <Content Include="Images\DownloadIcon.png" />
+    <Content Include="Images\InfoIcon.png" />
+    <Content Include="MyApp.html" />
+    <Content Include="MyApp.min.html" />
+    <Content Include="Scripts\JS\detectmobilebrowser.js" />
+    <Content Include="Scripts\JS\html2canvas.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-2.0.1.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-2.0.1.min.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\JS\jQuery\jquery.numeric.js" />
+    <Content Include="Scripts\JS\modernizr.CSS3.min.js" />
+    <Content Include="Scripts\TS\Apps\MyApp.js">
+      <DependentUpon>MyApp.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Apps\MyApp.min.js">
+      <DependentUpon>MyApp.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Apps\MyApp.ts" />
+    <Content Include="Scripts\TS\Apps\Starters\MyAppStarter.js">
+      <DependentUpon>MyAppStarter.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Apps\Starters\MyAppStarter.min.js">
+      <DependentUpon>MyAppStarter.ts</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Apps\Starters\MyAppStarter.ts" />
+    <Content Include="Scripts\TS\Definitions\html2canvas.d.ts" />
+    <Content Include="Scripts\TS\Definitions\jquery.d.ts" />
+    <Content Include="Scripts\TS\Definitions\jquery.numeric.d.ts" />
+    <Content Include="Scripts\TS\Definitions\jqueryui.d.ts" />
+    <Content Include="Scripts\TS\Definitions\jquery_all.d.ts" />
+    <Content Include="Scripts\TS\Definitions\modernizr.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\Animation.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\AnimationRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\Animator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\AppWindowAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\ExpandableAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\FadeAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\IAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\NotificationAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\NotificationRestackAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\PageWindowAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Animation\SelectionWindowAnimator.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Classes\List.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Classes\ToStringComparer.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\CollectionsRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Interfaces\IComparer.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Interfaces\IList.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Classes\CollectionModifiedEvent.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Classes\Event.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Classes\Events.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Enums\CollectionModifications.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Interfaces\IEvent.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Interfaces\IEventArgs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Events\Interfaces\IEventHandler.d.ts" />
+    <Content Include="Scripts\TS\Lib\Exceptions\Classes\ArgumentException.d.ts" />
+    <Content Include="Scripts\TS\Lib\Exceptions\Classes\Exception.d.ts" />
+    <Content Include="Scripts\TS\Lib\Exceptions\Classes\IncorrectTypeException.d.ts" />
+    <Content Include="Scripts\TS\Lib\Exceptions\ExceptionsRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Exceptions\Interfaces\IException.d.ts" />
+    <Content Include="Scripts\TS\Lib\IApp.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Button.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\CanvasBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\CheckBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Control.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\DropDownBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Expandable.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ImageBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Label.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ListBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ListItem.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\MessageBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\MultilineTextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Notification.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\NumericTextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\NumericUpDown.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\PageWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Panel.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ProgressBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ProgressSpinner.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\RadioButton.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ResizeGrip.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SelectionWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SplitContainer.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SplitterGrip.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\StackPanel.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\StackPanelRow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\StaticPageWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SVGBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Tab.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TabControl.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Tile.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileBackground.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileCounter.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileIcon.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TitleBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ToggleButton.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ToggleIndicator.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TrackBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Window.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\CSSNumber.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\ProgressBarTypes.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\ProgressSpinnerTypes.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\SplitterGrip_Orientations.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\StackPanelOrientations.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\TextAlignments.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\TileBackgroundPositions.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\TileSizes.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\TileTypes.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Enums\TrackBarModes.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IButton.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ICanvasBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ICheckBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IControl.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IDropDownBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IExpandable.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IImageBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ILabel.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IListBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IListItem.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IMessageBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IMultilineTextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\INotification.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\INumericTextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\INumericUpDown.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IPageWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IPanel.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IProgressBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IProgressSpinner.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IRadioButton.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IResizeGrip.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ISelectionWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ISplitContainer.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ISplitterGrip.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IStackPanel.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IStackPanelRow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IStaticPageWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ISVGBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITab.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITabControl.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITextBox.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITile.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITileBackground.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITileCounter.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITileIcon.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITitleBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IToggleButton.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IToggleIndicator.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\ITrackBar.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Interfaces\IWindow.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\UI Static.d.ts" />
+    <Content Include="Scripts\TS\Lib\UI\UIRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Utils.d.ts" />
+    <Content Include="Scripts\TypeScriptUI.js" />
+    <Content Include="Scripts\TypeScriptUI.min.js" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" />
+</Project>

@@ -1,0 +1,49 @@
+﻿{anchor:StaticPageWindow}
+!! {"StaticPageWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [PageWindow]
+*Implements:* [IStaticPageWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/Windows/PageWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/PageWindow.ts]
+* [url:UI/Classes/Windows/StaticPageWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/StaticPageWindow.ts]
+* [url:UI/Interfaces/Windows/IStaticPageWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStaticPageWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(url: string)"}
+{""}
+* *{"url:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"ContentLabel: UI.ILabel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"LoadContent(url: string, data?: any): void"}
+{""}
+* *{"url:"}* {"string - "}
+* [OPTIONAL] *{"data:"}* {"any - "}
+* *Returns:* {"void - "}
+
+
+----
+

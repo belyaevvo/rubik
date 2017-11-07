@@ -1,0 +1,40 @@
+{anchor:MobileSplashScreen}
+!! {"MobileSplashScreen"}
+*Module:* [TSUI.UI]
+*Extends:* [DesktopSplashScreen]
+*Implements:* [ISplashScreen]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/ProgressSpinner.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ProgressSpinner.ts]
+* [url:UI/Classes/Windows/SplashScreen.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/SplashScreen.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/ISplashScreen.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/ISplashScreen.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(title?: string)"}
+{""}
+* [OPTIONAL] *{"title:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* *Returns:* {"void - "}
+
+
+----
+

@@ -1,0 +1,53 @@
+﻿{anchor:Exception}
+!! {"Exception"}
+*Module:* [TSUI.Exceptions]
+*Extends:* [None]
+*Implements:* [IException]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Exceptions/Classes/Exception.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Exceptions/Classes/Exception.ts]
+* [url:Exceptions/Interfaces/IException.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Exceptions/Interfaces/IException.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"A generic exception implementation. All exception implementations should derive from this."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Message?: string, Trace?: string, InnerException?: Exceptions.IException)"}
+{"Creates a new Exception instance with specified information.Note: Also automatically logs the exception in the browser log."}
+* [OPTIONAL] *{"Message:"}* {"string - The message to describe the exception."}
+* [OPTIONAL] *{"Trace:"}* {"string - The origin of the exception"}
+* [OPTIONAL] *{"InnerException:"}* {"Exceptions.IException - The inner exception which lead to this exception, if any."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"InnerException: Exceptions.IException;"}
+{"The inner exception which lead to this exception, if any."}
+
+!!!!!! {"Message: string;"}
+{"The message to describe the exception."}
+
+!!!!!! {"Trace: string;"}
+{"The origin of the exception"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"toString(): string"}
+{"Converts the exception to a human-readable string representation."}
+* *Returns:* {"string - "}
+
+
+----
+

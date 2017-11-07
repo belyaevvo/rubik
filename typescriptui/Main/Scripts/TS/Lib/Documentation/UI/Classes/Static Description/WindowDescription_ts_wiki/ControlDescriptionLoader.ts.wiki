@@ -1,0 +1,32 @@
+{anchor:ControlDescriptionLoader}
+!! {"ControlDescriptionLoader"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Static Description/WindowDescription.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Static Description/WindowDescription.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Private Static Methods"}
+
+!!!!!! {"LoadDescription(descrip: IControlDescription, eventHandlersObj: any, parent?: UI.IControl, control?: UI.IControl): boolean"}
+{"Loads the specified description."}
+* *{"descrip:"}* {"IControlDescription - The control description to load."}
+* *{"eventHandlersObj:"}* {"any - "}
+* [OPTIONAL] *{"parent:"}* {"UI.IControl - The parent control to add the created control to."}
+* [OPTIONAL] *{"control:"}* {"UI.IControl - The existing control to use as the root control of the description."}
+* *Returns:* {"boolean - True if the description is completely, successfully loaded."}
+
+
+----
+

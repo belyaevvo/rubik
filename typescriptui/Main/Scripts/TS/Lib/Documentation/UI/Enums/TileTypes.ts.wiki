@@ -1,0 +1,26 @@
+﻿{anchor:TileTypes}
+!! {"TileTypes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TileTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileTypes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The types of tile (as specified by Microsoft)"}
+
+----
+
+!!!! {"Values"}
+
+* *{"Flip"}* = 0 - {""}
+* *{"Iconic"}* = 1 - {""}
+* *{"Cycle"}* = 2 - {""}
+
+----
+

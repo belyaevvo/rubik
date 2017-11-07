@@ -1,0 +1,54 @@
+﻿{anchor:EventHandler}
+!! {"EventHandler"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Implements:* [IEventHandler]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Fundamental implementation of an EventHandler. All EventHandlers should inherit from this class.
+Note: An event handler can be attached to multiple events (provided it is unaffected by being attached to that event e.g. not destroyed after one event fires).
+Note: See ClickEventHandler for sample derived class."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Callback: (args: Events.IEventArgs) => void, Context: any)"}
+{"Creates a new EventHandler.Note: Should be overridden in derived classes to more specifically type 'args' argument of Callback."}
+* *{"Callback:"}* {"(args: Events.IEventArgs) => void - The function to call when the event handler is invoked."}
+* *{"Context:"}* {"any - The context to use when calling the Callback function (sets the value of "this" in the callback function)."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Callback: (args: Events.IEventArgs) => void;"}
+{"The function to call when the event handler is invoked."}
+
+!!!!!! {"Context: any;"}
+{"The context to use when calling the Callback function (sets the value of "this" in the callback function)."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Invoke(args: Events.IEventArgs): void"}
+{"Invokes the event handler's callback with correct context and passes in the arguments.Note: Should be overridden in derived classes to more specifically type eventArgs argument."}
+* *{"args:"}* {"Events.IEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

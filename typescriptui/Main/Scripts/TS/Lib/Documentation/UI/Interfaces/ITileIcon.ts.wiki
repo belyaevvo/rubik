@@ -1,0 +1,18 @@
+﻿{anchor:ITileIcon}
+!! {"ITileIcon"}
+*Module:* [TSUI.UI]
+*Extends:* [IImageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+* [url:UI/Interfaces/ITileIcon.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITileIcon.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TileIcon control."}
+
+----
+

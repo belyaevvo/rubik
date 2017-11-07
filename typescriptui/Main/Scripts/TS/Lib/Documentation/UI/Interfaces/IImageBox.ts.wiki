@@ -1,0 +1,33 @@
+﻿{anchor:IImageBox}
+!! {"IImageBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an Image Box control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AlternateText(value?: string): string"}
+{"Gets or sets the alternate text of the image."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the alternate text to."}
+* *Returns:* {"string - The actual value of the alternate text."}
+
+!!!!!! {"Source(value?: string): string"}
+{"Gets or sets the source of the image."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the source to."}
+* *Returns:* {"string - The actual value of the source."}
+
+
+----
+

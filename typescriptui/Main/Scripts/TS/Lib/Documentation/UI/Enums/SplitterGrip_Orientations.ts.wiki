@@ -1,0 +1,25 @@
+﻿{anchor:SplitterGrip_Orientations}
+!! {"SplitterGrip_Orientations"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/SplitterGrip_Orientations.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/SplitterGrip_Orientations.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The orientations of a splitter grip."}
+
+----
+
+!!!! {"Values"}
+
+* *{"Horizontal"}* = 0 - {"Horizontal splitter grip"}
+* *{"Vertical"}* = 1 - {"Vertical splitter grip"}
+
+----
+

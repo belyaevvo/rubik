@@ -1,0 +1,65 @@
+﻿{anchor:MessageBox}
+!! {"MessageBox"}
+*Module:* [TSUI.UI]
+*Extends:* [Window]
+*Implements:* [IMessageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/Windows/MessageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/MessageBox.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/IMessageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IMessageBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(title: string, text: string)"}
+{""}
+* *{"title:"}* {"string - "}
+* *{"text:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"PositionCenterParent(parent: UI.IControl): void"}
+{""}
+* *{"parent:"}* {"UI.IControl - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Width(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+
+----
+

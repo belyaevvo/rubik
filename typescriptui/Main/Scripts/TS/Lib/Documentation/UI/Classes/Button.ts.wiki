@@ -1,0 +1,51 @@
+﻿{anchor:Button}
+!! {"Button"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IButton]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Button.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Button.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Interfaces/IButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IButton.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"A basic button control implementation."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{"Creates a new Button control."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{"The label control which is the button's text."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{"Invokes the button's click event."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the button text."}
+* [OPTIONAL] *{"value:"}* {"string - (Optional) The value to set the text to."}
+* *Returns:* {"string - the value of the button's text."}
+
+
+----
+

@@ -1,0 +1,68 @@
+﻿{anchor:Event}
+!! {"Event"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Implements:* [IEvent]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Fundamental implementation of an Event. All Events should inherit from this class.
+Note: See ClickEvent for sample derived class.
+Note: See List for sample usage."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Handlers: Events.IEventHandler[];"}
+{"Private property - do not use externally. Should be overridden in derived classes simply to set the correct EventHandler type."}
+
+!!!!!! {"OnHandlerAttached: () => void;"}
+{"Called when a new event handler is attached - can only be set to one method - if overriding, ensure full implementation as seen in this class."}
+
+!!!!!! {"OnHandlerAttachedContext: any;"}
+{"The context object to use when calling OnHandlerAttached (sets the value of "this" in the called function)."}
+
+!!!!!! {"OnHandlerDettached: () => void;"}
+{"Called when a new event handler is attached - can only be set to one method - if overriding, ensure full implementation as seen in this class."}
+
+!!!!!! {"OnHandlerDettachedContext: any;"}
+{"The context object to use when calling OnHandlerDettached (sets the value of "this" in the called function)."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Attach(handler: Events.IEventHandler): void"}
+{"Attaches a an event handler to this event to be called when the event is fired.Note: An event handler can be attached to more than one event.Note: Should be overridden in derived classes to more specifically type handler argument."}
+* *{"handler:"}* {"Events.IEventHandler - The event handler to attach."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Detach(handler: Events.IEventHandler): void"}
+{"Detaches a an event handler from this event. Does nothing if the event handler has not already been attached.Note: Should be overridden in derived classes to more specifically type handler argument."}
+* *{"handler:"}* {"Events.IEventHandler - The event handler to detach."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Invoke(args: Events.IEventArgs): void"}
+{"Invokes (fires) this event with the given event args. Synchronously calls Invoke on each EventHandler in order of attachment, first-to-last.Note: Should be overridden in derived classes to more specifically type args argument."}
+* *{"args:"}* {"Events.IEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsAttached(handler: Events.IEventHandler): boolean"}
+{"Note: Should be overridden in derived classes to more specifically type handler argument."}
+* *{"handler:"}* {"Events.IEventHandler - The event handler to check."}
+* *Returns:* {"boolean - whether the specified event handler is attached to this event or not."}
+
+
+----
+

@@ -1,0 +1,23 @@
+﻿{
+    "results": {
+        "0": {
+            "text": "Talkin' 'bout sandwiches",
+            "to_user_id": null,
+            "from_user": "baroquebobcat",
+            "id": 1307603293,
+            "from_user_id": 125785,
+            "iso_language_code": "en",
+            "source": "<a href=\"http://twitter.com/\">web</a>",
+            "profile_image_url": "http://s3.amazonaws.com/twitter_production/profile_images/79555083/face02_normal.jpg",
+            "created_at": "Tue, 10 Mar 2009 22:04:12 +0000"
+        }
+    },
+    "since_id": 0,
+    "max_id": 1307851898,
+    "refresh_url": "?since_id=1307851898&q=baroquebobcat",
+    "results_per_page": 15,
+    "next_page": "?page=2&max_id=1307851898&q=baroquebobcat",
+    "completed_in": 0.033281,
+    "page": 1,
+    "query": "baroquebobcat"
+}

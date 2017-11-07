@@ -1,0 +1,59 @@
+﻿{anchor:TitleBar}
+!! {"TitleBar"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ITitleBar]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/TitleBar.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TitleBar.ts]
+* [url:UI/Interfaces/ITitleBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITitleBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_Draggable: boolean;"}
+{""}
+
+!!!!!! {"_TitleLabel: UI.ILabel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Draggable(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Title(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"WindowMinSuitableWidth(): number"}
+{""}
+* *Returns:* {"number - "}
+
+
+----
+

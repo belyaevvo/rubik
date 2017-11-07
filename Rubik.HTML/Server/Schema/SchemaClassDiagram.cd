@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rubik.Server.Schema.SchemaObject">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\SchemaObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.Schema">
+    <Position X="11.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAEAAAIgAABAAAAAAABAAAAAAAAgAAAA=</HashCode>
+      <FileName>Server\Schema\Schema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Columns" />
+      <Property Name="Rows" />
+      <Property Name="Filters" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.HierarchyInfo" Collapsed="true">
+    <Position X="15.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAQAABAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\HierarchyInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Dimension" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Levels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.Axis">
+    <Position X="8.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\Axis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Sets" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.MemberInfo">
+    <Position X="17.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\MemberInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.CubeInfo">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\CubeInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.LevelInfo" Collapsed="true">
+    <Position X="10.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Server\Schema\LevelInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.DimensionInfo" Collapsed="true">
+    <Position X="13" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\DimensionInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Hierarchies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.MeasureInfo">
+    <Position X="8.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\MeasureInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.HierarchySet">
+    <Position X="8.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAEAAACAAA=</HashCode>
+      <FileName>Server\Schema\HierarchySet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.InfoObject">
+    <Position X="12" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\InfoObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.SelectedMember">
+    <Position X="22" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\SelectedMember.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.CalculatedMember">
+    <Position X="19.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\CalculatedMember.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.CalculatedSet">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\CalculatedSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.CellSet">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAIIAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Server\Schema\CellSet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Columns" />
+      <Property Name="Filters" />
+      <Property Name="Rows" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Cells" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.ResultAxis">
+    <Position X="4.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\ResultAxis.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Positions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.Cell">
+    <Position X="1.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rubik.Server.Schema.Position">
+    <Position X="4.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Server\Schema\Position.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Members" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Rubik.Server.Schema.ResultMember">
+    <Position X="4.25" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResultMember.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Rubik.Server.Schema.MemberSelectionEnum" Collapsed="true">
+    <Position X="24.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAFAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Server\Schema\MemberSelectionEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

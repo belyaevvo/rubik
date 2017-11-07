@@ -1,0 +1,43 @@
+﻿{anchor:IListBox<T>}
+!! {"IListBox<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IListBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ListBox control.
+T: The type of the value of the list items in the list."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Items: TSUI.Collections.IList<UI.IListItem<T>>;"}
+{"The items in the list."}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{"Fired when the list box selected index is changed."}
+
+!!!!!! {"OnSelectionMade: TSUI.Events.SelectionMadeEvent;"}
+{"Fired when the list box selection is changed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{"Gets or set the selected index of the list box."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the selected index to."}
+* *Returns:* {"number - The actual selected index."}
+
+
+----
+

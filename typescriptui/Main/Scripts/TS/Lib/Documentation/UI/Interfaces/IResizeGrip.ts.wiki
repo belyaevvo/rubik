@@ -1,0 +1,26 @@
+﻿{anchor:IResizeGrip}
+!! {"IResizeGrip"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IResizeGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IResizeGrip.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ResizeGrip control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"GripColor: string;"}
+{"The colour of the resize grip."}
+
+
+----
+

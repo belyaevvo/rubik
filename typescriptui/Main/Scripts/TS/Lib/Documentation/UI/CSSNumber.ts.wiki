@@ -1,0 +1,67 @@
+﻿{anchor:CSSNumber}
+!! {"CSSNumber"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/CSSNumber.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/CSSNumber.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Represents a CSS number value e.g. 10px, 10% or 'auto'.
+Also provides static methods for converting from CSS string to CSSNumber."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Value: number, Units?: string, Auto?: boolean)"}
+{"Creates a new CSSNumber with specified value and units."}
+* *{"Value:"}* {"number - The value of the number (irrelevant if auto is set - see auto param)"}
+* [OPTIONAL] *{"Units:"}* {"string - OPTIONAL The units of the CSS number - px, % or em. Default: px. (Irrelevant if auto is set - see auto param)"}
+* [OPTIONAL] *{"Auto:"}* {"boolean - OPTIONAL Whether the number has value of "auto"  - other parameters are ignored if set. Default: false"}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Auto: boolean;"}
+{"OPTIONAL Whether the number has value of "auto"  - other parameters are ignored if set. Default: false"}
+
+!!!!!! {"Units: string;"}
+{"OPTIONAL The units of the CSS number - px, % or em. Default: px. (Irrelevant if auto is set - see auto param)"}
+
+!!!!!! {"Value: number;"}
+{"The value of the number (irrelevant if auto is set - see auto param)"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ToString(): string"}
+{"Returns the CSS string representation of the CSS number e.g. 10px, 10% or auto"}
+* *Returns:* {"string - "}
+
+!!!!!! {"toString(): string"}
+{"Returns value to ToString method."}
+* *Returns:* {"string - "}
+
+
+----
+
+!!!! {"Private Static Methods"}
+
+!!!!!! {"FromString(value: string): CSSNumber"}
+{"Converts a CSS string representation of a CSS Number to a CSS Number."}
+* *{"value:"}* {"string - The CSS string representation of the number."}
+* *Returns:* {"TSUI.UI.CSSNumber - the new CSS Number."}
+
+
+----
+

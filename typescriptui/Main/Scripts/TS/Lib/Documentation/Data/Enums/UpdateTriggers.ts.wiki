@@ -1,0 +1,27 @@
+{anchor:UpdateTriggers}
+!! {"UpdateTriggers"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/UpdateTriggers.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/UpdateTriggers.ts]
+
+----
+
+!!!! {"Description"}
+
+{"FLAGS: The statuses that a data push or data pull request can have."}
+
+----
+
+!!!! {"Values"}
+
+* *{"Unkown"}* = 0 - {"Indicates the trigger of the update request is unknown."}
+* *{"Source"}* = 1 - {"Indicates the trigger of the update request is the source."}
+* *{"User"}* = 2 - {"Indicates the trigger of the update request is the user."}
+* *{"Binding"}* = 4 - {"Indicates the trigger of the update request is the data binding."}
+
+----
+

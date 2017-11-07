@@ -1,0 +1,48 @@
+﻿{anchor:IncorrectTypeException}
+!! {"IncorrectTypeException"}
+*Module:* [TSUI.Exceptions]
+*Extends:* [Exception]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Exceptions/Classes/Exception.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Exceptions/Classes/Exception.ts]
+* [url:Exceptions/Classes/IncorrectTypeException.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Exceptions/Classes/IncorrectTypeException.ts]
+
+----
+
+!!!! {"Description"}
+
+{"An incorrect type exception. Automatically adds descriptive information in the constructor."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(GivenType?: string, ExpectedType?: string, Trace?: string, InnerException?: Exceptions.IException)"}
+{"Creates a new ArgumentException instance with specified information. Automatically adds descriptive information about this particulartype of exception.Note: Also automatically logs the exception in the browser log."}
+* [OPTIONAL] *{"GivenType:"}* {"string - The name of the type which was given."}
+* [OPTIONAL] *{"ExpectedType:"}* {"string - The name of the type which was expected."}
+* [OPTIONAL] *{"Trace:"}* {"string - The origin of the exception"}
+* [OPTIONAL] *{"InnerException:"}* {"Exceptions.IException - The inner exception which lead to this exception, if any."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"ExpectedType: string;"}
+{"The name of the type which was expected."}
+
+!!!!!! {"GivenType: string;"}
+{"The name of the type which was given."}
+
+!!!!!! {"InnerException: Exceptions.IException;"}
+{"The inner exception which lead to this exception, if any."}
+
+!!!!!! {"Trace: string;"}
+{"The origin of the exception"}
+
+
+----
+

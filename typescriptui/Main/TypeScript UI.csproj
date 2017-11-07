@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B40009C5-59E2-4A90-AE98-5B878F56D327}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TypeScriptUI</RootNamespace>
+    <AssemblyName>TypeScriptUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ACManifest.txt" />
+    <Content Include="Copyright Notice.txt" />
+    <Content Include="CSS\Apps\Demo.css" />
+    <Content Include="CSS\Apps\MyApp.css" />
+    <Content Include="Generated HTML.html" />
+    <Content Include="Images\DownloadIcon.png" />
+    <Content Include="Images\InfoIcon.png" />
+    <Content Include="Images\Logo\TypescriptUI.png" />
+    <Content Include="Images\Logo\TypescriptUI_CodePlex.png" />
+    <Content Include="Images\Screenshots\200x200\Buttons.png" />
+    <Content Include="Images\Screenshots\200x200\Check-Boxes.png" />
+    <Content Include="Images\Screenshots\200x200\Image-Box.png" />
+    <Content Include="Images\Screenshots\200x200\Progress-Bars.png" />
+    <Content Include="Images\Screenshots\200x200\SMW-Ad.png" />
+    <Content Include="Images\Screenshots\200x200\Window-And-Tabs.png" />
+    <Content Include="Images\Screenshots\420x200\Buttons.png" />
+    <Content Include="Images\Screenshots\420x200\Check-Boxes.png" />
+    <Content Include="Images\Screenshots\420x200\Image-Box.png" />
+    <Content Include="Images\Screenshots\420x200\Progress-Bars.png" />
+    <Content Include="Images\Screenshots\420x200\SMW-Ad.png" />
+    <Content Include="Images\Screenshots\420x200\Window-And-Tabs.png" />
+    <Content Include="Images\Screenshots\SampleDocumentation---List.png" />
+    <Content Include="Images\SecureIcon.png" />
+    <Content Include="Images\Tiles\Demo-Tile-Background.png" />
+    <Content Include="Index.min.html" />
+    <Content Include="CSS\Apps\TestApp.css" />
+    <Content Include="CSS\Skins\Blue.css" />
+    <Content Include="CSS\UI.css" />
+    <Content Include="Index.html" />
+    <Content Include="MyApp.html" />
+    <Content Include="MyApp.min.html" />
+    <Content Include="Scripts\JS\detectmobilebrowser.js" />
+    <Content Include="Scripts\JS\html2canvas.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-2.0.1.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-2.0.1.min.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\JS\jQuery\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\JS\jQuery\jquery.numeric.js" />
+    <Content Include="Scripts\JS\modernizr.CSS3.min.js" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\IAnimator.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\Animator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\FadeAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\AppWindowAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\PageWindowAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\NotificationAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\NotificationRestackAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\ExpandableAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\Animation_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\SelectionWindowAnimator.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Interfaces\IEvent.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\Event.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\CollectionModifiedEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Collections\Classes\ToStringComparer.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Collections\Classes\List.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\BuildRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Animation\AnimationRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Collections\CollectionsRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Data\DataRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Events\EventsRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Exceptions\ExceptionsRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\Logging\LoggingRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Build Parts\UI\UIRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Collections\Collections_BuildRefs.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Interfaces\IComparer.d.ts" />
+    <Content Include="Scripts\TS\Lib\Collections\Interfaces\IList.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Data_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IDataAccessor.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IDataAdapter.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IDataBinding.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IDataUpdater.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IBindingGroup.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IBindingCollection.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IAccessInfo.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Enums\DataAccessStatuses.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Interfaces\IDataAccessResult.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\DataPulledEvent.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\BindingCollection.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\BindingGroup.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Accessors\JSDataAccessor.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Accessors\HTTPDataAccessor.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Adapters\BooleanDataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Adapters\ArrayDataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Adapters\JSONDataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Adapters\NumberDataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\Data Adapters\StringDataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\DataAccessor.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\DataAccessResult.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\DataAdapter.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\DataBinding.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Classes\DataUpdater.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Enums\BindingDirections.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Interfaces\IEventHandler.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Interfaces\IEventArgs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Button.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Control.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\UI Static.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IControl.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\IMessageBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ILabel.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\ISelectionWindow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\IPageWindow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\IStaticPageWindow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IPanel.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ISplitContainer.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITitleBar.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IExpandable.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ISplitterGrip.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IStackPanel.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IStackPanelRow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITabControl.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITab.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IButton.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IDropDownBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IMultilineTextBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\INumericTextBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITextBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IToggleButton.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IRadioButton.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ICheckBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IImageBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ICanvasBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\INotification.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IProgressSpinner.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IProgressBar.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ISVGBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITrackBar.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IToggleIndicator.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IResizeGrip.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITile.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IListBox.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\CSSNumber.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\TextAlignments.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\INumericUpDown.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\IListItem.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITileCounter.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITileIcon.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\ITileBackground.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\IApp.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Exceptions\Interfaces\IException.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Exceptions\Classes\Exception.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Exceptions\Classes\ArgumentException.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Enums\CollectionModifications.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Events_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Exceptions\Classes\IncorrectTypeException.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Exceptions\Exceptions_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\UpdateFromSourceEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\UpdateFromUserEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\UpdateInvokedEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\UpdateBeginEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\UpdateEndEvent.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Data\Enums\UpdateTriggers.ts" />
+    <Content Include="Scripts\TS\Lib\Data\Enums\DelayModes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Logging_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Interfaces\ILogger.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Interfaces\ILog.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Enums\RecoveryModes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Enums\TraceTypes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Logging\Classes\Logger.ts" />
+    <Content Include="Scripts\TS\Lib\TypescriptUI.js">
+      <DependentUpon>TypescriptUI.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Lib\TypescriptUI.min.js">
+      <DependentUpon>TypescriptUI.js.bundle</DependentUpon>
+    </Content>
+    <Content Include="Scripts\TS\Lib\UI\Classes\CanvasBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\CheckBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\DropDownBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Expandable.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ImageBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Label.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ListBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ListItem.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Windows\LoginWindow.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Static Description\WindowDescription.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Windows\MessageBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\MultilineTextBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Notification.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\NumericTextBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\NumericUpDown.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Windows\PageWindow.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Panel.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ProgressBar.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ProgressSpinner.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\RadioButton.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ResizeGrip.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Windows\SelectionWindow.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SplitContainer.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SplitterGrip.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\StackPanel.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\StackPanelRow.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Windows\SplashScreen.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Classes\Windows\StartupWindow.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Windows\StaticPageWindow.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\SVGBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Tab.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TabControl.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TextBox.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Tile.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileBackground.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileIcon.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TileCounter.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TitleBar.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ToggleButton.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\ToggleIndicator.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\TrackBar.ts" />
+    <Content Include="Scripts\TS\Lib\UI\Classes\Windows\Window.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\UI_BuildRefs.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\ProgressBarTypes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\ProgressSpinnerTypes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\SplitterGrip_Orientations.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\StackPanelOrientations.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\TileTypes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\TileSizes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\TileBackgroundPositions.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Enums\TrackBarModes.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\ISplashScreen.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\ILoginWindow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\IStartupWindow.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\UI\Interfaces\Windows\IWindow.d.ts" />
+    <Content Include="Static\Pages\Demo App\About.html" />
+    <Content Include="Static\Pages\Offline.html" />
+    <Content Include="SVG\Circle.svg" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\TS\Definitions\jquery.d.ts" />
+    <Content Include="Scripts\TS\Definitions\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Events\Classes\Events.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Utils.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Lib\Animation\Animation.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Definitions\jquery.numeric.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Definitions\jquery_all.d.ts" />
+    <TypeScriptCompile Include="Scripts\TS\Definitions\html2canvas.d.ts" />
+    <Content Include="Scripts\TS\Definitions\modernizr.d.ts" />
+    <Content Include="ACManifest.appcache" />
+    <Content Include="Images\Screenshots\Desktop Demo Screenshots.psd" />
+    <Content Include="Images\Screenshots\SampleDocumentation - List.psd" />
+    <Content Include="Scripts\TS\Lib\TypescriptUI.js.bundle">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\TS\Lib\Build full documentation.bat" />
+    <Content Include="Static\JSON\test.json" />
+    <Content Include="Scripts\TS\Lib\Build.bat" />
+    <Content Include="Scripts\TS\Lib\Build_Release dev.bat" />
+    <Content Include="Scripts\TS\Lib\Build_Release.bat" />
+    <Content Include="Scripts\TS\Lib\TypescriptUI.min.js.map">
+      <DependentUpon>TypescriptUI.js.bundle</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\TS\Lib\Data\Classes\Data Updaters\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>25571</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:25571/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

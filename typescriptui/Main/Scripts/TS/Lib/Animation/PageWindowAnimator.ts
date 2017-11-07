@@ -1,0 +1,103 @@
+﻿/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting 
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+
+/// <reference path="../UI/UI Static.ts" />
+/// <reference path="IAnimator.d.ts" />
+
+module TSUI.Animation
+{
+    /** Animator for a StaticPageWindow. */
+    export class PageWindowAnimator implements IAnimator
+    {
+        /** The length of time (milliseconds) to spend animating the window.
+            Default: 250ms
+        */
+        static AnimationTime: number = 250;
+        /** The jQuery animation easing to use
+            Default: easeOutQuad
+        */
+        static AnimationEasing: string = "easeOutQuad";
+        
+        /** Fades in the page window and the PageWindow_DisableOverlay. Clears CSS 'display' and 'visibility'
+            @param control The control to animate.
+            @param callback The callback to invoke after animation has completed.
+        */
+        Show(control: UI.IControl, callback: () => void = null): void
+        {
+            $(".PageWindow_DisableOverlay")
+                .css({
+                    display: "block",
+                    opacity: 0,
+                    zIndex: (UI.OpenWindows * 10) - 1
+                })
+                .animate({
+                    opacity: 0.6
+                }, 200, "swing", function ()
+                {
+                });
+
+            var oldOpacity = control.GetStyle("opacity");
+            control.AnimationElement().stop(true, true);
+            control.AnimationElement().css({
+                opacity: 0,
+                visibility: "",
+                display: ""
+            }).animate({
+                opacity: oldOpacity,
+            },
+            PageWindowAnimator.AnimationTime,
+            PageWindowAnimator.AnimationEasing,
+            function ()
+            {
+                if (callback !== null)
+                {
+                    callback();
+                }
+            });
+        }
+        /** Fades out the page window and the PageWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'
+            @param control The control to animate.
+            @param callback The callback to invoke after animation has completed.
+        */
+        Hide(control: UI.IControl, callback: () => void = null): void
+        {
+            $(".PageWindow_DisableOverlay")
+                .animate({
+                    opacity: 0
+                }, 200, "swing", function ()
+                {
+                    $(this).css({
+                        display: ""
+                    });
+                });
+
+            control.AnimationElement().stop(true, true);
+            control.AnimationElement().animate({
+                opacity: 0
+            },
+            PageWindowAnimator.AnimationTime,
+            PageWindowAnimator.AnimationEasing,
+            function ()
+            {
+                control.AnimationElement().css({
+                    visibility: "hidden",
+                    opacity: 1,
+                    display: "none"
+                });
+                if (callback !== null)
+                {
+                    callback();
+                }
+            });
+        }
+    }
+}

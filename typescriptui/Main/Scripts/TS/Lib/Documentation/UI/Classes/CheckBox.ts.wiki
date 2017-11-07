@@ -1,0 +1,84 @@
+﻿{anchor:CheckBox}
+!! {"CheckBox"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ICheckBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/CheckBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/CheckBox.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/ToggleIndicator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleIndicator.ts]
+* [url:UI/Enums/TextAlignments.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TextAlignments.ts]
+* [url:UI/Interfaces/ICheckBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ICheckBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(checked?: boolean)"}
+{""}
+* [OPTIONAL] *{"checked:"}* {"boolean - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"MainIndicator: UI.IToggleIndicator;"}
+{""}
+
+!!!!!! {"OnCheckedChange: TSUI.Events.CheckedChangeEvent;"}
+{""}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{""}
+
+!!!!!! {"_TextAlign: UI.TextAlignments;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Checked(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"TextAlign(value?: UI.TextAlignments): UI.TextAlignments"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.TextAlignments - "}
+* *Returns:* {"TSUI.UI.TextAlignments - "}
+
+!!!!!! {"_This_OnClick(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

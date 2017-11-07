@@ -1,0 +1,47 @@
+{anchor:IControlDescription}
+!! {"IControlDescription"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Static Description/WindowDescription.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Static Description/WindowDescription.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Children?: IControlDescription[];"}
+{""}
+
+!!!!!! {"Events?: {
+Name:string;
+HandlerType:new(Callback: (args: TSUI.Events.IEventArgs) => void, Context: any) => TSUI.Events.IEventHandler;
+HandlerName:string;
+}
+[];"}
+{""}
+
+!!!!!! {"Name: string;"}
+{""}
+
+!!!!!! {"Properties?: {
+Name:string;
+Values:any[];
+}
+[];"}
+{""}
+
+!!!!!! {"Type: new() => UI.IControl;"}
+{""}
+
+
+----
+

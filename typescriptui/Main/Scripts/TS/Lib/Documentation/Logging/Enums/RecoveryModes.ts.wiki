@@ -1,0 +1,27 @@
+{anchor:RecoveryModes}
+!! {"RecoveryModes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Logging/Enums/RecoveryModes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Logging/Enums/RecoveryModes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The list of modes used when recovering from an error."}
+
+----
+
+!!!! {"Values"}
+
+* *{"Abort"}* = 0 - {""}
+* *{"Retry"}* = 1 - {""}
+* *{"Continue"}* = 2 - {""}
+* *{"Continue_SkipSection"}* = 3 - {""}
+
+----
+

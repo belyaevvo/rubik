@@ -1,0 +1,122 @@
+﻿{anchor:TextBox}
+!! {"TextBox"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ITextBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/TextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TextBox.ts]
+* [url:UI/Interfaces/ITextBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITextBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnTextChange: TSUI.Events.TextChangeEvent;"}
+{""}
+
+!!!!!! {"_PrevSeenValue: string;"}
+{""}
+
+!!!!!! {"_TabIndex: number;"}
+{""}
+
+!!!!!! {"_TextInput: JQuery;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Blur(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Enabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Focus(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Masked(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"MaxLength(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"TabIndex(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"TextInput(): JQuery"}
+{""}
+* *Returns:* {"JQuery - "}
+
+!!!!!! {"_HandleFocusableSet(focusable: boolean): void"}
+{""}
+* *{"focusable:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_TextInput_OnBlur(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_TextInput_OnChange(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_TextInput_OnFocus(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_OnClick_FocusBugFix(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

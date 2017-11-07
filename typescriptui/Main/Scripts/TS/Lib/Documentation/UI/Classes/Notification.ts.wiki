@@ -1,0 +1,101 @@
+﻿{anchor:Notification}
+!! {"Notification"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [INotification]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/NotificationAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/NotificationAnimator.ts]
+* [url:Animation/NotificationRestackAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/NotificationRestackAnimator.ts]
+* [url:UI/Classes/Button.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Button.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Notification.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Notification.ts]
+* [url:UI/Interfaces/INotification.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/INotification.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(stackReference: number, text?: string)"}
+{""}
+* *{"stackReference:"}* {"number - "}
+* [OPTIONAL] *{"text:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"CloseButton: UI.IButton;"}
+{""}
+
+!!!!!! {"OnClose: TSUI.Events.CloseEvent;"}
+{""}
+
+!!!!!! {"_HideTimeoutRef: number;"}
+{""}
+
+!!!!!! {"_OffsetAdded: number;"}
+{""}
+
+!!!!!! {"_Showing: boolean;"}
+{""}
+
+!!!!!! {"_TextLabel: UI.ILabel;"}
+{""}
+
+!!!!!! {"stackReference: number;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"RestackAll(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ShowFor(seconds: number, callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* *{"seconds:"}* {"number - "}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"_CloseButton_Click(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Restack(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

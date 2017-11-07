@@ -1,0 +1,25 @@
+﻿{anchor:DelayModes}
+!! {"DelayModes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DelayModes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DelayModes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The delay modes a data binding can use."}
+
+----
+
+!!!! {"Values"}
+
+* *{"First"}* = 0 - {"Indicates the data binding should delay the first call to update and ignore subsequent calls until the update has completed (or failed)."}
+* *{"Last"}* = 1 - {"Indicates the data binding should cancel previous calls to update and delay the latest call."}
+
+----
+

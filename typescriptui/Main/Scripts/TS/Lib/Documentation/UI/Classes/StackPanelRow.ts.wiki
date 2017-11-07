@@ -1,0 +1,28 @@
+﻿{anchor:StackPanelRow}
+!! {"StackPanelRow"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IStackPanelRow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/StackPanelRow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanelRow.ts]
+* [url:UI/Interfaces/IStackPanelRow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IStackPanelRow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+

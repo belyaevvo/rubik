@@ -1,0 +1,38 @@
+﻿{anchor:BindingCollection}
+!! {"BindingCollection"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Implements:* [IBindingCollection]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Interfaces/IList.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Interfaces/IList.d.ts]
+* [url:Data/Classes/BindingCollection.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/BindingCollection.ts]
+* [url:Data/Interfaces/IBindingCollection.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IBindingCollection.d.ts]
+* [url:Data/Interfaces/IBindingGroup.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IBindingGroup.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for a binding collection. A binding collection contains a list of the binding groups for a control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"BindingGroups: TSUI.Collections.IList<Data.IBindingGroup>;"}
+{"The list of binding groups in the collection."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"UpdateAllBindings(): boolean"}
+{"Updates all the binding groups in the collection."}
+* *Returns:* {"boolean - Whether all the bindings updated successfully."}
+
+
+----
+

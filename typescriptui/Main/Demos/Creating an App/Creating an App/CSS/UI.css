@@ -1,0 +1,1799 @@
+﻿/*
+Copyright © Edward Nutting 2013
+Author: Edward Nutting 
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+
+@font-face
+{
+    font-family: SegoeUI;
+    src: local('Segoe UI'), local('Helvetica Neue');
+}
+
+@font-face
+{
+    font-family: SegoeUILight;
+    src: local('Segoe UI Light'), local('Segoe UI Semilight'), local('Segoe UI'), local('Helvetica Neue');
+    font-weight: 100;
+}
+
+@font-face
+{
+    font-family: SegoeUISemibold;
+    src: local('Segoe UI Semibold'), local('Segoe UI'), local('Helvetica Neue');
+    font-weight: 600;
+}
+
+body
+{
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    font-family: SegoeUI, 'Segoe UI', Arial, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+    body > .Bg
+    {
+        background-color: #333;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: -1;
+        opacity: 1;
+    }
+
+ul, ol
+{
+    list-style-position: inside;
+    padding: 0px;
+    margin: 10px 4%;
+    width: 92%;
+    height: auto;
+    display: inline-block;
+}
+
+.js .NoJSMessage
+{
+    display: none;
+}
+
+.Control
+{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    z-index: 1;
+    display: inline-block;
+    overflow: hidden;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: auto;
+    height: auto;
+    outline: none;
+    vertical-align: top;
+    text-align: left;
+    cursor: default;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+    .Control.Disabled
+    {
+        z-index: 0;
+        cursor: default !important;
+    }
+
+.Window
+{
+    min-width: 205px;
+    min-height: 92px;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid;
+}
+
+    .Window > .Panel
+    {
+        top: 40px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+    }
+
+.SelectionWindow,
+.PageWindow
+{
+    border: none;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+    .SelectionWindow > .Button.WindowCloseButton
+    {
+        top: 0px;
+        right: 1px;
+    }
+    .PageWindow > .Button.WindowCloseButton
+    {
+        top: 0px;
+        right: 0px;
+    }
+
+    .PageWindow > .Panel > .ContentLabel
+    {
+        top: 0px;
+        left: 20px;
+        right: 20px;
+        bottom: 0px;
+        overflow: auto;
+    }
+
+.SelectionWindow_DisableOverlay,
+.PageWindow_DisableOverlay
+{
+    z-index: 9;
+    opacity: 0.6;
+    background-color: #000;
+    position: fixed;
+    width: auto;
+    height: auto;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: none;
+}
+
+.TitleBar
+{
+    width: 100%;
+    height: 40px;
+    border-color: inherit;
+    cursor: pointer;
+}
+
+    .TitleBar > .Title
+    {
+        top: 5px;
+        left: 10px;
+        font-weight: lighter;
+        font-size: 20px;
+        cursor: inherit;
+    }
+
+    .TitleBar.Undraggable
+    {
+        cursor: default;
+    }
+
+.Label
+{
+    overflow: auto;
+    color: inherit;
+    font: inherit;
+}
+
+    .Label.RelativeLayout
+    {
+        margin-bottom: 5px;
+    }
+
+.ResizeGrip
+{
+    top: auto;
+    right: 0px;
+    bottom: 0px;
+    left: auto;
+    z-index: 5;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+    .ResizeGrip > .CanvasBox
+    {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+.Panel
+{
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    width: auto;
+    height: auto;
+}
+
+    .Panel.RelativeLayout
+    {
+        margin: 15px;
+    }
+
+.SplitContainer
+{
+}
+
+    .SplitContainer > .Panel
+    {
+        top: 0px;
+        right: auto;
+        bottom: auto;
+        left: 0px;
+        width: auto;
+        height: auto;
+        overflow: auto;
+    }
+
+    .SplitContainer > .Panel1
+    {
+        z-index: 1;
+    }
+
+    .SplitContainer > .Panel2
+    {
+        z-index: 2;
+    }
+
+    .SplitContainer > .SplitterGrip
+    {
+        z-index: 3;
+    }
+
+.SplitterGrip
+{
+    background: transparent;
+    color: transparent;
+    cursor: default;
+}
+
+    .SplitterGrip.Horizontal
+    {
+        top: 50%;
+        left: 0px;
+        width: 100%;
+        height: 1%;
+        cursor: ns-resize;
+    }
+
+    .SplitterGrip.Vertical
+    {
+        top: 0px;
+        left: 50%;
+        width: 1%;
+        height: 100%;
+        cursor: ew-resize;
+    }
+
+.Expandable
+{
+    min-height: 32px;
+    width: 100%;
+    border: 1px solid;
+}
+
+    .Expandable.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .Expandable > .TitleBar
+    {
+        height: 30px;
+        -moz-transition: background-color 0.45s linear;
+        -o-transition: background-color 0.45s linear;
+        -webkit-transition: background-color 0.45s linear;
+        transition: background-color 0.45s linear;
+    }
+
+    .Expandable.Collapsed > .TitleBar
+    {
+        -moz-transition: background-color 0.45s linear;
+        -o-transition: background-color 0.45s linear;
+        -webkit-transition: background-color 0.45s linear;
+        transition: background-color 0.45s linear;
+    }
+
+    .Expandable > .Panel
+    {
+        top: 45px;
+        overflow: auto;
+    }
+
+        .Expandable > .Panel.RelativeLayout
+        {
+            top: 45px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+    .Expandable.Collapsed > .Panel.RelativeLayout
+    {
+        height: auto;
+    }
+
+    .Expandable > .TitleBar > .Title
+    {
+        top: 4px;
+        left: 10px;
+        font-weight: lighter;
+        font-size: 16px;
+        -moz-transition: color 0.25s linear;
+        -o-transition: color 0.25s linear;
+        -webkit-transition: color 0.25s linear;
+        transition: color 0.25s linear;
+    }
+
+    .Expandable.Collapsed > .TitleBar > .Title
+    {
+        -moz-transition: color 0.35s linear;
+        -o-transition: color 0.35s linear;
+        -webkit-transition: color 0.35s linear;
+        transition: color 0.35s linear;
+    }
+
+    .Expandable > .ToggleIndicator
+    {
+        top: 5px;
+        right: 10px;
+        left: auto;
+    }
+
+.ToggleIndicatorLabel
+{
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Ariel-Black, sans-serif;
+    cursor: pointer;
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transition: 0.45s linear;
+    -o-transition: 0.45s linear;
+    -webkit-transition: 0.45s linear;
+    transition: 0.45s linear;
+    -moz-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+    -o-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+    -webkit-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+    transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+    transform: rotate(-90deg);
+}
+
+    .ToggleIndicatorLabel.Off
+    {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transition: 0.45s linear;
+        -o-transition: 0.45s linear;
+        -webkit-transition: 0.45s linear;
+        transition: 0.45s linear;
+        -moz-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+        -o-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+        -webkit-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+        transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform;
+        transform: rotate(0deg);
+    }
+
+    .ToggleIndicatorLabel.Focused
+    {
+        outline-width: 1px;
+    }
+
+.ToggleIndicatorBox
+{
+    margin: 2px;
+    width: 14px;
+    height: 14px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+    .ToggleIndicatorBox > div
+    {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        width: auto;
+        height: auto;
+    }
+
+    .ToggleIndicatorBox.On > div
+    {
+        -moz-transition: background-color 0.25s linear;
+        -o-transition: background-color 0.25s linear;
+        -webkit-transition: background-color 0.25s linear;
+        transition: background-color 0.25s linear;
+    }
+
+    .ToggleIndicatorBox.Off > div
+    {
+        -moz-transition: background-color 0.25s linear;
+        -o-transition: background-color 0.25s linear;
+        -webkit-transition: background-color 0.25s linear;
+        transition: background-color 0.25s linear;
+    }
+
+    .ToggleIndicatorBox.Focused
+    {
+        outline-width: 1px;
+    }
+
+.Button
+{
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+}
+
+    .Button.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .Button > .Label
+    {
+        top: auto;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        cursor: pointer;
+    }
+
+    .Button.RelativeLayout
+    {
+        margin: 5px;
+    }
+
+    .Button.WindowCloseButton
+    {
+        top: 15px;
+        right: 7px;
+        left: auto;
+        width: 25px;
+        height: 25px;
+        -moz-transition: background 0.5s linear;
+        -o-transition: background 0.5s linear;
+        -webkit-transition: background 0.5s linear;
+        transition: background 0.5s linear;
+        z-index: 20;
+    }
+
+        .Button.WindowCloseButton:hover
+        {
+            -moz-transition: background 0.5s linear;
+            -o-transition: background 0.5s linear;
+            -webkit-transition: background 0.5s linear;
+            transition: background 0.5s linear;
+        }
+
+        .Button.WindowCloseButton > .Label
+        {
+            right: auto;
+            bottom: 0px;
+            left: 6px;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: Ariel-Black, sans-serif;
+        }
+
+    .Button.NotificationCloseButton
+    {
+        top: 0px;
+        right: 0px;
+        left: auto;
+        width: 15px;
+        height: 15px;
+        -moz-transition: background 0.5s linear;
+        -o-transition: background 0.5s linear;
+        -webkit-transition: background 0.5s linear;
+        transition: background 0.5s linear;
+    }
+
+        .Button.NotificationCloseButton:hover
+        {
+            -moz-transition: background 0.5s linear;
+            -o-transition: background 0.5s linear;
+            -webkit-transition: background 0.5s linear;
+            transition: background 0.5s linear;
+        }
+
+        .Button.NotificationCloseButton > .Label
+        {
+            right: auto;
+            bottom: 2px;
+            left: 4px;
+            font-weight: bold;
+            font-size: 10px;
+            font-family: Ariel-Black, sans-serif;
+        }
+
+.MessageBox
+{
+}
+
+    .MessageBox > .Panel
+    {
+        min-width: 200px;
+        max-width: 500px;
+    }
+
+        .MessageBox > .Panel > .Label
+        {
+            text-align: justify;
+        }
+
+.StackPanel
+{
+}
+
+    .StackPanel.Horizontal
+    {
+        width: auto;
+    }
+
+    .StackPanel.Vertical
+    {
+        height: auto;
+    }
+
+    .StackPanel > .Row
+    {
+        position: relative;
+    }
+
+    .StackPanel.Vertical > .Row
+    {
+        padding: 5px;
+        width: 99%;
+        height: auto;
+    }
+
+    .StackPanel.Horizontal > .Row
+    {
+        padding: 0px;
+        width: auto;
+        height: 100%;
+    }
+
+    .StackPanel.Vertical > .Row:first-child
+    {
+        padding-top: 0px;
+    }
+
+    .StackPanel > .Row > .Control
+    {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+    }
+
+    .StackPanel > .Row > .Panel
+    {
+        width: 100%;
+    }
+
+.CheckBox
+{
+    margin: 3px;
+    cursor: pointer;
+}
+
+    .CheckBox.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .CheckBox > .ToggleIndicatorBox
+    {
+        margin-top: 2px;
+        vertical-align: middle;
+        margin-bottom: 0px;
+    }
+
+    .CheckBox.LeftAlign > .ToggleIndicatorBox
+    {
+        margin-left: 5px;
+    }
+
+    .CheckBox.RightAlign > .ToggleIndicatorBox
+    {
+        margin-right: 5px;
+    }
+    .CheckBox > .Label
+    {
+        margin: 0px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    .CheckBox.LeftAlign > .Label
+    {
+        text-align: right;
+    }
+
+    .CheckBox.RightAlign > .Label
+    {
+        text-align: left;
+    }
+
+.RadioButton
+{
+    margin: 3px;
+    cursor: pointer;
+}
+
+    .RadioButton.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .RadioButton > .ToggleIndicatorBox
+    {
+        margin-top: 2px;
+        vertical-align: middle;
+        margin-bottom: 0px;
+        border-radius: 7px;
+    }
+
+        .RadioButton > .ToggleIndicatorBox > div
+        {
+            border-radius: 5px;
+        }
+
+    .RadioButton.LeftAlign > .ToggleIndicatorBox
+    {
+        margin-left: 5px;
+    }
+
+    .RadioButton.RightAlign > .ToggleIndicatorBox
+    {
+        margin-right: 5px;
+    }
+
+    .RadioButton > .Label
+    {
+        margin: 0px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    .RadioButton.LeftAlign > .Label
+    {
+        text-align: right;
+    }
+
+    .RadioButton.RightAlign > .Label
+    {
+        text-align: left;
+    }
+
+.TextBox
+{
+    padding: 2px;
+    width: 200px;
+    height: 25px;
+    border-width: 1px;
+    border-style: solid;
+    -moz-transition: border-color 0.15s linear;
+    -o-transition: border-color 0.15s linear;
+    -webkit-transition: border-color 0.15s linear;
+    transition: border-color 0.15s linear;
+}
+
+    .TextBox.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .TextBox.Multiline
+    {
+        height: 100px;
+    }
+
+    .TextBox > input,
+    .TextBox > textarea
+    {
+        z-index: 2;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background: #fff;
+        font-size: 16px;
+        resize: none;
+    }
+
+    .TextBox.Disabled > input,
+    .TextBox.Disabled > textarea
+    {
+        cursor: default;
+    }
+
+    .TextBox.Focused
+    {
+        -moz-transition: border-color 0.15s linear;
+        -o-transition: border-color 0.15s linear;
+        -webkit-transition: border-color 0.15s linear;
+        transition: border-color 0.15s linear;
+    }
+
+.DropDownBox
+{
+    width: 200px;
+    height: 27px;
+}
+
+    .DropDownBox.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .DropDownBox > .Panel
+    {
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        overflow: hidden;
+        margin: 0px;
+        padding: 0px;
+        border: 1px solid;
+    }
+
+        .DropDownBox > .Panel > .Label
+        {
+            top: 0px;
+            left: 0px;
+            width: auto;
+            height: auto;
+            right: 25px;
+            bottom: 0px;
+            margin: 0px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+            .DropDownBox > .Panel > .Label.Focused
+            {
+                outline: none;
+            }
+
+        .DropDownBox > .Panel > .ToggleIndicatorLabel
+        {
+            top: 0px;
+            right: 0px;
+            left: auto;
+            margin: 0px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            padding: 0px;
+            -moz-transition-duration: 0.25s;
+            -o-transition-duration: 0.25s;
+            -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+            -moz-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform, background-color, border-color;
+            -o-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform, background-color, border-color;
+            -webkit-transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform, background-color, border-color;
+            transition-property: transform, -webkit-transform, -o-transform, -ms-transform, -moz-transform, background-color, border-color;
+        }
+
+.NumericUpDown
+{
+    width: 200px;
+    height: 27px;
+}
+
+    .NumericUpDown.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .NumericUpDown > .TextBox.Numeric
+    {
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        width: auto;
+        height: auto;
+    }
+
+    .NumericUpDown > .Button,
+    .NumericUpDown > .TextBox,
+    .NumericUpDown:hover > .Button,
+    .NumericUpDown:hover > .TextBox,
+    .NumericUpDown.Focused > .Button,
+    .NumericUpDown.Focused > .TextBox
+    {
+        outline: none;
+        border: 1px solid;
+        -moz-transition: border-color 0.15s linear;
+        -o-transition: border-color 0.15s linear;
+        -webkit-transition: border-color 0.15s linear;
+        transition: border-color 0.15s linear;
+    }
+
+        .NumericUpDown > .Button,
+        .NumericUpDown > .Button:hover,
+        .NumericUpDown:hover > .Button,
+        .NumericUpDown.Focused > .Button
+        {
+            width: 25px;
+            border-left: 0px;
+        }
+
+            .NumericUpDown > .Button > .Label
+            {
+                top: 2px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                overflow: hidden;
+                width: auto;
+                height: auto;
+                text-align: center;
+                font-size: 16px;
+                line-height: 14px;
+            }
+
+            .NumericUpDown > .Button.Up
+            {
+                top: 0px;
+                right: 0px;
+                bottom: 50%;
+                left: auto;
+                height: auto;
+                border-bottom: 0px;
+            }
+
+            .NumericUpDown > .Button.Down
+            {
+                top: 50%;
+                right: 0px;
+                bottom: 0px;
+                left: auto;
+                height: auto;
+            }
+
+                .NumericUpDown > .Button.Down > .Label
+                {
+                    top: 0px;
+                    bottom: 1px;
+                    -moz-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    -o-transform: rotate(180deg);
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+
+.ImageBox
+{
+    border: 1px solid;
+    width: 100px;
+    height: 100px;
+}
+
+    .ImageBox.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .ImageBox > img,
+    .ImageBox > canvas > img,
+    .ImageBox > canvas,
+    .ImageBox > object
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        border: none;
+        outline: none;
+    }
+
+    .ImageBox > .Overlay
+    {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        width: auto;
+        height: auto;
+    }
+
+    .ImageBox.Clickable,
+    .ImageBox.Clickable > .Overlay
+    {
+        cursor: pointer;
+    }
+
+        .ImageBox.Clickable > .Overlay
+        {
+            display: block;
+        }
+
+        .ImageBox.Clickable.Disabled
+        {
+            cursor: default;
+        }
+
+    .ImageBox.NoSource > img
+    {
+        display: none;
+    }
+
+.ProgressSpinner
+{
+}
+
+    .ProgressSpinner.Circular
+    {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ProgressSpinner.Horizontal
+    {
+        width: 200px;
+        height: 10px;
+    }
+
+    .ProgressSpinner.Vertical
+    {
+        width: 10px;
+        height: 200px;
+    }
+
+    .ProgressSpinner > .CanvasBox
+    {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .ProgressSpinner.Disabled > .CanvasBox
+    {
+        display: none;
+    }
+
+
+.ProgressBar
+{
+    border: 1px solid;
+}
+
+    .ProgressBar.Circular
+    {
+        width: 40px;
+        height: 40px;
+        border: none;
+    }
+
+    .ProgressBar.Horizontal
+    {
+        width: 200px;
+        height: 40px;
+    }
+
+    .ProgressBar.Vertical
+    {
+        width: 40px;
+        height: 200px;
+    }
+
+    .ProgressBar > .CanvasBox
+    {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    .ProgressBar > .Bar
+    {
+        display: none;
+    }
+
+.Notification
+{
+    top: auto;
+    left: auto;
+    width: 300px;
+    height: auto;
+    right: 20px;
+    bottom: 0px;
+    border: 1px solid;
+    border-top: 10px solid;
+    z-index: 150 !important;
+}
+
+    .Notification.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .Notification > .Label
+    {
+        width: 96%;
+        height: auto;
+        margin: 2%;
+        z-index: 1;
+    }
+
+    .Notification .NotificationCloseButton
+    {
+        opacity: 0;
+        -moz-transition: opacity 0.2s linear;
+        -o-transition: opacity 0.2s linear;
+        -webkit-transition: opacity 0.2s linear;
+        transition: opacity 0.2s linear;
+    }
+
+    .Notification:hover .NotificationCloseButton
+    {
+        opacity: 1;
+    }
+
+.ToggleButton
+{
+    width: 90px;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .ToggleButton.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .ToggleButton.RelativeLayout
+    {
+        margin-left: 10px;
+    }
+
+    .ToggleButton .Panel.TogglePanel
+    {
+        top: 0px;
+        bottom: 0px;
+        left: 36px;
+        width: 54px;
+        overflow: hidden;
+    }
+
+    .ToggleButton .Panel.TogglePanelInner
+    {
+        border: none;
+        top: 1px;
+        bottom: 1px;
+        left: 1px;
+        right: 1px;
+        overflow: hidden;
+    }
+
+    .ToggleButton .Panel.White,
+    .ToggleButton .Panel.Blue
+    {
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        height: auto;
+        width: auto;
+        cursor: pointer;
+        -moz-transition: right 0.2s linear, left 0.2s linear;
+        -o-transition: right 0.2s linear, left 0.2s linear;
+        -webkit-transition: right 0.2s linear, left 0.2s linear;
+        transition: right 0.2s linear, left 0.2s linear;
+        overflow: hidden;
+    }
+
+    .ToggleButton .Panel.White
+    {
+        left: 0%;
+    }
+
+    .ToggleButton .Panel.Blue
+    {
+        right: 100%;
+    }
+
+    .ToggleButton.On .Panel.White
+    {
+        left: 100%;
+    }
+
+    .ToggleButton.On .Panel.Blue
+    {
+        right: 0%;
+    }
+
+    .ToggleButton > .Panel.Grip
+    {
+        width: 10px;
+        height: 20px;
+        top: 0px;
+        left: 36px;
+        overflow: hidden;
+        cursor: pointer;
+        -moz-transition: left 0.2s linear;
+        -o-transition: left 0.2s linear;
+        -webkit-transition: left 0.2s linear;
+        transition: left 0.2s linear;
+    }
+
+        .ToggleButton > .Panel.Grip.Disabled
+        {
+            opacity: 1;
+        }
+
+    .ToggleButton.On > .Panel.Grip
+    {
+        left: 80px;
+    }
+
+    .ToggleButton > .Label
+    {
+        left: 12px;
+        top: 0px;
+        cursor: pointer;
+    }
+
+.TrackBar
+{
+    width: 200px;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .TrackBar.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .TrackBar > .Panel.Bar
+    {
+        left: 0px;
+        right: 0px;
+        top: 8px;
+        bottom: 8px;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .TrackBar > .Panel.Grip
+    {
+        top: 0px;
+        width: 20px;
+        bottom: 0px;
+        left: 0px;
+        right: auto;
+        border-radius: 4px;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+.StackPanel.ListBox
+{
+    width: 200px;
+    height: 150px;
+    border: 1px solid;
+    overflow: auto;
+}
+
+    .StackPanel.ListBox.Disabled
+    {
+        opacity: 0.7;
+    }
+
+    .StackPanel.ListBox > .Row,
+    .StackPanel.ListBox > .Row:first-child
+    {
+        padding: 4px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        cursor: pointer;
+    }
+
+        .StackPanel.ListBox > .Row > .Label
+        {
+            margin: 0px;
+            cursor: pointer;
+        }
+
+.TabControl
+{
+    height: auto;
+}
+
+    .TabControl > .TabButtons
+    {
+        padding: 0px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: auto;
+        width: auto;
+        height: 53px;
+        overflow-x: auto;
+        z-index: 3;
+    }
+
+        .TabControl > .TabButtons > .Panel
+        {
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            height: 30px;
+            width: auto;
+            margin: 0px;
+        }
+
+            .TabControl > .TabButtons > .Panel > .Button
+            {
+                width: auto;
+                height: 100%;
+                background: none;
+                padding: 5px 10px 5px;
+                margin: 0px;
+                z-index: 1;
+            }
+
+                .TabControl > .TabButtons > .Panel > .Button:hover
+                {
+                    outline: none;
+                }
+
+                .TabControl > .TabButtons > .Panel > .Button > .Label
+                {
+                    position: relative;
+                    top: auto;
+                    left: auto;
+                    width: auto;
+                    right: auto;
+                    bottom: 0px;
+                }
+
+            .TabControl > .TabButtons > .Panel > .SelectedTabBar
+            {
+                bottom: 0px;
+                top: auto;
+                width: 0px;
+                left: 0px;
+                right: auto;
+                height: 5px;
+                z-index: 2;
+            }
+
+    .TabControl > .TabsContainer
+    {
+        top: 53px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index: 2;
+    }
+
+        .TabControl > .TabsContainer > .Tab
+        {
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            overflow: auto;
+        }
+
+.Tile
+{
+    cursor: pointer;
+}
+
+    .Tile.Disabled
+    {
+        opacity: 0.5;
+    }
+
+    .Tile.RelativeLayout
+    {
+        margin: 10px;
+    }
+
+    .Tile.Flip
+    {
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: transform background-color opacity;
+        -o-transition-property: transform background-color opacity;
+        -webkit-transition-property: transform background-color opacity;
+        transition-property: transform background-color opacity;
+        -moz-transition-duration: 1s;
+        -o-transition-duration: 1s;
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transform-style: flat;
+        transform-style: flat;
+    }
+
+    .Tile.Iconic,
+    .Tile.Cycle
+    {
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        -webkit-transition-property: opacity;
+        transition-property: opacity;
+        -moz-transition-duration: 1s;
+        -o-transition-duration: 1s;
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+    }
+
+    .Tile > .Control
+    {
+        cursor: pointer;
+        z-index: 3;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transform-style: flat;
+        transform-style: flat;
+    }
+
+    .Tile.Small
+    {
+        width: 125px;
+        height: 125px;
+    }
+
+    .Tile.Medium
+    {
+        width: 200px;
+        height: 200px;
+    }
+
+    .Tile.Large
+    {
+        width: 420px;
+        height: 200px;
+    }
+
+    .Tile.Flipped
+    {
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+    .no-csstransforms3d .Tile
+    {
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .Tile > .Counter
+    {
+        z-index: 5;
+        opacity: 0.9;
+        width: 34px;
+        height: 34px;
+        border-radius: 17px;
+        background-color: #000;
+        color: #FFF;
+        text-align: center;
+        padding-top: 7px;
+        line-height: 17px;
+        font-size: 20px;
+        top: 12px;
+        left: auto;
+        right: 12px;
+        overflow: hidden;
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        -webkit-transition-property: opacity;
+        transition-property: opacity;
+        -moz-transition-duration: 0.1s;
+        -o-transition-duration: 0.1s;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .Tile.Iconic > .Counter
+    {
+        background: none;
+    }
+
+    .Tile.Iconic.Large > .Counter
+    {
+        top: auto;
+        bottom: 14px;
+        font-size: 50px;
+        border-radius: 0px;
+        width: 70px;
+        height: 50px;
+        padding-top: 0px;
+    }
+
+    .Tile.Iconic.Medium > .Counter
+    {
+        top: 75px;
+        font-size: 50px;
+        border-radius: 0px;
+        width: 70px;
+        height: 50px;
+        padding-top: 0px;
+    }
+
+    .Tile.Iconic.Small > .Counter
+    {
+        top: 45px;
+        font-size: 35px;
+        border-radius: 0px;
+        width: 40px;
+        height: 35px;
+        padding-top: 0px;
+    }
+
+    .Tile.Flip.Flipped > .Counter
+    {
+        opacity: 0;
+    }
+
+    .Tile.NoCounter > .Counter
+    {
+        display: none;
+    }
+
+    .Tile > .Icon
+    {
+        width: 50px;
+        height: 50px;
+        left: 16px;
+        border: none;
+        outline: none;
+        opacity: 1;
+        z-index: 3;
+        
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        -webkit-transition-property: opacity;
+        transition-property: opacity;
+        -moz-transition-duration: 0.1s;
+        -o-transition-duration: 0.1s;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .Tile.Flip.Large > .Icon
+    {
+        display: none;
+    }
+
+    .Tile.Flip.Medium > .Icon
+    {
+        top: 50px;
+        left: 55px;
+        width: 90px;
+        height: 90px;
+    }
+    .Tile.Flip.Small > .Icon
+    {
+        top: 38px;
+        left: 38px;
+    }
+
+    .Tile.Flip.Flipped > .Icon
+    {
+        opacity: 0;
+    }
+
+    .Tile.Iconic.Large > .Icon
+    {
+        display: inline-block;
+        top: auto;
+        bottom: 11px;
+        left: auto;
+        right: 85px;
+    }
+
+    .Tile.Iconic.Medium > .Icon
+    {
+        display: inline-block;
+        top: 55px;
+        left: 20px;
+        width: 90px;
+        height: 90px;
+    }
+
+    .Tile.Iconic.Small > .Icon
+    {
+        top: 38px;
+    }
+
+    .Tile.Iconic.Medium.NoCounter > .Icon
+    {
+        top: 55px;
+        left: 55px;
+    }
+
+    .Tile.Iconic.Small.NoCounter > .Icon
+    {
+        left: 38px;
+    }
+
+    .Tile.Cycle > .Icon
+    {
+        display: none;
+    }
+
+    .Tile > .Name
+    {
+        z-index: 4;
+        top: auto;
+        bottom: 14px;
+        left: 14px;
+        color: #FFF;
+        font-size: 16px;
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: transform;
+        -o-transition-property: transform;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        -moz-transition-duration: 0.1s;
+        -o-transition-duration: 0.1s;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .Tile.Small > .Name
+    {
+        bottom: 7px;
+        left: 7px;
+        font-size: 13px;
+    }
+
+    .Tile.Cycle.Small > .Name
+    {
+        display: none;
+    }
+
+    .Tile.Flipped > .Name
+    {
+        -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+
+    .no-csstransforms3d .Tile > .Name
+    {
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .Tile > .Text
+    {
+        z-index: 3;
+        display: none;
+        top: 14px;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        color: #FFF;
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: opacity;
+        -o-transition-property: opacity;
+        -webkit-transition-property: opacity;
+        transition-property: opacity;
+        -moz-transition-duration: 0.1s;
+        -o-transition-duration: 0.1s;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+    .Tile.Small > .Text
+    {
+        font-size: 80%;
+    }
+
+    .Tile.Flip > .Text
+    {
+        display: inline-block;
+        opacity: 0;
+        -moz-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -o-transform: matrix(-1, 0, 0, 1, 0, 0);
+        -ms-transform: matrix(-1, 0, 0, 1, 0, 0);
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-property: transform opacity;
+        -o-transition-property: transform opacity;
+        -webkit-transition-property: transform opacity;
+        transition-property: transform opacity;
+        -moz-transition-duration: 0.1s;
+        -o-transition-duration: 0.1s;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+    }
+
+    .no-csstransforms3d .Tile > .Text
+    {
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    .Tile.Flip.Flipped > .Text
+    {
+        opacity: 1;
+    }
+
+    .Tile > .Background
+    {
+        z-index: 2;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        right: auto;
+        bottom: auto;
+        border: none;
+        -moz-transition: linear;
+        -o-transition: linear;
+        -webkit-transition: linear;
+        transition: linear;
+        -moz-transition-property: top opacity;
+        -o-transition-property: top opacity;
+        -webkit-transition-property: top opacity;
+        transition-property: top opacity;
+        -moz-transition-timing-function: linear;
+        -o-transition-timing-function: linear;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+        -moz-transition-duration: 1s;
+        -o-transition-duration: 1s;
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+    }
+
+    .Tile.Iconic > .Background
+    {
+        display: none;
+    }
+
+    .Tile.Flip > .Background
+    {
+        opacity: 1;
+        -moz-transition-delay: 0.5s;
+        -o-transition-delay: 0.5s;
+        -webkit-transition-delay: 0.5s;
+        transition-delay: 0.5s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+    }
+
+    .Tile.Flip.Flipped > .Background
+    {
+        opacity: 0;
+        -moz-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+        -moz-transition-duration: 0.5s;
+        -o-transition-duration: 0.5s;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+    }
+
+    .Tile > .Background.OffTop
+    {
+        top: -100%;
+        z-index: 0;
+    }
+
+    .Tile > .Background.In
+    {
+        top: 0%;
+        z-index: 2;
+    }
+
+    .Tile > .Background.OffBottom
+    {
+        top: 100%;
+        z-index: 1;
+    }
+
+.RelativeLayout
+{
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}

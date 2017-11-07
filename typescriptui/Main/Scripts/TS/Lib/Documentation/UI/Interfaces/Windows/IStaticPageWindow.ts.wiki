@@ -1,0 +1,29 @@
+﻿{anchor:IStaticPageWindow}
+!! {"IStaticPageWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [IPageWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/Windows/IPageWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IPageWindow.d.ts]
+* [url:UI/Interfaces/Windows/IStaticPageWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IStaticPageWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a basic static page window - loads static HTML from a url."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"LoadContent(url: string, data?: any): void"}
+{"Loads content from the specified url using a GET request with the specified data.@retruns Void."}
+* *{"url:"}* {"string - The url to load data from."}
+* [OPTIONAL] *{"data:"}* {"any - The data to send with the request."}
+* *Returns:* {"void - "}
+
+
+----
+

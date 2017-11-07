@@ -1,0 +1,71 @@
+﻿{anchor:INumericUpDown}
+!! {"INumericUpDown"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/INumericUpDown.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/INumericUpDown.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a NumericUpDown control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnValueChange: TSUI.Events.ValueChangeEvent;"}
+{"Fired when the value of the control changes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AllowDecimals(value?: boolean): boolean"}
+{"Gets or sets whether the numeric up down should allow decimal values.@retruns The actual state of whether decimals are allowed or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether or not to allow decimals."}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"AllowNegatives(value?: boolean): boolean"}
+{"Gets or sets whether the numeric up down should allow negative values.@retruns The actual state of whether negatives are allowed or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether or not to allow negatives."}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"DecimalPlaces(value?: number): number"}
+{"Gets or sets the number of decimal places to allow."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the number of decimal places to allow."}
+* *Returns:* {"number - The actual number of allowed decimal places."}
+
+!!!!!! {"DecimalSeparator(value?: string): string"}
+{"Gets or sets the character used as the decimal spearator."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the decimal place separator to."}
+* *Returns:* {"string - The actual value of the decimal separator."}
+
+!!!!!! {"Increment(value?: number): number"}
+{"Gets or sets the increment added or subtracted when the up/down arrows/keys are pressed."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the increment to."}
+* *Returns:* {"number - The actual value of the increment."}
+
+!!!!!! {"Max(value?: number): number"}
+{"Gets or sets the maximum value."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the maximum to."}
+* *Returns:* {"number - The actual maximum value."}
+
+!!!!!! {"Min(value?: number): number"}
+{"Gets or sets the minimum value."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the minimum to."}
+* *Returns:* {"number - The actual minimum value."}
+
+!!!!!! {"Value(value?: number): number"}
+{"Gets or sets the value of the control."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set to."}
+* *Returns:* {"number - The actual value of the control."}
+
+
+----
+

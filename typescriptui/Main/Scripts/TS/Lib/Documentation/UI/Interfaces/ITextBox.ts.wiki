@@ -1,0 +1,50 @@
+﻿{anchor:ITextBox}
+!! {"ITextBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ITextBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITextBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TextBox control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnTextChange: TSUI.Events.TextChangeEvent;"}
+{"Fired when the text is changed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Masked(value?: boolean): boolean"}
+{"Gets or sets whether the text is masked."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the masked state to."}
+* *Returns:* {"boolean - The actual text mask state."}
+
+!!!!!! {"MaxLength(value?: number): number"}
+{"Gets or sets the max-length of the text."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the max-length to."}
+* *Returns:* {"number - The actual value of the max-length."}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the text of the control."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the text to."}
+* *Returns:* {"string - The actual text of the control."}
+
+!!!!!! {"TextInput(): JQuery"}
+{"Gets the underlying <input> element."}
+* *Returns:* {"JQuery - The underlying <input> element."}
+
+
+----
+

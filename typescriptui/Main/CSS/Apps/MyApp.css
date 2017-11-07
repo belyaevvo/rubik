@@ -1,0 +1,46 @@
+﻿.MyApp .StartupWindow
+{
+    min-width: 522px;
+    border: none;
+}
+    .MyApp .StartupWindow.Mobile
+    {
+        min-width: 210px;
+    }
+    .MyApp .StartupWindow > .Panel > .StackPanel
+    {
+        overflow: auto;
+        top: 13px;
+        bottom: 0%;
+        left: 5%;
+        right: 5%;
+    }
+    .MyApp .StartupWindow.Mobile > .Panel > .StackPanel
+    {
+        top: 7px;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+    }
+    .MyApp .StartupWindow > .Panel > .StackPanel > .Row
+    {
+        padding: 0px;
+        text-align: center;
+    }
+    .MyApp .StartupWindow > .Panel > .StackPanel > .Row > .StackPanel
+    {
+        text-align: center;
+    }
+    .MyApp .StartupWindow > .Panel > .StackPanel > .Row > .StackPanel > .Row
+    {
+        padding: 0px;
+        text-align: center;
+    }
+    .MyApp .StartupWindow.Mobile .Tile
+    {
+        margin: 5px;
+    }
+    .MyApp .StartupWindow .LoginTile
+    {
+        background-color: #e50000;
+    }

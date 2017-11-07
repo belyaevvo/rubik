@@ -1,0 +1,62 @@
+﻿{anchor:ToggleIndicatorLabel}
+!! {"ToggleIndicatorLabel"}
+*Module:* [TSUI.UI]
+*Extends:* [Label]
+*Implements:* [IToggleIndicator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/ToggleIndicator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleIndicator.ts]
+* [url:UI/Interfaces/IToggleIndicator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IToggleIndicator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(_OffVal?: string, _OnVal?: string)"}
+{""}
+* [OPTIONAL] *{"_OffVal:"}* {"string - "}
+* [OPTIONAL] *{"_OnVal:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_OffVal: string;"}
+{""}
+
+!!!!!! {"_OnVal: string;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsOn(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"SetIndicatorToOff(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"SetIndicatorToOn(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

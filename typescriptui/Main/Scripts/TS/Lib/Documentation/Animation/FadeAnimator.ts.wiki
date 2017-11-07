@@ -1,0 +1,50 @@
+﻿{anchor:FadeAnimator}
+!! {"FadeAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/FadeAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/FadeAnimator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Generic fade animator for any control.
+Note: Not guaranteed to work in all situations. Does not force visibility if style sheet specifies hidden."}
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use
+Default: swing"}
+
+!!!!!! {"AnimationTime: number;"}
+{"The length of time (milliseconds) to spend fading.
+Default: 300ms"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Fades the control out. Sets CSS 'visibility:hidden' and 'opacity:1' after animation is complete (does not force set 'display:none')."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"Fades the control in. Clears CSS 'display' and 'visibility' (does not force show)."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+
+----
+

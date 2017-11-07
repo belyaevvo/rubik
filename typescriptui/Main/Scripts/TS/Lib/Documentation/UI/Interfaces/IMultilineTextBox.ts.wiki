@@ -1,0 +1,18 @@
+﻿{anchor:IMultilineTextBox}
+!! {"IMultilineTextBox"}
+*Module:* [TSUI.UI]
+*Extends:* [ITextBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IMultilineTextBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IMultilineTextBox.d.ts]
+* [url:UI/Interfaces/ITextBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITextBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a MultilineTextBox control."}
+
+----
+

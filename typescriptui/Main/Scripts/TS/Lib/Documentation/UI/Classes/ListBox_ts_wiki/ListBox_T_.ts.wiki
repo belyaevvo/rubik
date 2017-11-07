@@ -1,0 +1,128 @@
+﻿{anchor:ListBox<T>}
+!! {"ListBox<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [StackPanel]
+*Implements:* [IListBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/ListBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ListBox.ts]
+* [url:UI/Classes/StackPanel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanel.ts]
+* [url:UI/Classes/StackPanelRow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanelRow.ts]
+* [url:UI/Interfaces/IListBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Items: TSUI.Collections.List<UI.IListItem<T>>;"}
+{""}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{""}
+
+!!!!!! {"OnSelectionMade: TSUI.Events.SelectionMadeEvent;"}
+{""}
+
+!!!!!! {"_FocusIndex: number;"}
+{""}
+
+!!!!!! {"_GetElementWithHighestSequentialTabIndex_Cache: UI.IControl;"}
+{""}
+
+!!!!!! {"_SelectedIndex: number;"}
+{""}
+
+!!!!!! {"_SelectedRow: UI.IStackPanelRow;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Blur(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Focus(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_AddRowForItem(elem: UI.IListItem<T>): void"}
+{""}
+* *{"elem:"}* {"UI.IListItem<T> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_CreateRow(elem: UI.IListItem<T>): UI.IStackPanelRow"}
+{""}
+* *{"elem:"}* {"UI.IListItem<T> - "}
+* *Returns:* {"TSUI.UI.IStackPanelRow - "}
+
+!!!!!! {"_GetElementWithHighestSequentialTabIndex(): UI.IControl"}
+{""}
+* *Returns:* {"TSUI.UI.IControl - "}
+
+!!!!!! {"_HandleFocusableSet(focusable: boolean): void"}
+{""}
+* *{"focusable:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Items_OnModified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.IListItem<T>>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.IListItem<T>> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnBlur(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnFocus(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_StackPanelRow_Clicked(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_KeyDown(eventArgs: TSUI.Events.KeyDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.KeyDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnBlur(eventArgs: TSUI.Events.BlurEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.BlurEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnFocus(eventArgs: TSUI.Events.FocusEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.FocusEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

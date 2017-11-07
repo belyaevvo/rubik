@@ -1,0 +1,2 @@
+tsc "TestAppStarter.ts"
+pause

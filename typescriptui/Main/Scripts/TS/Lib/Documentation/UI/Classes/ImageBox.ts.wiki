@@ -1,0 +1,88 @@
+﻿{anchor:ImageBox}
+!! {"ImageBox"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IImageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/ImageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ImageBox.ts]
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(src?: string, alt?: string)"}
+{""}
+* [OPTIONAL] *{"src:"}* {"string - "}
+* [OPTIONAL] *{"alt:"}* {"string - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_Focusable_AddedByLink: boolean;"}
+{""}
+
+!!!!!! {"_ImageElement: JQuery;"}
+{""}
+
+!!!!!! {"_NavigateToOnClick: string;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AlternateText(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Focusable(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"NavigateToOnClick(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Source(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"_This_OnClick_NavigateHandler(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

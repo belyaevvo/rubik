@@ -1,0 +1,85 @@
+﻿{anchor:NumericTextBox}
+!! {"NumericTextBox"}
+*Module:* [TSUI.UI]
+*Extends:* [TextBox]
+*Implements:* [INumericTextBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/NumericTextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/NumericTextBox.ts]
+* [url:UI/Classes/TextBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TextBox.ts]
+* [url:UI/Interfaces/INumericTextBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/INumericTextBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnValueChange: TSUI.Events.ValueChangeEvent;"}
+{""}
+
+!!!!!! {"_NumericPrevSeenValue: number;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AllowDecimals(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"AllowNegatives(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"DecimalPlaces(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"DecimalSeparator(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Max(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Min(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Value(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_This_OnTextChange_ValueChange(eventArgs: TSUI.Events.TextChangeEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.TextChangeEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

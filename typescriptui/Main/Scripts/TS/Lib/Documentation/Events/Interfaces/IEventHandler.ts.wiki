@@ -1,0 +1,39 @@
+﻿{anchor:IEventHandler}
+!! {"IEventHandler"}
+*Module:* [TSUI.Events]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an EventHandler. See EventHandler class."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Callback: (args: Events.IEventArgs) => void;"}
+{"See EventHandler class for more details."}
+
+!!!!!! {"Context: any;"}
+{"See EventHandler class for more details."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Invoke(args: Events.IEventArgs): void"}
+{"See EventHandler class for more details."}
+* *{"args:"}* {"Events.IEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

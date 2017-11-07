@@ -1,0 +1,158 @@
+﻿{anchor:IList<T>}
+!! {"IList<T>"}
+*Module:* [TSUI.Collections]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Interfaces/IComparer.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Interfaces/IComparer.d.ts]
+* [url:Collections/Interfaces/IList.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Interfaces/IList.d.ts]
+* [url:Events/Classes/CollectionModifiedEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/CollectionModifiedEvent.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Definition for a List - provides a wrapper for JS arrays with additional methods. Uses generics to enforce stronger typing."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnModified: TSUI.Events.CollectionModifiedEvent<T>;"}
+{"Fired when the collection is modified i.e. added to, removed from or re-ordered"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Add(object: T): void"}
+{"Adds the specified object to the end of the list."}
+* *{"object:"}* {"T - The object to be added to the list."}
+* *Returns:* {"void - "}
+
+!!!!!! {"AddRange(objects: IList<T>): void"}
+{"Adds the specified list of objects to the end of the list."}
+* *{"objects:"}* {"IList<T> - The list of objects to be added."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Clear(): void"}
+{"Clears the list of all objects."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Clone(): IList<T>"}
+{"Creates a shallow clone of the list. Note: Reference-type objects are not deep cloned."}
+* *Returns:* {"TSUI.Collections.IList<T> - the new (clone) list."}
+
+!!!!!! {"Concat(other: IList<T>): IList<T>"}
+{"Concatenates two lists. Does not modify either original list."}
+* *{"other:"}* {"IList<T> - The list to be concatenated with."}
+* *Returns:* {"TSUI.Collections.IList<T> - a list containing this list followed by the other list."}
+
+!!!!!! {"Contains(object: T): boolean"}
+{"Determines whether the object is contained within the list."}
+* *{"object:"}* {"T - The object to be searched for."}
+* *Returns:* {"boolean - true if the object is contained within the list, otherwise false."}
+
+!!!!!! {"CopyTo(dest: IList<T>): void"}
+{"Copies the list to another list."}
+* *{"dest:"}* {"IList<T> - The list to be copied into."}
+* *Returns:* {"void - "}
+
+!!!!!! {"CopyTo(dest: IList<T>, offset: number): void"}
+{"Copies the list into another list, starting at the specified index."}
+* *{"dest:"}* {"IList<T> - The list to be copied into."}
+* *{"offset:"}* {"number - The index at which to start copying."}
+* *Returns:* {"void - "}
+
+!!!!!! {"CopyTo(dest: IList<T>, offset: number, count: number): void"}
+{"Copies the specified number of items into another list, starting at the specified index."}
+* *{"dest:"}* {"IList<T> - The list to be copied into."}
+* *{"offset:"}* {"number - The index at which to start copying."}
+* *{"count:"}* {"number - The number of items to be copied."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Count(): number"}
+{""}
+* *Returns:* {"number - the number of items in the list (the length)"}
+
+!!!!!! {"ElementAt(index: number): T"}
+{""}
+* *{"index:"}* {"number - The index of the element to get."}
+* *Returns:* {"T - the element at the specified index or null if out of range."}
+
+!!!!!! {"Equals(object: any): boolean"}
+{""}
+* *{"object:"}* {"any - The object to test for equality."}
+* *Returns:* {"boolean - whether this list is equal to the specified object."}
+
+!!!!!! {"IndexOf(object: T): number"}
+{""}
+* *{"object:"}* {"T - The object to be searched for."}
+* *Returns:* {"number - the index of the specified object or -1 if not found."}
+
+!!!!!! {"Insert(object: T, index: number): void"}
+{"Inserts the specified object into the list at the specified index."}
+* *{"object:"}* {"T - The object to be inserted."}
+* *{"index:"}* {"number - The index at which to insert the object."}
+* *Returns:* {"void - "}
+
+!!!!!! {"InsertRange(objects: IList<T>, index: number): void"}
+{"Inserts a list of objects at the specified index - expands the list at that index. Does not overwrite existing items."}
+* *{"objects:"}* {"IList<T> - The list of objects to be inserted."}
+* *{"index:"}* {"number - The index at which to start inserting."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Range(index: number): IList<T>"}
+{""}
+* *{"index:"}* {"number - The index to start the range."}
+* *Returns:* {"TSUI.Collections.IList<T> - a list containing the specified range of objects from the list. Takes from index to end of the list."}
+
+!!!!!! {"Range(index: number, count?: number): IList<T>"}
+{""}
+* *{"index:"}* {"number - The index to start the range."}
+* [OPTIONAL] *{"count:"}* {"number - The number of items to take."}
+* *Returns:* {"TSUI.Collections.IList<T> - a list containing the specified range of objects from the list."}
+
+!!!!!! {"Remove(object: T): void"}
+{"Removes the specified object from the list."}
+* *{"object:"}* {"T - The object to be removed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"RemoveAll(objects: IList<T>): void"}
+{"Removes the specified list of objects from the list. Only fires one modified event."}
+* *{"objects:"}* {"IList<T> - The list of objects to be removed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"RemoveAt(index: number): T"}
+{"Removes the element at the specified index."}
+* *{"index:"}* {"number - The index of the object to be removed."}
+* *Returns:* {"T - the object which has been removed."}
+
+!!!!!! {"RemoveRange(index: number, count: number): IList<T>"}
+{"Removes the specified range of objects from the list."}
+* *{"index:"}* {"number - The index at which to start removing."}
+* *{"count:"}* {"number - The number of objects to remove."}
+* *Returns:* {"TSUI.Collections.IList<T> - A list containing the removed objects."}
+
+!!!!!! {"Reverse(): void"}
+{"Reverses the list of objects."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Sort(): void"}
+{"Sorts the list of objects using a ToStringComparer."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Sort(comparer: Collections.IComparer): void"}
+{"Sorts the list of objects using the specified comparer."}
+* *{"comparer:"}* {"Collections.IComparer - The comparer to use while sorting."}
+* *Returns:* {"void - "}
+
+!!!!!! {"ToArray(): T[]"}
+{"Converts the list to a basic array."}
+* *Returns:* {"T[] - a clone of the underlying array."}
+
+
+----
+

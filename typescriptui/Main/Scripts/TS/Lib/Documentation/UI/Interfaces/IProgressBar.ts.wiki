@@ -1,0 +1,39 @@
+﻿{anchor:IProgressBar}
+!! {"IProgressBar"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/ProgressBarTypes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/ProgressBarTypes.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IProgressBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IProgressBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a ProgressBar control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Progress(value?: number): number"}
+{"Gets or sets the progress the bar indicates."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the progress indicator to."}
+* *Returns:* {"number - The actual value of the progress indicator."}
+
+!!!!!! {"Reverse(value?: boolean): boolean"}
+{"Gets or sets whether the animation runs in reverse."}
+* [OPTIONAL] *{"value:"}* {"boolean - The value to set the reversal state to."}
+* *Returns:* {"boolean - The actual value of the reversal state."}
+
+!!!!!! {"ShowText(value?: boolean): boolean"}
+{"Gets or sets whether the progress bar should show the %age text or not."}
+* [OPTIONAL] *{"value:"}* {"boolean - Whether to show the text or not."}
+* *Returns:* {"boolean - Whether the progress bar is showing the text or not."}
+
+
+----
+

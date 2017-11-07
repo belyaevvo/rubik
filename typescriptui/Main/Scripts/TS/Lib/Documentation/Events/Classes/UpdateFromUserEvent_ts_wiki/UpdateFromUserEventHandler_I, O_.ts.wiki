@@ -1,0 +1,55 @@
+﻿{anchor:UpdateFromUserEventHandler<I, O>}
+!! {"UpdateFromUserEventHandler<I, O>"}
+*Module:* [TSUI.Events]
+*Extends:* [EventHandler]
+*Implements:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Interfaces/IDataBinding.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataBinding.d.ts]
+* [url:Events/Classes/Event.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Event.ts]
+* [url:Events/Classes/UpdateFromUserEvent.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/UpdateFromUserEvent.ts]
+* [url:Events/Interfaces/IEvent.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEvent.d.ts]
+* [url:Events/Interfaces/IEventArgs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventArgs.d.ts]
+* [url:Events/Interfaces/IEventHandler.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Interfaces/IEventHandler.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"See EventHandler for more details."}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(Callback: (args: UpdateFromUserEventArgs<I, O>) => void, Context: any)"}
+{""}
+* *{"Callback:"}* {"(args: UpdateFromUserEventArgs<I, O>) => void - "}
+* *{"Context:"}* {"any - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Callback: (args: UpdateFromUserEventArgs<I, O>) => void;"}
+{""}
+
+!!!!!! {"Context: any;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Invoke(args: UpdateFromUserEventArgs<I, O>): void"}
+{""}
+* *{"args:"}* {"UpdateFromUserEventArgs<I, O> - "}
+* *Returns:* {"void - "}
+
+
+----
+

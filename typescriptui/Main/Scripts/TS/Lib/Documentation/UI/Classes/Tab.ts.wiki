@@ -1,0 +1,58 @@
+﻿{anchor:Tab}
+!! {"Tab"}
+*Module:* [TSUI.UI]
+*Extends:* [Panel]
+*Implements:* [ITab]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/FadeAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/FadeAnimator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/Tab.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Tab.ts]
+* [url:UI/Interfaces/ITab.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITab.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnNameChange: TSUI.Events.NameChangeEvent;"}
+{""}
+
+!!!!!! {"_Name: string;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Hide(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Name(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+
+----
+

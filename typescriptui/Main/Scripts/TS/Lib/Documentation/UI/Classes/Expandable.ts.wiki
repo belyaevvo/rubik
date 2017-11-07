@@ -1,0 +1,95 @@
+﻿{anchor:Expandable}
+!! {"Expandable"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IExpandable]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/ExpandableAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/ExpandableAnimator.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Expandable.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Expandable.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/TitleBar.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TitleBar.ts]
+* [url:UI/Classes/ToggleIndicator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleIndicator.ts]
+* [url:UI/Interfaces/IExpandable.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IExpandable.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(expanded?: boolean)"}
+{""}
+* [OPTIONAL] *{"expanded:"}* {"boolean - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"ContentPanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"MainTitleBar: UI.ITitleBar;"}
+{""}
+
+!!!!!! {"MainToggleIndiciator: UI.IToggleIndicator;"}
+{""}
+
+!!!!!! {"_Expanded: boolean;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Collapse(callback?: () => void, animator?: TSUI.Animation.ExpandableAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.ExpandableAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"EnableByParent(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Expand(callback?: () => void, animator?: TSUI.Animation.ExpandableAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.ExpandableAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Expanded(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Title(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Toggle(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainTitleBar_Clicked(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

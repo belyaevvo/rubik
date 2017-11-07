@@ -1,0 +1,101 @@
+﻿{anchor:SplitContainer}
+!! {"SplitContainer"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ISplitContainer]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/SplitContainer.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/SplitContainer.ts]
+* [url:UI/Classes/SplitterGrip.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/SplitterGrip.ts]
+* [url:UI/Interfaces/ISplitContainer.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISplitContainer.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"MainSplitterGrip: UI.ISplitterGrip;"}
+{""}
+
+!!!!!! {"Panel1: UI.IPanel;"}
+{""}
+
+!!!!!! {"Panel2: UI.IPanel;"}
+{""}
+
+!!!!!! {"_MainSplitterGrip_Dragging;"}
+{""}
+
+!!!!!! {"_MainSplitterGrip_MouseMoveHandler: TSUI.Events.MouseMoveEventHandler;"}
+{""}
+
+!!!!!! {"_MainSplitterGrip_MouseUpHandler: TSUI.Events.MouseUpEventHandler;"}
+{""}
+
+!!!!!! {"boolean: boolean;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MainSplitterGrip_OnMouseDown(eventArgs: TSUI.Events.MouseDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MainSplitterGrip_OnMouseMove(eventArgs: TSUI.Events.MouseMoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseMoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MainSplitterGrip_OnMouseUp(eventArgs: TSUI.Events.MouseUpEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseUpEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MainSplitterGrip_OnOrientationChanged(eventArgs: TSUI.Events.OrientationChangedEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.OrientationChangedEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MainSplitterGrip_OnSplitterMove(eventArgs: TSUI.Events.SplitterMoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.SplitterMoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Orientation(value?: UI.SplitterGrip_Orientations): UI.SplitterGrip_Orientations"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.SplitterGrip_Orientations - "}
+* *Returns:* {"TSUI.UI.SplitterGrip_Orientations - "}
+
+!!!!!! {"_This_Resized(eventArgs: TSUI.Events.ResizeEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ResizeEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

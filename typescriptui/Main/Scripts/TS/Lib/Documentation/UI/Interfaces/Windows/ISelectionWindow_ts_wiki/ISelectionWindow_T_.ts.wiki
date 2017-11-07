@@ -1,0 +1,37 @@
+﻿{anchor:ISelectionWindow<T>}
+!! {"ISelectionWindow<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IListBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IListBox.d.ts]
+* [url:UI/Interfaces/Windows/ISelectionWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/ISelectionWindow.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a basic selection window.
+T: The type of item in the list."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"ContentPanel: UI.IListBox<T>;"}
+{"The main list box for the window to add items to."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"PositionCenterWindow(): void"}
+{"Positions the message box in the centre of the window (use before calling Show)."}
+* *Returns:* {"void - Void."}
+
+
+----
+

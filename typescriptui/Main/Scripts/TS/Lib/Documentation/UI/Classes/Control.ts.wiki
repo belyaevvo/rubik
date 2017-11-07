@@ -1,0 +1,604 @@
+﻿{anchor:Control}
+!! {"Control"}
+*Module:* [TSUI.UI]
+*Extends:* [None]
+*Implements:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/Animation.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/Animation.ts]
+* [url:Animation/FadeAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/FadeAnimator.ts]
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:Collections/Collections_BuildRefs.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Collections_BuildRefs.d.ts]
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+* [url:Events/Classes/Events.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Events/Classes/Events.ts]
+* [url:UI/CSSNumber.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/CSSNumber.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/UI Static.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/UI Static.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Private Properties"}
+
+!!!!!! {"DefaultGroup;"}
+{"The default binding group for the control."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Bindings: TSUI.Data.IBindingCollection;"}
+{"The collection containing all the binding groups (and thus bindings) for this control."}
+
+!!!!!! {"Children: TSUI.Collections.IList<UI.IControl>;"}
+{""}
+
+!!!!!! {"DOMConstructed: boolean;"}
+{""}
+
+!!!!!! {"OnBlur: TSUI.Events.BlurEvent;"}
+{""}
+
+!!!!!! {"OnClick: TSUI.Events.ClickEvent;"}
+{""}
+
+!!!!!! {"OnFocus: TSUI.Events.FocusEvent;"}
+{""}
+
+!!!!!! {"OnHide: TSUI.Events.HideEvent;"}
+{""}
+
+!!!!!! {"OnKeyDown: TSUI.Events.KeyDownEvent;"}
+{""}
+
+!!!!!! {"OnKeyPress: TSUI.Events.KeyPressEvent;"}
+{""}
+
+!!!!!! {"OnKeyUp: TSUI.Events.KeyUpEvent;"}
+{""}
+
+!!!!!! {"OnMouseDown: TSUI.Events.MouseDownEvent;"}
+{""}
+
+!!!!!! {"OnMouseMove: TSUI.Events.MouseMoveEvent;"}
+{""}
+
+!!!!!! {"OnMouseUp: TSUI.Events.MouseUpEvent;"}
+{""}
+
+!!!!!! {"OnMove: TSUI.Events.MoveEvent;"}
+{""}
+
+!!!!!! {"OnResize: TSUI.Events.ResizeEvent;"}
+{""}
+
+!!!!!! {"OnShow: TSUI.Events.ShowEvent;"}
+{""}
+
+!!!!!! {"OptimiseConstructForGraphics: boolean;"}
+{""}
+
+!!!!!! {"TargetDocumentFor_MouseMove: boolean;"}
+{""}
+
+!!!!!! {"TargetDocumentFor_MouseUp: boolean;"}
+{""}
+
+!!!!!! {"_Enabled: boolean;"}
+{""}
+
+!!!!!! {"_Focusable: boolean;"}
+{""}
+
+!!!!!! {"_OnClickAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnKeyPressAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnKeyUpAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnMouseDownAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnMouseMoveAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnMouseMove_GlobalHandler: TSUI.Events.MouseMoveEventHandler;"}
+{""}
+
+!!!!!! {"_OnMouseUpAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnMouseUp_GlobalHandler: TSUI.Events.MouseUpEventHandler;"}
+{""}
+
+!!!!!! {"_OnMoveAttached: boolean;"}
+{""}
+
+!!!!!! {"_OnResizeAttached: boolean;"}
+{""}
+
+!!!!!! {"_SelectionEnabled: boolean;"}
+{""}
+
+!!!!!! {"_TabIndex: number;"}
+{""}
+
+!!!!!! {"_This_Moved_ChainHandler_Timeout: number;"}
+{""}
+
+!!!!!! {"_This_Resized_ChainHandler_Timeout: number;"}
+{""}
+
+!!!!!! {"_WasSelectionEnabled: boolean;"}
+{""}
+
+!!!!!! {"__UID: number;"}
+{""}
+
+!!!!!! {"_parentVisible: boolean;"}
+{""}
+
+!!!!!! {"_rootElement: JQuery;"}
+{""}
+
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"OnClickEventName: string;"}
+{""}
+
+!!!!!! {"OnMouseDownEventName: string;"}
+{""}
+
+!!!!!! {"OnMouseMoveEventName: string;"}
+{""}
+
+!!!!!! {"OnMouseUpEventName: string;"}
+{""}
+
+!!!!!! {"OptimiseConstructForGraphics_DelayTime: number;"}
+{""}
+
+
+----
+
+!!!! {"Private Methods"}
+
+!!!!!! {"_removeBinding(group, binding)"}
+{"Internal method which handles removing a binding on the control from the specified group."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The group to remove the binding from."}
+* *{"binding:"}* {"TSUI.Data.IDataBinding<any, any> - The binding to remove."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ActualHeight(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"ActualWidth(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"ActuallyEnabled(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"ActuallyVisible(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup, bindingDirection: TSUI.Data.BindingDirections): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *{"bindingDirection:"}* {"TSUI.Data.BindingDirections - The binding direction to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group: TSUI.Data.IBindingGroup, bindingDirection: TSUI.Data.BindingDirections, adapter: TSUI.Data.IDataAdapter<any, any>): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* *{"bindingDirection:"}* {"TSUI.Data.BindingDirections - The binding direction to use for the new binding."}
+* *{"adapter:"}* {"TSUI.Data.IDataAdapter<any, any> - The data adapter to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBinding(propertyName: string, dataProperty: TSUI.Collections.IList<string>, accessor: TSUI.Data.IDataAccessor<any>, group?: TSUI.Data.IBindingGroup, bindingDirection?: TSUI.Data.BindingDirections, adapter?: TSUI.Data.IDataAdapter<any, any>): TSUI.Data.IDataBinding<any, any>"}
+{"Adds a new data binding to the specified group for this control."}
+* *{"propertyName:"}* {"string - "}
+* *{"dataProperty:"}* {"TSUI.Collections.IList<string> - The name (or sub names) of the data property to use for the value. Use array of length 0 to use the raw data."}
+* *{"accessor:"}* {"TSUI.Data.IDataAccessor<any> - The data accessor to use for the new binding."}
+* [OPTIONAL] *{"group:"}* {"TSUI.Data.IBindingGroup - The binding group to add the new binding to."}
+* [OPTIONAL] *{"bindingDirection:"}* {"TSUI.Data.BindingDirections - The binding direction to use for the new binding."}
+* [OPTIONAL] *{"adapter:"}* {"TSUI.Data.IDataAdapter<any, any> - The data adapter to use for the new binding."}
+* *Returns:* {"TSUI.Data.IDataBinding<any, any> - The new data binding."}
+
+!!!!!! {"AddBindingGroup(updater?: TSUI.Data.IDataUpdater): TSUI.Data.IBindingGroup"}
+{"Adds a new binding group to Bindings."}
+* [OPTIONAL] *{"updater:"}* {"TSUI.Data.IDataUpdater - "}
+* *Returns:* {"TSUI.Data.IBindingGroup - The new binding group."}
+
+!!!!!! {"AddClass(name: string): void"}
+{""}
+* *{"name:"}* {"string - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"AnimationElement(): JQuery"}
+{""}
+* *Returns:* {"JQuery - "}
+
+!!!!!! {"ApplyStyle(name: string, value: string): void"}
+{""}
+* *{"name:"}* {"string - "}
+* *{"value:"}* {"string - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ApplyStyles(cssProps: any): void"}
+{""}
+* *{"cssProps:"}* {"any - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"BackColor(color?: string): string"}
+{""}
+* [OPTIONAL] *{"color:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"Blur(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Bottom(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"CSSNumberStyle(style: string, value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* *{"style:"}* {"string - "}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"DisableByParent(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"DisableSelection(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"EnableByParent(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"EnableSelection(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Enabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Focus(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Focusable(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"ForeColor(color?: string): string"}
+{""}
+* [OPTIONAL] *{"color:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"GetDefaultBindingGroup(): TSUI.Data.IBindingGroup"}
+{"Returns the default binding group for the control."}
+* *Returns:* {"TSUI.Data.IBindingGroup - "}
+
+!!!!!! {"GetStyle(name: string): string"}
+{""}
+* *{"name:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"HasClass(name: string): boolean"}
+{""}
+* *{"name:"}* {"string - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Height(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"Hide(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ID(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"IsRelativeLayout(): boolean"}
+{""}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Left(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"MaxHeight(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"MaxWidth(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"MinHeight(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"MinWidth(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"PageBottom(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"PageLeft(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"PageRight(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"PageTop(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"RelativeLayoutOff(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"RelativeLayoutOn(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"RemoveBinding(binding: TSUI.Data.IDataBinding<any, any>): void"}
+{"Removes a data binding from all binding groups in the binding collection."}
+* *{"binding:"}* {"TSUI.Data.IDataBinding<any, any> - The binding to remove."}
+* *Returns:* {"void - Void"}
+
+!!!!!! {"RemoveBindingGroup(group: TSUI.Data.IBindingGroup): TSUI.Data.IBindingGroup"}
+{"Removes a binding group from Bindings and calls unbind on all the bindings in the group."}
+* *{"group:"}* {"TSUI.Data.IBindingGroup - The group to remove."}
+* *Returns:* {"TSUI.Data.IBindingGroup - The binding group that was removed."}
+
+!!!!!! {"RemoveClass(name: string): void"}
+{""}
+* *{"name:"}* {"string - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Right(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"SetParentVisible(value: boolean): void"}
+{""}
+* *{"value:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"TabIndex(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Top(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"Visible(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Width(value?: UI.CSSNumber): UI.CSSNumber"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.CSSNumber - "}
+* *Returns:* {"TSUI.UI.CSSNumber - "}
+
+!!!!!! {"_HandleEnableSet(enabled: boolean): void"}
+{""}
+* *{"enabled:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_HandleFocusableSet(focusable: boolean): void"}
+{""}
+* *{"focusable:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnBlur(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnChildren_Modified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.IControl>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.IControl> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnClick(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnFocus(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnKeyDown(jqEvent: JQueryEventObject): boolean"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"_OnKeyPress(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnKeyUp(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnMouseDown(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnMouseMove(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnMouseUp(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnMove(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnClickChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnKeyPressChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnKeyUpChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnMouseDownChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnMouseMoveChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnMouseUpChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnMoveChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnOnResizeChanged(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnResize(jqEvent: JQueryEventObject): void"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_RestoreThis(jqEvent: JQueryEventObject)"}
+{""}
+* *{"jqEvent:"}* {"JQueryEventObject - "}
+
+!!!!!! {"_This_Moved_ChainHandler(eventArgs: TSUI.Events.MoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_Resized_ChainHandler(eventArgs: TSUI.Events.ResizeEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ResizeEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

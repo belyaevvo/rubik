@@ -1,0 +1,38 @@
+﻿{anchor:ILabel}
+!! {"ILabel"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ILabel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ILabel.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Label control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"HTML(value?: string): string"}
+{"Gets or sets the inner HTML of the label."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the inner HTML to."}
+* *Returns:* {"string - The actual value of the inner HTML."}
+
+!!!!!! {"Link(value?: string): string"}
+{"Gets or sets the url the label should link to."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the url to."}
+* *Returns:* {"string - The actual value of the url the label links to."}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the text of the label."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the text to."}
+* *Returns:* {"string - The actual value of the text."}
+
+
+----
+

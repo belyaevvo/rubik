@@ -1,0 +1,126 @@
+﻿{anchor:TrackBar}
+!! {"TrackBar"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ITrackBar]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/TrackBar.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TrackBar.ts]
+* [url:UI/Interfaces/ITrackBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITrackBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnValueChange: TSUI.Events.ValueChangeEvent;"}
+{""}
+
+!!!!!! {"_BarElement: UI.IPanel;"}
+{""}
+
+!!!!!! {"_Divisions: number;"}
+{""}
+
+!!!!!! {"_GripElement: UI.IPanel;"}
+{""}
+
+!!!!!! {"_Grip_Dragging: boolean;"}
+{""}
+
+!!!!!! {"_Max: number;"}
+{""}
+
+!!!!!! {"_Min: number;"}
+{""}
+
+!!!!!! {"_Mode: UI.TrackBarModes;"}
+{""}
+
+!!!!!! {"_MouseMoveHandler: TSUI.Events.MouseMoveEventHandler;"}
+{""}
+
+!!!!!! {"_MouseUpHandler: TSUI.Events.MouseUpEventHandler;"}
+{""}
+
+!!!!!! {"_Value: number;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Divisions(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Max(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Min(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Mode(value?: UI.TrackBarModes): UI.TrackBarModes"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.TrackBarModes - "}
+* *Returns:* {"TSUI.UI.TrackBarModes - "}
+
+!!!!!! {"Value(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_Grip_OnMouseDown(eventArgs: TSUI.Events.MouseDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Grip_OnMouseMove(eventArgs: TSUI.Events.MouseMoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseMoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Grip_OnMouseUp(eventArgs: TSUI.Events.MouseUpEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseUpEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_OnClick(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_This_OnKeyDown(eventArgs: TSUI.Events.KeyDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.KeyDownEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

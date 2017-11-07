@@ -1,0 +1,28 @@
+﻿{anchor:IComparer}
+!! {"IComparer"}
+*Module:* [TSUI.Collections]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Collections/Interfaces/IComparer.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Collections/Interfaces/IComparer.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Definition for a Comparer - enables sorting of lists"}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Compare(x: any, y: any): number"}
+{"Compares two objects"}
+* *{"x:"}* {"any - The first object to be compared"}
+* *{"y:"}* {"any - The second object to be compared"}
+* *Returns:* {"number - the result of the comparison. -1 if x < y; 0 if x === y; 1 if x > y;"}
+
+
+----
+

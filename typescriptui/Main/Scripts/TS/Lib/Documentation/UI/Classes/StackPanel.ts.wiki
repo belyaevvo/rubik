@@ -1,0 +1,51 @@
+﻿{anchor:StackPanel}
+!! {"StackPanel"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IStackPanel]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/StackPanel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/StackPanel.ts]
+* [url:UI/Interfaces/IStackPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IStackPanel.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Rows: TSUI.Collections.IList<UI.IStackPanelRow>;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Orientation(value?: UI.StackPanelOrientations): UI.StackPanelOrientations"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.StackPanelOrientations - "}
+* *Returns:* {"TSUI.UI.StackPanelOrientations - "}
+
+!!!!!! {"_OnRows_Modified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.IStackPanelRow>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.IStackPanelRow> - "}
+* *Returns:* {"void - "}
+
+
+----
+

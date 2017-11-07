@@ -1,0 +1,27 @@
+﻿{anchor:TileSizes}
+!! {"TileSizes"}
+*Module:* [TSUI]
+*Extends:* [N/A]
+*Implements:* [N/A]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TileSizes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TileSizes.ts]
+
+----
+
+!!!! {"Description"}
+
+{"The sizes of tiles (as specified by Microsoft)"}
+
+----
+
+!!!! {"Values"}
+
+* *{"Small"}* = 0 - {""}
+* *{"Medium"}* = 1 - {""}
+* *{"Large"}* = 2 - {""}
+* *{"LargeSquare"}* = 3 - {""}
+
+----
+

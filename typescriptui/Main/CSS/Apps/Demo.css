@@ -1,0 +1,73 @@
+﻿/*
+Copyright © Edward Nutting 2013
+Author: Edward Nutting 
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+
+.DemoApp .StartupWindow
+{
+}
+    .DemoApp .StartupWindow .AboutTile
+    {
+        background-color: #e50000;
+    }
+    .DemoApp .StartupWindow .MobileDemoTile
+    {
+        background-color: #0fa700;
+    }
+    .DemoApp .StartupWindow .DesktopDemoTile
+    {
+        background-color: #f7d201;
+    }
+    .DemoApp .StartupWindow .SlideMyWayTile
+    {
+        background-color: #0072C6;
+    }
+    .DemoApp .StartupWindow .SlideMyWayTile.Medium > .Icon
+    {
+        margin-top: -30px;
+        margin-left: -30px;
+        width: 150px;
+        height: 150px;
+    }
+    .DemoApp .StartupWindow .SlideMyWayTile.Small > .Icon
+    {
+        margin-top: -30px;
+        margin-left: -25px;
+        width: 110px;
+        height: 110px;
+    }
+    .DemoApp .StartupWindow .DownloadTile
+    {
+        background-color: #004375;
+    }
+    .DemoApp .StartupWindow .DownloadTile > .Name
+    {
+        right: 14px;
+        text-align: center;
+    }
+    .DemoApp .StartupWindow .ScreenshotsTile
+    {
+        background-color: #FFF;
+    }
+    .DemoApp .StartupWindow .TypeScriptTile
+    {
+        background-color: #e50000;
+    }
+
+.DemoApp .DemoWindow
+{
+}
+    .DemoApp .DemoWindow > .Panel > .TabControl
+    {
+        top: 0%;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+    }

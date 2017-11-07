@@ -1,0 +1,88 @@
+﻿{anchor:ProgressSpinner}
+!! {"ProgressSpinner"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IProgressSpinner]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/CanvasBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/CanvasBox.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/ProgressSpinner.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ProgressSpinner.ts]
+* [url:UI/Interfaces/IProgressSpinner.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IProgressSpinner.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(type?: UI.ProgressSpinnerTypes)"}
+{""}
+* [OPTIONAL] *{"type:"}* {"UI.ProgressSpinnerTypes - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_AnimationCallbackObj: any;"}
+{""}
+
+!!!!!! {"_AnimationDuration: number;"}
+{""}
+
+!!!!!! {"_ReverseAnimation: boolean;"}
+{""}
+
+!!!!!! {"_Type: UI.ProgressSpinnerTypes;"}
+{""}
+
+!!!!!! {"_UnderlyingCanvas: UI.ICanvasBox;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AnimationDuration(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Reverse(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"SetParentVisible(value: boolean): void"}
+{""}
+* *{"value:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Type(value?: UI.ProgressSpinnerTypes): UI.ProgressSpinnerTypes"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.ProgressSpinnerTypes - "}
+* *Returns:* {"TSUI.UI.ProgressSpinnerTypes - "}
+
+!!!!!! {"Visible(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"_Animate(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_RetestVisiblity(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

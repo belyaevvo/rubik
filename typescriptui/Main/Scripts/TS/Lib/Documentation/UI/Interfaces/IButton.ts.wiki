@@ -1,0 +1,28 @@
+﻿{anchor:IButton}
+!! {"IButton"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IButton.d.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Button control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Text(value?: string): string"}
+{"The text of the button."}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+
+----
+

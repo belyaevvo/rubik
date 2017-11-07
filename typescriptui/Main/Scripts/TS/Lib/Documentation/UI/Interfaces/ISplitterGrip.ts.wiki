@@ -1,0 +1,54 @@
+﻿{anchor:ISplitterGrip}
+!! {"ISplitterGrip"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/SplitterGrip_Orientations.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/SplitterGrip_Orientations.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ISplitterGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISplitterGrip.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a SplitterGrip control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnOrientationChanged: TSUI.Events.OrientationChangedEvent;"}
+{"Fired when the splitter orientation is changed."}
+
+!!!!!! {"OnSplitterMove: TSUI.Events.SplitterMoveEvent;"}
+{"Fired when the splitter is moved."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"MaxDistance(): number"}
+{"Gets the maximum distance the splitter can move."}
+* *Returns:* {"number - "}
+
+!!!!!! {"Orientation(value?: UI.SplitterGrip_Orientations): UI.SplitterGrip_Orientations"}
+{"Gets or sets the splitter orientation."}
+* [OPTIONAL] *{"value:"}* {"UI.SplitterGrip_Orientations - The value to set the splitter grip orientation to."}
+* *Returns:* {"TSUI.UI.SplitterGrip_Orientations - The actual value of the splitter grip orientation."}
+
+!!!!!! {"SplitterDistance(value?: number): number"}
+{"Gets or sets the splitter distance from the left or top edge."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the distance to."}
+* *Returns:* {"number - The actual value of the splitter distance."}
+
+!!!!!! {"SplitterWidth(value?: number): number"}
+{"Gets or sets the splitter width."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the width to."}
+* *Returns:* {"number - The actual value of the splitter width."}
+
+
+----
+

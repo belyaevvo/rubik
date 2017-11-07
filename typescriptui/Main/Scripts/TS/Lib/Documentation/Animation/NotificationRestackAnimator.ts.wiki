@@ -1,0 +1,57 @@
+﻿{anchor:NotificationRestackAnimator}
+!! {"NotificationRestackAnimator"}
+*Module:* [TSUI.Animation]
+*Extends:* [None]
+*Implements:* [IAnimator]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/IAnimator.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/IAnimator.d.ts]
+* [url:Animation/NotificationRestackAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/NotificationRestackAnimator.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Animator for animating restack of notifications.
+Note: Show/Hide are empty methods."}
+
+----
+
+!!!! {"Private Static Properties"}
+
+!!!!!! {"AnimationEasing: string;"}
+{"The jQuery animation easing to use
+Default: easeInCubic"}
+
+!!!!!! {"AnimationTime: number;"}
+{"The length of time (milliseconds) to spend restacking.
+Default: 1000ms"}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"AnimateRestack(control: TSUI.UI.IControl, newBottom: number, callback?: () => void): void"}
+{"Animates the control to slide it up/down to new bottom (i.e. animates restack)."}
+* *{"control:"}* {"TSUI.UI.IControl - The control to animate."}
+* *{"newBottom:"}* {"number - The new CSS 'bottom' value."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to invoke after animation has completed."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Hide(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"This method is empty."}
+* *{"control:"}* {"TSUI.UI.IControl - "}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Show(control: TSUI.UI.IControl, callback?: () => void): void"}
+{"This method is empty."}
+* *{"control:"}* {"TSUI.UI.IControl - "}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+
+----
+

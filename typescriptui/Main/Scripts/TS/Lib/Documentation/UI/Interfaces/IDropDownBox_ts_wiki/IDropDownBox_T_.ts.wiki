@@ -1,0 +1,40 @@
+﻿{anchor:IDropDownBox<T>}
+!! {"IDropDownBox<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IDropDownBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IDropDownBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a drop down box.
+T: The type of item in the list."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Items: TSUI.Collections.IList<UI.IListItem<T>>;"}
+{"The items in the drop down box."}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{"Fired when the selected index changes."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{"Gets or sets the selected index in the list."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the selected index to."}
+* *Returns:* {"number - The actual value of the selected index."}
+
+
+----
+

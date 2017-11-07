@@ -1,0 +1,51 @@
+﻿{anchor:INotification}
+!! {"INotification"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IButton.d.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/INotification.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/INotification.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Notification control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"CloseButton: UI.IButton;"}
+{"The notification's close button."}
+
+!!!!!! {"OnClose: TSUI.Events.CloseEvent;"}
+{"Fired when the notification is closed."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ShowFor(seconds: number, callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{"Shows the notification for the specified amount of time using the specified animator to show/hide."}
+* *{"seconds:"}* {"number - The number of seconds to show the notification for."}
+* [OPTIONAL] *{"callback:"}* {"() => void - The callback to call when the notification is shown."}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - Void."}
+
+!!!!!! {"Text(value?: string): string"}
+{"Gets or sets the text of the notification."}
+* [OPTIONAL] *{"value:"}* {"string - The value to set the text to."}
+* *Returns:* {"string - The actual value of the text."}
+
+!!!!!! {"_Restack(): void"}
+{"Internal method for restacking notifications when one or more closes. Do not use externally."}
+* *Returns:* {"void - "}
+
+
+----
+

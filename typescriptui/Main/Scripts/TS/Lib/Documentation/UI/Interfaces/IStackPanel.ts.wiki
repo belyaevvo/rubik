@@ -1,0 +1,38 @@
+﻿{anchor:IStackPanel}
+!! {"IStackPanel"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/StackPanelOrientations.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/StackPanelOrientations.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/IStackPanel.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IStackPanel.d.ts]
+* [url:UI/Interfaces/IStackPanelRow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IStackPanelRow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a StackPanel control."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Rows: TSUI.Collections.IList<UI.IStackPanelRow>;"}
+{"The stack panel rows in this stack panel (or columns depending on orientation)."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Orientation(value?: UI.StackPanelOrientations): UI.StackPanelOrientations"}
+{"Gets or sets the Stack Panel orientation."}
+* [OPTIONAL] *{"value:"}* {"UI.StackPanelOrientations - The value to set the orientation to."}
+* *Returns:* {"TSUI.UI.StackPanelOrientations - The actual stack panel orientation."}
+
+
+----
+

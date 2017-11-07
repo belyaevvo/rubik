@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="sampleDynamicPivotGrid">
+<head>
+	<title>Ranet Pivot Table</title>
+	<link rel="shortcut icon" href="favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+	<meta charset="utf-8">
+	<!--Vendors-->
+	<script src="Assets/vendors/jquery/jquery.min.js"></script>
+
+	<script src="Assets/vendors/jqueryUI/jquery-ui.js"></script>
+	<link href="Assets/vendors/jqueryUI/jquery-ui.min.css" rel="stylesheet" />
+	<script src="Assets/vendors/jqueryUITouch/jQueryUITouch.js"></script>
+
+
+	<script src="Assets/vendors/cldr/cldr.js"></script>
+	<script src="Assets/vendors/cldr/event.js"></script>
+	<script src="Assets/vendors/cldr/supplemental.js"></script>
+
+	<script src="Assets/vendors/globalize/globalize.js"></script>
+	<script src="Assets/vendors/globalize/message.js"></script>
+	<script src="Assets/vendors/globalize/number.js"></script>
+
+    <link href="Assets/vendors/fontAwesome/font-awesome.min.css" rel="stylesheet" />
+    <script src="Assets/vendors/FileSaver/FileSaver.min.js"></script>
+        <!-- Темы, применяющиеся только для элементов, дочерних классу dynamicPivotGrid  -->
+    <link href="Assets/vendors/bootstrap/bootstrap-metropolisThemeScoped.min.css" rel="stylesheet" />
+    <!--<link href="Assets/vendors/bootstrap/bootstrap-office2010blueThemeScoped.min.css" rel="stylesheet"/>-->
+        <!-- Темы, применяющиеся для все элементов без исключений -->
+    <!--<link href="Assets/vendors/bootstrap/bootstrap-metropolisTheme.min.css" rel="stylesheet" />-->
+    <!--<link href="Assets/vendors/bootstrap/bootstrap-office2010blueTheme.min.css" rel="stylesheet"/>-->
+
+    <script src="Assets/vendors/bootstrap/bootstrap.min.js"></script>
+
+    <script src="Assets/vendors/d3/d3.min.js"></script>
+    <script src="Assets/vendors/d3pie/d3pie.js"></script>
+
+    <script src="Assets/vendors/topojson/topojson-client.min.js"></script>
+    <script src="Assets/vendors/iso-3166-2/iso3166.min.js"></script>
+
+    <script src="Assets/vendors/angular/angular.min.js"></script>
+	<script src="Assets/vendors/angular/angular-translate.min.js"></script>
+	<script src="Assets/vendors/angular/angular-translate-loader-static-files.min.js"></script>
+	<script src="Assets/vendors/angular/angular-sanitize.min.js"></script>
+    <script src="Assets/vendors/angularUI/ui-bootstrap-tpls.min.js"></script>
+
+    <link href="Assets/vendors/handsontable/handsontable.full.min.css" rel="stylesheet" />
+    <script src="Assets/vendors/handsontable/handsontable.full.min.js"></script>
+    
+    
+    <!--<link href="https://docs.handsontable.com/0.16.1/bower_components/handsontable/dist/handsontable.full.min.css" rel="stylesheet" />
+    <script src="https://docs.handsontable.com/0.16.1/bower_components/handsontable/dist/handsontable.full.js"></script>-->
+
+    <!--Vendors-->
+	<!--Ranet-->
+    <link rel="stylesheet" href="./Assets/css/appScoped.min.css">
+    <link rel="stylesheet" href="./Assets/css/ranetControls.min.css">
+
+	<script src="./Assets/js/app.min.js"></script>
+	<script src="./Assets/js/ranetControls.min.js"></script>
+
+	
+
+	<style>
+		html, body {
+			height: 100%;
+			width: 100%;
+		    margin: 0;
+		}
+	</style>
+
+	<!--Ranet-->
+</head>
+
+<body>
+<ranetdynamicpivotgridapp ng-app="sampleDynamicPivotGrid"></ranetdynamicpivotgridapp>
+</body>
+</html>

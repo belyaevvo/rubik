@@ -1,0 +1,133 @@
+﻿.SplashScreen
+{
+    text-align: center;
+    border: 7px solid #0072C6;
+}
+
+    .SplashScreen .NameLabel
+    {
+        top: 70px;
+        left: 0px;
+        right: 0px;
+        text-align: center;
+        font-size: 65px;
+        color: #0072C6;
+    }
+
+    .SplashScreen .ProgressSpinner
+    {
+        top: auto;
+        bottom: 30px;
+        width: 100%;
+    }
+
+    .SplashScreen .Logo
+    {
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: auto;
+        border: none;
+        cursor: pointer;
+    }
+
+        .SplashScreen .Logo.Disabled
+        {
+            opacity: 1;
+        }
+
+        .SplashScreen .Logo > img
+        {
+            position: relative;
+            height: auto;
+        }
+
+    .SplashScreen.Mobile .NameLabel
+    {
+        top: 30%;
+        font-size: 40px;
+    }
+
+    .SplashScreen.Mobile .ProgressSpinner
+    {
+        top: 70%;
+        margin: 0px;
+        width: 100%;
+    }
+
+.StartupWindow
+{
+    min-width: 522px;
+    border: none;
+}
+    .StartupWindow.Mobile
+    {
+        min-width: 210px;
+    }
+    .StartupWindow > .Panel > .StackPanel
+    {
+        overflow: auto;
+        top: 13px;
+        bottom: 0%;
+        left: 5%;
+        right: 5%;
+    }
+    .StartupWindow.Mobile > .Panel > .StackPanel
+    {
+        top: 7px;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+    }
+    .StartupWindow > .Panel > .StackPanel > .Row
+    {
+        padding: 0px;
+        text-align: center;
+    }
+    .StartupWindow > .Panel > .StackPanel > .Row > .StackPanel
+    {
+        text-align: center;
+    }
+    .StartupWindow > .Panel > .StackPanel > .Row > .StackPanel > .Row
+    {
+        padding: 0px;
+        text-align: center;
+    }
+    .StartupWindow.Mobile .Tile
+    {
+        margin: 5px;
+    }
+    .StartupWindow .LoginTile
+    {
+        background-color: #e50000;
+    }
+
+.LoginWindow
+{
+}
+    .LoginWindow .Panel
+    {
+        text-align: center;
+    }
+    .LoginWindow .Centralise
+    {
+        width: 80%;
+        min-width: 215px;
+        max-width: 300px;
+        margin-top: 10%;
+        text-align: left;
+    }
+        .LoginWindow .Centralise>.StackPanel > .Row
+        {
+            text-align: right;
+        }
+        .LoginWindow.Mobile .Centralise>.StackPanel > .Row
+        {
+            text-align: left;
+        }
+        .LoginWindow .Centralise > .StackPanel > .Row > .Button
+        {
+            text-align: center;
+            height: 40px;
+            margin-left: 0px;
+        }

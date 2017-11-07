@@ -1,0 +1,49 @@
+﻿{anchor:ITrackBar}
+!! {"ITrackBar"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Enums/TrackBarModes.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Enums/TrackBarModes.ts]
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ITrackBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITrackBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TrackBar control."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Divisions(value?: number): number"}
+{"Gets or sets the number of track bar divisions."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the number of track bar divisions to."}
+* *Returns:* {"number - The actual value of the number of track bar divisions."}
+
+!!!!!! {"Max(value?: number): number"}
+{"Gets or sets the track bar max value."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the track bar max to."}
+* *Returns:* {"number - The actual value of the track bar max."}
+
+!!!!!! {"Min(value?: number): number"}
+{"Gets or sets the track bar min value."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the track bar min to."}
+* *Returns:* {"number - The actual value of the track bar min."}
+
+!!!!!! {"Mode(value?: UI.TrackBarModes): UI.TrackBarModes"}
+{"Gets or sets the track bar mode."}
+* [OPTIONAL] *{"value:"}* {"UI.TrackBarModes - The value to set the track bar mode to."}
+* *Returns:* {"TSUI.UI.TrackBarModes - The actual value of the track bar mode."}
+
+!!!!!! {"Value(value?: number): number"}
+{"Gets or sets the track bar value."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set to."}
+* *Returns:* {"number - The actual value of the track bar."}
+
+
+----
+

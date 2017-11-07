@@ -1,0 +1,38 @@
+{anchor:ILoginWindow}
+!! {"ILoginWindow"}
+*Module:* [TSUI.UI]
+*Extends:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/Windows/ILoginWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/ILoginWindow.d.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a basic login window. Includes the fundamental controls required by most login windows."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"LoginButton: UI.IButton;"}
+{"See LoginWindow class for more details."}
+
+!!!!!! {"PasswordBox: UI.ITextBox;"}
+{"See LoginWindow class for more details."}
+
+!!!!!! {"PasswordLabel: UI.ILabel;"}
+{"See LoginWindow class for more details."}
+
+!!!!!! {"UsernameBox: UI.ITextBox;"}
+{"See LoginWindow class for more details."}
+
+!!!!!! {"UsernameLabel: UI.ILabel;"}
+{"The label"}
+
+
+----
+

@@ -1,0 +1,27 @@
+﻿{anchor:ICanvasBox}
+!! {"ICanvasBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IImageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/ICanvasBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ICanvasBox.d.ts]
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a Canvas control. Uses HTML5 canvas element."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Context(): CanvasRenderingContext2D"}
+{"Gets the 2D rendering context for the canvas."}
+* *Returns:* {"CanvasRenderingContext2D - "}
+
+
+----
+

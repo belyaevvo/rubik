@@ -1,0 +1,38 @@
+﻿{anchor:IApp}
+!! {"IApp"}
+*Module:* [TSUI.Apps]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Definitions/jquery.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Definitions/jquery.d.ts]
+* [url:IApp.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/IApp.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an Application"}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Run(): void"}
+{"Starts the app running"}
+* *Returns:* {"void - "}
+
+!!!!!! {"Run(args: string[]): void"}
+{"Starts the app running with the specified arguments."}
+* *{"args:"}* {"string[] - The array of arguments to pass to the app."}
+* *Returns:* {"void - "}
+
+!!!!!! {"Run(args: string[], container: JQuery): void"}
+{"Starts the app running with the specified arguments and the element to use as the container for the app."}
+* *{"args:"}* {"string[] - The array of arguments to pass to the app."}
+* *{"container:"}* {"JQuery - The JQuery element the app should use to contain all Windows etc."}
+* *Returns:* {"void - "}
+
+
+----
+

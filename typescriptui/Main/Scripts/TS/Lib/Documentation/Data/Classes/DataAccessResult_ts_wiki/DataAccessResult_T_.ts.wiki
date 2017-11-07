@@ -1,0 +1,42 @@
+﻿{anchor:DataAccessResult<T>}
+!! {"DataAccessResult<T>"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Implements:* [IDataAccessResult]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Classes/DataAccessResult.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Classes/DataAccessResult.ts]
+* [url:Data/Enums/DataAccessStatuses.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Enums/DataAccessStatuses.ts]
+* [url:Data/Interfaces/IDataAccessResult.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAccessResult.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for the result of a data access request. Contains the Status of the request and any data returned.
+T: The type of data (the type of the Result property)"}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(status: Data.DataAccessStatuses, result: T)"}
+{"Creates a new instance of DataAccessResult"}
+* *{"status:"}* {"Data.DataAccessStatuses - The most recent status of the request."}
+* *{"result:"}* {"T - The result data of the request."}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Result: T;"}
+{"The result data of the request."}
+
+!!!!!! {"Status: Data.DataAccessStatuses;"}
+{"The most recent status of the request."}
+
+
+----
+

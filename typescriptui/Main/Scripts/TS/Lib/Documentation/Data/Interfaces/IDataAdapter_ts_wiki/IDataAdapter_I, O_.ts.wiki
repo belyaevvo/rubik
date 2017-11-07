@@ -1,0 +1,34 @@
+{anchor:IDataAdapter<I, O>}
+!! {"IDataAdapter<I, O>"}
+*Module:* [TSUI.Data]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Data/Interfaces/IDataAdapter.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Data/Interfaces/IDataAdapter.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines the structure for data adapters. Data adapters convert raw input data to JavaScript objects or vice-versa.
+I: Specifies the type of the input data.
+O: Specifies the type of the output data."}
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"I2O(input: I): O"}
+{"Converts raw data to JavaScript object data."}
+* *{"input:"}* {"I - The raw data."}
+* *Returns:* {"O - The JavaScript object data."}
+
+!!!!!! {"O2I(output: O): I"}
+{"Converts JavaScript object data to raw data."}
+* *{"output:"}* {"O - "}
+* *Returns:* {"I - The raw data."}
+
+
+----
+

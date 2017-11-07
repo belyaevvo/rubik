@@ -1,0 +1,40 @@
+﻿{anchor:IException}
+!! {"IException"}
+*Module:* [TSUI.Exceptions]
+*Extends:* [None]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Exceptions/Interfaces/IException.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Exceptions/Interfaces/IException.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an exception."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"InnerException: IException;"}
+{"The inner exception which lead to this exception, if any."}
+
+!!!!!! {"Message: string;"}
+{"The message to describe the exception."}
+
+!!!!!! {"Trace: string;"}
+{"The origin of the exception."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"toString(): string"}
+{"Converts the exception to a human-readable string representation."}
+* *Returns:* {"string - "}
+
+
+----
+

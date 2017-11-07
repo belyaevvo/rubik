@@ -1,0 +1,10 @@
+﻿@import url("Content/Rubik.css");
+@import url("Content/Skins/Blue.css");
+
+#content {
+    height: 100%;
+    width:100%;
+    padding: 0px;
+    margin: 0px;
+}
+

@@ -1,0 +1,18 @@
+﻿{anchor:ISVGBox}
+!! {"ISVGBox"}
+*Module:* [TSUI.UI]
+*Extends:* [IImageBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IImageBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IImageBox.d.ts]
+* [url:UI/Interfaces/ISVGBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISVGBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines an SVG image box control."}
+
+----
+

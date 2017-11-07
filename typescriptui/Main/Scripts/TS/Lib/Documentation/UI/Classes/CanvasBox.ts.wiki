@@ -1,0 +1,67 @@
+﻿{anchor:CanvasBox}
+!! {"CanvasBox"}
+*Module:* [TSUI.UI]
+*Extends:* [ImageBox]
+*Implements:* [ICanvasBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/CanvasBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/CanvasBox.ts]
+* [url:UI/Classes/ImageBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ImageBox.ts]
+* [url:UI/Interfaces/ICanvasBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ICanvasBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_CanvasElement: JQuery;"}
+{""}
+
+!!!!!! {"_RenderImageOnLoaded: boolean;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Context(): CanvasRenderingContext2D"}
+{""}
+* *Returns:* {"CanvasRenderingContext2D - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Source(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"_OnImageElementLoaded(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

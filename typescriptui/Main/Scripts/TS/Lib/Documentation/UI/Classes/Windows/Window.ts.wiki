@@ -1,0 +1,161 @@
+﻿{anchor:Window}
+!! {"Window"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IWindow]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:Animation/AppWindowAnimator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/Animation/AppWindowAnimator.ts]
+* [url:UI/Classes/Button.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Button.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/ResizeGrip.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ResizeGrip.ts]
+* [url:UI/Classes/TitleBar.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/TitleBar.ts]
+* [url:UI/Classes/Windows/Window.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/Window.ts]
+* [url:UI/Interfaces/Windows/IWindow.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/Windows/IWindow.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"CloseButton: UI.IButton;"}
+{""}
+
+!!!!!! {"ContentPanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"DestroyDOMOnClose: boolean;"}
+{""}
+
+!!!!!! {"MainResizeGrip: UI.IResizeGrip;"}
+{""}
+
+!!!!!! {"MainTitleBar: UI.ITitleBar;"}
+{""}
+
+!!!!!! {"OnClose: TSUI.Events.CloseEvent;"}
+{""}
+
+!!!!!! {"_DraggingEnabled: boolean;"}
+{""}
+
+!!!!!! {"_DraggingOffset: {
+x:number;
+y:number;
+}
+;"}
+{""}
+
+!!!!!! {"_DraggingWindow: boolean;"}
+{""}
+
+!!!!!! {"_MainResizeGrip_MouseMoveHandler: TSUI.Events.MouseMoveEventHandler;"}
+{""}
+
+!!!!!! {"_MainResizeGrip_MouseUpHandler: TSUI.Events.MouseUpEventHandler;"}
+{""}
+
+!!!!!! {"_MainTitleBar_MouseMoveHandler: TSUI.Events.MouseMoveEventHandler;"}
+{""}
+
+!!!!!! {"_MainTitleBar_MouseUpHandler: TSUI.Events.MouseUpEventHandler;"}
+{""}
+
+!!!!!! {"_ResizingEnabled: boolean;"}
+{""}
+
+!!!!!! {"_ResizingOffset: {
+x:number;
+y:number;
+}
+;"}
+{""}
+
+!!!!!! {"_ResizingWindow: boolean;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"DragEnabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Hide(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"ResizeEnabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Show(callback?: () => void, animator?: TSUI.Animation.IAnimator): void"}
+{""}
+* [OPTIONAL] *{"callback:"}* {"() => void - "}
+* [OPTIONAL] *{"animator:"}* {"TSUI.Animation.IAnimator - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"Title(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"_CloseButton_Click(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainResizeGrip_OnMouseDown(eventArgs: TSUI.Events.MouseDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainResizeGrip_OnMouseMove(eventArgs: TSUI.Events.MouseMoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseMoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainResizeGrip_OnMouseUp(eventArgs: TSUI.Events.MouseUpEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseUpEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainTitleBar_OnMouseDown(eventArgs: TSUI.Events.MouseDownEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseDownEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainTitleBar_OnMouseMove(eventArgs: TSUI.Events.MouseMoveEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseMoveEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_MainTitleBar_OnMouseUp(eventArgs: TSUI.Events.MouseUpEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.MouseUpEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

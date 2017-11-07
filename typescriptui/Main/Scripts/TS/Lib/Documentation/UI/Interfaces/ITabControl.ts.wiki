@@ -1,0 +1,40 @@
+﻿{anchor:ITabControl}
+!! {"ITabControl"}
+*Module:* [TSUI.UI]
+*Extends:* [IControl]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Interfaces/IControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IControl.d.ts]
+* [url:UI/Interfaces/ITab.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITab.d.ts]
+* [url:UI/Interfaces/ITabControl.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ITabControl.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{"Defines a TabControl."}
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{"Fired when the selected tab index changes."}
+
+!!!!!! {"Tabs: TSUI.Collections.IList<UI.ITab>;"}
+{"The tabs in the control."}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{"Gets or sets the selected tab index."}
+* [OPTIONAL] *{"value:"}* {"number - The value to set the selected index to."}
+* *Returns:* {"number - The actual selected tab index."}
+
+
+----
+

@@ -1,0 +1,2 @@
+tsc "DemoAppStarter.ts"
+pause

@@ -1,0 +1,123 @@
+﻿{anchor:DropDownBox<T>}
+!! {"DropDownBox<T>"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IDropDownBox]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/DropDownBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/DropDownBox.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/ToggleIndicator.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleIndicator.ts]
+* [url:UI/Classes/Windows/SelectionWindow.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Windows/SelectionWindow.ts]
+* [url:UI/Interfaces/IDropDownBox.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IDropDownBox.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"Items: TSUI.Collections.IList<UI.IListItem<T>>;"}
+{""}
+
+!!!!!! {"OnSelectedIndexChange: TSUI.Events.SelectedIndexChangeEvent;"}
+{""}
+
+!!!!!! {"_UnderlyingSelectBox: JQuery;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Blur(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Enabled(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Focus(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"SelectedIndex(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"_AddRowForItem(elem: UI.IListItem<T>): void"}
+{""}
+* *{"elem:"}* {"UI.IListItem<T> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_ClearRows(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"_CreateRow(elem: UI.IListItem<T>): JQuery"}
+{""}
+* *{"elem:"}* {"UI.IListItem<T> - "}
+* *Returns:* {"JQuery - "}
+
+!!!!!! {"_HandleFocusableSet(focusable: boolean): void"}
+{""}
+* *{"focusable:"}* {"boolean - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_Items_OnModified(eventArgs: TSUI.Events.CollectionModifiedEventArgs<UI.IListItem<T>>): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.CollectionModifiedEventArgs<UI.IListItem<T>> - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnBlur(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_OnFocus(event: JQueryEventObject): void"}
+{""}
+* *{"event:"}* {"JQueryEventObject - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnBlur(eventArgs: TSUI.Events.BlurEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.BlurEventArgs - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"_UnderlyingControl_OnFocus(eventArgs: TSUI.Events.FocusEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.FocusEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+

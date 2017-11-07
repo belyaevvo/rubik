@@ -1,0 +1,78 @@
+﻿{anchor:SplitterGrip}
+!! {"SplitterGrip"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [ISplitterGrip]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/SplitterGrip.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/SplitterGrip.ts]
+* [url:UI/Interfaces/ISplitterGrip.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/ISplitterGrip.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"()"}
+{""}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"OnOrientationChanged: TSUI.Events.OrientationChangedEvent;"}
+{""}
+
+!!!!!! {"OnSplitterMove: TSUI.Events.SplitterMoveEvent;"}
+{""}
+
+!!!!!! {"_Orientation: UI.SplitterGrip_Orientations;"}
+{""}
+
+!!!!!! {"_SplitterDistance: number;"}
+{""}
+
+!!!!!! {"_SplitterWidth: number;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"MaxDistance(): number"}
+{""}
+* *Returns:* {"number - "}
+
+!!!!!! {"Orientation(value?: UI.SplitterGrip_Orientations): UI.SplitterGrip_Orientations"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.SplitterGrip_Orientations - "}
+* *Returns:* {"TSUI.UI.SplitterGrip_Orientations - "}
+
+!!!!!! {"SplitterDistance(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"SplitterWidth(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+
+----
+

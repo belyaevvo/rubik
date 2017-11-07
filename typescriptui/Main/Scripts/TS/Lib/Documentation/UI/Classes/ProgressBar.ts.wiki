@@ -1,0 +1,92 @@
+﻿{anchor:ProgressBar}
+!! {"ProgressBar"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IProgressBar]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/CanvasBox.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/CanvasBox.ts]
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/ProgressBar.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ProgressBar.ts]
+* [url:UI/Interfaces/IProgressBar.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IProgressBar.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(type?: UI.ProgressBarTypes)"}
+{""}
+* [OPTIONAL] *{"type:"}* {"UI.ProgressBarTypes - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"_BarColourElem: JQuery;"}
+{""}
+
+!!!!!! {"_Progress: number;"}
+{""}
+
+!!!!!! {"_Reverse: boolean;"}
+{""}
+
+!!!!!! {"_ShowText: boolean;"}
+{""}
+
+!!!!!! {"_Type: UI.ProgressBarTypes;"}
+{""}
+
+!!!!!! {"_UnderlyingCanvas: UI.ICanvasBox;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"ConstructDOM(parent: JQuery, onComplete?: () => void): void"}
+{""}
+* *{"parent:"}* {"JQuery - "}
+* [OPTIONAL] *{"onComplete:"}* {"() => void - "}
+* *Returns:* {"void - "}
+
+!!!!!! {"DestroyDOM(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Progress(value?: number): number"}
+{""}
+* [OPTIONAL] *{"value:"}* {"number - "}
+* *Returns:* {"number - "}
+
+!!!!!! {"Reverse(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"ShowText(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"Type(value?: UI.ProgressBarTypes): UI.ProgressBarTypes"}
+{""}
+* [OPTIONAL] *{"value:"}* {"UI.ProgressBarTypes - "}
+* *Returns:* {"TSUI.UI.ProgressBarTypes - "}
+
+!!!!!! {"_Render(): void"}
+{""}
+* *Returns:* {"void - "}
+
+
+----
+

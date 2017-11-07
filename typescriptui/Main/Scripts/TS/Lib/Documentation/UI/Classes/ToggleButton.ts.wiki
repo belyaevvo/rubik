@@ -1,0 +1,81 @@
+﻿{anchor:ToggleButton}
+!! {"ToggleButton"}
+*Module:* [TSUI.UI]
+*Extends:* [Control]
+*Implements:* [IToggleButton]
+*Exported:* Yes
+
+_Associated source files:_
+* [url:UI/Classes/Control.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Control.ts]
+* [url:UI/Classes/Label.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Label.ts]
+* [url:UI/Classes/Panel.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/Panel.ts]
+* [url:UI/Classes/ToggleButton.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Classes/ToggleButton.ts]
+* [url:UI/Interfaces/IToggleButton.d.ts|https://typescriptui.codeplex.com/SourceControl/latest#Main/Scripts/TS/Lib/UI/Interfaces/IToggleButton.d.ts]
+
+----
+
+!!!! {"Description"}
+
+{""}
+
+----
+
+!!!! {"Constructors"}
+
+!!!!!! constructor{"(checked?: boolean)"}
+{""}
+* [OPTIONAL] *{"checked:"}* {"boolean - "}
+
+
+----
+
+!!!! {"Public Properties"}
+
+!!!!!! {"BluePanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"GripBox: UI.IPanel;"}
+{""}
+
+!!!!!! {"OnCheckedChange: TSUI.Events.CheckedChangeEvent;"}
+{""}
+
+!!!!!! {"TextLabel: UI.ILabel;"}
+{""}
+
+!!!!!! {"TogglePanel: UI.IPanel;"}
+{""}
+
+!!!!!! {"TogglePanelInner: UI.IPanel;"}
+{""}
+
+!!!!!! {"WhitePanel: UI.IPanel;"}
+{""}
+
+
+----
+
+!!!! {"Public Methods"}
+
+!!!!!! {"Checked(value?: boolean): boolean"}
+{""}
+* [OPTIONAL] *{"value:"}* {"boolean - "}
+* *Returns:* {"boolean - "}
+
+!!!!!! {"InvokeDefaultAction(): void"}
+{""}
+* *Returns:* {"void - "}
+
+!!!!!! {"Text(value?: string): string"}
+{""}
+* [OPTIONAL] *{"value:"}* {"string - "}
+* *Returns:* {"string - "}
+
+!!!!!! {"_This_OnClick(eventArgs: TSUI.Events.ClickEventArgs): void"}
+{""}
+* *{"eventArgs:"}* {"TSUI.Events.ClickEventArgs - "}
+* *Returns:* {"void - "}
+
+
+----
+
