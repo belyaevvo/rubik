@@ -11,6 +11,8 @@ Modifications:
 License: https://typescriptui.codeplex.com/license
 */
 
+/// <reference path="../Events/Events.ts" />
+
 module Rubik.UI
 {
     

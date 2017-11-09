@@ -288,6 +288,22 @@ ul, ol
         cursor: ew-resize;
     }
 
+.Grid
+{
+}
+
+    .Grid > .Panel
+    {
+        top: 0px;
+        right: auto;
+        bottom: auto;
+        left: 0px;
+        width: auto;
+        height: auto;
+        overflow: auto;
+    }
+
+
 .Expandable
 {
     min-height: 32px;

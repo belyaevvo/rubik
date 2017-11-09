@@ -18,6 +18,8 @@ class MyApp implements Rubik.Apps.IApp {
         var panel1 = new Rubik.UI.Panel();        
         var panel2 = new Rubik.UI.Panel();
         var grid = new Rubik.UI.Grid();
+        grid.Height(new Rubik.UI.CSSNumber(100, "%"));
+        grid.Width(new Rubik.UI.CSSNumber(100, "%"));
         panel2.Children.Add(grid);
         splitter.Panel1.Children.Add(panel1);
         splitter.Panel2.Children.Add(panel2);

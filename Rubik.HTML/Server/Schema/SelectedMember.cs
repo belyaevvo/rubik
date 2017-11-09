@@ -8,10 +8,7 @@ namespace Rubik.Server.Schema
     {
         public MemberSelectionEnum SelectionType
         {
-            get => default(MemberSelectionEnum);
-            set
-            {
-            }
+            get; set;
         }
     }
 }

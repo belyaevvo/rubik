@@ -180,6 +180,27 @@ declare module Rubik.UI
         */
         Right(value?: CSSNumber): CSSNumber;
 
+        /** Gets or sets the top margin of the control.
+           @param value The value to set the top margin to.
+           @returns The actual value of the top margin.
+       */
+        MarginTop(value?: CSSNumber): CSSNumber;
+        /** Gets or sets the bottom margin of the control.
+            @param value The value to set the bottom margin to.
+            @returns The actual value of the bottom margin.
+        */
+        MarginBottom(value?: CSSNumber): CSSNumber;
+        /** Gets or sets the left margin of the control.
+            @param value The value to set the left margin to.
+            @returns The actual value of the left margin.
+        */
+        MarginLeft(value?: CSSNumber): CSSNumber;
+        /** Gets or sets the right margin of the control.
+            @param value The value to set the right margin to.
+            @returns The actual value of the right margin.
+        */
+        MarginRight(value?: CSSNumber): CSSNumber;
+
         /** Gets the pixel top position of the control relative to the document.
             @returns The pixel top position of the control.
         */

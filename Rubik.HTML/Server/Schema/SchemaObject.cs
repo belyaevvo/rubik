@@ -10,10 +10,7 @@ namespace Rubik.Server.Schema
 
         public string UniqueName
         {
-            get => default(string);
-            set
-            {
-            }
+            get; set;
         }
     }
 }
