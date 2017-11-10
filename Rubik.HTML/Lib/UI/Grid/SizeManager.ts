@@ -121,6 +121,25 @@
             }
             return [leftCol, rightCol];
         }
+
+
+        GetTotalHeight(): number {
+            var indices: Array<number> = Object.keys(this.RowsSize).map(Number);
+            var height: number = this.DefaultRowHeight * this._rowsCount;
+            for (var i = 0; i < indices.length; i++) {                
+                height += this.RowsSize[indices[i]] - this.DefaultRowHeight;
+            }
+            return height;
+        }
+
+        GetTotalWidth(): number {
+            var indices: Array<number> = Object.keys(this.ColsSize).map(Number);
+            var width: number = this.DefaultColWidth * this._colsCount;
+            for (var i = 0; i < indices.length; i++) {
+                width += this.ColsSize[indices[i]] - this.DefaultColWidth;
+            }
+            return width;
+        }
     }
    
 }

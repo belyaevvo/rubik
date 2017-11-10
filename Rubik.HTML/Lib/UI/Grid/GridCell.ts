@@ -7,7 +7,7 @@
             super();
             this._rootElement.addClass("Cell");
             this._span = $("<span class=\"Cell-content\">");
-            this._rootElement.add(this._span);            
+            this._rootElement.append(this._span);            
             
         }
 

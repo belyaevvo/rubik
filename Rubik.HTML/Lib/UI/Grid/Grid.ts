@@ -34,8 +34,7 @@ module Rubik.UI
 
             this.PanelCols.Height(new CSSNumber(30));
             this.PanelRows.Width(new CSSNumber(30));
-
-            this.CellsPanel.Height(new CSSNumber(1000));
+           
 
             this.ScrollPanel.Children.Add(this.CellsPanel);
 
@@ -45,9 +44,11 @@ module Rubik.UI
             
 
             this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized, this));
+            this.OnResize.Attach(new Events.ShowEventHandler(this._This_Show, this));
             this.ScrollPanel.OnScroll.Attach(new Events.JQueryEventHandler(this._Scroll, this));
 
-            this.Draw();
+            this.DataChanged();
+            
         }
 
         _This_Resized(eventArgs: Events.ResizeEventArgs) {
@@ -58,30 +59,40 @@ module Rubik.UI
             this.ScrollPanel.MarginLeft(new CSSNumber(this.PanelRows.ActualWidth()))
             this.ScrollPanel.Height(new CSSNumber(this.ActualHeight() - this.PanelCols.ActualHeight()));
             this.ScrollPanel.Width(new CSSNumber(this.ActualWidth() - this.PanelRows.ActualWidth()));
+            this.Draw();
         }
 
-        _Scroll(eventArgs: Events.JQueryEventArgs) {            
+        _This_Show(eventArgs: Events.ShowEventArgs) {
+            //this.DataChanged();
+        }
+
+        _Scroll(eventArgs: Events.JQueryEventArgs) {      
+            alert("scroll");      
             this.Draw();
         }
 
         DataChanged(): void {
             this.SizeManager.Initialize(this.DataManager.GetColsCount(), this.DataManager.GetRowsCount());
-            this.Draw();            
+            alert(this.SizeManager.GetTotalHeight());
+            this.CellsPanel.Height(new CSSNumber(this.SizeManager.GetTotalHeight()));
+            this.CellsPanel.Width(new CSSNumber(this.SizeManager.GetTotalWidth()));
+            //this.Draw();            
         }
 
 
         Draw(): void {
-            var scrollTop: number = this.ScrollPanel._rootElement.scrollTop();
-            var scrollLeft: number = this.ScrollPanel._rootElement.scrollLeft();
-            var [startRow, endRow]: [number, number] = this.SizeManager.GetVisibleRows(scrollTop, this.ScrollPanel._rootElement.innerHeight() + scrollTop);
-            var [startCol, endCol]: [number, number] = this.SizeManager.GetVisibleCols(scrollLeft, this.ScrollPanel._rootElement.innerWidth() + scrollLeft);
+            var scrollTop: number = this.ScrollPanel._rootElement.scrollTop();            
+            var scrollLeft: number = this.ScrollPanel._rootElement.scrollLeft();            
+            var [startRow, endRow]: [number, number] = this.SizeManager.GetVisibleRows(scrollTop, this.ScrollPanel.ActualHeight() + scrollTop);            
+            var [startCol, endCol]: [number, number] = this.SizeManager.GetVisibleCols(scrollLeft, this.ScrollPanel.ActualWidth() + scrollLeft);         
 
+            alert([startRow, endRow]);
             this.CellsPanel.Children.Clear();
 
             for (var col = startCol; col <= endCol; col++) {
                 for (var row = startRow; row <= endRow; row++) {
                     var cell: GridCell = new GridCell();
-                    cell.Text(this.DataManager.GetCellValue(col, row));
+                    cell.Text(this.DataManager.GetCellValue(col, row));              
                     cell.Left(new CSSNumber(this.SizeManager.GetColLeft(col)))
                     cell.Width(new CSSNumber(this.SizeManager.GetColWidth(col)));
                     cell.Top(new CSSNumber(this.SizeManager.GetRowTop(row)));
