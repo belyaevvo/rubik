@@ -432,6 +432,15 @@ module Rubik.Events
     }
 
     //#endregion
-    
+
+    export class JQueryEvent extends Event<JQueryEventArgs> { }
+
+    export class JQueryEventHandler extends EventHandler<JQueryEventArgs> { }
+
+    export class JQueryEventArgs extends EventArgs {
+        constructor(public Sender: UI.IControl, public jqEvent: JQueryEventObject = null) {
+            super(Sender);
+        }
+    }
    
 }

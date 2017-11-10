@@ -46,6 +46,7 @@ module Rubik.UI
         OnKeyDown: Events.KeyDownEvent = new Events.KeyDownEvent();
         OnKeyPress: Events.KeyPressEvent = new Events.KeyPressEvent();
         OnKeyUp: Events.KeyUpEvent = new Events.KeyUpEvent();
+        OnScroll: Events.JQueryEvent = new Events.JQueryEvent();
 
         /*static OnClickEventName: string = "click";
         static OnMouseDownEventName: string = "mousedown touchstart";
@@ -80,7 +81,9 @@ module Rubik.UI
             this.OnKeyPress.OnHandlerAttached = this.OnKeyPress.OnHandlerDettached = this._OnOnKeyPressChanged;
             this.OnKeyUp.OnHandlerAttachedContext = this.OnKeyUp.OnHandlerDettachedContext = this;
             this.OnKeyUp.OnHandlerAttached = this.OnKeyUp.OnHandlerDettached = this._OnOnKeyUpChanged;
-
+            this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
+            this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;
+            
             this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
             this.OnMove.Attach(new Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
 
@@ -253,6 +256,23 @@ module Rubik.UI
         _OnResize(jqEvent: JQueryEventObject)
         {
             this.OnResize.Invoke(new Events.ResizeEventArgs(this, jqEvent));
+        }
+
+        _OnScrollAttached: boolean = false;
+        _OnOnScrollChanged() {
+            if (this.DOMConstructed) {
+                if (this.OnScroll.Handlers.length > 0 && !this._OnScrollAttached) {
+                    this._OnScrollAttached = true;
+                    this._rootElement.on("scroll", { _this: this, _callback: this._OnScroll }, this._RestoreThis);
+                }
+                else if (this._OnScrollAttached) {
+                    this._OnScrollAttached = false;
+                    this._rootElement.off("scroll", this._RestoreThis);
+                }
+            }
+        }
+        _OnScroll(jqEvent: JQueryEventObject) {
+            this.OnScroll.Invoke(new Events.JQueryEventArgs(this, jqEvent));
         }
         _OnMoveAttached: boolean = false;
         _OnOnMoveChanged()
