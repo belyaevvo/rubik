@@ -66,8 +66,7 @@ module Rubik.UI
             //this.DataChanged();
         }
 
-        _Scroll(eventArgs: Events.JQueryEventArgs) {      
-            alert("scroll");      
+        _Scroll(eventArgs: Events.JQueryEventArgs) {                  
             this.Draw();
         }
 
@@ -85,8 +84,7 @@ module Rubik.UI
             var scrollLeft: number = this.ScrollPanel._rootElement.scrollLeft();            
             var [startRow, endRow]: [number, number] = this.SizeManager.GetVisibleRows(scrollTop, this.ScrollPanel.ActualHeight() + scrollTop);            
             var [startCol, endCol]: [number, number] = this.SizeManager.GetVisibleCols(scrollLeft, this.ScrollPanel.ActualWidth() + scrollLeft);         
-
-            alert([startRow, endRow]);
+            
             this.CellsPanel.Children.Clear();
 
             for (var col = startCol; col <= endCol; col++) {

@@ -470,10 +470,12 @@ module Rubik.UI
                 this._OnOnMouseMoveChanged();
                 this._OnOnMouseUpChanged();
                 this._OnOnResizeChanged();
+                this._OnOnScrollChanged();
                 
                 this._rootElement.on("focus", { _this: this, _callback: this._OnFocus }, this._RestoreThis);
                 this._rootElement.on("blur", { _this: this, _callback: this._OnBlur }, this._RestoreThis);
                 this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
+                
             }
 
             if (!this.OptimiseConstructForGraphics)
@@ -545,6 +547,7 @@ module Rubik.UI
                 this._OnKeyPressAttached = false;
                 this._OnKeyUpAttached = false;
                 this.DOMConstructed = false;
+                this._OnScrollAttached = false;
             }
 
             for (var i = 0; i < this.Children.Count(); i++)
