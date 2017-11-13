@@ -15,7 +15,7 @@ var Rubik;
     var Collections;
     (function (Collections) {
         /** A comparer which compares the results of calling ToString on the specified objects.*/
-        var ToStringComparer = (function () {
+        var ToStringComparer = /** @class */ (function () {
             function ToStringComparer() {
             }
             /** Compares two objects by comparing the result of calling ToString on them.

@@ -31,7 +31,7 @@ var Rubik;
         /** Event to be fired when a collection (e.g. IList) is modified e.g. added to, removed from, re-ordered.
             Note: This event has been put into a separate class ro prevent reference loops with Collections namespace that result in compiler failures/errors.
          */
-        var CollectionModifiedEvent = (function (_super) {
+        var CollectionModifiedEvent = /** @class */ (function (_super) {
             __extends(CollectionModifiedEvent, _super);
             function CollectionModifiedEvent() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -53,7 +53,7 @@ var Rubik;
             return CollectionModifiedEvent;
         }(Rubik.Events.Event));
         Collections.CollectionModifiedEvent = CollectionModifiedEvent;
-        var CollectionModifiedEventHandler = (function (_super) {
+        var CollectionModifiedEventHandler = /** @class */ (function (_super) {
             __extends(CollectionModifiedEventHandler, _super);
             function CollectionModifiedEventHandler(Callback, Context) {
                 var _this = _super.call(this, Callback, Context) || this;
@@ -67,7 +67,7 @@ var Rubik;
             return CollectionModifiedEventHandler;
         }(Rubik.Events.EventHandler));
         Collections.CollectionModifiedEventHandler = CollectionModifiedEventHandler;
-        var CollectionModifiedEventArgs = (function (_super) {
+        var CollectionModifiedEventArgs = /** @class */ (function (_super) {
             __extends(CollectionModifiedEventArgs, _super);
             function CollectionModifiedEventArgs(Sender, Modification, ModifiedElements) {
                 var _this = _super.call(this, Sender) || this;

@@ -25,7 +25,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** An argument exception. Automatically adds descriptive information in the constructor. */
-        var ArgumentException = (function (_super) {
+        var ArgumentException = /** @class */ (function (_super) {
             __extends(ArgumentException, _super);
             /** Creates a new ArgumentException instance with specified information. Automatically adds descriptive information about this particular
             type of exception.

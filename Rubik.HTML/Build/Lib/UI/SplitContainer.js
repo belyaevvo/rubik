@@ -26,7 +26,7 @@ var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var SplitContainer = (function (_super) {
+        var SplitContainer = /** @class */ (function (_super) {
             __extends(SplitContainer, _super);
             function SplitContainer() {
                 var _this = _super.call(this) || this;

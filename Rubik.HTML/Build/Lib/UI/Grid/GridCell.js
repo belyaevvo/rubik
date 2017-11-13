@@ -1,14 +1,3 @@
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Jul 8 18:31 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 8/Jul/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -19,22 +8,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-/// <reference path="IPanel.d.ts" />
-/// <reference path="Control.ts" />
 var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var Panel = /** @class */ (function (_super) {
-            __extends(Panel, _super);
-            function Panel() {
+        var GridCell = /** @class */ (function (_super) {
+            __extends(GridCell, _super);
+            function GridCell() {
                 var _this = _super.call(this) || this;
-                _this._rootElement.addClass("Panel");
+                _this._span = null;
+                _this._rootElement.addClass("GridCell");
+                _this._span = $("<span class=\"GridCell-content\">");
+                _this._rootElement.append(_this._span);
                 return _this;
             }
-            return Panel;
+            GridCell.prototype.Text = function (text) {
+                if (text === void 0) { text = null; }
+                if (text != null) {
+                    this._span.text(text);
+                }
+                return this._span.text();
+            };
+            return GridCell;
         }(UI.Control));
-        UI.Panel = Panel;
+        UI.GridCell = GridCell;
     })(UI = Rubik.UI || (Rubik.UI = {}));
 })(Rubik || (Rubik = {}));
-//# sourceMappingURL=Panel.js.map
+//# sourceMappingURL=GridCell.js.map

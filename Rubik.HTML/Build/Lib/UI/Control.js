@@ -23,7 +23,7 @@ var Rubik;
     var UI;
     (function (UI) {
         var __UIDGenerator = 0;
-        var Control = (function () {
+        var Control = /** @class */ (function () {
             function Control() {
                 this.__UID = __UIDGenerator++;
                 this._rootElement = null;
@@ -40,6 +40,7 @@ var Rubik;
                 this.OnKeyDown = new Rubik.Events.KeyDownEvent();
                 this.OnKeyPress = new Rubik.Events.KeyPressEvent();
                 this.OnKeyUp = new Rubik.Events.KeyUpEvent();
+                this.OnScroll = new Rubik.Events.JQueryEvent();
                 /*static OnClickEventName: string = "click";
                 static OnMouseDownEventName: string = "mousedown touchstart";
                 static OnMouseUpEventName: string = "mouseup touchend";
@@ -56,6 +57,7 @@ var Rubik;
                 this._OnMouseMoveAttached = false;
                 this._OnMouseMove_GlobalHandler = null;
                 this._OnResizeAttached = false;
+                this._OnScrollAttached = false;
                 this._OnMoveAttached = false;
                 this._OnKeyPressAttached = false;
                 this._OnKeyUpAttached = false;
@@ -83,6 +85,8 @@ var Rubik;
                 this.OnKeyPress.OnHandlerAttached = this.OnKeyPress.OnHandlerDettached = this._OnOnKeyPressChanged;
                 this.OnKeyUp.OnHandlerAttachedContext = this.OnKeyUp.OnHandlerDettachedContext = this;
                 this.OnKeyUp.OnHandlerAttached = this.OnKeyUp.OnHandlerDettached = this._OnOnKeyUpChanged;
+                this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
+                this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;
                 this.OnResize.Attach(new Rubik.Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
                 this.OnMove.Attach(new Rubik.Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
                 this._rootElement = $("<div class=\"Control\">");
@@ -208,6 +212,21 @@ var Rubik;
             };
             Control.prototype._OnResize = function (jqEvent) {
                 this.OnResize.Invoke(new Rubik.Events.ResizeEventArgs(this, jqEvent));
+            };
+            Control.prototype._OnOnScrollChanged = function () {
+                if (this.DOMConstructed) {
+                    if (this.OnScroll.Handlers.length > 0 && !this._OnScrollAttached) {
+                        this._OnScrollAttached = true;
+                        this._rootElement.on("scroll", { _this: this, _callback: this._OnScroll }, this._RestoreThis);
+                    }
+                    else if (this._OnScrollAttached) {
+                        this._OnScrollAttached = false;
+                        this._rootElement.off("scroll", this._RestoreThis);
+                    }
+                }
+            };
+            Control.prototype._OnScroll = function (jqEvent) {
+                this.OnScroll.Invoke(new Rubik.Events.JQueryEventArgs(this, jqEvent));
             };
             Control.prototype._OnOnMoveChanged = function () {
                 if (this.DOMConstructed) {
@@ -351,6 +370,7 @@ var Rubik;
                     this._OnOnMouseMoveChanged();
                     this._OnOnMouseUpChanged();
                     this._OnOnResizeChanged();
+                    this._OnOnScrollChanged();
                     this._rootElement.on("focus", { _this: this, _callback: this._OnFocus }, this._RestoreThis);
                     this._rootElement.on("blur", { _this: this, _callback: this._OnBlur }, this._RestoreThis);
                     this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
@@ -409,6 +429,7 @@ var Rubik;
                     this._OnKeyPressAttached = false;
                     this._OnKeyUpAttached = false;
                     this.DOMConstructed = false;
+                    this._OnScrollAttached = false;
                 }
                 for (var i = 0; i < this.Children.Count(); i++) {
                     this.Children.ElementAt(i).DestroyDOM();
@@ -724,9 +745,9 @@ var Rubik;
                 }
                 return retVal;
             };
+            Control.OptimiseConstructForGraphics_DelayTime = 30;
             return Control;
         }());
-        Control.OptimiseConstructForGraphics_DelayTime = 30;
         UI.Control = Control;
     })(UI = Rubik.UI || (Rubik.UI = {}));
 })(Rubik || (Rubik = {}));

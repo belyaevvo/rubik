@@ -18,8 +18,8 @@ module Rubik.UI
         constructor() {
             super();
 
-            this.SizeManager.DefaultColWidth = 30;
-            this.SizeManager.DefaultRowHeight = 30;
+            this.SizeManager.DefaultColWidth = 60;
+            this.SizeManager.DefaultRowHeight = 22;
 
             this._rootElement.addClass("Grid");            
 
@@ -30,10 +30,11 @@ module Rubik.UI
             
             
             //this.PanelRows.AddClass("Panel1");
-            this.ScrollPanel.AddClass("ScrollPanel");
+            this.CellsPanel.AddClass("GridCellsPanel");
+            this.ScrollPanel.AddClass("GridScrollPanel");
 
-            this.PanelCols.Height(new CSSNumber(30));
-            this.PanelRows.Width(new CSSNumber(30));
+            this.PanelCols.Height(new CSSNumber(this.SizeManager.DefaultRowHeight));
+            this.PanelRows.Width(new CSSNumber(this.SizeManager.DefaultColWidth));
            
 
             this.ScrollPanel.Children.Add(this.CellsPanel);
@@ -71,8 +72,7 @@ module Rubik.UI
         }
 
         DataChanged(): void {
-            this.SizeManager.Initialize(this.DataManager.GetColsCount(), this.DataManager.GetRowsCount());
-            alert(this.SizeManager.GetTotalHeight());
+            this.SizeManager.Initialize(this.DataManager.GetColsCount(), this.DataManager.GetRowsCount());            
             this.CellsPanel.Height(new CSSNumber(this.SizeManager.GetTotalHeight()));
             this.CellsPanel.Width(new CSSNumber(this.SizeManager.GetTotalWidth()));
             //this.Draw();            
@@ -87,17 +87,21 @@ module Rubik.UI
             
             this.CellsPanel.Children.Clear();
 
+            var cells: Collections.List<IControl> = new Collections.List<IControl>();
+
             for (var col = startCol; col <= endCol; col++) {
                 for (var row = startRow; row <= endRow; row++) {
-                    var cell: GridCell = new GridCell();
+                    var cell: GridCell = new GridCell();                    
                     cell.Text(this.DataManager.GetCellValue(col, row));              
                     cell.Left(new CSSNumber(this.SizeManager.GetColLeft(col)))
                     cell.Width(new CSSNumber(this.SizeManager.GetColWidth(col)));
                     cell.Top(new CSSNumber(this.SizeManager.GetRowTop(row)));
                     cell.Height(new CSSNumber(this.SizeManager.GetRowHeight(row)));
-                    this.CellsPanel.Children.Add(cell);
+                    //this.CellsPanel.Children.Add(cell);
+                    cells.Add(cell);
                 }
             }
+            this.CellsPanel.Children.AddRange(cells);
         }
     }
 }

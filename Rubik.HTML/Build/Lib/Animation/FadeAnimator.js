@@ -17,7 +17,7 @@ var Rubik;
         /** Generic fade animator for any control.
             Note: Not guaranteed to work in all situations. Does not force visibility if style sheet specifies hidden.
         */
-        var FadeAnimator = (function () {
+        var FadeAnimator = /** @class */ (function () {
             function FadeAnimator() {
             }
             /** Fades the control in. Clears CSS 'display' and 'visibility' (does not force show).
@@ -58,16 +58,16 @@ var Rubik;
                     }
                 });
             };
+            /** The length of time (milliseconds) to spend fading.
+                Default: 300ms
+            */
+            FadeAnimator.AnimationTime = 300;
+            /** The jQuery animation easing to use
+                Default: swing
+            */
+            FadeAnimator.AnimationEasing = "swing";
             return FadeAnimator;
         }());
-        /** The length of time (milliseconds) to spend fading.
-            Default: 300ms
-        */
-        FadeAnimator.AnimationTime = 300;
-        /** The jQuery animation easing to use
-            Default: swing
-        */
-        FadeAnimator.AnimationEasing = "swing";
         Animation.FadeAnimator = FadeAnimator;
     })(Animation = Rubik.Animation || (Rubik.Animation = {}));
 })(Rubik || (Rubik = {}));

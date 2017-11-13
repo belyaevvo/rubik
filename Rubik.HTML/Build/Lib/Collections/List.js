@@ -20,7 +20,7 @@ var Rubik;
     var Collections;
     (function (Collections) {
         /** A generic IList implementation. */
-        var List = (function () {
+        var List = /** @class */ (function () {
             /** Creates a new list.
                 @param obj OPTIONAL Either: null; a number indicating size of the array to create or an existing array to clone and use as the basis for the new list.
             */
@@ -56,7 +56,7 @@ var Rubik;
                 @param objects The list of objects to be added.
             */
             List.prototype.AddRange = function (objects) {
-                this.items.push(objects.ToArray());
+                this.items.push.apply(this.items, objects.ToArray());
                 this.OnModified.Invoke(new Collections.CollectionModifiedEventArgs(this, Collections.CollectionModifications.Add, objects));
             };
             /** Clears the list of all objects. */

@@ -3,7 +3,7 @@
 
         RowsSize: Object = {};
         ColsSize: Object = {};
-        LastRowOffset: [number,number] = null;
+        LastRowOffset: [number, number] = null;
         LastColOffset: [number, number] = null;
         
 
@@ -86,8 +86,12 @@
             var offset: number = 0;
             var topRow: number = null;
             var bottomRow: number = null;
-            for (var i = 0; i < this._rowsCount; i++) {
+            topRow = (top / this.DefaultRowHeight) | 0;
+            bottomRow = (bottom / this.DefaultRowHeight) | 0  + 1;
+            /*for (var i = 0; i < this._rowsCount; i++) {
                 
+                offset += this.GetRowHeight(i);
+
                 if (offset >= top && topRow == null) {
                     topRow = i;
                 }
@@ -97,8 +101,8 @@
                 if (offset >= bottom) {                    
                     break;
                 }
-                offset += this.GetRowHeight(i);
-            }
+                
+            }*/
             return [topRow,bottomRow];
         }
 
@@ -107,6 +111,8 @@
             var leftCol: number = null;
             var rightCol: number = null;
             for (var i = 0; i < this._colsCount; i++) {
+
+                offset += this.GetColWidth(i);
 
                 if (offset >= left && leftCol == null) {
                     leftCol = i;
@@ -117,7 +123,7 @@
                 if (offset >= right) {
                     break;
                 }
-                offset += this.GetColWidth(i);
+                
             }
             return [leftCol, rightCol];
         }

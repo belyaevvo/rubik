@@ -30,7 +30,7 @@ var Rubik;
             Note: See ClickEvent for sample derived class.
             Note: See List for sample usage.
         */
-        var EventBase = (function () {
+        var EventBase = /** @class */ (function () {
             function EventBase() {
                 /** Private property - do not use externally. Should be overridden in derived classes simply to set the correct EventHandler type. */
                 this.Handlers = [];
@@ -90,7 +90,7 @@ var Rubik;
             Note: An event handler can be attached to multiple events (provided it is unaffected by being attached to that event e.g. not destroyed after one event fires).
             Note: See ClickEventHandler for sample derived class.
         */
-        var EventHandlerBase = (function () {
+        var EventHandlerBase = /** @class */ (function () {
             /** Creates a new EventHandler.
                 @param Callback The function to call when the event handler is invoked.
                 @param Context The context to use when calling the Callback function (sets the value of "this" in the callback function).
@@ -113,7 +113,7 @@ var Rubik;
             Note: See ClickEventArgs for sample derived class.
             Note: See List for sample usage.
         */
-        var EventArgs = (function () {
+        var EventArgs = /** @class */ (function () {
             /** Creates new EventArgs.
                 @param Sender The object which caused this event (or which is passing on an underlying event).
                 Note: Should be overridden in derived classes to add extra properties to the event and more specifically type Sender property.
@@ -124,7 +124,7 @@ var Rubik;
             return EventArgs;
         }());
         Events.EventArgs = EventArgs;
-        var EventHandler = (function (_super) {
+        var EventHandler = /** @class */ (function (_super) {
             __extends(EventHandler, _super);
             function EventHandler(Callback, Context) {
                 var _this = _super.call(this, Callback, Context) || this;
@@ -138,7 +138,7 @@ var Rubik;
             return EventHandler;
         }(EventHandlerBase));
         Events.EventHandler = EventHandler;
-        var Event = (function (_super) {
+        var Event = /** @class */ (function (_super) {
             __extends(Event, _super);
             function Event() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;

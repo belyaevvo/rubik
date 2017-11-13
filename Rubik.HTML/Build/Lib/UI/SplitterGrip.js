@@ -25,7 +25,7 @@ var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var SplitterGrip = (function (_super) {
+        var SplitterGrip = /** @class */ (function (_super) {
             __extends(SplitterGrip, _super);
             function SplitterGrip() {
                 var _this = _super.call(this) || this;

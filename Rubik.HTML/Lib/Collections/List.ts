@@ -70,7 +70,7 @@ module Rubik.Collections
         */
         AddRange(objects: IList<T>): void
         {
-            this.items.push(objects.ToArray());
+            this.items.push.apply(this.items,objects.ToArray());            
             this.OnModified.Invoke(new CollectionModifiedEventArgs(this, CollectionModifications.Add, objects));
         }
         

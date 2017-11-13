@@ -35,7 +35,7 @@ var Rubik;
     var Animation;
     (function (Animation) {
         /** A callback for animation rendering when requestAnimationFrame is answered. */
-        var AnimationCallback = (function () {
+        var AnimationCallback = /** @class */ (function () {
             /** Creates a new Animation Callback.
                 @param callback The function to call when requestAnimationFrame is answered.
                 @param context The context to use when calling callback (sets the value of "this" in callback).
@@ -127,7 +127,7 @@ var Rubik;
         };
         AnimationCallbacks.OnModified.Attach(new Rubik.Collections.CollectionModifiedEventHandler(AnimationCallbacks_Modified, AnimationCallbacks));
         /** Provides functions for animation including preparing and destroying canvases for HTML2Canvas animation. */
-        var AnimationHelper = (function () {
+        var AnimationHelper = /** @class */ (function () {
             function AnimationHelper() {
             }
             /** Takes an jQuery element (must be contained within the actual page DOM) and prepares it for HTML2Cnavas animation.

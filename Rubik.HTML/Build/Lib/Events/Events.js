@@ -35,7 +35,7 @@ var Rubik;
         */
         //#region Click Event
         /** See Event for more details. */
-        var ClickEvent = (function (_super) {
+        var ClickEvent = /** @class */ (function (_super) {
             __extends(ClickEvent, _super);
             function ClickEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -43,7 +43,7 @@ var Rubik;
             return ClickEvent;
         }(Events.Event));
         Events.ClickEvent = ClickEvent;
-        var ClickEventHandler = (function (_super) {
+        var ClickEventHandler = /** @class */ (function (_super) {
             __extends(ClickEventHandler, _super);
             function ClickEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -52,7 +52,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ClickEventHandler = ClickEventHandler;
         /** See EventArgs for more details. */
-        var ClickEventArgs = (function (_super) {
+        var ClickEventArgs = /** @class */ (function (_super) {
             __extends(ClickEventArgs, _super);
             function ClickEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -66,7 +66,7 @@ var Rubik;
         //#endregion
         //#region Mouse Down Event
         /** See Event for more details. */
-        var MouseDownEvent = (function (_super) {
+        var MouseDownEvent = /** @class */ (function (_super) {
             __extends(MouseDownEvent, _super);
             function MouseDownEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -74,7 +74,7 @@ var Rubik;
             return MouseDownEvent;
         }(Events.Event));
         Events.MouseDownEvent = MouseDownEvent;
-        var MouseDownEventHandler = (function (_super) {
+        var MouseDownEventHandler = /** @class */ (function (_super) {
             __extends(MouseDownEventHandler, _super);
             function MouseDownEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -83,7 +83,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseDownEventHandler = MouseDownEventHandler;
         /** See EventArgs for more details. */
-        var MouseDownEventArgs = (function (_super) {
+        var MouseDownEventArgs = /** @class */ (function (_super) {
             __extends(MouseDownEventArgs, _super);
             function MouseDownEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -97,7 +97,7 @@ var Rubik;
         //#endregion
         //#region Mouse Up Event
         /** See Event for more details. */
-        var MouseUpEvent = (function (_super) {
+        var MouseUpEvent = /** @class */ (function (_super) {
             __extends(MouseUpEvent, _super);
             function MouseUpEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -105,7 +105,7 @@ var Rubik;
             return MouseUpEvent;
         }(Events.Event));
         Events.MouseUpEvent = MouseUpEvent;
-        var MouseUpEventHandler = (function (_super) {
+        var MouseUpEventHandler = /** @class */ (function (_super) {
             __extends(MouseUpEventHandler, _super);
             function MouseUpEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -114,7 +114,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseUpEventHandler = MouseUpEventHandler;
         /** See EventArgs for more details. */
-        var MouseUpEventArgs = (function (_super) {
+        var MouseUpEventArgs = /** @class */ (function (_super) {
             __extends(MouseUpEventArgs, _super);
             function MouseUpEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -128,7 +128,7 @@ var Rubik;
         //#endregion
         //#region Mouse Move Event
         /** See Event for more details. */
-        var MouseMoveEvent = (function (_super) {
+        var MouseMoveEvent = /** @class */ (function (_super) {
             __extends(MouseMoveEvent, _super);
             function MouseMoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -136,7 +136,7 @@ var Rubik;
             return MouseMoveEvent;
         }(Events.Event));
         Events.MouseMoveEvent = MouseMoveEvent;
-        var MouseMoveEventHandler = (function (_super) {
+        var MouseMoveEventHandler = /** @class */ (function (_super) {
             __extends(MouseMoveEventHandler, _super);
             function MouseMoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -145,7 +145,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseMoveEventHandler = MouseMoveEventHandler;
         /** See EventArgs for more details. */
-        var MouseMoveEventArgs = (function (_super) {
+        var MouseMoveEventArgs = /** @class */ (function (_super) {
             __extends(MouseMoveEventArgs, _super);
             function MouseMoveEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -159,7 +159,7 @@ var Rubik;
         //#endregion
         //#region Splitter Move Event
         /** See Event for more details. */
-        var SplitterMoveEvent = (function (_super) {
+        var SplitterMoveEvent = /** @class */ (function (_super) {
             __extends(SplitterMoveEvent, _super);
             function SplitterMoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -167,7 +167,7 @@ var Rubik;
             return SplitterMoveEvent;
         }(Events.Event));
         Events.SplitterMoveEvent = SplitterMoveEvent;
-        var SplitterMoveEventHandler = (function (_super) {
+        var SplitterMoveEventHandler = /** @class */ (function (_super) {
             __extends(SplitterMoveEventHandler, _super);
             function SplitterMoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -176,7 +176,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.SplitterMoveEventHandler = SplitterMoveEventHandler;
         /** See EventArgs for more details. */
-        var SplitterMoveEventArgs = (function (_super) {
+        var SplitterMoveEventArgs = /** @class */ (function (_super) {
             __extends(SplitterMoveEventArgs, _super);
             function SplitterMoveEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -189,7 +189,7 @@ var Rubik;
         //#endregion
         //#region Splitter Orientation Changed Event
         /** See Event for more details. */
-        var OrientationChangedEvent = (function (_super) {
+        var OrientationChangedEvent = /** @class */ (function (_super) {
             __extends(OrientationChangedEvent, _super);
             function OrientationChangedEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -197,7 +197,7 @@ var Rubik;
             return OrientationChangedEvent;
         }(Events.Event));
         Events.OrientationChangedEvent = OrientationChangedEvent;
-        var OrientationChangedEventHandler = (function (_super) {
+        var OrientationChangedEventHandler = /** @class */ (function (_super) {
             __extends(OrientationChangedEventHandler, _super);
             function OrientationChangedEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -206,7 +206,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.OrientationChangedEventHandler = OrientationChangedEventHandler;
         /** See EventArgs for more details. */
-        var OrientationChangedEventArgs = (function (_super) {
+        var OrientationChangedEventArgs = /** @class */ (function (_super) {
             __extends(OrientationChangedEventArgs, _super);
             function OrientationChangedEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -219,7 +219,7 @@ var Rubik;
         //#endregion
         //#region Resize Event
         /** See Event for more details. */
-        var ResizeEvent = (function (_super) {
+        var ResizeEvent = /** @class */ (function (_super) {
             __extends(ResizeEvent, _super);
             function ResizeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -227,7 +227,7 @@ var Rubik;
             return ResizeEvent;
         }(Events.Event));
         Events.ResizeEvent = ResizeEvent;
-        var ResizeEventHandler = (function (_super) {
+        var ResizeEventHandler = /** @class */ (function (_super) {
             __extends(ResizeEventHandler, _super);
             function ResizeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -236,7 +236,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ResizeEventHandler = ResizeEventHandler;
         /** See EventArgs for more details. */
-        var ResizeEventArgs = (function (_super) {
+        var ResizeEventArgs = /** @class */ (function (_super) {
             __extends(ResizeEventArgs, _super);
             function ResizeEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -250,7 +250,7 @@ var Rubik;
         //#endregion
         //#region Move Event
         /** See Event for more details. */
-        var MoveEvent = (function (_super) {
+        var MoveEvent = /** @class */ (function (_super) {
             __extends(MoveEvent, _super);
             function MoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -258,7 +258,7 @@ var Rubik;
             return MoveEvent;
         }(Events.Event));
         Events.MoveEvent = MoveEvent;
-        var MoveEventHandler = (function (_super) {
+        var MoveEventHandler = /** @class */ (function (_super) {
             __extends(MoveEventHandler, _super);
             function MoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -267,7 +267,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MoveEventHandler = MoveEventHandler;
         /** See EventArgs for more details. */
-        var MoveEventArgs = (function (_super) {
+        var MoveEventArgs = /** @class */ (function (_super) {
             __extends(MoveEventArgs, _super);
             function MoveEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -281,7 +281,7 @@ var Rubik;
         //#endregion
         //#region Checked Change Event
         /** See Event for more details. */
-        var CheckedChangeEvent = (function (_super) {
+        var CheckedChangeEvent = /** @class */ (function (_super) {
             __extends(CheckedChangeEvent, _super);
             function CheckedChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -289,7 +289,7 @@ var Rubik;
             return CheckedChangeEvent;
         }(Events.Event));
         Events.CheckedChangeEvent = CheckedChangeEvent;
-        var CheckedChangeEventHandler = (function (_super) {
+        var CheckedChangeEventHandler = /** @class */ (function (_super) {
             __extends(CheckedChangeEventHandler, _super);
             function CheckedChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -298,7 +298,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.CheckedChangeEventHandler = CheckedChangeEventHandler;
         /** See EventArgs for more details. */
-        var CheckedChangeEventArgs = (function (_super) {
+        var CheckedChangeEventArgs = /** @class */ (function (_super) {
             __extends(CheckedChangeEventArgs, _super);
             function CheckedChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -311,7 +311,7 @@ var Rubik;
         //#endregion
         //#region Text Change Event
         /** See Event for more details. */
-        var TextChangeEvent = (function (_super) {
+        var TextChangeEvent = /** @class */ (function (_super) {
             __extends(TextChangeEvent, _super);
             function TextChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -319,7 +319,7 @@ var Rubik;
             return TextChangeEvent;
         }(Events.Event));
         Events.TextChangeEvent = TextChangeEvent;
-        var TextChangeEventHandler = (function (_super) {
+        var TextChangeEventHandler = /** @class */ (function (_super) {
             __extends(TextChangeEventHandler, _super);
             function TextChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -328,7 +328,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.TextChangeEventHandler = TextChangeEventHandler;
         /** See EventArgs for more details. */
-        var TextChangeEventArgs = (function (_super) {
+        var TextChangeEventArgs = /** @class */ (function (_super) {
             __extends(TextChangeEventArgs, _super);
             function TextChangeEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -342,7 +342,7 @@ var Rubik;
         //#endregion
         //#region Close Event
         /** See Event for more details. */
-        var CloseEvent = (function (_super) {
+        var CloseEvent = /** @class */ (function (_super) {
             __extends(CloseEvent, _super);
             function CloseEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -350,7 +350,7 @@ var Rubik;
             return CloseEvent;
         }(Events.Event));
         Events.CloseEvent = CloseEvent;
-        var CloseEventHandler = (function (_super) {
+        var CloseEventHandler = /** @class */ (function (_super) {
             __extends(CloseEventHandler, _super);
             function CloseEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -359,7 +359,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.CloseEventHandler = CloseEventHandler;
         /** See EventArgs for more details. */
-        var CloseEventArgs = (function (_super) {
+        var CloseEventArgs = /** @class */ (function (_super) {
             __extends(CloseEventArgs, _super);
             function CloseEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -372,7 +372,7 @@ var Rubik;
         //#endregion
         //#region Show Event
         /** See Event for more details. */
-        var ShowEvent = (function (_super) {
+        var ShowEvent = /** @class */ (function (_super) {
             __extends(ShowEvent, _super);
             function ShowEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -380,7 +380,7 @@ var Rubik;
             return ShowEvent;
         }(Events.Event));
         Events.ShowEvent = ShowEvent;
-        var ShowEventHandler = (function (_super) {
+        var ShowEventHandler = /** @class */ (function (_super) {
             __extends(ShowEventHandler, _super);
             function ShowEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -389,7 +389,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ShowEventHandler = ShowEventHandler;
         /** See EventArgs for more details. */
-        var ShowEventArgs = (function (_super) {
+        var ShowEventArgs = /** @class */ (function (_super) {
             __extends(ShowEventArgs, _super);
             function ShowEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -402,7 +402,7 @@ var Rubik;
         //#endregion
         //#region Hide Event
         /** See Event for more details. */
-        var HideEvent = (function (_super) {
+        var HideEvent = /** @class */ (function (_super) {
             __extends(HideEvent, _super);
             function HideEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -410,7 +410,7 @@ var Rubik;
             return HideEvent;
         }(Events.Event));
         Events.HideEvent = HideEvent;
-        var HideEventHandler = (function (_super) {
+        var HideEventHandler = /** @class */ (function (_super) {
             __extends(HideEventHandler, _super);
             function HideEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -419,7 +419,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.HideEventHandler = HideEventHandler;
         /** See EventArgs for more details. */
-        var HideEventArgs = (function (_super) {
+        var HideEventArgs = /** @class */ (function (_super) {
             __extends(HideEventArgs, _super);
             function HideEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -432,7 +432,7 @@ var Rubik;
         //#endregion
         //#region Focus Event
         /** See Event for more details. */
-        var FocusEvent = (function (_super) {
+        var FocusEvent = /** @class */ (function (_super) {
             __extends(FocusEvent, _super);
             function FocusEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -440,7 +440,7 @@ var Rubik;
             return FocusEvent;
         }(Events.Event));
         Events.FocusEvent = FocusEvent;
-        var FocusEventHandler = (function (_super) {
+        var FocusEventHandler = /** @class */ (function (_super) {
             __extends(FocusEventHandler, _super);
             function FocusEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -451,7 +451,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var FocusEventArgs = (function (_super) {
+        var FocusEventArgs = /** @class */ (function (_super) {
             __extends(FocusEventArgs, _super);
             function FocusEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -466,7 +466,7 @@ var Rubik;
         //#endregion
         //#region Blur Event
         /** See Event for more details. */
-        var BlurEvent = (function (_super) {
+        var BlurEvent = /** @class */ (function (_super) {
             __extends(BlurEvent, _super);
             function BlurEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -474,7 +474,7 @@ var Rubik;
             return BlurEvent;
         }(Events.Event));
         Events.BlurEvent = BlurEvent;
-        var BlurEventHandler = (function (_super) {
+        var BlurEventHandler = /** @class */ (function (_super) {
             __extends(BlurEventHandler, _super);
             function BlurEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -485,7 +485,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var BlurEventArgs = (function (_super) {
+        var BlurEventArgs = /** @class */ (function (_super) {
             __extends(BlurEventArgs, _super);
             function BlurEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -500,7 +500,7 @@ var Rubik;
         //#endregion
         //#region Key Down Event
         /** See Event for more details. */
-        var KeyDownEvent = (function (_super) {
+        var KeyDownEvent = /** @class */ (function (_super) {
             __extends(KeyDownEvent, _super);
             function KeyDownEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -508,7 +508,7 @@ var Rubik;
             return KeyDownEvent;
         }(Events.Event));
         Events.KeyDownEvent = KeyDownEvent;
-        var KeyDownEventHandler = (function (_super) {
+        var KeyDownEventHandler = /** @class */ (function (_super) {
             __extends(KeyDownEventHandler, _super);
             function KeyDownEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -519,7 +519,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyDownEventArgs = (function (_super) {
+        var KeyDownEventArgs = /** @class */ (function (_super) {
             __extends(KeyDownEventArgs, _super);
             function KeyDownEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -534,7 +534,7 @@ var Rubik;
         //#endregion
         //#region Key Press Event
         /** See Event for more details. */
-        var KeyPressEvent = (function (_super) {
+        var KeyPressEvent = /** @class */ (function (_super) {
             __extends(KeyPressEvent, _super);
             function KeyPressEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -542,7 +542,7 @@ var Rubik;
             return KeyPressEvent;
         }(Events.Event));
         Events.KeyPressEvent = KeyPressEvent;
-        var KeyPressEventHandler = (function (_super) {
+        var KeyPressEventHandler = /** @class */ (function (_super) {
             __extends(KeyPressEventHandler, _super);
             function KeyPressEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -553,7 +553,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyPressEventArgs = (function (_super) {
+        var KeyPressEventArgs = /** @class */ (function (_super) {
             __extends(KeyPressEventArgs, _super);
             function KeyPressEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -568,7 +568,7 @@ var Rubik;
         //#endregion
         //#region Key Up Event
         /** See Event for more details. */
-        var KeyUpEvent = (function (_super) {
+        var KeyUpEvent = /** @class */ (function (_super) {
             __extends(KeyUpEvent, _super);
             function KeyUpEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -576,7 +576,7 @@ var Rubik;
             return KeyUpEvent;
         }(Events.Event));
         Events.KeyUpEvent = KeyUpEvent;
-        var KeyUpEventHandler = (function (_super) {
+        var KeyUpEventHandler = /** @class */ (function (_super) {
             __extends(KeyUpEventHandler, _super);
             function KeyUpEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -587,7 +587,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyUpEventArgs = (function (_super) {
+        var KeyUpEventArgs = /** @class */ (function (_super) {
             __extends(KeyUpEventArgs, _super);
             function KeyUpEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -602,7 +602,7 @@ var Rubik;
         //#endregion
         //#region Selected Index Change Event
         /** See Event for more details. */
-        var SelectedIndexChangeEvent = (function (_super) {
+        var SelectedIndexChangeEvent = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEvent, _super);
             function SelectedIndexChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -610,7 +610,7 @@ var Rubik;
             return SelectedIndexChangeEvent;
         }(Events.Event));
         Events.SelectedIndexChangeEvent = SelectedIndexChangeEvent;
-        var SelectedIndexChangeEventHandler = (function (_super) {
+        var SelectedIndexChangeEventHandler = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEventHandler, _super);
             function SelectedIndexChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -619,7 +619,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.SelectedIndexChangeEventHandler = SelectedIndexChangeEventHandler;
         /** See EventArgs for more details. */
-        var SelectedIndexChangeEventArgs = (function (_super) {
+        var SelectedIndexChangeEventArgs = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEventArgs, _super);
             function SelectedIndexChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -632,7 +632,7 @@ var Rubik;
         //#endregion
         //#region Value Change Event
         /** See Event for more details. */
-        var ValueChangeEvent = (function (_super) {
+        var ValueChangeEvent = /** @class */ (function (_super) {
             __extends(ValueChangeEvent, _super);
             function ValueChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -640,7 +640,7 @@ var Rubik;
             return ValueChangeEvent;
         }(Events.Event));
         Events.ValueChangeEvent = ValueChangeEvent;
-        var ValueChangeEventHandler = (function (_super) {
+        var ValueChangeEventHandler = /** @class */ (function (_super) {
             __extends(ValueChangeEventHandler, _super);
             function ValueChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -649,7 +649,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ValueChangeEventHandler = ValueChangeEventHandler;
         /** See EventArgs for more details. */
-        var ValueChangeEventArgs = (function (_super) {
+        var ValueChangeEventArgs = /** @class */ (function (_super) {
             __extends(ValueChangeEventArgs, _super);
             function ValueChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -662,7 +662,7 @@ var Rubik;
         //#endregion
         //#region Name Change Event
         /** See Event for more details. */
-        var NameChangeEvent = (function (_super) {
+        var NameChangeEvent = /** @class */ (function (_super) {
             __extends(NameChangeEvent, _super);
             function NameChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -670,7 +670,7 @@ var Rubik;
             return NameChangeEvent;
         }(Events.Event));
         Events.NameChangeEvent = NameChangeEvent;
-        var NameChangeEventHandler = (function (_super) {
+        var NameChangeEventHandler = /** @class */ (function (_super) {
             __extends(NameChangeEventHandler, _super);
             function NameChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -679,7 +679,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.NameChangeEventHandler = NameChangeEventHandler;
         /** See EventArgs for more details. */
-        var NameChangeEventArgs = (function (_super) {
+        var NameChangeEventArgs = /** @class */ (function (_super) {
             __extends(NameChangeEventArgs, _super);
             function NameChangeEventArgs(Sender, oldName) {
                 var _this = _super.call(this, Sender) || this;
@@ -693,7 +693,7 @@ var Rubik;
         //#endregion
         //#region Selection Made Event
         /** See Event for more details. */
-        var SelectionMadeEvent = (function (_super) {
+        var SelectionMadeEvent = /** @class */ (function (_super) {
             __extends(SelectionMadeEvent, _super);
             function SelectionMadeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -701,7 +701,7 @@ var Rubik;
             return SelectionMadeEvent;
         }(Events.Event));
         Events.SelectionMadeEvent = SelectionMadeEvent;
-        var SelectionMadeEventHandler = (function (_super) {
+        var SelectionMadeEventHandler = /** @class */ (function (_super) {
             __extends(SelectionMadeEventHandler, _super);
             function SelectionMadeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -712,7 +712,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var SelectionMadeEventArgs = (function (_super) {
+        var SelectionMadeEventArgs = /** @class */ (function (_super) {
             __extends(SelectionMadeEventArgs, _super);
             function SelectionMadeEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -725,6 +725,34 @@ var Rubik;
         }(Events.EventArgs));
         Events.SelectionMadeEventArgs = SelectionMadeEventArgs;
         //#endregion
+        var JQueryEvent = /** @class */ (function (_super) {
+            __extends(JQueryEvent, _super);
+            function JQueryEvent() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return JQueryEvent;
+        }(Events.Event));
+        Events.JQueryEvent = JQueryEvent;
+        var JQueryEventHandler = /** @class */ (function (_super) {
+            __extends(JQueryEventHandler, _super);
+            function JQueryEventHandler() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return JQueryEventHandler;
+        }(Events.EventHandler));
+        Events.JQueryEventHandler = JQueryEventHandler;
+        var JQueryEventArgs = /** @class */ (function (_super) {
+            __extends(JQueryEventArgs, _super);
+            function JQueryEventArgs(Sender, jqEvent) {
+                if (jqEvent === void 0) { jqEvent = null; }
+                var _this = _super.call(this, Sender) || this;
+                _this.Sender = Sender;
+                _this.jqEvent = jqEvent;
+                return _this;
+            }
+            return JQueryEventArgs;
+        }(Events.EventArgs));
+        Events.JQueryEventArgs = JQueryEventArgs;
     })(Events = Rubik.Events || (Rubik.Events = {}));
 })(Rubik || (Rubik = {}));
 //# sourceMappingURL=Events.js.map

@@ -25,7 +25,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** An incorrect type exception. Automatically adds descriptive information in the constructor. */
-        var IncorrectTypeException = (function (_super) {
+        var IncorrectTypeException = /** @class */ (function (_super) {
             __extends(IncorrectTypeException, _super);
             /** Creates a new ArgumentException instance with specified information. Automatically adds descriptive information about this particular
             type of exception.

@@ -1,10 +1,10 @@
 ﻿module Rubik.UI {
     export class DataManager {
         GetColsCount(): number {
-            return 1;
+            return 20;
         }
         GetRowsCount(): number {
-            return 256;
+            return 100000;
         }
         GetCellValue(col: number, row: number): string {
             return col.toString() + "," + row.toString();

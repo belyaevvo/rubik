@@ -3,7 +3,7 @@
 /// <reference path="Lib/UI/SplitContainer.ts"/>
 /// <reference path="Lib/UI/Grid/Grid.ts"/>
 /// <reference path="Scripts/typings/jquery/jquery.d.ts"/>
-var MyApp = (function () {
+var MyApp = /** @class */ (function () {
     function MyApp() {
         this.MainContainer = null;
         this.StartArgs = null;
@@ -17,6 +17,8 @@ var MyApp = (function () {
         var panel1 = new Rubik.UI.Panel();
         var panel2 = new Rubik.UI.Panel();
         var grid = new Rubik.UI.Grid();
+        grid.Height(new Rubik.UI.CSSNumber(100, "%"));
+        grid.Width(new Rubik.UI.CSSNumber(100, "%"));
         panel2.Children.Add(grid);
         splitter.Panel1.Children.Add(panel1);
         splitter.Panel2.Children.Add(panel2);

@@ -244,7 +244,7 @@ var Rubik;
     var Collections;
     (function (Collections) {
         /** A comparer which compares the results of calling ToString on the specified objects.*/
-        var ToStringComparer = (function () {
+        var ToStringComparer = /** @class */ (function () {
             function ToStringComparer() {
             }
             /** Compares two objects by comparing the result of calling ToString on them.
@@ -277,7 +277,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** A generic exception implementation. All exception implementations should derive from this. */
-        var Exception = (function () {
+        var Exception = /** @class */ (function () {
             /** Creates a new Exception instance with specified information.
                 @param Message The message to describe the exception.
                 @param Trace The origin of the exception
@@ -320,7 +320,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** An argument exception. Automatically adds descriptive information in the constructor. */
-        var ArgumentException = (function (_super) {
+        var ArgumentException = /** @class */ (function (_super) {
             __extends(ArgumentException, _super);
             /** Creates a new ArgumentException instance with specified information. Automatically adds descriptive information about this particular
             type of exception.
@@ -361,7 +361,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** An incorrect type exception. Automatically adds descriptive information in the constructor. */
-        var IncorrectTypeException = (function (_super) {
+        var IncorrectTypeException = /** @class */ (function (_super) {
             __extends(IncorrectTypeException, _super);
             /** Creates a new ArgumentException instance with specified information. Automatically adds descriptive information about this particular
             type of exception.
@@ -439,7 +439,7 @@ var Rubik;
             Note: See ClickEvent for sample derived class.
             Note: See List for sample usage.
         */
-        var EventBase = (function () {
+        var EventBase = /** @class */ (function () {
             function EventBase() {
                 /** Private property - do not use externally. Should be overridden in derived classes simply to set the correct EventHandler type. */
                 this.Handlers = [];
@@ -499,7 +499,7 @@ var Rubik;
             Note: An event handler can be attached to multiple events (provided it is unaffected by being attached to that event e.g. not destroyed after one event fires).
             Note: See ClickEventHandler for sample derived class.
         */
-        var EventHandlerBase = (function () {
+        var EventHandlerBase = /** @class */ (function () {
             /** Creates a new EventHandler.
                 @param Callback The function to call when the event handler is invoked.
                 @param Context The context to use when calling the Callback function (sets the value of "this" in the callback function).
@@ -522,7 +522,7 @@ var Rubik;
             Note: See ClickEventArgs for sample derived class.
             Note: See List for sample usage.
         */
-        var EventArgs = (function () {
+        var EventArgs = /** @class */ (function () {
             /** Creates new EventArgs.
                 @param Sender The object which caused this event (or which is passing on an underlying event).
                 Note: Should be overridden in derived classes to add extra properties to the event and more specifically type Sender property.
@@ -533,7 +533,7 @@ var Rubik;
             return EventArgs;
         }());
         Events.EventArgs = EventArgs;
-        var EventHandler = (function (_super) {
+        var EventHandler = /** @class */ (function (_super) {
             __extends(EventHandler, _super);
             function EventHandler(Callback, Context) {
                 var _this = _super.call(this, Callback, Context) || this;
@@ -547,7 +547,7 @@ var Rubik;
             return EventHandler;
         }(EventHandlerBase));
         Events.EventHandler = EventHandler;
-        var Event = (function (_super) {
+        var Event = /** @class */ (function (_super) {
             __extends(Event, _super);
             function Event() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -594,7 +594,7 @@ var Rubik;
         /** Event to be fired when a collection (e.g. IList) is modified e.g. added to, removed from, re-ordered.
             Note: This event has been put into a separate class ro prevent reference loops with Collections namespace that result in compiler failures/errors.
          */
-        var CollectionModifiedEvent = (function (_super) {
+        var CollectionModifiedEvent = /** @class */ (function (_super) {
             __extends(CollectionModifiedEvent, _super);
             function CollectionModifiedEvent() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -616,7 +616,7 @@ var Rubik;
             return CollectionModifiedEvent;
         }(Rubik.Events.Event));
         Collections.CollectionModifiedEvent = CollectionModifiedEvent;
-        var CollectionModifiedEventHandler = (function (_super) {
+        var CollectionModifiedEventHandler = /** @class */ (function (_super) {
             __extends(CollectionModifiedEventHandler, _super);
             function CollectionModifiedEventHandler(Callback, Context) {
                 var _this = _super.call(this, Callback, Context) || this;
@@ -630,7 +630,7 @@ var Rubik;
             return CollectionModifiedEventHandler;
         }(Rubik.Events.EventHandler));
         Collections.CollectionModifiedEventHandler = CollectionModifiedEventHandler;
-        var CollectionModifiedEventArgs = (function (_super) {
+        var CollectionModifiedEventArgs = /** @class */ (function (_super) {
             __extends(CollectionModifiedEventArgs, _super);
             function CollectionModifiedEventArgs(Sender, Modification, ModifiedElements) {
                 var _this = _super.call(this, Sender) || this;
@@ -666,7 +666,7 @@ var Rubik;
     var Collections;
     (function (Collections) {
         /** A generic IList implementation. */
-        var List = (function () {
+        var List = /** @class */ (function () {
             /** Creates a new list.
                 @param obj OPTIONAL Either: null; a number indicating size of the array to create or an existing array to clone and use as the basis for the new list.
             */
@@ -702,7 +702,7 @@ var Rubik;
                 @param objects The list of objects to be added.
             */
             List.prototype.AddRange = function (objects) {
-                this.items.push(objects.ToArray());
+                this.items.push.apply(this.items, objects.ToArray());
                 this.OnModified.Invoke(new Collections.CollectionModifiedEventArgs(this, Collections.CollectionModifications.Add, objects));
             };
             /** Clears the list of all objects. */
@@ -862,6 +862,200 @@ var Rubik;
     })(Collections = Rubik.Collections || (Rubik.Collections = {}));
 })(Rubik || (Rubik = {}));
 /*
+Copyright © Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+ - 5/Sep/13 : Bug fix: requestAnimationFrame was defined in Android browser when cancelAnimationFrame wasn't causing fatal error.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="../Collections/Collections_BuildRefs.d.ts" />
+/// <reference path="../../Scripts/typings/jquery/jquery.d.ts" />
+/// <reference path="../../Scripts/typings/html2canvas/html2canvas.d.ts" />
+/* Standardises requestAnimationFrame and cancelAnimationFrame */
+/*(function ()
+{
+    var requestAnimationFrame = (<any>window).requestAnimationFrame || (<any>window).mozRequestAnimationFrame ||
+                                (<any>window).webkitRequestAnimationFrame || window.msRequestAnimationFrame || (<any>window).oRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+    
+    var cancelAnimationFrame = (<any>window).cancelAnimationFrame || (<any>window).mozCancelAnimationFrame ||
+                                (<any>window).webkitCancelAnimationFrame || window.msCancelRequestAnimationFrame || (<any>window).oCancelRequestAnimationFrame;
+    window.cancelAnimationFrame = cancelAnimationFrame;
+
+    if (!window.requestAnimationFrame || !window.cancelAnimationFrame)
+    {
+        window.requestAnimationFrame = undefined;
+        window.cancelAnimationFrame = undefined;
+    }
+})();*/
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** A callback for animation rendering when requestAnimationFrame is answered. */
+        var AnimationCallback = /** @class */ (function () {
+            /** Creates a new Animation Callback.
+                @param callback The function to call when requestAnimationFrame is answered.
+                @param context The context to use when calling callback (sets the value of "this" in callback).
+                @param single Indicates whether the callback should occur once or should repeat.
+            */
+            function AnimationCallback(callback, context, single) {
+                if (single === void 0) { single = false; }
+                this.callback = callback;
+                this.context = context;
+                this.single = single;
+                /** The time at which animation began i.e. the time at which the first invoke of the callback occurred. */
+                this.AnimationStartTime = -1;
+            }
+            return AnimationCallback;
+        }());
+        Animation.AnimationCallback = AnimationCallback;
+        /** The interval reference used when simulating request animation frame. */
+        var AnimationIntervalRef = -1;
+        /** The list of animation callbacks to invoke when requestAnimationFrame is answered. */
+        var AnimationCallbacks = new Rubik.Collections.List();
+        /** Adds an animation callback to the list of animation callbacks. */
+        Animation.RegisterAnimationCallback = function (obj) {
+            AnimationCallbacks.Add(obj);
+            return obj;
+        };
+        /** Adds an animation callback to the list of animation callbacks to be invoked only once. */
+        Animation.RegisterAnimationForSingleCallback = function (obj) {
+            obj.single = true;
+            AnimationCallbacks.Add(obj);
+            return obj;
+        };
+        /** Removes an animation callback to the list of animation callbacks. */
+        Animation.UnregisterAnimationCallback = function (obj) {
+            AnimationCallbacks.Remove(obj);
+            return obj;
+        };
+        /** Called when the list of animation callbacks is modified. */
+        var AnimationCallbacks_Modified = function (eventArgs) {
+            if (AnimationCallbacks.Count() === 0) {
+                if (AnimationIntervalRef !== -1) {
+                    if (window.requestAnimationFrame && window.cancelAnimationFrame) {
+                        window.cancelAnimationFrame(AnimationIntervalRef);
+                        AnimationIntervalRef = -1;
+                    }
+                    else {
+                        clearInterval(AnimationIntervalRef);
+                        AnimationIntervalRef = -1;
+                    }
+                }
+            }
+            else {
+                if (AnimationIntervalRef === -1) {
+                    if (window.requestAnimationFrame && window.cancelAnimationFrame) {
+                        AnimationIntervalRef = window.requestAnimationFrame(AnimationIntervaFunc);
+                    }
+                    else {
+                        AnimationIntervalRef = setInterval(AnimationIntervaFunc, 150);
+                    }
+                }
+            }
+        };
+        /** Called when requestAnimationFrame (or its simulation) is answered. */
+        var AnimationIntervaFunc = function () {
+            var elems = AnimationCallbacks.ToArray();
+            var elapsedTime = -1;
+            var removeElems = new Rubik.Collections.List();
+            var doRemove = false;
+            for (var i = 0; i < elems.length; i++) {
+                var callback = elems[i];
+                if (callback.AnimationStartTime === -1) {
+                    callback.AnimationStartTime = Date.now();
+                }
+                elapsedTime = Date.now() - callback.AnimationStartTime;
+                callback.callback.call(elems[i].context, elapsedTime);
+                if (callback.single) {
+                    removeElems.Add(elems[i]);
+                    doRemove = true;
+                }
+            }
+            if (doRemove) {
+                AnimationCallbacks.RemoveAll(removeElems);
+            }
+            if (window.requestAnimationFrame) {
+                AnimationIntervalRef = window.requestAnimationFrame(AnimationIntervaFunc);
+            }
+            else {
+                $("body").css({ zIndex: $("body").css("z-index") === "1" ? 0 : 1 });
+            }
+        };
+        AnimationCallbacks.OnModified.Attach(new Rubik.Collections.CollectionModifiedEventHandler(AnimationCallbacks_Modified, AnimationCallbacks));
+        /** Provides functions for animation including preparing and destroying canvases for HTML2Canvas animation. */
+        var AnimationHelper = /** @class */ (function () {
+            function AnimationHelper() {
+            }
+            /** Takes an jQuery element (must be contained within the actual page DOM) and prepares it for HTML2Cnavas animation.
+                It does not overlay the canvas on top of the original element but does attempt to position it so it can be faded in.
+                Calls the callback once the canvas has been generated.
+                @param elem The element to generate an image of.
+                @param callback The callback to invoke once the canvas has been generated. Context is not retained.
+            */
+            AnimationHelper.PrepareHTML2CanvasForAnimation = function (elem, callback) {
+                var elems = elem.find("*").not(".Hidden");
+                elem.attr("data-html2canvas-visible", "");
+                elems.attr("data-html2canvas-visible", "");
+                html2canvas(elem.get(0)).then(function (canvas) {
+                    var newCanvas = $(canvas);
+                    newCanvas.css({
+                        position: "absolute",
+                        top: elem.offset().top,
+                        left: elem.offset().left,
+                        zIndex: elem.css("z-index"),
+                        display: "none"
+                    });
+                    $("body").append(newCanvas);
+                    elem.removeAttr("data-html2canvas-visible");
+                    elems.removeAttr("data-html2canvas-visible");
+                    callback(newCanvas);
+                });
+            };
+            /** Restores the original element after HTML2Canvas is no longer required.
+                Fades in the element over the top of the canvas then quickly fades out the canvas from underneath.
+                Canvas is then destroyed.
+                @param elem The element (JQuery reference) to restore.
+                @param canvas The canvas (JQuery reference) that is an image of the element. Must already be positioned on top of the element.
+            */
+            AnimationHelper.RestoreAfterAnimationHTML2Canvas = function (elem, canvas) {
+                var zIndex = parseInt(canvas.css("z-index"), 10);
+                canvas.css({ opacity: 1, zIndex: zIndex });
+                elem.css({
+                    display: "",
+                    opacity: 0,
+                    visibility: "visible",
+                    zIndex: zIndex + 2
+                })
+                    .animate({
+                    opacity: 1
+                }, 500, "swing", function () {
+                    elem.css({
+                        opacity: 1
+                    });
+                    canvas.animate({
+                        opacity: 0
+                    }, 500, "swing", function () {
+                        canvas.css("display", "none");
+                        canvas.remove();
+                        elem.css({
+                            zIndex: zIndex
+                        });
+                    });
+                });
+            };
+            return AnimationHelper;
+        }());
+        Animation.AnimationHelper = AnimationHelper;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
 Date: Jul 8 18:31 2013
@@ -879,7 +1073,7 @@ var Rubik;
         /** Represents a CSS number value e.g. 10px, 10% or 'auto'.
             Also provides static methods for converting from CSS string to CSSNumber.
         */
-        var CSSNumber = (function () {
+        var CSSNumber = /** @class */ (function () {
             /** Creates a new CSSNumber with specified value and units.
                 @param Value The value of the number (irrelevant if auto is set - see auto param)
                 @param Units OPTIONAL The units of the CSS number - px, % or em. Default: px. (Irrelevant if auto is set - see auto param)
@@ -949,7 +1143,7 @@ var Rubik;
         */
         //#region Click Event
         /** See Event for more details. */
-        var ClickEvent = (function (_super) {
+        var ClickEvent = /** @class */ (function (_super) {
             __extends(ClickEvent, _super);
             function ClickEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -957,7 +1151,7 @@ var Rubik;
             return ClickEvent;
         }(Events.Event));
         Events.ClickEvent = ClickEvent;
-        var ClickEventHandler = (function (_super) {
+        var ClickEventHandler = /** @class */ (function (_super) {
             __extends(ClickEventHandler, _super);
             function ClickEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -966,7 +1160,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ClickEventHandler = ClickEventHandler;
         /** See EventArgs for more details. */
-        var ClickEventArgs = (function (_super) {
+        var ClickEventArgs = /** @class */ (function (_super) {
             __extends(ClickEventArgs, _super);
             function ClickEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -980,7 +1174,7 @@ var Rubik;
         //#endregion
         //#region Mouse Down Event
         /** See Event for more details. */
-        var MouseDownEvent = (function (_super) {
+        var MouseDownEvent = /** @class */ (function (_super) {
             __extends(MouseDownEvent, _super);
             function MouseDownEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -988,7 +1182,7 @@ var Rubik;
             return MouseDownEvent;
         }(Events.Event));
         Events.MouseDownEvent = MouseDownEvent;
-        var MouseDownEventHandler = (function (_super) {
+        var MouseDownEventHandler = /** @class */ (function (_super) {
             __extends(MouseDownEventHandler, _super);
             function MouseDownEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -997,7 +1191,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseDownEventHandler = MouseDownEventHandler;
         /** See EventArgs for more details. */
-        var MouseDownEventArgs = (function (_super) {
+        var MouseDownEventArgs = /** @class */ (function (_super) {
             __extends(MouseDownEventArgs, _super);
             function MouseDownEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1011,7 +1205,7 @@ var Rubik;
         //#endregion
         //#region Mouse Up Event
         /** See Event for more details. */
-        var MouseUpEvent = (function (_super) {
+        var MouseUpEvent = /** @class */ (function (_super) {
             __extends(MouseUpEvent, _super);
             function MouseUpEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1019,7 +1213,7 @@ var Rubik;
             return MouseUpEvent;
         }(Events.Event));
         Events.MouseUpEvent = MouseUpEvent;
-        var MouseUpEventHandler = (function (_super) {
+        var MouseUpEventHandler = /** @class */ (function (_super) {
             __extends(MouseUpEventHandler, _super);
             function MouseUpEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1028,7 +1222,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseUpEventHandler = MouseUpEventHandler;
         /** See EventArgs for more details. */
-        var MouseUpEventArgs = (function (_super) {
+        var MouseUpEventArgs = /** @class */ (function (_super) {
             __extends(MouseUpEventArgs, _super);
             function MouseUpEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1042,7 +1236,7 @@ var Rubik;
         //#endregion
         //#region Mouse Move Event
         /** See Event for more details. */
-        var MouseMoveEvent = (function (_super) {
+        var MouseMoveEvent = /** @class */ (function (_super) {
             __extends(MouseMoveEvent, _super);
             function MouseMoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1050,7 +1244,7 @@ var Rubik;
             return MouseMoveEvent;
         }(Events.Event));
         Events.MouseMoveEvent = MouseMoveEvent;
-        var MouseMoveEventHandler = (function (_super) {
+        var MouseMoveEventHandler = /** @class */ (function (_super) {
             __extends(MouseMoveEventHandler, _super);
             function MouseMoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1059,7 +1253,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MouseMoveEventHandler = MouseMoveEventHandler;
         /** See EventArgs for more details. */
-        var MouseMoveEventArgs = (function (_super) {
+        var MouseMoveEventArgs = /** @class */ (function (_super) {
             __extends(MouseMoveEventArgs, _super);
             function MouseMoveEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1073,7 +1267,7 @@ var Rubik;
         //#endregion
         //#region Splitter Move Event
         /** See Event for more details. */
-        var SplitterMoveEvent = (function (_super) {
+        var SplitterMoveEvent = /** @class */ (function (_super) {
             __extends(SplitterMoveEvent, _super);
             function SplitterMoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1081,7 +1275,7 @@ var Rubik;
             return SplitterMoveEvent;
         }(Events.Event));
         Events.SplitterMoveEvent = SplitterMoveEvent;
-        var SplitterMoveEventHandler = (function (_super) {
+        var SplitterMoveEventHandler = /** @class */ (function (_super) {
             __extends(SplitterMoveEventHandler, _super);
             function SplitterMoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1090,7 +1284,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.SplitterMoveEventHandler = SplitterMoveEventHandler;
         /** See EventArgs for more details. */
-        var SplitterMoveEventArgs = (function (_super) {
+        var SplitterMoveEventArgs = /** @class */ (function (_super) {
             __extends(SplitterMoveEventArgs, _super);
             function SplitterMoveEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1103,7 +1297,7 @@ var Rubik;
         //#endregion
         //#region Splitter Orientation Changed Event
         /** See Event for more details. */
-        var OrientationChangedEvent = (function (_super) {
+        var OrientationChangedEvent = /** @class */ (function (_super) {
             __extends(OrientationChangedEvent, _super);
             function OrientationChangedEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1111,7 +1305,7 @@ var Rubik;
             return OrientationChangedEvent;
         }(Events.Event));
         Events.OrientationChangedEvent = OrientationChangedEvent;
-        var OrientationChangedEventHandler = (function (_super) {
+        var OrientationChangedEventHandler = /** @class */ (function (_super) {
             __extends(OrientationChangedEventHandler, _super);
             function OrientationChangedEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1120,7 +1314,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.OrientationChangedEventHandler = OrientationChangedEventHandler;
         /** See EventArgs for more details. */
-        var OrientationChangedEventArgs = (function (_super) {
+        var OrientationChangedEventArgs = /** @class */ (function (_super) {
             __extends(OrientationChangedEventArgs, _super);
             function OrientationChangedEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1133,7 +1327,7 @@ var Rubik;
         //#endregion
         //#region Resize Event
         /** See Event for more details. */
-        var ResizeEvent = (function (_super) {
+        var ResizeEvent = /** @class */ (function (_super) {
             __extends(ResizeEvent, _super);
             function ResizeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1141,7 +1335,7 @@ var Rubik;
             return ResizeEvent;
         }(Events.Event));
         Events.ResizeEvent = ResizeEvent;
-        var ResizeEventHandler = (function (_super) {
+        var ResizeEventHandler = /** @class */ (function (_super) {
             __extends(ResizeEventHandler, _super);
             function ResizeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1150,7 +1344,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ResizeEventHandler = ResizeEventHandler;
         /** See EventArgs for more details. */
-        var ResizeEventArgs = (function (_super) {
+        var ResizeEventArgs = /** @class */ (function (_super) {
             __extends(ResizeEventArgs, _super);
             function ResizeEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1164,7 +1358,7 @@ var Rubik;
         //#endregion
         //#region Move Event
         /** See Event for more details. */
-        var MoveEvent = (function (_super) {
+        var MoveEvent = /** @class */ (function (_super) {
             __extends(MoveEvent, _super);
             function MoveEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1172,7 +1366,7 @@ var Rubik;
             return MoveEvent;
         }(Events.Event));
         Events.MoveEvent = MoveEvent;
-        var MoveEventHandler = (function (_super) {
+        var MoveEventHandler = /** @class */ (function (_super) {
             __extends(MoveEventHandler, _super);
             function MoveEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1181,7 +1375,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.MoveEventHandler = MoveEventHandler;
         /** See EventArgs for more details. */
-        var MoveEventArgs = (function (_super) {
+        var MoveEventArgs = /** @class */ (function (_super) {
             __extends(MoveEventArgs, _super);
             function MoveEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1195,7 +1389,7 @@ var Rubik;
         //#endregion
         //#region Checked Change Event
         /** See Event for more details. */
-        var CheckedChangeEvent = (function (_super) {
+        var CheckedChangeEvent = /** @class */ (function (_super) {
             __extends(CheckedChangeEvent, _super);
             function CheckedChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1203,7 +1397,7 @@ var Rubik;
             return CheckedChangeEvent;
         }(Events.Event));
         Events.CheckedChangeEvent = CheckedChangeEvent;
-        var CheckedChangeEventHandler = (function (_super) {
+        var CheckedChangeEventHandler = /** @class */ (function (_super) {
             __extends(CheckedChangeEventHandler, _super);
             function CheckedChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1212,7 +1406,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.CheckedChangeEventHandler = CheckedChangeEventHandler;
         /** See EventArgs for more details. */
-        var CheckedChangeEventArgs = (function (_super) {
+        var CheckedChangeEventArgs = /** @class */ (function (_super) {
             __extends(CheckedChangeEventArgs, _super);
             function CheckedChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1225,7 +1419,7 @@ var Rubik;
         //#endregion
         //#region Text Change Event
         /** See Event for more details. */
-        var TextChangeEvent = (function (_super) {
+        var TextChangeEvent = /** @class */ (function (_super) {
             __extends(TextChangeEvent, _super);
             function TextChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1233,7 +1427,7 @@ var Rubik;
             return TextChangeEvent;
         }(Events.Event));
         Events.TextChangeEvent = TextChangeEvent;
-        var TextChangeEventHandler = (function (_super) {
+        var TextChangeEventHandler = /** @class */ (function (_super) {
             __extends(TextChangeEventHandler, _super);
             function TextChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1242,7 +1436,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.TextChangeEventHandler = TextChangeEventHandler;
         /** See EventArgs for more details. */
-        var TextChangeEventArgs = (function (_super) {
+        var TextChangeEventArgs = /** @class */ (function (_super) {
             __extends(TextChangeEventArgs, _super);
             function TextChangeEventArgs(Sender, jqEvent) {
                 var _this = _super.call(this, Sender) || this;
@@ -1256,7 +1450,7 @@ var Rubik;
         //#endregion
         //#region Close Event
         /** See Event for more details. */
-        var CloseEvent = (function (_super) {
+        var CloseEvent = /** @class */ (function (_super) {
             __extends(CloseEvent, _super);
             function CloseEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1264,7 +1458,7 @@ var Rubik;
             return CloseEvent;
         }(Events.Event));
         Events.CloseEvent = CloseEvent;
-        var CloseEventHandler = (function (_super) {
+        var CloseEventHandler = /** @class */ (function (_super) {
             __extends(CloseEventHandler, _super);
             function CloseEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1273,7 +1467,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.CloseEventHandler = CloseEventHandler;
         /** See EventArgs for more details. */
-        var CloseEventArgs = (function (_super) {
+        var CloseEventArgs = /** @class */ (function (_super) {
             __extends(CloseEventArgs, _super);
             function CloseEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1286,7 +1480,7 @@ var Rubik;
         //#endregion
         //#region Show Event
         /** See Event for more details. */
-        var ShowEvent = (function (_super) {
+        var ShowEvent = /** @class */ (function (_super) {
             __extends(ShowEvent, _super);
             function ShowEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1294,7 +1488,7 @@ var Rubik;
             return ShowEvent;
         }(Events.Event));
         Events.ShowEvent = ShowEvent;
-        var ShowEventHandler = (function (_super) {
+        var ShowEventHandler = /** @class */ (function (_super) {
             __extends(ShowEventHandler, _super);
             function ShowEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1303,7 +1497,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ShowEventHandler = ShowEventHandler;
         /** See EventArgs for more details. */
-        var ShowEventArgs = (function (_super) {
+        var ShowEventArgs = /** @class */ (function (_super) {
             __extends(ShowEventArgs, _super);
             function ShowEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1316,7 +1510,7 @@ var Rubik;
         //#endregion
         //#region Hide Event
         /** See Event for more details. */
-        var HideEvent = (function (_super) {
+        var HideEvent = /** @class */ (function (_super) {
             __extends(HideEvent, _super);
             function HideEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1324,7 +1518,7 @@ var Rubik;
             return HideEvent;
         }(Events.Event));
         Events.HideEvent = HideEvent;
-        var HideEventHandler = (function (_super) {
+        var HideEventHandler = /** @class */ (function (_super) {
             __extends(HideEventHandler, _super);
             function HideEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1333,7 +1527,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.HideEventHandler = HideEventHandler;
         /** See EventArgs for more details. */
-        var HideEventArgs = (function (_super) {
+        var HideEventArgs = /** @class */ (function (_super) {
             __extends(HideEventArgs, _super);
             function HideEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1346,7 +1540,7 @@ var Rubik;
         //#endregion
         //#region Focus Event
         /** See Event for more details. */
-        var FocusEvent = (function (_super) {
+        var FocusEvent = /** @class */ (function (_super) {
             __extends(FocusEvent, _super);
             function FocusEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1354,7 +1548,7 @@ var Rubik;
             return FocusEvent;
         }(Events.Event));
         Events.FocusEvent = FocusEvent;
-        var FocusEventHandler = (function (_super) {
+        var FocusEventHandler = /** @class */ (function (_super) {
             __extends(FocusEventHandler, _super);
             function FocusEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1365,7 +1559,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var FocusEventArgs = (function (_super) {
+        var FocusEventArgs = /** @class */ (function (_super) {
             __extends(FocusEventArgs, _super);
             function FocusEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1380,7 +1574,7 @@ var Rubik;
         //#endregion
         //#region Blur Event
         /** See Event for more details. */
-        var BlurEvent = (function (_super) {
+        var BlurEvent = /** @class */ (function (_super) {
             __extends(BlurEvent, _super);
             function BlurEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1388,7 +1582,7 @@ var Rubik;
             return BlurEvent;
         }(Events.Event));
         Events.BlurEvent = BlurEvent;
-        var BlurEventHandler = (function (_super) {
+        var BlurEventHandler = /** @class */ (function (_super) {
             __extends(BlurEventHandler, _super);
             function BlurEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1399,7 +1593,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var BlurEventArgs = (function (_super) {
+        var BlurEventArgs = /** @class */ (function (_super) {
             __extends(BlurEventArgs, _super);
             function BlurEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1414,7 +1608,7 @@ var Rubik;
         //#endregion
         //#region Key Down Event
         /** See Event for more details. */
-        var KeyDownEvent = (function (_super) {
+        var KeyDownEvent = /** @class */ (function (_super) {
             __extends(KeyDownEvent, _super);
             function KeyDownEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1422,7 +1616,7 @@ var Rubik;
             return KeyDownEvent;
         }(Events.Event));
         Events.KeyDownEvent = KeyDownEvent;
-        var KeyDownEventHandler = (function (_super) {
+        var KeyDownEventHandler = /** @class */ (function (_super) {
             __extends(KeyDownEventHandler, _super);
             function KeyDownEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1433,7 +1627,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyDownEventArgs = (function (_super) {
+        var KeyDownEventArgs = /** @class */ (function (_super) {
             __extends(KeyDownEventArgs, _super);
             function KeyDownEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1448,7 +1642,7 @@ var Rubik;
         //#endregion
         //#region Key Press Event
         /** See Event for more details. */
-        var KeyPressEvent = (function (_super) {
+        var KeyPressEvent = /** @class */ (function (_super) {
             __extends(KeyPressEvent, _super);
             function KeyPressEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1456,7 +1650,7 @@ var Rubik;
             return KeyPressEvent;
         }(Events.Event));
         Events.KeyPressEvent = KeyPressEvent;
-        var KeyPressEventHandler = (function (_super) {
+        var KeyPressEventHandler = /** @class */ (function (_super) {
             __extends(KeyPressEventHandler, _super);
             function KeyPressEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1467,7 +1661,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyPressEventArgs = (function (_super) {
+        var KeyPressEventArgs = /** @class */ (function (_super) {
             __extends(KeyPressEventArgs, _super);
             function KeyPressEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1482,7 +1676,7 @@ var Rubik;
         //#endregion
         //#region Key Up Event
         /** See Event for more details. */
-        var KeyUpEvent = (function (_super) {
+        var KeyUpEvent = /** @class */ (function (_super) {
             __extends(KeyUpEvent, _super);
             function KeyUpEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1490,7 +1684,7 @@ var Rubik;
             return KeyUpEvent;
         }(Events.Event));
         Events.KeyUpEvent = KeyUpEvent;
-        var KeyUpEventHandler = (function (_super) {
+        var KeyUpEventHandler = /** @class */ (function (_super) {
             __extends(KeyUpEventHandler, _super);
             function KeyUpEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1501,7 +1695,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var KeyUpEventArgs = (function (_super) {
+        var KeyUpEventArgs = /** @class */ (function (_super) {
             __extends(KeyUpEventArgs, _super);
             function KeyUpEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1516,7 +1710,7 @@ var Rubik;
         //#endregion
         //#region Selected Index Change Event
         /** See Event for more details. */
-        var SelectedIndexChangeEvent = (function (_super) {
+        var SelectedIndexChangeEvent = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEvent, _super);
             function SelectedIndexChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1524,7 +1718,7 @@ var Rubik;
             return SelectedIndexChangeEvent;
         }(Events.Event));
         Events.SelectedIndexChangeEvent = SelectedIndexChangeEvent;
-        var SelectedIndexChangeEventHandler = (function (_super) {
+        var SelectedIndexChangeEventHandler = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEventHandler, _super);
             function SelectedIndexChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1533,7 +1727,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.SelectedIndexChangeEventHandler = SelectedIndexChangeEventHandler;
         /** See EventArgs for more details. */
-        var SelectedIndexChangeEventArgs = (function (_super) {
+        var SelectedIndexChangeEventArgs = /** @class */ (function (_super) {
             __extends(SelectedIndexChangeEventArgs, _super);
             function SelectedIndexChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1546,7 +1740,7 @@ var Rubik;
         //#endregion
         //#region Value Change Event
         /** See Event for more details. */
-        var ValueChangeEvent = (function (_super) {
+        var ValueChangeEvent = /** @class */ (function (_super) {
             __extends(ValueChangeEvent, _super);
             function ValueChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1554,7 +1748,7 @@ var Rubik;
             return ValueChangeEvent;
         }(Events.Event));
         Events.ValueChangeEvent = ValueChangeEvent;
-        var ValueChangeEventHandler = (function (_super) {
+        var ValueChangeEventHandler = /** @class */ (function (_super) {
             __extends(ValueChangeEventHandler, _super);
             function ValueChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1563,7 +1757,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.ValueChangeEventHandler = ValueChangeEventHandler;
         /** See EventArgs for more details. */
-        var ValueChangeEventArgs = (function (_super) {
+        var ValueChangeEventArgs = /** @class */ (function (_super) {
             __extends(ValueChangeEventArgs, _super);
             function ValueChangeEventArgs(Sender) {
                 var _this = _super.call(this, Sender) || this;
@@ -1576,7 +1770,7 @@ var Rubik;
         //#endregion
         //#region Name Change Event
         /** See Event for more details. */
-        var NameChangeEvent = (function (_super) {
+        var NameChangeEvent = /** @class */ (function (_super) {
             __extends(NameChangeEvent, _super);
             function NameChangeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1584,7 +1778,7 @@ var Rubik;
             return NameChangeEvent;
         }(Events.Event));
         Events.NameChangeEvent = NameChangeEvent;
-        var NameChangeEventHandler = (function (_super) {
+        var NameChangeEventHandler = /** @class */ (function (_super) {
             __extends(NameChangeEventHandler, _super);
             function NameChangeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1593,7 +1787,7 @@ var Rubik;
         }(Events.EventHandler));
         Events.NameChangeEventHandler = NameChangeEventHandler;
         /** See EventArgs for more details. */
-        var NameChangeEventArgs = (function (_super) {
+        var NameChangeEventArgs = /** @class */ (function (_super) {
             __extends(NameChangeEventArgs, _super);
             function NameChangeEventArgs(Sender, oldName) {
                 var _this = _super.call(this, Sender) || this;
@@ -1607,7 +1801,7 @@ var Rubik;
         //#endregion
         //#region Selection Made Event
         /** See Event for more details. */
-        var SelectionMadeEvent = (function (_super) {
+        var SelectionMadeEvent = /** @class */ (function (_super) {
             __extends(SelectionMadeEvent, _super);
             function SelectionMadeEvent() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1615,7 +1809,7 @@ var Rubik;
             return SelectionMadeEvent;
         }(Events.Event));
         Events.SelectionMadeEvent = SelectionMadeEvent;
-        var SelectionMadeEventHandler = (function (_super) {
+        var SelectionMadeEventHandler = /** @class */ (function (_super) {
             __extends(SelectionMadeEventHandler, _super);
             function SelectionMadeEventHandler() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1626,7 +1820,7 @@ var Rubik;
         /** See EventArgs for more details.
             Note: jqEvent is optional property. Default value: null.
         */
-        var SelectionMadeEventArgs = (function (_super) {
+        var SelectionMadeEventArgs = /** @class */ (function (_super) {
             __extends(SelectionMadeEventArgs, _super);
             function SelectionMadeEventArgs(Sender, jqEvent) {
                 if (jqEvent === void 0) { jqEvent = null; }
@@ -1639,80 +1833,35 @@ var Rubik;
         }(Events.EventArgs));
         Events.SelectionMadeEventArgs = SelectionMadeEventArgs;
         //#endregion
-    })(Events = Rubik.Events || (Rubik.Events = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Jul 8 18:31 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 8/Jul/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="IAnimator.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Generic fade animator for any control.
-            Note: Not guaranteed to work in all situations. Does not force visibility if style sheet specifies hidden.
-        */
-        var FadeAnimator = (function () {
-            function FadeAnimator() {
+        var JQueryEvent = /** @class */ (function (_super) {
+            __extends(JQueryEvent, _super);
+            function JQueryEvent() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            /** Fades the control in. Clears CSS 'display' and 'visibility' (does not force show).
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
-            */
-            FadeAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                control.AnimationElement().stop(true, true).css({
-                    display: "",
-                    visibility: "",
-                    opacity: 0
-                });
-                control.AnimationElement().animate({
-                    opacity: 1
-                }, FadeAnimator.AnimationTime, FadeAnimator.AnimationEasing, function () {
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
-            };
-            /** Fades the control out. Sets CSS 'visibility:hidden' and 'opacity:1' after animation is complete (does not force set 'display:none').
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
-            */
-            FadeAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                control.AnimationElement().stop(true, true);
-                control.AnimationElement().animate({
-                    opacity: 0
-                }, FadeAnimator.AnimationTime, FadeAnimator.AnimationEasing, function () {
-                    $(this).css({
-                        visibility: "hidden",
-                        opacity: 1
-                    });
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
-            };
-            return FadeAnimator;
-        }());
-        /** The length of time (milliseconds) to spend fading.
-            Default: 300ms
-        */
-        FadeAnimator.AnimationTime = 300;
-        /** The jQuery animation easing to use
-            Default: swing
-        */
-        FadeAnimator.AnimationEasing = "swing";
-        Animation.FadeAnimator = FadeAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            return JQueryEvent;
+        }(Events.Event));
+        Events.JQueryEvent = JQueryEvent;
+        var JQueryEventHandler = /** @class */ (function (_super) {
+            __extends(JQueryEventHandler, _super);
+            function JQueryEventHandler() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return JQueryEventHandler;
+        }(Events.EventHandler));
+        Events.JQueryEventHandler = JQueryEventHandler;
+        var JQueryEventArgs = /** @class */ (function (_super) {
+            __extends(JQueryEventArgs, _super);
+            function JQueryEventArgs(Sender, jqEvent) {
+                if (jqEvent === void 0) { jqEvent = null; }
+                var _this = _super.call(this, Sender) || this;
+                _this.Sender = Sender;
+                _this.jqEvent = jqEvent;
+                return _this;
+            }
+            return JQueryEventArgs;
+        }(Events.EventArgs));
+        Events.JQueryEventArgs = JQueryEventArgs;
+    })(Events = Rubik.Events || (Rubik.Events = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
@@ -1726,6 +1875,7 @@ Modifications:
 
 License: https://typescriptui.codeplex.com/license
 */
+/// <reference path="../Events/Events.ts" />
 var Rubik;
 (function (Rubik) {
     var UI;
@@ -1841,191 +1991,1059 @@ Date: Jul 8 18:31 2013
 URL: https://typescriptui.codeplex.com/
 Modifications:
  - 8/Jul/13 : Initial version.
- - 5/Sep/13 : Bug fix: requestAnimationFrame was defined in Android browser when cancelAnimationFrame wasn't causing fatal error.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="../Collections/Collections_BuildRefs.d.ts" />
-/// <reference path="../../Scripts/typings/jquery/jquery.d.ts" />
-/// <reference path="../../Scripts/typings/html2canvas/html2canvas.d.ts" />
-/* Standardises requestAnimationFrame and cancelAnimationFrame */
-/*(function ()
-{
-    var requestAnimationFrame = (<any>window).requestAnimationFrame || (<any>window).mozRequestAnimationFrame ||
-                                (<any>window).webkitRequestAnimationFrame || window.msRequestAnimationFrame || (<any>window).oRequestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-    
-    var cancelAnimationFrame = (<any>window).cancelAnimationFrame || (<any>window).mozCancelAnimationFrame ||
-                                (<any>window).webkitCancelAnimationFrame || window.msCancelRequestAnimationFrame || (<any>window).oCancelRequestAnimationFrame;
-    window.cancelAnimationFrame = cancelAnimationFrame;
-
-    if (!window.requestAnimationFrame || !window.cancelAnimationFrame)
-    {
-        window.requestAnimationFrame = undefined;
-        window.cancelAnimationFrame = undefined;
-    }
-})();*/
+/// <reference path="../UI/UI Static.ts" />
+/// <reference path="IAnimator.d.ts" />
 var Rubik;
 (function (Rubik) {
     var Animation;
     (function (Animation) {
-        /** A callback for animation rendering when requestAnimationFrame is answered. */
-        var AnimationCallback = (function () {
-            /** Creates a new Animation Callback.
-                @param callback The function to call when requestAnimationFrame is answered.
-                @param context The context to use when calling callback (sets the value of "this" in callback).
-                @param single Indicates whether the callback should occur once or should repeat.
+        /** Animator for a SelectionWindow. */
+        var SelectionWindowAnimator = /** @class */ (function () {
+            function SelectionWindowAnimator() {
+            }
+            /** Fades in the selection window and the SelectionWindow_DisableOverlay. Clears CSS 'display' and 'visibility'
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
             */
-            function AnimationCallback(callback, context, single) {
-                if (single === void 0) { single = false; }
-                this.callback = callback;
-                this.context = context;
-                this.single = single;
-                /** The time at which animation began i.e. the time at which the first invoke of the callback occurred. */
-                this.AnimationStartTime = -1;
-            }
-            return AnimationCallback;
-        }());
-        Animation.AnimationCallback = AnimationCallback;
-        /** The interval reference used when simulating request animation frame. */
-        var AnimationIntervalRef = -1;
-        /** The list of animation callbacks to invoke when requestAnimationFrame is answered. */
-        var AnimationCallbacks = new Rubik.Collections.List();
-        /** Adds an animation callback to the list of animation callbacks. */
-        Animation.RegisterAnimationCallback = function (obj) {
-            AnimationCallbacks.Add(obj);
-            return obj;
-        };
-        /** Adds an animation callback to the list of animation callbacks to be invoked only once. */
-        Animation.RegisterAnimationForSingleCallback = function (obj) {
-            obj.single = true;
-            AnimationCallbacks.Add(obj);
-            return obj;
-        };
-        /** Removes an animation callback to the list of animation callbacks. */
-        Animation.UnregisterAnimationCallback = function (obj) {
-            AnimationCallbacks.Remove(obj);
-            return obj;
-        };
-        /** Called when the list of animation callbacks is modified. */
-        var AnimationCallbacks_Modified = function (eventArgs) {
-            if (AnimationCallbacks.Count() === 0) {
-                if (AnimationIntervalRef !== -1) {
-                    if (window.requestAnimationFrame && window.cancelAnimationFrame) {
-                        window.cancelAnimationFrame(AnimationIntervalRef);
-                        AnimationIntervalRef = -1;
-                    }
-                    else {
-                        clearInterval(AnimationIntervalRef);
-                        AnimationIntervalRef = -1;
-                    }
-                }
-            }
-            else {
-                if (AnimationIntervalRef === -1) {
-                    if (window.requestAnimationFrame && window.cancelAnimationFrame) {
-                        AnimationIntervalRef = window.requestAnimationFrame(AnimationIntervaFunc);
-                    }
-                    else {
-                        AnimationIntervalRef = setInterval(AnimationIntervaFunc, 150);
-                    }
-                }
-            }
-        };
-        /** Called when requestAnimationFrame (or its simulation) is answered. */
-        var AnimationIntervaFunc = function () {
-            var elems = AnimationCallbacks.ToArray();
-            var elapsedTime = -1;
-            var removeElems = new Rubik.Collections.List();
-            var doRemove = false;
-            for (var i = 0; i < elems.length; i++) {
-                var callback = elems[i];
-                if (callback.AnimationStartTime === -1) {
-                    callback.AnimationStartTime = Date.now();
-                }
-                elapsedTime = Date.now() - callback.AnimationStartTime;
-                callback.callback.call(elems[i].context, elapsedTime);
-                if (callback.single) {
-                    removeElems.Add(elems[i]);
-                    doRemove = true;
-                }
-            }
-            if (doRemove) {
-                AnimationCallbacks.RemoveAll(removeElems);
-            }
-            if (window.requestAnimationFrame) {
-                AnimationIntervalRef = window.requestAnimationFrame(AnimationIntervaFunc);
-            }
-            else {
-                $("body").css({ zIndex: $("body").css("z-index") === "1" ? 0 : 1 });
-            }
-        };
-        AnimationCallbacks.OnModified.Attach(new Rubik.Collections.CollectionModifiedEventHandler(AnimationCallbacks_Modified, AnimationCallbacks));
-        /** Provides functions for animation including preparing and destroying canvases for HTML2Canvas animation. */
-        var AnimationHelper = (function () {
-            function AnimationHelper() {
-            }
-            /** Takes an jQuery element (must be contained within the actual page DOM) and prepares it for HTML2Cnavas animation.
-                It does not overlay the canvas on top of the original element but does attempt to position it so it can be faded in.
-                Calls the callback once the canvas has been generated.
-                @param elem The element to generate an image of.
-                @param callback The callback to invoke once the canvas has been generated. Context is not retained.
-            */
-            AnimationHelper.PrepareHTML2CanvasForAnimation = function (elem, callback) {
-                var elems = elem.find("*").not(".Hidden");
-                elem.attr("data-html2canvas-visible", "");
-                elems.attr("data-html2canvas-visible", "");
-                html2canvas(elem.get(0)).then(function (canvas) {
-                    var newCanvas = $(canvas);
-                    newCanvas.css({
-                        position: "absolute",
-                        top: elem.offset().top,
-                        left: elem.offset().left,
-                        zIndex: elem.css("z-index"),
-                        display: "none"
-                    });
-                    $("body").append(newCanvas);
-                    elem.removeAttr("data-html2canvas-visible");
-                    elems.removeAttr("data-html2canvas-visible");
-                    callback(newCanvas);
-                });
-            };
-            /** Restores the original element after HTML2Canvas is no longer required.
-                Fades in the element over the top of the canvas then quickly fades out the canvas from underneath.
-                Canvas is then destroyed.
-                @param elem The element (JQuery reference) to restore.
-                @param canvas The canvas (JQuery reference) that is an image of the element. Must already be positioned on top of the element.
-            */
-            AnimationHelper.RestoreAfterAnimationHTML2Canvas = function (elem, canvas) {
-                var zIndex = parseInt(canvas.css("z-index"), 10);
-                canvas.css({ opacity: 1, zIndex: zIndex });
-                elem.css({
-                    display: "",
+            SelectionWindowAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                $(".SelectionWindow_DisableOverlay")
+                    .css({
+                    display: "block",
                     opacity: 0,
-                    visibility: "visible",
-                    zIndex: zIndex + 2
+                    zIndex: (Rubik.UI.OpenWindows * 10) - 1
                 })
                     .animate({
-                    opacity: 1
-                }, 500, "swing", function () {
-                    elem.css({
-                        opacity: 1
-                    });
-                    canvas.animate({
-                        opacity: 0
-                    }, 500, "swing", function () {
-                        canvas.css("display", "none");
-                        canvas.remove();
-                        elem.css({
-                            zIndex: zIndex
-                        });
-                    });
+                    opacity: 0.6
+                }, 200, "swing", function () {
+                });
+                var oldOpacity = control.GetStyle("opacity");
+                control.AnimationElement().stop(true, true);
+                control.AnimationElement().css({
+                    opacity: 0,
+                    visibility: "",
+                    display: ""
+                }).animate({
+                    opacity: oldOpacity,
+                }, SelectionWindowAnimator.AnimationTime, SelectionWindowAnimator.AnimationEasing, function () {
+                    if (callback !== null) {
+                        callback();
+                    }
                 });
             };
-            return AnimationHelper;
+            /** Fades out the selection window and the SelectionWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            SelectionWindowAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                $(".SelectionWindow_DisableOverlay")
+                    .animate({
+                    opacity: 0
+                }, 200, "swing", function () {
+                    $(this).css({
+                        display: ""
+                    });
+                });
+                control.AnimationElement().stop(true, true);
+                control.AnimationElement().animate({
+                    opacity: 0
+                }, SelectionWindowAnimator.AnimationTime, SelectionWindowAnimator.AnimationEasing, function () {
+                    control.AnimationElement().css({
+                        visibility: "hidden",
+                        opacity: 1,
+                        display: "none"
+                    });
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** The length of time (milliseconds) to spend animating the window.
+                Default: 250ms
+            */
+            SelectionWindowAnimator.AnimationTime = 250;
+            /** The jQuery animation easing to use
+                Default: easeOutQuad
+            */
+            SelectionWindowAnimator.AnimationEasing = "easeOutQuad";
+            return SelectionWindowAnimator;
         }());
-        Animation.AnimationHelper = AnimationHelper;
+        Animation.SelectionWindowAnimator = SelectionWindowAnimator;
     })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="../UI/UI Static.ts" />
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Animator for a StaticPageWindow. */
+        var PageWindowAnimator = /** @class */ (function () {
+            function PageWindowAnimator() {
+            }
+            /** Fades in the page window and the PageWindow_DisableOverlay. Clears CSS 'display' and 'visibility'
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            PageWindowAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                $(".PageWindow_DisableOverlay")
+                    .css({
+                    display: "block",
+                    opacity: 0,
+                    zIndex: (Rubik.UI.OpenWindows * 10) - 1
+                })
+                    .animate({
+                    opacity: 0.6
+                }, 200, "swing", function () {
+                });
+                var oldOpacity = control.GetStyle("opacity");
+                control.AnimationElement().stop(true, true);
+                control.AnimationElement().css({
+                    opacity: 0,
+                    visibility: "",
+                    display: ""
+                }).animate({
+                    opacity: oldOpacity,
+                }, PageWindowAnimator.AnimationTime, PageWindowAnimator.AnimationEasing, function () {
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** Fades out the page window and the PageWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            PageWindowAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                $(".PageWindow_DisableOverlay")
+                    .animate({
+                    opacity: 0
+                }, 200, "swing", function () {
+                    $(this).css({
+                        display: ""
+                    });
+                });
+                control.AnimationElement().stop(true, true);
+                control.AnimationElement().animate({
+                    opacity: 0
+                }, PageWindowAnimator.AnimationTime, PageWindowAnimator.AnimationEasing, function () {
+                    control.AnimationElement().css({
+                        visibility: "hidden",
+                        opacity: 1,
+                        display: "none"
+                    });
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** The length of time (milliseconds) to spend animating the window.
+                Default: 250ms
+            */
+            PageWindowAnimator.AnimationTime = 250;
+            /** The jQuery animation easing to use
+                Default: easeOutQuad
+            */
+            PageWindowAnimator.AnimationEasing = "easeOutQuad";
+            return PageWindowAnimator;
+        }());
+        Animation.PageWindowAnimator = PageWindowAnimator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Animator for animating restack of notifications.
+            Note: Show/Hide are empty methods.
+        */
+        var NotificationRestackAnimator = /** @class */ (function () {
+            function NotificationRestackAnimator() {
+            }
+            /** This method is empty. */
+            NotificationRestackAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+            };
+            /** This method is empty. */
+            NotificationRestackAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+            };
+            /** Animates the control to slide it up/down to new bottom (i.e. animates restack).
+                @param control The control to animate.
+                @param newBottom The new CSS 'bottom' value.
+                @param callback The callback to invoke after animation has completed.
+            */
+            NotificationRestackAnimator.prototype.AnimateRestack = function (control, newBottom, callback) {
+                if (callback === void 0) { callback = null; }
+                var element = control.AnimationElement();
+                element.animate({
+                    bottom: newBottom
+                }, NotificationRestackAnimator.AnimationTime, NotificationRestackAnimator.AnimationEasing, function () {
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** The length of time (milliseconds) to spend restacking.
+                Default: 1000ms
+            */
+            NotificationRestackAnimator.AnimationTime = 1000;
+            /** The jQuery animation easing to use
+                Default: easeInCubic
+            */
+            NotificationRestackAnimator.AnimationEasing = "easeInCubic";
+            return NotificationRestackAnimator;
+        }());
+        Animation.NotificationRestackAnimator = NotificationRestackAnimator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Animator for a Notification. */
+        var NotificationAnimator = /** @class */ (function () {
+            function NotificationAnimator() {
+            }
+            /** Slides the notification in from the right - does not set "top". Clears CSS 'visibility' and 'display' values.
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            NotificationAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                var element = control.AnimationElement();
+                element.stop(true, true);
+                var startRight = element.css("right");
+                element.css({
+                    right: -element.outerWidth(),
+                    visibility: "",
+                    display: ""
+                }).animate({
+                    right: startRight
+                }, NotificationAnimator.AnimationTime, NotificationAnimator.AnimationEasing, function () {
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** Slides the notification off to the right - does not set "top". Sets CSS 'visibility:hidden' and 'display:none'; Restores CSS 'right'.
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            NotificationAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                var element = control.AnimationElement();
+                element.stop(true, true);
+                var startRight = element.css("right");
+                element.animate({
+                    right: -element.outerWidth()
+                }, NotificationAnimator.AnimationTime, NotificationAnimator.AnimationEasing, function () {
+                    element.css({
+                        visibility: "hidden",
+                        display: "none",
+                        right: startRight
+                    });
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** The length of time (milliseconds) to spend animating the notification.
+                Default: 1000ms
+            */
+            NotificationAnimator.AnimationTime = 1000;
+            /** The jQuery animation easing to use
+                Default: linear
+            */
+            NotificationAnimator.AnimationEasing = "linear";
+            return NotificationAnimator;
+        }());
+        Animation.NotificationAnimator = NotificationAnimator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Generic fade animator for any control.
+            Note: Not guaranteed to work in all situations. Does not force visibility if style sheet specifies hidden.
+        */
+        var FadeAnimator = /** @class */ (function () {
+            function FadeAnimator() {
+            }
+            /** Fades the control in. Clears CSS 'display' and 'visibility' (does not force show).
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            FadeAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                control.AnimationElement().stop(true, true).css({
+                    display: "",
+                    visibility: "",
+                    opacity: 0
+                });
+                control.AnimationElement().animate({
+                    opacity: 1
+                }, FadeAnimator.AnimationTime, FadeAnimator.AnimationEasing, function () {
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** Fades the control out. Sets CSS 'visibility:hidden' and 'opacity:1' after animation is complete (does not force set 'display:none').
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            FadeAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                control.AnimationElement().stop(true, true);
+                control.AnimationElement().animate({
+                    opacity: 0
+                }, FadeAnimator.AnimationTime, FadeAnimator.AnimationEasing, function () {
+                    $(this).css({
+                        visibility: "hidden",
+                        opacity: 1
+                    });
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** The length of time (milliseconds) to spend fading.
+                Default: 300ms
+            */
+            FadeAnimator.AnimationTime = 300;
+            /** The jQuery animation easing to use
+                Default: swing
+            */
+            FadeAnimator.AnimationEasing = "swing";
+            return FadeAnimator;
+        }());
+        Animation.FadeAnimator = FadeAnimator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="Animation.ts" />
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Animator for an AppWindow
+            Note: Makes use if HTML2Canvas animation if specified.
+        */
+        var AppWindowAnimator = /** @class */ (function () {
+            function AppWindowAnimator() {
+                /** Private: The HTML2Canvas canvas element (as jQuery reference) to be animated. */
+                this._CanvasElem = null;
+            }
+            /** Shows the control and invokes the callback (context not restored) after the animation is completed.
+                Window is shrunk before being shown, then flown on from the right, delay then expanded and finally callback called.
+                If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used. If HTML2Canvas is used, RestoreAfterAnimationHTML2Canvas is called.
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            AppWindowAnimator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                var useCanvasRender = this._EvaluateUseCanvasRender(control);
+                var OK = false;
+                if (useCanvasRender) {
+                    OK = true;
+                    try {
+                        var element = control.AnimationElement();
+                        if (this._CanvasElem === null) {
+                            var _this = this;
+                            Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(element, function (canvas) {
+                                _this.DoHTML2CanvasShow(element, canvas, callback);
+                            });
+                        }
+                        else {
+                            this.DoHTML2CanvasShow(element, this._CanvasElem, callback);
+                        }
+                    }
+                    catch (ex) {
+                        OK = false;
+                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
+                    }
+                }
+                if (!OK) {
+                    var element = control.AnimationElement();
+                    var startSize = Rubik.GetSize(control);
+                    var startWidth = startSize.width;
+                    var startHeight = startSize.height;
+                    var startPos = Rubik.GetPosition(control);
+                    var origCSSTop = ((startPos.top / element.parent().height()) * 100).toString() + "%";
+                    var origCSSLeft = ((startPos.left / element.parent().width()) * 100).toString() + "%";
+                    element.css({
+                        width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
+                        height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
+                        left: element.parent().width() + 50,
+                        visibility: "",
+                        display: ""
+                    });
+                    element
+                        .css({
+                        top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount)
+                    })
+                        .animate({
+                        left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount),
+                        opacity: 1
+                    }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing)
+                        .delay(AppWindowAnimator.DelayTime)
+                        .animate({
+                        width: startWidth,
+                        height: startHeight,
+                        top: origCSSTop,
+                        left: origCSSLeft,
+                        visibility: "",
+                        display: ""
+                    }, AppWindowAnimator.ResizeTime, callback);
+                }
+            };
+            /** Hides the control and invokes the callback (context not restored) after the animation is completed.
+                Window is shrunk, delay, then flown off to the right, hidden properly, restored to original position & size and finally callback called.
+                If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used.
+                @param control The control to animate.
+                @param callback The callback to invoke after animation has completed.
+            */
+            AppWindowAnimator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                var useCanvasRender = this._EvaluateUseCanvasRender(control);
+                var OK = false;
+                if (useCanvasRender) {
+                    OK = true;
+                    try {
+                        var element = control.AnimationElement();
+                        if (this._CanvasElem === null) {
+                            var _this = this;
+                            Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(element, function (canvas) {
+                                _this.DoHTML2CanvasHide(element, canvas, callback);
+                            });
+                        }
+                        else {
+                            this.DoHTML2CanvasHide(element, this._CanvasElem, callback);
+                        }
+                    }
+                    catch (ex) {
+                        OK = false;
+                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
+                    }
+                }
+                if (!OK) {
+                    var element = control.AnimationElement();
+                    var startSize = Rubik.GetSize(control);
+                    var startWidth = startSize.width;
+                    var startHeight = startSize.height;
+                    var startPos = Rubik.GetPosition(control);
+                    element
+                        .animate({
+                        width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
+                        height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
+                        top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
+                        left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount)
+                    }, AppWindowAnimator.ResizeTime)
+                        .delay(AppWindowAnimator.DelayTime)
+                        .animate({
+                        left: element.parent().width() + 50,
+                        opacity: 0
+                    }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing, function () {
+                        element.css({
+                            width: startWidth,
+                            height: startHeight,
+                            top: startPos.top,
+                            left: startPos.left,
+                            display: "",
+                            visibility: "hidden"
+                        });
+                        if (callback) {
+                            callback();
+                        }
+                    });
+                }
+            };
+            /** Animates the passed canvas and handles switching between the canvas and the element. For more details see Show.
+                @param element The element to "animate" - should already prepared using HTML2Canvas.
+                @param canvas The prepared HTML2Canvas canvas element to be animated.
+                @param callback The callback to invoke after animation has completed.
+            */
+            AppWindowAnimator.prototype.DoHTML2CanvasShow = function (element, canvas, callback) {
+                var startWidth = parseInt(canvas.css("width"), 10);
+                var startHeight = parseInt(canvas.css("height"), 10);
+                var startPos = {
+                    top: parseInt(canvas.css("top"), 10),
+                    left: parseInt(canvas.css("left"), 10)
+                };
+                var _this = this;
+                canvas
+                    .css({
+                    width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
+                    height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
+                    left: element.parent().width() + 50,
+                    top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
+                    opacity: 0,
+                    visibility: "",
+                    display: ""
+                })
+                    .animate({
+                    left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount),
+                    opacity: 1
+                }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing)
+                    .delay(AppWindowAnimator.DelayTime)
+                    .animate({
+                    width: startWidth,
+                    height: startHeight,
+                    top: startPos.top,
+                    left: startPos.left,
+                    visibility: "",
+                    display: ""
+                }, AppWindowAnimator.ResizeTime, function () {
+                    Animation.AnimationHelper.RestoreAfterAnimationHTML2Canvas(element, canvas);
+                    _this._CanvasElem = null;
+                    if (callback !== null) {
+                        callback();
+                    }
+                });
+            };
+            /** Animates the passed canvas and handles switching between the canvas and the element. For more details see Show.
+                @param element The element to "animate" - should already prepared using HTML2Canvas.
+                @param canvas The prepared HTML2Canvas canvas element to be animated.
+                @param callback The callback to invoke after animation has completed.
+            */
+            AppWindowAnimator.prototype.DoHTML2CanvasHide = function (element, canvas, callback) {
+                var startWidth = parseInt(canvas.css("width"), 10);
+                var startHeight = parseInt(canvas.css("height"), 10);
+                var startPos = {
+                    top: parseInt(canvas.css("top"), 10),
+                    left: parseInt(canvas.css("left"), 10)
+                };
+                canvas.css("display", "block");
+                element.css("display", "none");
+                canvas
+                    .animate({
+                    width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
+                    height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
+                    top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
+                    left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount)
+                }, AppWindowAnimator.ResizeTime)
+                    .delay(AppWindowAnimator.DelayTime)
+                    .animate({
+                    left: element.parent().width() + 50,
+                    opacity: 0
+                }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing, function () {
+                    canvas.remove();
+                    element.css({
+                        width: startWidth,
+                        height: startHeight,
+                        top: startPos.top,
+                        left: startPos.left,
+                        display: "",
+                        visibility: "hidden"
+                    });
+                    if (callback) {
+                        callback();
+                    }
+                });
+            };
+            /** Determines whether HTML2Canvas should be used to animate specified control (i.e. window) - takes into account UseCanvasRenderIfSensible.
+                @param control The control (i.e. window) to determine whether to animate using HTML2Canvas.
+            */
+            AppWindowAnimator.prototype._EvaluateUseCanvasRender = function (control) {
+                var use = AppWindowAnimator.UseCanvasRenderIfSensible;
+                if (use) {
+                    var elem = control.AnimationElement();
+                    use = elem.width() * elem.height() > 240000; //(Window size > area of 600 x 400)
+                    var children = elem.find("*");
+                    if (use) {
+                        use = children.length > 15;
+                    }
+                    else {
+                        use = children.length > 50;
+                    }
+                }
+                return use;
+            };
+            /** Prepares a window with HTML2Canvas for animation without actually showing the canvas. Allows window to be prepared for animation then switched smoothly with another window. Preparation can take up to 30 seconds in older/slower browsers or on slow hardware. Use callback to wait for preparation to complete.
+                @param control The control (i.e. window) to prepare
+                @param callback The callback to invoke after preparation has completed.
+            */
+            AppWindowAnimator.prototype.PrepareHTML2CanvasForAnimation = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                if (this._EvaluateUseCanvasRender(control)) {
+                    try {
+                        var _this = this;
+                        _this._CanvasElem = null;
+                        var elem = control.AnimationElement();
+                        Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(elem, function (canvas) {
+                            _this._CanvasElem = canvas;
+                            if (callback) {
+                                callback();
+                            }
+                        });
+                    }
+                    catch (ex) {
+                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
+                        _this._CanvasElem = null;
+                        if (callback) {
+                            callback();
+                        }
+                    }
+                }
+                else {
+                    if (callback) {
+                        callback();
+                    }
+                }
+            };
+            /** The length of time (milliseconds) to spend moving the window on/off the screen ('flying' the window).
+                Default: 500ms
+            */
+            AppWindowAnimator.FlyTime = 500;
+            /** The length of time (milliseconds) to spend shrinking/enlarging the window before/after flying ('resizing' the window).
+                Default: 100ms
+            */
+            AppWindowAnimator.ResizeTime = 100;
+            /** The length of time (milliseconds) to delay between resizing and flying the window.
+                Default: 500ms
+            */
+            AppWindowAnimator.DelayTime = 50;
+            /** The amount (as decimal percentage e.g. 0.01 = 1%) to shrink the window (width & height).
+                Default: 0.01 (i.e. 1%)
+            */
+            AppWindowAnimator.ShrinkAmount = 0.01;
+            /** The jQuery animation easing to use for flying and resizing.
+                Default: easeOutCubic
+            */
+            AppWindowAnimator.AnimationEasing = "easeOutCubic";
+            /** Indicates whether HTML2Canvas animation should be used if it is deemed better than standard animation. Set to false to disable use of HTML2Canvas.
+                Default: false
+            */
+            AppWindowAnimator.UseCanvasRenderIfSensible = false;
+            return AppWindowAnimator;
+        }());
+        Animation.AppWindowAnimator = AppWindowAnimator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="IAnimator.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Animation;
+    (function (Animation) {
+        /** Basic implementation of an IAnimator. */
+        var Animator = /** @class */ (function () {
+            function Animator() {
+            }
+            /** Clears the values of 'visibility' and 'display' - does not force them to 'visible'.
+                This implementation restores the control to its stylesheet state of visibility.
+                @param control The control to show.
+                @param callback The function to call when showing is complete.
+            */
+            Animator.prototype.Show = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                control.AnimationElement().css({
+                    visibility: "",
+                    display: ""
+                });
+                if (callback !== null) {
+                    callback();
+                }
+            };
+            /** Sets the value of 'visibility' to 'hidden' and clears the value of 'display' - does not set 'display:none'.
+                This implementation does a basic hide of a control.
+                @param control The control to hide.
+                @param callback The function to call when hiding is complete.
+            */
+            Animator.prototype.Hide = function (control, callback) {
+                if (callback === void 0) { callback = null; }
+                control.AnimationElement().css({
+                    visibility: "hidden",
+                    display: ""
+                });
+                if (callback !== null) {
+                    callback();
+                }
+            };
+            return Animator;
+        }());
+        Animation.Animator = Animator;
+    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Aug 3 12:15 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 3/Aug/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        /** FLAGS: The statuses that a data push or data pull request can have. */
+        var DataAccessStatuses;
+        (function (DataAccessStatuses) {
+            /** Indicates the status of the request is not known. */
+            DataAccessStatuses[DataAccessStatuses["Unkown"] = 0] = "Unkown";
+            /** Indicates that the request is pending completion. */
+            DataAccessStatuses[DataAccessStatuses["Pending"] = 1] = "Pending";
+            /** Indicates that the request has completed succesffuly. */
+            DataAccessStatuses[DataAccessStatuses["Complete"] = 2] = "Complete";
+            /** Indicates that the request has completed but failed. */
+            DataAccessStatuses[DataAccessStatuses["Failed"] = 4] = "Failed";
+            /** Indicates that an error occurred other than request failure. */
+            DataAccessStatuses[DataAccessStatuses["Error"] = 8] = "Error";
+        })(DataAccessStatuses = Data.DataAccessStatuses || (Data.DataAccessStatuses = {}));
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="DataAccessStatuses.ts" />
+/// <reference path="IDataAccessor.d.ts" />
+/// <reference path="../Events/Event.ts" />
+/// <reference path="../Events/IEventHandler.d.ts" />
+/// <reference path="../Events/IEventArgs.d.ts" />
+/// <reference path="../Events/IEvent.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        //#region Data Pulled Event
+        /** See Event for more details. */
+        var DataPulledEvent = /** @class */ (function (_super) {
+            __extends(DataPulledEvent, _super);
+            function DataPulledEvent() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return DataPulledEvent;
+        }(Rubik.Events.Event));
+        Data.DataPulledEvent = DataPulledEvent;
+        /** See EventHandler for more details. */
+        var DataPulledEventHandler = /** @class */ (function (_super) {
+            __extends(DataPulledEventHandler, _super);
+            function DataPulledEventHandler() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return DataPulledEventHandler;
+        }(Rubik.Events.EventHandler));
+        Data.DataPulledEventHandler = DataPulledEventHandler;
+        /** See EventArgs for more details.*/
+        var DataPulledEventArgs = /** @class */ (function (_super) {
+            __extends(DataPulledEventArgs, _super);
+            function DataPulledEventArgs(Sender, Result) {
+                var _this = _super.call(this, Sender) || this;
+                _this.Sender = Sender;
+                _this.Result = Result;
+                return _this;
+            }
+            return DataPulledEventArgs;
+        }(Rubik.Events.EventArgs));
+        Data.DataPulledEventArgs = DataPulledEventArgs;
+        //#endregion
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Aug 3 12:35 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 25/Aug/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="DataAccessStatuses.ts" />
+/// <reference path="IDataAccessResult.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        /** Defines the structure for the result of a data access request. Contains the Status of the request and any data returned.
+            T: The type of data (the type of the Result property)
+        */
+        var DataAccessResult = /** @class */ (function () {
+            /** Creates a new instance of DataAccessResult
+                @param status The most recent status of the request.
+                @param result The result data of the request.
+                @returns A new DataAccessResult instance.
+            */
+            function DataAccessResult(status, result) {
+                this.Status = status;
+                this.Result = result;
+            }
+            return DataAccessResult;
+        }());
+        Data.DataAccessResult = DataAccessResult;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: 25 Aug 19:32 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 25/Aug/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="DataPulledEvent.ts" />
+/// <reference path="IDataAccessResult.d.ts" />
+/// <reference path="DataAccessStatuses.ts" />
+/// <reference path="../Events/Events.ts" />
+/// <reference path="IAccessInfo.d.ts" />
+/// <reference path="IDataAccessor.d.ts" />
+/// <reference path="DataAccessResult.ts" />
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        /** Defines the structure for data accessors. Data accessors push or pull data to/from a data source such as a page on a web server.
+            T: Specifies the type of the data which will be sent to/from the server.
+        */
+        var DataAccessor = /** @class */ (function () {
+            function DataAccessor(baseAccessInfo) {
+                if (baseAccessInfo === void 0) { baseAccessInfo = null; }
+                /** The normal access info to use in PushData and PullData when no alternative info is supplied. Use this to set up a data accessor for repeated access to the same data source. */
+                this.BaseAccessInfo = null;
+                /** Fired when data is pushed to the server (or when the data push request fails).
+                    Check the Status property of the event.
+                */
+                this.OnDataPushed = new Data.DataPushedEvent();
+                /** Fired when data is pulled from the server (or when the data pull request fails).
+                    Check the Status property of the event.
+                */
+                this.OnDataPulled = new Data.DataPulledEvent();
+                this.BaseAccessInfo = baseAccessInfo;
+            }
+            /** Empty implementation of PushData. Always returns an error result.
+                @param data The data to push to the server.
+                @param accessInfo The AccessInfo to use for the data source.
+                @returns The result of the request. Implementations of this which are asynchronous should return an empty result with status Pending.
+            */
+            DataAccessor.prototype.PushData = function (data, accessInfo) {
+                return new Data.DataAccessResult(Data.DataAccessStatuses.Error, null);
+            };
+            /** Empty implementation of PullData. Always returns an error result.
+                @param accessInfo The AccessInfo to use for the data source.
+                @returns The status of the request. Implementations of this which are asynchronous should return empty result with status Pending.
+            */
+            DataAccessor.prototype.PullData = function (accessInfo) {
+                return new Data.DataAccessResult(Data.DataAccessStatuses.Error, null);
+            };
+            return DataAccessor;
+        }());
+        Data.DataAccessor = DataAccessor;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Aug 3 12:51 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 3/Aug/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="IDataAdapter.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        /** Defines the structure for data adapters. Data adapters convert raw input data to JavaScript objects or vice-versa.
+            I: Specifies the type of the input data.
+            O: Specifies the type of the output data.
+        */
+        var DataAdapter = /** @class */ (function () {
+            function DataAdapter() {
+            }
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation always returns null.
+                @param input The raw data.
+                @returns The JavaScript object data.
+            */
+            DataAdapter.prototype.I2O = function (input) {
+                return null;
+            };
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation always returns null.
+                @param input The JavaScript object data.
+                @returns The raw data.
+            */
+            DataAdapter.prototype.O2I = function (output) {
+                return null;
+            };
+            return DataAdapter;
+        }());
+        Data.DataAdapter = DataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+/*
+Copyright Edward Nutting 2013
+Author: Edward Nutting
+Date: Jul 8 18:31 2013
+
+URL: https://typescriptui.codeplex.com/
+Modifications:
+ - 8/Jul/13 : Initial version.
+
+License: https://typescriptui.codeplex.com/license
+*/
+/// <reference path="DataAccessStatuses.ts" />
+/// <reference path="IDataAccessor.d.ts" />
+/// <reference path="../Events/Event.ts" />
+/// <reference path="../Events/IEventHandler.d.ts" />
+/// <reference path="../Events/IEventArgs.d.ts" />
+/// <reference path="../Events/IEvent.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var Data;
+    (function (Data) {
+        /** See Event for more details. */
+        var DataPushedEvent = /** @class */ (function (_super) {
+            __extends(DataPushedEvent, _super);
+            function DataPushedEvent() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return DataPushedEvent;
+        }(Rubik.Events.Event));
+        Data.DataPushedEvent = DataPushedEvent;
+        /** See EventHandler for more details. */
+        var DataPushedEventHandler = /** @class */ (function (_super) {
+            __extends(DataPushedEventHandler, _super);
+            function DataPushedEventHandler() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            return DataPushedEventHandler;
+        }(Rubik.Events.EventHandler));
+        Data.DataPushedEventHandler = DataPushedEventHandler;
+        /** See EventArgs for more details.
+            Note: Success paramter indicates whether the push was successful.
+        */
+        var DataPushedEventArgs = /** @class */ (function (_super) {
+            __extends(DataPushedEventArgs, _super);
+            function DataPushedEventArgs(Sender, Result) {
+                var _this = _super.call(this, Sender) || this;
+                _this.Sender = Sender;
+                _this.Result = Result;
+                return _this;
+            }
+            return DataPushedEventArgs;
+        }(Rubik.Events.EventArgs));
+        Data.DataPushedEventArgs = DataPushedEventArgs;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
+})(Rubik || (Rubik = {}));
+var Rubik;
+(function (Rubik) {
+    var Schema;
+    (function (Schema_1) {
+        var Schema = /** @class */ (function () {
+            function Schema() {
+            }
+            return Schema;
+        }());
+        Schema_1.Schema = Schema;
+    })(Schema = Rubik.Schema || (Rubik.Schema = {}));
+})(Rubik || (Rubik = {}));
+var Rubik;
+(function (Rubik) {
+    var Schema;
+    (function (Schema) {
+        var SchemaObject = /** @class */ (function () {
+            function SchemaObject() {
+            }
+            return SchemaObject;
+        }());
+        Schema.SchemaObject = SchemaObject;
+    })(Schema = Rubik.Schema || (Rubik.Schema = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
@@ -2052,7 +3070,7 @@ var Rubik;
     var UI;
     (function (UI) {
         var __UIDGenerator = 0;
-        var Control = (function () {
+        var Control = /** @class */ (function () {
             function Control() {
                 this.__UID = __UIDGenerator++;
                 this._rootElement = null;
@@ -2069,6 +3087,7 @@ var Rubik;
                 this.OnKeyDown = new Rubik.Events.KeyDownEvent();
                 this.OnKeyPress = new Rubik.Events.KeyPressEvent();
                 this.OnKeyUp = new Rubik.Events.KeyUpEvent();
+                this.OnScroll = new Rubik.Events.JQueryEvent();
                 /*static OnClickEventName: string = "click";
                 static OnMouseDownEventName: string = "mousedown touchstart";
                 static OnMouseUpEventName: string = "mouseup touchend";
@@ -2085,6 +3104,7 @@ var Rubik;
                 this._OnMouseMoveAttached = false;
                 this._OnMouseMove_GlobalHandler = null;
                 this._OnResizeAttached = false;
+                this._OnScrollAttached = false;
                 this._OnMoveAttached = false;
                 this._OnKeyPressAttached = false;
                 this._OnKeyUpAttached = false;
@@ -2112,6 +3132,8 @@ var Rubik;
                 this.OnKeyPress.OnHandlerAttached = this.OnKeyPress.OnHandlerDettached = this._OnOnKeyPressChanged;
                 this.OnKeyUp.OnHandlerAttachedContext = this.OnKeyUp.OnHandlerDettachedContext = this;
                 this.OnKeyUp.OnHandlerAttached = this.OnKeyUp.OnHandlerDettached = this._OnOnKeyUpChanged;
+                this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
+                this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;
                 this.OnResize.Attach(new Rubik.Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
                 this.OnMove.Attach(new Rubik.Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
                 this._rootElement = $("<div class=\"Control\">");
@@ -2237,6 +3259,21 @@ var Rubik;
             };
             Control.prototype._OnResize = function (jqEvent) {
                 this.OnResize.Invoke(new Rubik.Events.ResizeEventArgs(this, jqEvent));
+            };
+            Control.prototype._OnOnScrollChanged = function () {
+                if (this.DOMConstructed) {
+                    if (this.OnScroll.Handlers.length > 0 && !this._OnScrollAttached) {
+                        this._OnScrollAttached = true;
+                        this._rootElement.on("scroll", { _this: this, _callback: this._OnScroll }, this._RestoreThis);
+                    }
+                    else if (this._OnScrollAttached) {
+                        this._OnScrollAttached = false;
+                        this._rootElement.off("scroll", this._RestoreThis);
+                    }
+                }
+            };
+            Control.prototype._OnScroll = function (jqEvent) {
+                this.OnScroll.Invoke(new Rubik.Events.JQueryEventArgs(this, jqEvent));
             };
             Control.prototype._OnOnMoveChanged = function () {
                 if (this.DOMConstructed) {
@@ -2380,6 +3417,7 @@ var Rubik;
                     this._OnOnMouseMoveChanged();
                     this._OnOnMouseUpChanged();
                     this._OnOnResizeChanged();
+                    this._OnOnScrollChanged();
                     this._rootElement.on("focus", { _this: this, _callback: this._OnFocus }, this._RestoreThis);
                     this._rootElement.on("blur", { _this: this, _callback: this._OnBlur }, this._RestoreThis);
                     this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
@@ -2438,6 +3476,7 @@ var Rubik;
                     this._OnKeyPressAttached = false;
                     this._OnKeyUpAttached = false;
                     this.DOMConstructed = false;
+                    this._OnScrollAttached = false;
                 }
                 for (var i = 0; i < this.Children.Count(); i++) {
                     this.Children.ElementAt(i).DestroyDOM();
@@ -2753,9 +3792,9 @@ var Rubik;
                 }
                 return retVal;
             };
+            Control.OptimiseConstructForGraphics_DelayTime = 30;
             return Control;
         }());
-        Control.OptimiseConstructForGraphics_DelayTime = 30;
         UI.Control = Control;
     })(UI = Rubik.UI || (Rubik.UI = {}));
 })(Rubik || (Rubik = {}));
@@ -2801,7 +3840,7 @@ var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var Panel = (function (_super) {
+        var Panel = /** @class */ (function (_super) {
             __extends(Panel, _super);
             function Panel() {
                 var _this = _super.call(this) || this;
@@ -2830,7 +3869,7 @@ var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var SplitterGrip = (function (_super) {
+        var SplitterGrip = /** @class */ (function (_super) {
             __extends(SplitterGrip, _super);
             function SplitterGrip() {
                 var _this = _super.call(this) || this;
@@ -2928,7 +3967,7 @@ var Rubik;
 (function (Rubik) {
     var UI;
     (function (UI) {
-        var SplitContainer = (function (_super) {
+        var SplitContainer = /** @class */ (function (_super) {
             __extends(SplitContainer, _super);
             function SplitContainer() {
                 var _this = _super.call(this) || this;
@@ -3076,634 +4115,6 @@ var Rubik;
         UI.SplitContainer = SplitContainer;
     })(UI = Rubik.UI || (Rubik.UI = {}));
 })(Rubik || (Rubik = {}));
-/// <reference path="../Control.ts" />
-/// <reference path="../../../Scripts/typings/jquery/jquery.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var UI;
-    (function (UI) {
-        var Grid = (function (_super) {
-            __extends(Grid, _super);
-            function Grid() {
-                var _this = _super.call(this) || this;
-                _this._rootElement.addClass("Grid");
-                _this.PanelRows = new UI.Panel();
-                _this.PanelCols = new UI.Panel();
-                //this.PanelRows.AddClass("Panel1");
-                //this.PanelCols.AddClass("Panel2");
-                _this.Children.Add(_this.PanelRows);
-                _this.Children.Add(_this.PanelCols);
-                return _this;
-            }
-            return Grid;
-        }(UI.Control));
-        UI.Grid = Grid;
-    })(UI = Rubik.UI || (Rubik.UI = {}));
-})(Rubik || (Rubik = {}));
-var Rubik;
-(function (Rubik) {
-    var Schema;
-    (function (Schema_1) {
-        var Schema = (function () {
-            function Schema() {
-            }
-            return Schema;
-        }());
-        Schema_1.Schema = Schema;
-    })(Schema = Rubik.Schema || (Rubik.Schema = {}));
-})(Rubik || (Rubik = {}));
-var Rubik;
-(function (Rubik) {
-    var Schema;
-    (function (Schema) {
-        var SchemaObject = (function () {
-            function SchemaObject() {
-            }
-            return SchemaObject;
-        }());
-        Schema.SchemaObject = SchemaObject;
-    })(Schema = Rubik.Schema || (Rubik.Schema = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:15 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** FLAGS: The statuses that a data push or data pull request can have. */
-        var DataAccessStatuses;
-        (function (DataAccessStatuses) {
-            /** Indicates the status of the request is not known. */
-            DataAccessStatuses[DataAccessStatuses["Unkown"] = 0] = "Unkown";
-            /** Indicates that the request is pending completion. */
-            DataAccessStatuses[DataAccessStatuses["Pending"] = 1] = "Pending";
-            /** Indicates that the request has completed succesffuly. */
-            DataAccessStatuses[DataAccessStatuses["Complete"] = 2] = "Complete";
-            /** Indicates that the request has completed but failed. */
-            DataAccessStatuses[DataAccessStatuses["Failed"] = 4] = "Failed";
-            /** Indicates that an error occurred other than request failure. */
-            DataAccessStatuses[DataAccessStatuses["Error"] = 8] = "Error";
-        })(DataAccessStatuses = Data.DataAccessStatuses || (Data.DataAccessStatuses = {}));
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Jul 8 18:31 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 8/Jul/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="DataAccessStatuses.ts" />
-/// <reference path="IDataAccessor.d.ts" />
-/// <reference path="../Events/Event.ts" />
-/// <reference path="../Events/IEventHandler.d.ts" />
-/// <reference path="../Events/IEventArgs.d.ts" />
-/// <reference path="../Events/IEvent.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        //#region Data Pulled Event
-        /** See Event for more details. */
-        var DataPulledEvent = (function (_super) {
-            __extends(DataPulledEvent, _super);
-            function DataPulledEvent() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            return DataPulledEvent;
-        }(Rubik.Events.Event));
-        Data.DataPulledEvent = DataPulledEvent;
-        /** See EventHandler for more details. */
-        var DataPulledEventHandler = (function (_super) {
-            __extends(DataPulledEventHandler, _super);
-            function DataPulledEventHandler() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            return DataPulledEventHandler;
-        }(Rubik.Events.EventHandler));
-        Data.DataPulledEventHandler = DataPulledEventHandler;
-        /** See EventArgs for more details.*/
-        var DataPulledEventArgs = (function (_super) {
-            __extends(DataPulledEventArgs, _super);
-            function DataPulledEventArgs(Sender, Result) {
-                var _this = _super.call(this, Sender) || this;
-                _this.Sender = Sender;
-                _this.Result = Result;
-                return _this;
-            }
-            return DataPulledEventArgs;
-        }(Rubik.Events.EventArgs));
-        Data.DataPulledEventArgs = DataPulledEventArgs;
-        //#endregion
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:35 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 25/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="DataAccessStatuses.ts" />
-/// <reference path="IDataAccessResult.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Defines the structure for the result of a data access request. Contains the Status of the request and any data returned.
-            T: The type of data (the type of the Result property)
-        */
-        var DataAccessResult = (function () {
-            /** Creates a new instance of DataAccessResult
-                @param status The most recent status of the request.
-                @param result The result data of the request.
-                @returns A new DataAccessResult instance.
-            */
-            function DataAccessResult(status, result) {
-                this.Status = status;
-                this.Result = result;
-            }
-            return DataAccessResult;
-        }());
-        Data.DataAccessResult = DataAccessResult;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: 25 Aug 19:32 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 25/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="DataPulledEvent.ts" />
-/// <reference path="IDataAccessResult.d.ts" />
-/// <reference path="DataAccessStatuses.ts" />
-/// <reference path="../Events/Events.ts" />
-/// <reference path="IAccessInfo.d.ts" />
-/// <reference path="IDataAccessor.d.ts" />
-/// <reference path="DataAccessResult.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Defines the structure for data accessors. Data accessors push or pull data to/from a data source such as a page on a web server.
-            T: Specifies the type of the data which will be sent to/from the server.
-        */
-        var DataAccessor = (function () {
-            function DataAccessor(baseAccessInfo) {
-                if (baseAccessInfo === void 0) { baseAccessInfo = null; }
-                /** The normal access info to use in PushData and PullData when no alternative info is supplied. Use this to set up a data accessor for repeated access to the same data source. */
-                this.BaseAccessInfo = null;
-                /** Fired when data is pushed to the server (or when the data push request fails).
-                    Check the Status property of the event.
-                */
-                this.OnDataPushed = new Data.DataPushedEvent();
-                /** Fired when data is pulled from the server (or when the data pull request fails).
-                    Check the Status property of the event.
-                */
-                this.OnDataPulled = new Data.DataPulledEvent();
-                this.BaseAccessInfo = baseAccessInfo;
-            }
-            /** Empty implementation of PushData. Always returns an error result.
-                @param data The data to push to the server.
-                @param accessInfo The AccessInfo to use for the data source.
-                @returns The result of the request. Implementations of this which are asynchronous should return an empty result with status Pending.
-            */
-            DataAccessor.prototype.PushData = function (data, accessInfo) {
-                return new Data.DataAccessResult(Data.DataAccessStatuses.Error, null);
-            };
-            /** Empty implementation of PullData. Always returns an error result.
-                @param accessInfo The AccessInfo to use for the data source.
-                @returns The status of the request. Implementations of this which are asynchronous should return empty result with status Pending.
-            */
-            DataAccessor.prototype.PullData = function (accessInfo) {
-                return new Data.DataAccessResult(Data.DataAccessStatuses.Error, null);
-            };
-            return DataAccessor;
-        }());
-        Data.DataAccessor = DataAccessor;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="IDataAdapter.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Defines the structure for data adapters. Data adapters convert raw input data to JavaScript objects or vice-versa.
-            I: Specifies the type of the input data.
-            O: Specifies the type of the output data.
-        */
-        var DataAdapter = (function () {
-            function DataAdapter() {
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation always returns null.
-                @param input The raw data.
-                @returns The JavaScript object data.
-            */
-            DataAdapter.prototype.I2O = function (input) {
-                return null;
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation always returns null.
-                @param input The JavaScript object data.
-                @returns The raw data.
-            */
-            DataAdapter.prototype.O2I = function (output) {
-                return null;
-            };
-            return DataAdapter;
-        }());
-        Data.DataAdapter = DataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Jul 8 18:31 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 8/Jul/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="DataAccessStatuses.ts" />
-/// <reference path="IDataAccessor.d.ts" />
-/// <reference path="../Events/Event.ts" />
-/// <reference path="../Events/IEventHandler.d.ts" />
-/// <reference path="../Events/IEventArgs.d.ts" />
-/// <reference path="../Events/IEvent.d.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** See Event for more details. */
-        var DataPushedEvent = (function (_super) {
-            __extends(DataPushedEvent, _super);
-            function DataPushedEvent() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            return DataPushedEvent;
-        }(Rubik.Events.Event));
-        Data.DataPushedEvent = DataPushedEvent;
-        /** See EventHandler for more details. */
-        var DataPushedEventHandler = (function (_super) {
-            __extends(DataPushedEventHandler, _super);
-            function DataPushedEventHandler() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            return DataPushedEventHandler;
-        }(Rubik.Events.EventHandler));
-        Data.DataPushedEventHandler = DataPushedEventHandler;
-        /** See EventArgs for more details.
-            Note: Success paramter indicates whether the push was successful.
-        */
-        var DataPushedEventArgs = (function (_super) {
-            __extends(DataPushedEventArgs, _super);
-            function DataPushedEventArgs(Sender, Result) {
-                var _this = _super.call(this, Sender) || this;
-                _this.Sender = Sender;
-                _this.Result = Result;
-                return _this;
-            }
-            return DataPushedEventArgs;
-        }(Rubik.Events.EventArgs));
-        Data.DataPushedEventArgs = DataPushedEventArgs;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="../DataAdapter.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Array Data Adapter converts a raw input string to an array or vice-versa. Use JSONDataAdapter to handle JSON-formatted arrays/objects.
-            O: The type of the items in the output array
-        */
-        var ArrayDataAdapter = (function (_super) {
-            __extends(ArrayDataAdapter, _super);
-            /** Creates a new ArrayDataAdapter<O>
-                @param ItemAdapter The data adapter to use for converting array item strings into actual item objects.
-                @param Delimiter The delimiter to use for splitting the input string into seperate items. Default: ","
-             */
-            function ArrayDataAdapter(ItemAdapter, Delimiter) {
-                if (Delimiter === void 0) { Delimiter = ","; }
-                var _this = _super.call(this) || this;
-                _this.ItemAdapter = ItemAdapter;
-                _this.Delimiter = Delimiter;
-                return _this;
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation does not check for a valid array with the exception that it does handle null and undefined.
-                Note: This implementation splits by the specified delimiter then uses the item adapter to convert each item individually.
-                @param input The raw string data.
-                @returns The array data or null or undefined.
-            */
-            ArrayDataAdapter.prototype.I2O = function (input) {
-                if (input === "null" || input === null) {
-                    return null;
-                }
-                else if (input === "undefined" || input === undefined) {
-                    return undefined;
-                }
-                var items = input.split(this.Delimiter);
-                var result = new Array(items.length);
-                for (var i = 0; i < items.length; i++) {
-                    result[i] = this.ItemAdapter.I2O(items[i]);
-                }
-                return result;
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation does handle null and undefined.
-                @param input The array data.
-                @returns The raw string.
-            */
-            ArrayDataAdapter.prototype.O2I = function (output) {
-                if (output === null) {
-                    return "null";
-                }
-                else if (output === undefined) {
-                    return "undefined";
-                }
-                var result = "";
-                for (var i = 0; i < output.length; i++) {
-                    result += this.ItemAdapter.O2I(output[i]);
-                    if (i < output.length - 1) {
-                        result += this.Delimiter;
-                    }
-                }
-                return result;
-            };
-            return ArrayDataAdapter;
-        }(Data.DataAdapter));
-        Data.ArrayDataAdapter = ArrayDataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="../DataAdapter.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Boolean Data Adapter converts a raw input string to a boolean or vice-versa.*/
-        var BooleanDataAdapter = (function (_super) {
-            __extends(BooleanDataAdapter, _super);
-            function BooleanDataAdapter() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation does not check for a valid boolean with the exception that it does handle null and undefined.
-                Note: This implementation tests for equality with "true", "1", "yes", "on" (case-insensitive).
-                @param input The raw string data.
-                @returns The boolean data or null or undefined.
-            */
-            BooleanDataAdapter.prototype.I2O = function (input) {
-                if (input === "null" || input === null) {
-                    return null;
-                }
-                else if (input === "undefined" || input === undefined) {
-                    return undefined;
-                }
-                var testInput = input.toLowerCase();
-                return testInput === "true" || testInput === "1" || testInput === "yes" || testInput === "on";
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation does handle null and undefined.
-                @param input The boolean data.
-                @returns The raw string data.
-            */
-            BooleanDataAdapter.prototype.O2I = function (output) {
-                if (output === null) {
-                    return "null";
-                }
-                else if (output === undefined) {
-                    return "undefined";
-                }
-                return output ? "true" : "false";
-            };
-            return BooleanDataAdapter;
-        }(Data.DataAdapter));
-        Data.BooleanDataAdapter = BooleanDataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="../DataAdapter.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** JSON Data Adapter converts a raw input string to a JavaScript object or vice-versa. Use JSONDataAdapter to handle JSON-formatted arrays/objects.
-            O: The output type of the adapter.
-        */
-        var JSONDataAdapter = (function (_super) {
-            __extends(JSONDataAdapter, _super);
-            function JSONDataAdapter() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation does handle null and undefined.
-                Note: This implementation uses JSON.parse()
-                @param input The raw JSON string.
-                @returns The object data or null or undefined.
-            */
-            JSONDataAdapter.prototype.I2O = function (input) {
-                if (input === "null" || input === null) {
-                    return null;
-                }
-                else if (input === "undefined" || input === undefined) {
-                    return undefined;
-                }
-                return JSON.parse(input);
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation does handle null and undefined.
-                Note: This implementation uses JSON.stringify()
-                @param input The object data.
-                @returns The raw JSON string.
-            */
-            JSONDataAdapter.prototype.O2I = function (output) {
-                if (output === null) {
-                    return "null";
-                }
-                else if (output === undefined) {
-                    return "undefined";
-                }
-                return JSON.stringify(output);
-            };
-            return JSONDataAdapter;
-        }(Data.DataAdapter));
-        Data.JSONDataAdapter = JSONDataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="../DataAdapter.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** Number Data Adapter converts a raw input string to a number or vice-versa.*/
-        var NumberDataAdapter = (function (_super) {
-            __extends(NumberDataAdapter, _super);
-            function NumberDataAdapter() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation does not check for a valid number with the exception that it does handle NaN, null and undefined.
-                Note: This implementation uses parseFloat.
-                @param input The raw string data.
-                @returns The (float) number data or null or undefined or NaN.
-            */
-            NumberDataAdapter.prototype.I2O = function (input) {
-                if (input === "null" || input === null) {
-                    return null;
-                }
-                else if (input === "undefined" || input === undefined) {
-                    return undefined;
-                }
-                else if (input === "NaN") {
-                    return NaN;
-                }
-                return parseFloat(input);
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation does handle NaN, null and undefined.
-                Note: This implementation uses .toString() with radix: 10
-                @param input The number data.
-                @returns The raw string data.
-            */
-            NumberDataAdapter.prototype.O2I = function (output) {
-                if (output === null) {
-                    return "null";
-                }
-                else if (output === undefined) {
-                    return "undefined";
-                }
-                else if (isNaN(output)) {
-                    return "NaN";
-                }
-                return output.toString(10);
-            };
-            return NumberDataAdapter;
-        }(Data.DataAdapter));
-        Data.NumberDataAdapter = NumberDataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Aug 3 12:51 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 3/Aug/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="../DataAdapter.ts" />
-var Rubik;
-(function (Rubik) {
-    var Data;
-    (function (Data) {
-        /** String Data Adapter is a string pass-through adapter - it doesn't actually do anything. Use this as a fill-in adapter.*/
-        var StringDataAdapter = (function (_super) {
-            __extends(StringDataAdapter, _super);
-            function StringDataAdapter() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            /** Converts raw data to JavaScript object data.
-                Note: This implementation always returns the input unless the input is "undefined" or "null" in which case it returns undefined or null respectively.
-                @param input The raw string data.
-                @returns The processed string data or undefined or null.
-            */
-            StringDataAdapter.prototype.I2O = function (input) {
-                return input;
-            };
-            /** Converts JavaScript object data to raw data.
-                Note: This implementation always returns the output unless the output is undefined or null in which case it returns "undefined" or "null" respectively.
-                @param input The processed string data.
-                @returns The raw string data.
-            */
-            StringDataAdapter.prototype.O2I = function (output) {
-                return output;
-            };
-            return StringDataAdapter;
-        }(Data.DataAdapter));
-        Data.StringDataAdapter = StringDataAdapter;
-    })(Data = Rubik.Data || (Rubik.Data = {}));
-})(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
@@ -3723,7 +4134,7 @@ var Rubik;
     var Data;
     (function (Data) {
         /** A basic data accessor which can send HTTP GET/POST requests for pul/push. Data accessors push or pull data to/from a data source such as a page on a web server. */
-        var HTTPDataAccessor = (function (_super) {
+        var HTTPDataAccessor = /** @class */ (function (_super) {
             __extends(HTTPDataAccessor, _super);
             function HTTPDataAccessor(baseAccessInfo) {
                 if (baseAccessInfo === void 0) { baseAccessInfo = null; }
@@ -3821,7 +4232,7 @@ var Rubik;
     (function (Data) {
         /** A basic data accessor which can use a JS global variable as its source for pull/push. Can also use a property method e.g. function(value: Val_Type): Val_Type
             Data accessors push or pull data to/from a data source such as a page on a web server. */
-        var JSDataAccessor = (function (_super) {
+        var JSDataAccessor = /** @class */ (function (_super) {
             __extends(JSDataAccessor, _super);
             function JSDataAccessor(aContext, baseAccessInfo) {
                 if (baseAccessInfo === void 0) { baseAccessInfo = null; }
@@ -3920,688 +4331,572 @@ var Rubik;
     })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
 /*
-Copyright © Edward Nutting 2013
+Copyright Edward Nutting 2013
 Author: Edward Nutting
-Date: Jul 8 18:31 2013
+Date: Aug 3 12:51 2013
 
 URL: https://typescriptui.codeplex.com/
 Modifications:
- - 8/Jul/13 : Initial version.
+ - 3/Aug/13 : Initial version.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="../UI/UI Static.ts" />
-/// <reference path="IAnimator.d.ts" />
+/// <reference path="../DataAdapter.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Animator for a SelectionWindow. */
-        var SelectionWindowAnimator = (function () {
-            function SelectionWindowAnimator() {
+    var Data;
+    (function (Data) {
+        /** Array Data Adapter converts a raw input string to an array or vice-versa. Use JSONDataAdapter to handle JSON-formatted arrays/objects.
+            O: The type of the items in the output array
+        */
+        var ArrayDataAdapter = /** @class */ (function (_super) {
+            __extends(ArrayDataAdapter, _super);
+            /** Creates a new ArrayDataAdapter<O>
+                @param ItemAdapter The data adapter to use for converting array item strings into actual item objects.
+                @param Delimiter The delimiter to use for splitting the input string into seperate items. Default: ","
+             */
+            function ArrayDataAdapter(ItemAdapter, Delimiter) {
+                if (Delimiter === void 0) { Delimiter = ","; }
+                var _this = _super.call(this) || this;
+                _this.ItemAdapter = ItemAdapter;
+                _this.Delimiter = Delimiter;
+                return _this;
             }
-            /** Fades in the selection window and the SelectionWindow_DisableOverlay. Clears CSS 'display' and 'visibility'
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation does not check for a valid array with the exception that it does handle null and undefined.
+                Note: This implementation splits by the specified delimiter then uses the item adapter to convert each item individually.
+                @param input The raw string data.
+                @returns The array data or null or undefined.
             */
-            SelectionWindowAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                $(".SelectionWindow_DisableOverlay")
-                    .css({
-                    display: "block",
-                    opacity: 0,
-                    zIndex: (Rubik.UI.OpenWindows * 10) - 1
-                })
-                    .animate({
-                    opacity: 0.6
-                }, 200, "swing", function () {
-                });
-                var oldOpacity = control.GetStyle("opacity");
-                control.AnimationElement().stop(true, true);
-                control.AnimationElement().css({
-                    opacity: 0,
-                    visibility: "",
-                    display: ""
-                }).animate({
-                    opacity: oldOpacity,
-                }, SelectionWindowAnimator.AnimationTime, SelectionWindowAnimator.AnimationEasing, function () {
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            ArrayDataAdapter.prototype.I2O = function (input) {
+                if (input === "null" || input === null) {
+                    return null;
+                }
+                else if (input === "undefined" || input === undefined) {
+                    return undefined;
+                }
+                var items = input.split(this.Delimiter);
+                var result = new Array(items.length);
+                for (var i = 0; i < items.length; i++) {
+                    result[i] = this.ItemAdapter.I2O(items[i]);
+                }
+                return result;
             };
-            /** Fades out the selection window and the SelectionWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation does handle null and undefined.
+                @param input The array data.
+                @returns The raw string.
             */
-            SelectionWindowAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                $(".SelectionWindow_DisableOverlay")
-                    .animate({
-                    opacity: 0
-                }, 200, "swing", function () {
-                    $(this).css({
-                        display: ""
-                    });
-                });
-                control.AnimationElement().stop(true, true);
-                control.AnimationElement().animate({
-                    opacity: 0
-                }, SelectionWindowAnimator.AnimationTime, SelectionWindowAnimator.AnimationEasing, function () {
-                    control.AnimationElement().css({
-                        visibility: "hidden",
-                        opacity: 1,
-                        display: "none"
-                    });
-                    if (callback !== null) {
-                        callback();
+            ArrayDataAdapter.prototype.O2I = function (output) {
+                if (output === null) {
+                    return "null";
+                }
+                else if (output === undefined) {
+                    return "undefined";
+                }
+                var result = "";
+                for (var i = 0; i < output.length; i++) {
+                    result += this.ItemAdapter.O2I(output[i]);
+                    if (i < output.length - 1) {
+                        result += this.Delimiter;
                     }
-                });
+                }
+                return result;
             };
-            return SelectionWindowAnimator;
-        }());
-        /** The length of time (milliseconds) to spend animating the window.
-            Default: 250ms
-        */
-        SelectionWindowAnimator.AnimationTime = 250;
-        /** The jQuery animation easing to use
-            Default: easeOutQuad
-        */
-        SelectionWindowAnimator.AnimationEasing = "easeOutQuad";
-        Animation.SelectionWindowAnimator = SelectionWindowAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            return ArrayDataAdapter;
+        }(Data.DataAdapter));
+        Data.ArrayDataAdapter = ArrayDataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
-Date: Jul 8 18:31 2013
+Date: Aug 3 12:51 2013
 
 URL: https://typescriptui.codeplex.com/
 Modifications:
- - 8/Jul/13 : Initial version.
+ - 3/Aug/13 : Initial version.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="../UI/UI Static.ts" />
-/// <reference path="IAnimator.d.ts" />
+/// <reference path="../DataAdapter.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Animator for a StaticPageWindow. */
-        var PageWindowAnimator = (function () {
-            function PageWindowAnimator() {
+    var Data;
+    (function (Data) {
+        /** Boolean Data Adapter converts a raw input string to a boolean or vice-versa.*/
+        var BooleanDataAdapter = /** @class */ (function (_super) {
+            __extends(BooleanDataAdapter, _super);
+            function BooleanDataAdapter() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            /** Fades in the page window and the PageWindow_DisableOverlay. Clears CSS 'display' and 'visibility'
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation does not check for a valid boolean with the exception that it does handle null and undefined.
+                Note: This implementation tests for equality with "true", "1", "yes", "on" (case-insensitive).
+                @param input The raw string data.
+                @returns The boolean data or null or undefined.
             */
-            PageWindowAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                $(".PageWindow_DisableOverlay")
-                    .css({
-                    display: "block",
-                    opacity: 0,
-                    zIndex: (Rubik.UI.OpenWindows * 10) - 1
-                })
-                    .animate({
-                    opacity: 0.6
-                }, 200, "swing", function () {
-                });
-                var oldOpacity = control.GetStyle("opacity");
-                control.AnimationElement().stop(true, true);
-                control.AnimationElement().css({
-                    opacity: 0,
-                    visibility: "",
-                    display: ""
-                }).animate({
-                    opacity: oldOpacity,
-                }, PageWindowAnimator.AnimationTime, PageWindowAnimator.AnimationEasing, function () {
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            BooleanDataAdapter.prototype.I2O = function (input) {
+                if (input === "null" || input === null) {
+                    return null;
+                }
+                else if (input === "undefined" || input === undefined) {
+                    return undefined;
+                }
+                var testInput = input.toLowerCase();
+                return testInput === "true" || testInput === "1" || testInput === "yes" || testInput === "on";
             };
-            /** Fades out the page window and the PageWindow_DisableOverlay. Sets CSS 'display:none' and 'visibility:hidden'
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation does handle null and undefined.
+                @param input The boolean data.
+                @returns The raw string data.
             */
-            PageWindowAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                $(".PageWindow_DisableOverlay")
-                    .animate({
-                    opacity: 0
-                }, 200, "swing", function () {
-                    $(this).css({
-                        display: ""
-                    });
-                });
-                control.AnimationElement().stop(true, true);
-                control.AnimationElement().animate({
-                    opacity: 0
-                }, PageWindowAnimator.AnimationTime, PageWindowAnimator.AnimationEasing, function () {
-                    control.AnimationElement().css({
-                        visibility: "hidden",
-                        opacity: 1,
-                        display: "none"
-                    });
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            BooleanDataAdapter.prototype.O2I = function (output) {
+                if (output === null) {
+                    return "null";
+                }
+                else if (output === undefined) {
+                    return "undefined";
+                }
+                return output ? "true" : "false";
             };
-            return PageWindowAnimator;
-        }());
-        /** The length of time (milliseconds) to spend animating the window.
-            Default: 250ms
-        */
-        PageWindowAnimator.AnimationTime = 250;
-        /** The jQuery animation easing to use
-            Default: easeOutQuad
-        */
-        PageWindowAnimator.AnimationEasing = "easeOutQuad";
-        Animation.PageWindowAnimator = PageWindowAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            return BooleanDataAdapter;
+        }(Data.DataAdapter));
+        Data.BooleanDataAdapter = BooleanDataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
-Date: Jul 8 18:31 2013
+Date: Aug 3 12:51 2013
 
 URL: https://typescriptui.codeplex.com/
 Modifications:
- - 8/Jul/13 : Initial version.
+ - 3/Aug/13 : Initial version.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="IAnimator.d.ts" />
+/// <reference path="../DataAdapter.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Animator for animating restack of notifications.
-            Note: Show/Hide are empty methods.
+    var Data;
+    (function (Data) {
+        /** JSON Data Adapter converts a raw input string to a JavaScript object or vice-versa. Use JSONDataAdapter to handle JSON-formatted arrays/objects.
+            O: The output type of the adapter.
         */
-        var NotificationRestackAnimator = (function () {
-            function NotificationRestackAnimator() {
+        var JSONDataAdapter = /** @class */ (function (_super) {
+            __extends(JSONDataAdapter, _super);
+            function JSONDataAdapter() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            /** This method is empty. */
-            NotificationRestackAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-            };
-            /** This method is empty. */
-            NotificationRestackAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-            };
-            /** Animates the control to slide it up/down to new bottom (i.e. animates restack).
-                @param control The control to animate.
-                @param newBottom The new CSS 'bottom' value.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation does handle null and undefined.
+                Note: This implementation uses JSON.parse()
+                @param input The raw JSON string.
+                @returns The object data or null or undefined.
             */
-            NotificationRestackAnimator.prototype.AnimateRestack = function (control, newBottom, callback) {
-                if (callback === void 0) { callback = null; }
-                var element = control.AnimationElement();
-                element.animate({
-                    bottom: newBottom
-                }, NotificationRestackAnimator.AnimationTime, NotificationRestackAnimator.AnimationEasing, function () {
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            JSONDataAdapter.prototype.I2O = function (input) {
+                if (input === "null" || input === null) {
+                    return null;
+                }
+                else if (input === "undefined" || input === undefined) {
+                    return undefined;
+                }
+                return JSON.parse(input);
             };
-            return NotificationRestackAnimator;
-        }());
-        /** The length of time (milliseconds) to spend restacking.
-            Default: 1000ms
-        */
-        NotificationRestackAnimator.AnimationTime = 1000;
-        /** The jQuery animation easing to use
-            Default: easeInCubic
-        */
-        NotificationRestackAnimator.AnimationEasing = "easeInCubic";
-        Animation.NotificationRestackAnimator = NotificationRestackAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation does handle null and undefined.
+                Note: This implementation uses JSON.stringify()
+                @param input The object data.
+                @returns The raw JSON string.
+            */
+            JSONDataAdapter.prototype.O2I = function (output) {
+                if (output === null) {
+                    return "null";
+                }
+                else if (output === undefined) {
+                    return "undefined";
+                }
+                return JSON.stringify(output);
+            };
+            return JSONDataAdapter;
+        }(Data.DataAdapter));
+        Data.JSONDataAdapter = JSONDataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
-Date: Jul 8 18:31 2013
+Date: Aug 3 12:51 2013
 
 URL: https://typescriptui.codeplex.com/
 Modifications:
- - 8/Jul/13 : Initial version.
+ - 3/Aug/13 : Initial version.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="IAnimator.d.ts" />
+/// <reference path="../DataAdapter.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Animator for a Notification. */
-        var NotificationAnimator = (function () {
-            function NotificationAnimator() {
+    var Data;
+    (function (Data) {
+        /** Number Data Adapter converts a raw input string to a number or vice-versa.*/
+        var NumberDataAdapter = /** @class */ (function (_super) {
+            __extends(NumberDataAdapter, _super);
+            function NumberDataAdapter() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            /** Slides the notification in from the right - does not set "top". Clears CSS 'visibility' and 'display' values.
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation does not check for a valid number with the exception that it does handle NaN, null and undefined.
+                Note: This implementation uses parseFloat.
+                @param input The raw string data.
+                @returns The (float) number data or null or undefined or NaN.
             */
-            NotificationAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                var element = control.AnimationElement();
-                element.stop(true, true);
-                var startRight = element.css("right");
-                element.css({
-                    right: -element.outerWidth(),
-                    visibility: "",
-                    display: ""
-                }).animate({
-                    right: startRight
-                }, NotificationAnimator.AnimationTime, NotificationAnimator.AnimationEasing, function () {
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            NumberDataAdapter.prototype.I2O = function (input) {
+                if (input === "null" || input === null) {
+                    return null;
+                }
+                else if (input === "undefined" || input === undefined) {
+                    return undefined;
+                }
+                else if (input === "NaN") {
+                    return NaN;
+                }
+                return parseFloat(input);
             };
-            /** Slides the notification off to the right - does not set "top". Sets CSS 'visibility:hidden' and 'display:none'; Restores CSS 'right'.
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation does handle NaN, null and undefined.
+                Note: This implementation uses .toString() with radix: 10
+                @param input The number data.
+                @returns The raw string data.
             */
-            NotificationAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                var element = control.AnimationElement();
-                element.stop(true, true);
-                var startRight = element.css("right");
-                element.animate({
-                    right: -element.outerWidth()
-                }, NotificationAnimator.AnimationTime, NotificationAnimator.AnimationEasing, function () {
-                    element.css({
-                        visibility: "hidden",
-                        display: "none",
-                        right: startRight
-                    });
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
+            NumberDataAdapter.prototype.O2I = function (output) {
+                if (output === null) {
+                    return "null";
+                }
+                else if (output === undefined) {
+                    return "undefined";
+                }
+                else if (isNaN(output)) {
+                    return "NaN";
+                }
+                return output.toString(10);
             };
-            return NotificationAnimator;
-        }());
-        /** The length of time (milliseconds) to spend animating the notification.
-            Default: 1000ms
-        */
-        NotificationAnimator.AnimationTime = 1000;
-        /** The jQuery animation easing to use
-            Default: linear
-        */
-        NotificationAnimator.AnimationEasing = "linear";
-        Animation.NotificationAnimator = NotificationAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            return NumberDataAdapter;
+        }(Data.DataAdapter));
+        Data.NumberDataAdapter = NumberDataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
 /*
 Copyright Edward Nutting 2013
 Author: Edward Nutting
-Date: Jul 8 18:31 2013
+Date: Aug 3 12:51 2013
 
 URL: https://typescriptui.codeplex.com/
 Modifications:
- - 8/Jul/13 : Initial version.
+ - 3/Aug/13 : Initial version.
 
 License: https://typescriptui.codeplex.com/license
 */
-/// <reference path="Animation.ts" />
-/// <reference path="IAnimator.d.ts" />
+/// <reference path="../DataAdapter.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Animator for an AppWindow
-            Note: Makes use if HTML2Canvas animation if specified.
-        */
-        var AppWindowAnimator = (function () {
-            function AppWindowAnimator() {
-                /** Private: The HTML2Canvas canvas element (as jQuery reference) to be animated. */
-                this._CanvasElem = null;
+    var Data;
+    (function (Data) {
+        /** String Data Adapter is a string pass-through adapter - it doesn't actually do anything. Use this as a fill-in adapter.*/
+        var StringDataAdapter = /** @class */ (function (_super) {
+            __extends(StringDataAdapter, _super);
+            function StringDataAdapter() {
+                return _super !== null && _super.apply(this, arguments) || this;
             }
-            /** Shows the control and invokes the callback (context not restored) after the animation is completed.
-                Window is shrunk before being shown, then flown on from the right, delay then expanded and finally callback called.
-                If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used. If HTML2Canvas is used, RestoreAfterAnimationHTML2Canvas is called.
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts raw data to JavaScript object data.
+                Note: This implementation always returns the input unless the input is "undefined" or "null" in which case it returns undefined or null respectively.
+                @param input The raw string data.
+                @returns The processed string data or undefined or null.
             */
-            AppWindowAnimator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                var useCanvasRender = this._EvaluateUseCanvasRender(control);
-                var OK = false;
-                if (useCanvasRender) {
-                    OK = true;
-                    try {
-                        var element = control.AnimationElement();
-                        if (this._CanvasElem === null) {
-                            var _this = this;
-                            Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(element, function (canvas) {
-                                _this.DoHTML2CanvasShow(element, canvas, callback);
-                            });
-                        }
-                        else {
-                            this.DoHTML2CanvasShow(element, this._CanvasElem, callback);
-                        }
-                    }
-                    catch (ex) {
-                        OK = false;
-                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
-                    }
-                }
-                if (!OK) {
-                    var element = control.AnimationElement();
-                    var startSize = Rubik.GetSize(control);
-                    var startWidth = startSize.width;
-                    var startHeight = startSize.height;
-                    var startPos = Rubik.GetPosition(control);
-                    var origCSSTop = ((startPos.top / element.parent().height()) * 100).toString() + "%";
-                    var origCSSLeft = ((startPos.left / element.parent().width()) * 100).toString() + "%";
-                    element.css({
-                        width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
-                        height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
-                        left: element.parent().width() + 50,
-                        visibility: "",
-                        display: ""
-                    });
-                    element
-                        .css({
-                        top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount)
-                    })
-                        .animate({
-                        left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount),
-                        opacity: 1
-                    }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing)
-                        .delay(AppWindowAnimator.DelayTime)
-                        .animate({
-                        width: startWidth,
-                        height: startHeight,
-                        top: origCSSTop,
-                        left: origCSSLeft,
-                        visibility: "",
-                        display: ""
-                    }, AppWindowAnimator.ResizeTime, callback);
-                }
+            StringDataAdapter.prototype.I2O = function (input) {
+                return input;
             };
-            /** Hides the control and invokes the callback (context not restored) after the animation is completed.
-                Window is shrunk, delay, then flown off to the right, hidden properly, restored to original position & size and finally callback called.
-                If HTML2Canvas is to be used and canvas has not been prepared, it is prepared in this call. Otherwise, jQuery animation is used.
-                @param control The control to animate.
-                @param callback The callback to invoke after animation has completed.
+            /** Converts JavaScript object data to raw data.
+                Note: This implementation always returns the output unless the output is undefined or null in which case it returns "undefined" or "null" respectively.
+                @param input The processed string data.
+                @returns The raw string data.
             */
-            AppWindowAnimator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                var useCanvasRender = this._EvaluateUseCanvasRender(control);
-                var OK = false;
-                if (useCanvasRender) {
-                    OK = true;
-                    try {
-                        var element = control.AnimationElement();
-                        if (this._CanvasElem === null) {
-                            var _this = this;
-                            Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(element, function (canvas) {
-                                _this.DoHTML2CanvasHide(element, canvas, callback);
-                            });
-                        }
-                        else {
-                            this.DoHTML2CanvasHide(element, this._CanvasElem, callback);
-                        }
-                    }
-                    catch (ex) {
-                        OK = false;
-                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
-                    }
-                }
-                if (!OK) {
-                    var element = control.AnimationElement();
-                    var startSize = Rubik.GetSize(control);
-                    var startWidth = startSize.width;
-                    var startHeight = startSize.height;
-                    var startPos = Rubik.GetPosition(control);
-                    element
-                        .animate({
-                        width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
-                        height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
-                        top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
-                        left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount)
-                    }, AppWindowAnimator.ResizeTime)
-                        .delay(AppWindowAnimator.DelayTime)
-                        .animate({
-                        left: element.parent().width() + 50,
-                        opacity: 0
-                    }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing, function () {
-                        element.css({
-                            width: startWidth,
-                            height: startHeight,
-                            top: startPos.top,
-                            left: startPos.left,
-                            display: "",
-                            visibility: "hidden"
-                        });
-                        if (callback) {
-                            callback();
-                        }
-                    });
-                }
+            StringDataAdapter.prototype.O2I = function (output) {
+                return output;
             };
-            /** Animates the passed canvas and handles switching between the canvas and the element. For more details see Show.
-                @param element The element to "animate" - should already prepared using HTML2Canvas.
-                @param canvas The prepared HTML2Canvas canvas element to be animated.
-                @param callback The callback to invoke after animation has completed.
-            */
-            AppWindowAnimator.prototype.DoHTML2CanvasShow = function (element, canvas, callback) {
-                var startWidth = parseInt(canvas.css("width"), 10);
-                var startHeight = parseInt(canvas.css("height"), 10);
-                var startPos = {
-                    top: parseInt(canvas.css("top"), 10),
-                    left: parseInt(canvas.css("left"), 10)
-                };
-                var _this = this;
-                canvas
-                    .css({
-                    width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
-                    height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
-                    left: element.parent().width() + 50,
-                    top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
-                    opacity: 0,
-                    visibility: "",
-                    display: ""
-                })
-                    .animate({
-                    left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount),
-                    opacity: 1
-                }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing)
-                    .delay(AppWindowAnimator.DelayTime)
-                    .animate({
-                    width: startWidth,
-                    height: startHeight,
-                    top: startPos.top,
-                    left: startPos.left,
-                    visibility: "",
-                    display: ""
-                }, AppWindowAnimator.ResizeTime, function () {
-                    Animation.AnimationHelper.RestoreAfterAnimationHTML2Canvas(element, canvas);
-                    _this._CanvasElem = null;
-                    if (callback !== null) {
-                        callback();
-                    }
-                });
-            };
-            /** Animates the passed canvas and handles switching between the canvas and the element. For more details see Show.
-                @param element The element to "animate" - should already prepared using HTML2Canvas.
-                @param canvas The prepared HTML2Canvas canvas element to be animated.
-                @param callback The callback to invoke after animation has completed.
-            */
-            AppWindowAnimator.prototype.DoHTML2CanvasHide = function (element, canvas, callback) {
-                var startWidth = parseInt(canvas.css("width"), 10);
-                var startHeight = parseInt(canvas.css("height"), 10);
-                var startPos = {
-                    top: parseInt(canvas.css("top"), 10),
-                    left: parseInt(canvas.css("left"), 10)
-                };
-                canvas.css("display", "block");
-                element.css("display", "none");
-                canvas
-                    .animate({
-                    width: startWidth - (startWidth * AppWindowAnimator.ShrinkAmount * 2),
-                    height: startHeight - (startHeight * AppWindowAnimator.ShrinkAmount * 2),
-                    top: startPos.top + (startHeight * AppWindowAnimator.ShrinkAmount),
-                    left: startPos.left + (startWidth * AppWindowAnimator.ShrinkAmount)
-                }, AppWindowAnimator.ResizeTime)
-                    .delay(AppWindowAnimator.DelayTime)
-                    .animate({
-                    left: element.parent().width() + 50,
-                    opacity: 0
-                }, AppWindowAnimator.FlyTime, AppWindowAnimator.AnimationEasing, function () {
-                    canvas.remove();
-                    element.css({
-                        width: startWidth,
-                        height: startHeight,
-                        top: startPos.top,
-                        left: startPos.left,
-                        display: "",
-                        visibility: "hidden"
-                    });
-                    if (callback) {
-                        callback();
-                    }
-                });
-            };
-            /** Determines whether HTML2Canvas should be used to animate specified control (i.e. window) - takes into account UseCanvasRenderIfSensible.
-                @param control The control (i.e. window) to determine whether to animate using HTML2Canvas.
-            */
-            AppWindowAnimator.prototype._EvaluateUseCanvasRender = function (control) {
-                var use = AppWindowAnimator.UseCanvasRenderIfSensible;
-                if (use) {
-                    var elem = control.AnimationElement();
-                    use = elem.width() * elem.height() > 240000; //(Window size > area of 600 x 400)
-                    var children = elem.find("*");
-                    if (use) {
-                        use = children.length > 15;
-                    }
-                    else {
-                        use = children.length > 50;
-                    }
-                }
-                return use;
-            };
-            /** Prepares a window with HTML2Canvas for animation without actually showing the canvas. Allows window to be prepared for animation then switched smoothly with another window. Preparation can take up to 30 seconds in older/slower browsers or on slow hardware. Use callback to wait for preparation to complete.
-                @param control The control (i.e. window) to prepare
-                @param callback The callback to invoke after preparation has completed.
-            */
-            AppWindowAnimator.prototype.PrepareHTML2CanvasForAnimation = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                if (this._EvaluateUseCanvasRender(control)) {
-                    try {
-                        var _this = this;
-                        _this._CanvasElem = null;
-                        var elem = control.AnimationElement();
-                        Animation.AnimationHelper.PrepareHTML2CanvasForAnimation(elem, function (canvas) {
-                            _this._CanvasElem = canvas;
-                            if (callback) {
-                                callback();
-                            }
-                        });
-                    }
-                    catch (ex) {
-                        AppWindowAnimator.UseCanvasRenderIfSensible = false;
-                        _this._CanvasElem = null;
-                        if (callback) {
-                            callback();
-                        }
-                    }
-                }
-                else {
-                    if (callback) {
-                        callback();
-                    }
-                }
-            };
-            return AppWindowAnimator;
-        }());
-        /** The length of time (milliseconds) to spend moving the window on/off the screen ('flying' the window).
-            Default: 500ms
-        */
-        AppWindowAnimator.FlyTime = 500;
-        /** The length of time (milliseconds) to spend shrinking/enlarging the window before/after flying ('resizing' the window).
-            Default: 100ms
-        */
-        AppWindowAnimator.ResizeTime = 100;
-        /** The length of time (milliseconds) to delay between resizing and flying the window.
-            Default: 500ms
-        */
-        AppWindowAnimator.DelayTime = 50;
-        /** The amount (as decimal percentage e.g. 0.01 = 1%) to shrink the window (width & height).
-            Default: 0.01 (i.e. 1%)
-        */
-        AppWindowAnimator.ShrinkAmount = 0.01;
-        /** The jQuery animation easing to use for flying and resizing.
-            Default: easeOutCubic
-        */
-        AppWindowAnimator.AnimationEasing = "easeOutCubic";
-        /** Indicates whether HTML2Canvas animation should be used if it is deemed better than standard animation. Set to false to disable use of HTML2Canvas.
-            Default: false
-        */
-        AppWindowAnimator.UseCanvasRenderIfSensible = false;
-        Animation.AppWindowAnimator = AppWindowAnimator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+            return StringDataAdapter;
+        }(Data.DataAdapter));
+        Data.StringDataAdapter = StringDataAdapter;
+    })(Data = Rubik.Data || (Rubik.Data = {}));
 })(Rubik || (Rubik = {}));
-/*
-Copyright Edward Nutting 2013
-Author: Edward Nutting
-Date: Jul 8 18:31 2013
-
-URL: https://typescriptui.codeplex.com/
-Modifications:
- - 8/Jul/13 : Initial version.
-
-License: https://typescriptui.codeplex.com/license
-*/
-/// <reference path="IAnimator.d.ts" />
 var Rubik;
 (function (Rubik) {
-    var Animation;
-    (function (Animation) {
-        /** Basic implementation of an IAnimator. */
-        var Animator = (function () {
-            function Animator() {
+    var UI;
+    (function (UI) {
+        var DataManager = /** @class */ (function () {
+            function DataManager() {
             }
-            /** Clears the values of 'visibility' and 'display' - does not force them to 'visible'.
-                This implementation restores the control to its stylesheet state of visibility.
-                @param control The control to show.
-                @param callback The function to call when showing is complete.
-            */
-            Animator.prototype.Show = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                control.AnimationElement().css({
-                    visibility: "",
-                    display: ""
-                });
-                if (callback !== null) {
-                    callback();
-                }
+            DataManager.prototype.GetColsCount = function () {
+                return 20;
             };
-            /** Sets the value of 'visibility' to 'hidden' and clears the value of 'display' - does not set 'display:none'.
-                This implementation does a basic hide of a control.
-                @param control The control to hide.
-                @param callback The function to call when hiding is complete.
-            */
-            Animator.prototype.Hide = function (control, callback) {
-                if (callback === void 0) { callback = null; }
-                control.AnimationElement().css({
-                    visibility: "hidden",
-                    display: ""
-                });
-                if (callback !== null) {
-                    callback();
-                }
+            DataManager.prototype.GetRowsCount = function () {
+                return 100000;
             };
-            return Animator;
+            DataManager.prototype.GetCellValue = function (col, row) {
+                return col.toString() + "," + row.toString();
+            };
+            return DataManager;
         }());
-        Animation.Animator = Animator;
-    })(Animation = Rubik.Animation || (Rubik.Animation = {}));
+        UI.DataManager = DataManager;
+    })(UI = Rubik.UI || (Rubik.UI = {}));
+})(Rubik || (Rubik = {}));
+var Rubik;
+(function (Rubik) {
+    var UI;
+    (function (UI) {
+        var SizeManager = /** @class */ (function () {
+            function SizeManager() {
+                this.RowsSize = {};
+                this.ColsSize = {};
+                this.LastRowOffset = null;
+                this.LastColOffset = null;
+                this.DefaultRowHeight = 0;
+                this.DefaultColWidth = 0;
+                this._rowsCount = 0;
+                this._colsCount = 0;
+            }
+            SizeManager.prototype.Initialize = function (colsCount, rowsCount) {
+                if (colsCount === void 0) { colsCount = 0; }
+                if (rowsCount === void 0) { rowsCount = 0; }
+                this._colsCount = colsCount;
+                this._rowsCount = rowsCount;
+                this.RowsSize = {};
+                this.ColsSize = {};
+                this.LastRowOffset = null;
+                this.LastColOffset = null;
+            };
+            SizeManager.prototype.RowsCount = function (count) {
+                if (count === void 0) { count = null; }
+                if (count != null)
+                    this._rowsCount = count;
+                return this._rowsCount;
+            };
+            SizeManager.prototype.ColsCount = function (count) {
+                if (count === void 0) { count = null; }
+                if (count != null)
+                    this._colsCount = count;
+                return this._colsCount;
+            };
+            SizeManager.prototype.GetRowHeight = function (index) {
+                return this.RowsSize[index] || this.DefaultRowHeight;
+            };
+            SizeManager.prototype.SetRowHeight = function (index, height) {
+                if (index < this._rowsCount) {
+                    this.LastRowOffset = null;
+                    this.RowsSize[index] = height;
+                }
+            };
+            SizeManager.prototype.GetColWidth = function (index) {
+                return this.ColsSize[index] || this.DefaultColWidth;
+            };
+            SizeManager.prototype.SetColWidth = function (index, width) {
+                if (index < this._colsCount) {
+                    this.LastColOffset = null;
+                    this.ColsSize[index] = width;
+                }
+            };
+            SizeManager.prototype.GetRowTop = function (index) {
+                var indices = Object.keys(this.RowsSize).map(Number);
+                var top = this.DefaultRowHeight * index;
+                for (var i = 0; i < indices.length; i++) {
+                    if (index < indices[i])
+                        break;
+                    top = this.RowsSize[indices[i]] - this.DefaultRowHeight;
+                }
+                return top;
+            };
+            SizeManager.prototype.GetColLeft = function (index) {
+                var indices = Object.keys(this.ColsSize).map(Number);
+                var left = this.DefaultColWidth * index;
+                for (var i = 0; i < indices.length; i++) {
+                    if (index < indices[i])
+                        break;
+                    left = this.ColsSize[indices[i]] - this.DefaultColWidth;
+                }
+                return left;
+            };
+            SizeManager.prototype.GetVisibleRows = function (top, bottom) {
+                var offset = 0;
+                var topRow = null;
+                var bottomRow = null;
+                topRow = (top / this.DefaultRowHeight) | 0;
+                bottomRow = (bottom / this.DefaultRowHeight) | 0 + 1;
+                /*for (var i = 0; i < this._rowsCount; i++) {
+                    
+                    offset += this.GetRowHeight(i);
+    
+                    if (offset >= top && topRow == null) {
+                        topRow = i;
+                    }
+                    if (topRow != null) {
+                        bottomRow = i;
+                    }
+                    if (offset >= bottom) {
+                        break;
+                    }
+                    
+                }*/
+                return [topRow, bottomRow];
+            };
+            SizeManager.prototype.GetVisibleCols = function (left, right) {
+                var offset = 0;
+                var leftCol = null;
+                var rightCol = null;
+                for (var i = 0; i < this._colsCount; i++) {
+                    offset += this.GetColWidth(i);
+                    if (offset >= left && leftCol == null) {
+                        leftCol = i;
+                    }
+                    if (leftCol != null) {
+                        rightCol = i;
+                    }
+                    if (offset >= right) {
+                        break;
+                    }
+                }
+                return [leftCol, rightCol];
+            };
+            SizeManager.prototype.GetTotalHeight = function () {
+                var indices = Object.keys(this.RowsSize).map(Number);
+                var height = this.DefaultRowHeight * this._rowsCount;
+                for (var i = 0; i < indices.length; i++) {
+                    height += this.RowsSize[indices[i]] - this.DefaultRowHeight;
+                }
+                return height;
+            };
+            SizeManager.prototype.GetTotalWidth = function () {
+                var indices = Object.keys(this.ColsSize).map(Number);
+                var width = this.DefaultColWidth * this._colsCount;
+                for (var i = 0; i < indices.length; i++) {
+                    width += this.ColsSize[indices[i]] - this.DefaultColWidth;
+                }
+                return width;
+            };
+            return SizeManager;
+        }());
+        UI.SizeManager = SizeManager;
+    })(UI = Rubik.UI || (Rubik.UI = {}));
+})(Rubik || (Rubik = {}));
+var Rubik;
+(function (Rubik) {
+    var UI;
+    (function (UI) {
+        var GridCell = /** @class */ (function (_super) {
+            __extends(GridCell, _super);
+            function GridCell() {
+                var _this = _super.call(this) || this;
+                _this._span = null;
+                _this._rootElement.addClass("GridCell");
+                _this._span = $("<span class=\"GridCell-content\">");
+                _this._rootElement.append(_this._span);
+                return _this;
+            }
+            GridCell.prototype.Text = function (text) {
+                if (text === void 0) { text = null; }
+                if (text != null) {
+                    this._span.text(text);
+                }
+                return this._span.text();
+            };
+            return GridCell;
+        }(UI.Control));
+        UI.GridCell = GridCell;
+    })(UI = Rubik.UI || (Rubik.UI = {}));
+})(Rubik || (Rubik = {}));
+/// <reference path="../Control.ts" />
+/// <reference path="DataManager.ts" />
+/// <reference path="SizeManager.ts" />
+/// <reference path="GridCell.ts" />
+/// <reference path="../../../Scripts/typings/jquery/jquery.d.ts" />
+var Rubik;
+(function (Rubik) {
+    var UI;
+    (function (UI) {
+        var Grid = /** @class */ (function (_super) {
+            __extends(Grid, _super);
+            function Grid() {
+                var _this = _super.call(this) || this;
+                _this.DataManager = new UI.DataManager();
+                _this.SizeManager = new UI.SizeManager();
+                _this.SizeManager.DefaultColWidth = 60;
+                _this.SizeManager.DefaultRowHeight = 22;
+                _this._rootElement.addClass("Grid");
+                _this.PanelCols = new UI.Panel();
+                _this.PanelRows = new UI.Panel();
+                _this.ScrollPanel = new UI.Panel();
+                _this.CellsPanel = new UI.Panel();
+                //this.PanelRows.AddClass("Panel1");
+                _this.CellsPanel.AddClass("GridCellsPanel");
+                _this.ScrollPanel.AddClass("GridScrollPanel");
+                _this.PanelCols.Height(new UI.CSSNumber(_this.SizeManager.DefaultRowHeight));
+                _this.PanelRows.Width(new UI.CSSNumber(_this.SizeManager.DefaultColWidth));
+                _this.ScrollPanel.Children.Add(_this.CellsPanel);
+                _this.Children.Add(_this.PanelRows);
+                _this.Children.Add(_this.PanelCols);
+                _this.Children.Add(_this.ScrollPanel);
+                _this.OnResize.Attach(new Rubik.Events.ResizeEventHandler(_this._This_Resized, _this));
+                _this.OnResize.Attach(new Rubik.Events.ShowEventHandler(_this._This_Show, _this));
+                _this.ScrollPanel.OnScroll.Attach(new Rubik.Events.JQueryEventHandler(_this._Scroll, _this));
+                _this.DataChanged();
+                return _this;
+            }
+            Grid.prototype._This_Resized = function (eventArgs) {
+                this.PanelRows.Height(new UI.CSSNumber(this.ActualHeight()));
+                this.PanelCols.MarginLeft(new UI.CSSNumber(this.PanelRows.ActualWidth()));
+                this.PanelCols.Width(new UI.CSSNumber(this.ActualWidth() - this.PanelRows.ActualWidth()));
+                this.ScrollPanel.MarginTop(new UI.CSSNumber(this.PanelCols.ActualHeight()));
+                this.ScrollPanel.MarginLeft(new UI.CSSNumber(this.PanelRows.ActualWidth()));
+                this.ScrollPanel.Height(new UI.CSSNumber(this.ActualHeight() - this.PanelCols.ActualHeight()));
+                this.ScrollPanel.Width(new UI.CSSNumber(this.ActualWidth() - this.PanelRows.ActualWidth()));
+                this.Draw();
+            };
+            Grid.prototype._This_Show = function (eventArgs) {
+                //this.DataChanged();
+            };
+            Grid.prototype._Scroll = function (eventArgs) {
+                this.Draw();
+            };
+            Grid.prototype.DataChanged = function () {
+                this.SizeManager.Initialize(this.DataManager.GetColsCount(), this.DataManager.GetRowsCount());
+                this.CellsPanel.Height(new UI.CSSNumber(this.SizeManager.GetTotalHeight()));
+                this.CellsPanel.Width(new UI.CSSNumber(this.SizeManager.GetTotalWidth()));
+                //this.Draw();            
+            };
+            Grid.prototype.Draw = function () {
+                var scrollTop = this.ScrollPanel._rootElement.scrollTop();
+                var scrollLeft = this.ScrollPanel._rootElement.scrollLeft();
+                var _a = this.SizeManager.GetVisibleRows(scrollTop, this.ScrollPanel.ActualHeight() + scrollTop), startRow = _a[0], endRow = _a[1];
+                var _b = this.SizeManager.GetVisibleCols(scrollLeft, this.ScrollPanel.ActualWidth() + scrollLeft), startCol = _b[0], endCol = _b[1];
+                this.CellsPanel.Children.Clear();
+                var cells = new Rubik.Collections.List();
+                for (var col = startCol; col <= endCol; col++) {
+                    for (var row = startRow; row <= endRow; row++) {
+                        var cell = new UI.GridCell();
+                        cell.Text(this.DataManager.GetCellValue(col, row));
+                        cell.Left(new UI.CSSNumber(this.SizeManager.GetColLeft(col)));
+                        cell.Width(new UI.CSSNumber(this.SizeManager.GetColWidth(col)));
+                        cell.Top(new UI.CSSNumber(this.SizeManager.GetRowTop(row)));
+                        cell.Height(new UI.CSSNumber(this.SizeManager.GetRowHeight(row)));
+                        //this.CellsPanel.Children.Add(cell);
+                        cells.Add(cell);
+                    }
+                }
+                this.CellsPanel.Children.AddRange(cells);
+            };
+            return Grid;
+        }(UI.Control));
+        UI.Grid = Grid;
+    })(UI = Rubik.UI || (Rubik.UI = {}));
 })(Rubik || (Rubik = {}));
 //# sourceMappingURL=rubik.js.map

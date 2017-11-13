@@ -15,7 +15,7 @@ var Rubik;
     var Exceptions;
     (function (Exceptions) {
         /** A generic exception implementation. All exception implementations should derive from this. */
-        var Exception = (function () {
+        var Exception = /** @class */ (function () {
             /** Creates a new Exception instance with specified information.
                 @param Message The message to describe the exception.
                 @param Trace The origin of the exception

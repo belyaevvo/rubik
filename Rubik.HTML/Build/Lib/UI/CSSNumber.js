@@ -16,7 +16,7 @@ var Rubik;
         /** Represents a CSS number value e.g. 10px, 10% or 'auto'.
             Also provides static methods for converting from CSS string to CSSNumber.
         */
-        var CSSNumber = (function () {
+        var CSSNumber = /** @class */ (function () {
             /** Creates a new CSSNumber with specified value and units.
                 @param Value The value of the number (irrelevant if auto is set - see auto param)
                 @param Units OPTIONAL The units of the CSS number - px, % or em. Default: px. (Irrelevant if auto is set - see auto param)

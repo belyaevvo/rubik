@@ -147,7 +147,6 @@
     <TypeScriptCompile Include="Lib\UI\Grid\DataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\GridCell.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\Grid.ts" />
-    <TypeScriptCompile Include="Lib\UI\Grid\Panel.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\CellsScrollPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\SizeManager.ts" />
     <TypeScriptCompile Include="Lib\UI\IPanel.d.ts" />
