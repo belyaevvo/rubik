@@ -61,6 +61,7 @@ module Rubik.UI
         _Enabled: boolean = true;
 
         OptimiseConstructForGraphics: boolean = false;
+        AttachEvents: boolean = true;
         static OptimiseConstructForGraphics_DelayTime = 30;
 
         constructor()
@@ -84,6 +85,7 @@ module Rubik.UI
             this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
             this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;
             
+
             this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
             this.OnMove.Attach(new Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
 
@@ -462,20 +464,22 @@ module Rubik.UI
             {
                 parent.append(this._rootElement);
                 this.DOMConstructed = true;
-                
-                this._OnOnClickChanged();
-                this._OnOnKeyPressChanged();
-                this._OnOnKeyUpChanged();
-                this._OnOnMouseDownChanged();
-                this._OnOnMouseMoveChanged();
-                this._OnOnMouseUpChanged();
-                this._OnOnResizeChanged();
-                this._OnOnScrollChanged();
-                
-                this._rootElement.on("focus", { _this: this, _callback: this._OnFocus }, this._RestoreThis);
-                this._rootElement.on("blur", { _this: this, _callback: this._OnBlur }, this._RestoreThis);
-                this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
-                
+
+                if (this.AttachEvents) {
+
+                    this._OnOnClickChanged();
+                    this._OnOnKeyPressChanged();
+                    this._OnOnKeyUpChanged();
+                    this._OnOnMouseDownChanged();
+                    this._OnOnMouseMoveChanged();
+                    this._OnOnMouseUpChanged();
+                    this._OnOnResizeChanged();
+                    this._OnOnScrollChanged();
+
+                    this._rootElement.on("focus", { _this: this, _callback: this._OnFocus }, this._RestoreThis);
+                    this._rootElement.on("blur", { _this: this, _callback: this._OnBlur }, this._RestoreThis);
+                    this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
+                }
             }
 
             if (!this.OptimiseConstructForGraphics)
