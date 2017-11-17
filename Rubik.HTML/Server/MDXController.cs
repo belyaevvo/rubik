@@ -11,27 +11,36 @@ using System.Text;
 
 namespace Rubik.HTML
 {
+    
+        
     public class MDXController : ApiController
     {
 
+        public class ExecuteParameters
+        {
+            public string sessionId { get; set; }
+            public string query { get; set; }
+        }
         // GET api/<controller>/5
-        [AcceptVerbs("GET","POST")]
-        [HttpGet]                
-        public HttpResponseMessage Execute(string mdx)
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]    
+        public HttpResponseMessage Execute([FromBody] ExecuteParameters args)
         {
             AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktikasoft.com/olap/2012/msmdpump.dll; Catalog=AdventureWorksDW2012 MD-EE;");
             con.Open();
             AdomdCommand cmd = con.CreateCommand();
-            cmd.CommandText = "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
+            cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
             CellSet cst= cmd.ExecuteCellSet();
-            string json=BuildBubbleMap(cst);            
+            string json=CreateJsonCellSet(cst);            
             con.Close();
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;            
         }
 
-        private string BuildBubbleMap(CellSet cst)
+        private string CreateJsonCellSet(CellSet cst)
         {
             try
             {
@@ -45,14 +54,21 @@ namespace Rubik.HTML
 
                 using (JsonWriter myJson = new JsonTextWriter(sw))
                 {
-                    myJson.WritePropertyName("axes");
-                    myJson.WriteStartArray();
-                    foreach(var axis in cst.Axes)
-                    {
-                        WriteAxis(myJson, axis);                                                
+                    myJson.WriteStartObject();
+
+                    myJson.WritePropertyName("columns");
+                    if (cst.Axes.Count > 0)
+                    {                        
+                        WriteAxis(myJson, cst.Axes[0]);
                     }
-                    myJson.WriteEndArray();
-                    myJson.WritePropertyName("filterAxis");
+                    
+                    myJson.WritePropertyName("rows");
+                    if (cst.Axes.Count > 1)
+                    {                     
+                        WriteAxis(myJson, cst.Axes[1]);
+                    }
+
+                    myJson.WritePropertyName("filters");
                     WriteAxis(myJson, cst.FilterAxis);
 
                     myJson.WritePropertyName("cells");
@@ -67,7 +83,8 @@ namespace Rubik.HTML
                         myJson.WriteEndObject();
                     }
                     myJson.WriteEndArray();
-                    
+                    myJson.WriteEndObject();
+
                 }
                 cst = null;
                 return sw.ToString();
@@ -82,8 +99,8 @@ namespace Rubik.HTML
         private void WriteAxis(JsonWriter myJson, Axis axis)
         {
             myJson.WriteStartObject();
-            myJson.WritePropertyName("name");
-            myJson.WriteValue(axis.Name);            
+            //myJson.WritePropertyName("name");
+            //myJson.WriteValue(axis.Name);            
             myJson.WritePropertyName("positions");
             myJson.WriteStartArray();
             foreach (var pos in axis.Positions)

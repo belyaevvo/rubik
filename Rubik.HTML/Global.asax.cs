@@ -16,9 +16,9 @@ namespace Rubik.HTML
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteTable.Routes.MapHttpRoute(
-               name: "ApiMdx",
-               routeTemplate: "api/mdx/{mdx}",
-               defaults: new { controller="mdx", action = "execute", mdx = RouteParameter.Optional }
+               name: "DefaultApi",
+               routeTemplate: "api/{controller}/{action}/{sessionId}/{query}",
+               defaults: new { sessionId = RouteParameter.Optional, query = RouteParameter.Optional }
            );
 
             /*RouteTable.Routes.MapHttpRoute(
