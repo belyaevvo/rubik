@@ -1,17 +1,18 @@
 ﻿module Rubik.UI {
     export class SizeManager {        
 
-        RowsSize: Object = {};
-        ColsSize: Object = {};
-        LastRowOffset: [number, number] = null;
-        LastColOffset: [number, number] = null;
+        private RowsSize: Object = {};
+        private ColsSize: Object = {};
+        private LastRowOffset: [number, number] = null;
+        private LastColOffset: [number, number] = null;
         
 
         DefaultRowHeight: number = 0;
         DefaultColWidth: number = 0;
 
-        _rowsCount: number = 0;
-        _colsCount: number = 0;
+        private _rowsCount: number = 0;
+        private _colsCount: number = 0;
+       
 
         Initialize(colsCount: number=0, rowsCount: number=0) {            
             this._colsCount = colsCount;
@@ -23,19 +24,14 @@
             this.LastColOffset = null;
         }
 
-        RowsCount(count: number=null): number
-        {
-            if (count != null)
-                this._rowsCount = count;
-            
+        get RowsCount(): number  {        
             return this._rowsCount;            
         }
-
-        ColsCount(count: number = null): number {
-            if (count != null)
-                this._colsCount = count;
+        
+        get ColsCount(): number {            
             return this._colsCount;
         }
+       
 
         GetRowHeight(index: number): number {
             return this.RowsSize[index] || this.DefaultRowHeight;
@@ -86,9 +82,10 @@
             var offset: number = 0;
             var topRow: number = null;
             var bottomRow: number = null;
-            topRow = (top / this.DefaultRowHeight) | 0;
-            bottomRow = (bottom / this.DefaultRowHeight) | 0  + 1;
-            /*for (var i = 0; i < this._rowsCount; i++) {
+            //topRow = (top / this.DefaultRowHeight) | 0;
+            //bottomRow = (bottom / this.DefaultRowHeight) | 0 + 1;
+            //bottomRow = bottomRow >= this._rowsCount ? this._rowsCount - 1 : bottomRow;
+            for (var i = 0; i < this._rowsCount; i++) {
                 
                 offset += this.GetRowHeight(i);
 
@@ -102,7 +99,7 @@
                     break;
                 }
                 
-            }*/
+            }
             return [topRow,bottomRow];
         }
 
@@ -129,7 +126,7 @@
         }
 
 
-        GetTotalHeight(): number {
+        GetTotalRowsHeight(): number {
             var indices: Array<number> = Object.keys(this.RowsSize).map(Number);
             var height: number = this.DefaultRowHeight * this._rowsCount;
             for (var i = 0; i < indices.length; i++) {                
@@ -138,7 +135,7 @@
             return height;
         }
 
-        GetTotalWidth(): number {
+        GetTotalColsWidth(): number {
             var indices: Array<number> = Object.keys(this.ColsSize).map(Number);
             var width: number = this.DefaultColWidth * this._colsCount;
             for (var i = 0; i < indices.length; i++) {
