@@ -22,16 +22,16 @@ module Rubik.Data {
         }
 
         getFixedRowsCount(): number {
-            return this.isPopulated() ? 1 : 0;
+            return this.isPopulated() ? 2 : 0;
         }
 
 
         getColMember(col: number, row: number): any {
-            return col.toString();
+            return { caption: 'col' + (col % (row + 1)).toString(), unique_name: (col % (row + 1)).toString() };
         }
 
         getRowMember(col: number, row: number): any {
-            return row.toString();
+            return { caption: 'row' + (row % (col + 1)).toString(), unique_name: (row%(col+1)).toString() };
         }
 
         getCellValue(col: number, row: number): any {

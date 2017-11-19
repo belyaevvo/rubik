@@ -126,6 +126,7 @@
     <Content Include="Lib\Data\DataAccessor.ts" />
     <Content Include="Lib\Data\DataAccessResult.ts" />
     <Content Include="Lib\Data\DataAdapter.ts" />
+    <TypeScriptCompile Include="Lib\Data\ArtificialPivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\Data\DataAccessStatuses.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPulledEvent.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPushedEvent.ts" />

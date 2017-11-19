@@ -10,6 +10,8 @@ module Rubik.Data {
         //getDataRow(row: number): any[];
         getColMember(col: number, row: number): any;
         getRowMember(col: number, row: number): any;
+        getColKey(col: number, row: number): any;
+        getRowKey(col: number, row: number): any;
         getCellValue(col: number, row: number): any;
         getCellFormattedValue(col: number, row: number): string;
         isPopulated(): boolean;
@@ -22,8 +24,8 @@ module Rubik.Data {
 
         DataChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
 
-        private command: string = null;        
-        private _isPopulated: boolean = false;        
+        protected command: string = null;        
+        protected _isPopulated: boolean = false;        
 
         getColsCount(): number {            
             try {
@@ -78,6 +80,24 @@ module Rubik.Data {
             catch{
                 return null;
             }
+        }
+
+
+        getColKey(col: number, row: number): any {
+            var key: string = "";
+            for (var r = 0; r <= row; r++) {
+                key+=this.getColMember(col, r).unique_name;
+            }
+            return key;
+        }
+
+        getRowKey(col: number, row: number): any {
+            var key: string = "";
+            for (var c = 0; c <= col; c++) {
+                if (key != "") key += "_";
+                key += this.getRowMember(c, row).unique_name;
+            }
+            return key;
         }
 
         getCellValue(col: number, row: number): any {
