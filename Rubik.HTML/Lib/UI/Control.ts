@@ -9,7 +9,6 @@ Modifications:
 
 License: https://typescriptui.codeplex.com/license
 */
-
 /// <reference path="../Events/Events.ts" />
 /// <reference path="../Collections/Collections_BuildRefs.d.ts" />
 /// <reference path="CSSNumber.ts" />
@@ -22,6 +21,8 @@ License: https://typescriptui.codeplex.com/license
 
 module Rubik.UI
 {
+    
+
     var __UIDGenerator = 0;
     export class Control implements IControl
     {
@@ -33,7 +34,7 @@ module Rubik.UI
             return this._rootElement;
         }
 
-        OnClick: Events.ClickEvent = new Events.ClickEvent();
+        OnClick: Events..ClickEvent = new Events.ClickEvent();
         OnMouseDown: Events.MouseDownEvent = new Events.MouseDownEvent();
         OnMouseUp: Events.MouseUpEvent = new Events.MouseUpEvent();
         OnMouseMove: Events.MouseMoveEvent = new Events.MouseMoveEvent();
@@ -89,7 +90,9 @@ module Rubik.UI
             this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
             this.OnMove.Attach(new Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
 
-            this._rootElement = $("<div class=\"Control\">");
+            this._rootElement = $(document.createElement('div'));
+            this._rootElement.addClass("Control");
+            //this._rootElement =$("<div class=\"Control\">");
             this.DisableSelection();
 
             this.Children.OnModified.Attach(new Collections.CollectionModifiedEventHandler<IControl>(this._OnChildren_Modified, this));            
@@ -419,7 +422,7 @@ module Rubik.UI
                             cObj.DestroyDOM();
                             cObj.ConstructDOM(this._rootElement);
                         }
-                        break;
+                        break;                    
                 }
             }
         }
@@ -427,7 +430,7 @@ module Rubik.UI
         _This_Resized_ChainHandler_Timeout: number = -1;
         _This_Resized_ChainHandler(eventArgs: Events.ResizeEventArgs)
         {
-            if (this._This_Resized_ChainHandler_Timeout === -1)
+            if (this._HandleChainEvents && this._This_Resized_ChainHandler_Timeout === -1)
             {
                 var _this = this;
                 this._This_Resized_ChainHandler_Timeout = setTimeout(function ()
@@ -443,7 +446,7 @@ module Rubik.UI
         _This_Moved_ChainHandler_Timeout: number = -1;
         _This_Moved_ChainHandler(eventArgs: Events.MoveEventArgs)
         {
-            if (this._This_Moved_ChainHandler_Timeout === -1)
+            if (this._HandleChainEvents && this._This_Moved_ChainHandler_Timeout === -1)
             {
                 var _this = this;
                 this._This_Moved_ChainHandler_Timeout = setTimeout(function ()
@@ -618,20 +621,34 @@ module Rubik.UI
         {
             if (value !== null)
             {
-                this._rootElement.css(style, value.ToString());                
+                this._rootElement.css(style, value.ToString());  
+                //If we call only to set style value, we must avoid get value back
+                return value;
             }
             return CSSNumber.FromString(this._rootElement.css(style));
         }
+        
+
+        /*Width(value?: string | number): any {
+            if (value !== null) {
+                this._rootElement.width(value);
+                this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
+            }
+            else {
+                return this._rootElement.width();
+            }
+        }*/
 
         Width(value: CSSNumber = null): CSSNumber
         {
-            var result = this.CSSNumberStyle("width", value);
+            var result = this.CSSNumberStyle("width", value);            
             if (value !== null)
             {
                 this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
             }
             return result;
         }
+
         Height(value: CSSNumber = null): CSSNumber
         {
             var result = this.CSSNumberStyle("height", value);
@@ -686,7 +703,7 @@ module Rubik.UI
         }
 
         MarginRight(value: CSSNumber = null): CSSNumber {
-            return this.CSSNumberStyle("margin-right", value);
+            return this.CSSNumberStyle("margin-right", value);            
         }
 
 
@@ -763,7 +780,7 @@ module Rubik.UI
             {
                 for (var i = 0; i < this.Children.Count(); i++)
                 {
-                    this.Children.ElementAt(i).EnableByParent();
+                    this.Children.ElementAt(i).EnableByParent();                    
                 }
             }
         }
@@ -961,6 +978,15 @@ module Rubik.UI
                 retVal = -2;
             }
             return retVal;
+        }
+
+        _HandleChainEvents: boolean = true;
+        HandleChainEvents(value: boolean = null): boolean
+        {
+            if (value !== null) {
+                this._HandleChainEvents = value;
+            }
+            return this._HandleChainEvents;
         }
       
     }

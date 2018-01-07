@@ -21,7 +21,7 @@ module Rubik.UI
         {
             super();
 
-            this._rootElement.addClass("Panel");
+            this._rootElement.addClass("Panel");            
         }
     }
 }

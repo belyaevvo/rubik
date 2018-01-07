@@ -157,13 +157,12 @@
             this.offsetY = 0;
             for (var i = 0; i < this._rowsCount; i++) {
 
-                height = this.GetRowHeight(i);
-                offset += height;
+                height = this.GetRowHeight(i);                
 
                 if (topRow == null && offset >= this.top) {
                     topRow = i;
                     if (this.alignFirstCell) {
-                        this.offsetY = - this.top + offset - height;                        
+                        this.offsetY = - this.top + offset; //- height;                        
                     }
                 }
                 if (topRow != null) {
@@ -173,26 +172,27 @@
                     break;
                 }
 
+                offset += height;
+
             }
             this.visibleRows = [topRow, bottomRow];
         }
 
         private DetermineVisibleCols() {
             var offset: number = 0;
-            var widht: number = 0;
+            var width: number = 0;
             var leftCol: number = null;
             var rightCol: number = null;
 
             this.offsetX = 0;
             for (var i = 0; i < this._colsCount; i++) {
 
-                widht = this.GetColWidth(i);
-                offset += widht;
+                width = this.GetColWidth(i);                
 
                 if (leftCol == null && offset >= this.left) {
                     leftCol = i;
                     if (this.alignFirstCell) {
-                        this.offsetX = - this.left + offset - widht;                        
+                        this.offsetX = - this.left + offset; //- width;                        
                     }
                 }
                 if (leftCol != null) {
@@ -201,6 +201,8 @@
                 if ((offset + this.offsetX) >= this.right) {
                     break;
                 }
+
+                offset += width;
 
             }
             this.visibleCols = [leftCol, rightCol];

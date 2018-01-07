@@ -27,11 +27,11 @@ module Rubik.Data {
 
 
         getColMember(col: number, row: number): any {
-            return { caption: 'col' + (col % (row + 1)).toString(), unique_name: (col % (row + 1)).toString() };
+            return { caption: 'col' + (col % (row + 1)).toString(), uniqueName: (col % (row + 1)).toString() };
         }
 
         getRowMember(col: number, row: number): any {
-            return { caption: 'row' + (row % (col + 1)).toString(), unique_name: (row%(col+1)).toString() };
+            return { caption: 'row' + (row % (col + 1)).toString(), uniqueName: (row%(col+1)).toString() };
         }
 
         getCellValue(col: number, row: number): any {

@@ -317,6 +317,12 @@ declare module Rubik.UI
             @param value The value to set the tab index to.
             @returns The actual value of the control's tab index.
         */
-        TabIndex(value?: number): number;       
+        TabIndex(value?: number): number; 
+
+        /** Gets or sets whether the control is propogate resize or move events to children.
+           @param value The value to handlechainevents set to.
+           @returns The actual value of handlechainevents state.
+       */
+        HandleChainEvents(value?: boolean): boolean;
     }   
 }

@@ -23,7 +23,7 @@ module Rubik.UI
             return this._TextInput;
         }
 
-        OnTextChange: Events.TextChangeEvent;
+        OnTextChange: Events.JQueryEvent;
 
         _PrevSeenValue: string = null;
 
@@ -31,11 +31,13 @@ module Rubik.UI
         {
             super();
 
-            this._rootElement.addClass("TextBox Multiline");
+            this.AddClass("TextBox Multiline");
 
-            this.OnTextChange = new Events.TextChangeEvent();
+            this.OnTextChange = new Events.JQueryEvent();
 
             this._TextInput = $("<textarea tabindex=\"" + this._TabIndex.toString() + "\"/>");
+
+            this.EnableSelection();
                        
             this.Focusable(true);
 
@@ -152,7 +154,7 @@ module Rubik.UI
                 if (this._PrevSeenValue !== value)
                 {
                     this._PrevSeenValue = value;
-                    this.OnTextChange.Invoke(new Events.TextChangeEventArgs(this, null));
+                    this.OnTextChange.Invoke(new Events.JQueryEventArgs(this, null));
                 }
             }
             return this._TextInput.val();

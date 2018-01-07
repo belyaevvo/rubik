@@ -6,9 +6,12 @@
         constructor() {
             super();
             this._rootElement.addClass("GridCell");
-            this._span = $("<span class=\"GridCell-content\">");
-            this._rootElement.append(this._span);            
-            
+            //this._span = $("<span class=\"GridCell-content\">");            
+            this._span = $(document.createElement('span'));
+            this._span.addClass("GridCell-content");
+            this._rootElement.append(this._span);
+            this.AttachEvents = false;
+            this._HandleChainEvents = false;
         }
 
         Text(text: string | number | boolean = null): string {
@@ -25,9 +28,11 @@
         _rootElement: JQuery = null;
 
         constructor() {
-            this._rootElement = $("<div class=\"Control\">");
+            this._rootElement = $(document.createElement('div'));
+            this._rootElement.addClass("Control");            
             this._rootElement.addClass("GridCell");
-            this._span = $("<span class=\"GridCell-content\">");
+            this._span = $(document.createElement('span'));
+            this._span.addClass("GridCell-content");
             this._rootElement.append(this._span);            
         }
 

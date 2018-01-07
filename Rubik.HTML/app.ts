@@ -2,6 +2,7 @@
 /// <reference path="Lib/Events/Events.ts"/>
 /// <reference path="Lib/UI/Panel.ts"/>
 /// <reference path="Lib/Data/PivotDataManager.ts"/>
+/// <reference path="Lib/Data/ArtificialPivotDataManager.ts"/>
 /// <reference path="Lib/UI/SplitContainer.ts"/>
 /// <reference path="Lib/UI/Grid/Grid.ts"/>
 /// <reference path="Lib/UI/MultilineTextBox.ts"/>
@@ -24,7 +25,7 @@ class MyApp implements Rubik.Apps.IApp {
         var txt = new Rubik.UI.MultilineTextBox();
         txt.Text("SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]");
         txt.Height(new Rubik.UI.CSSNumber(80, "%"));
-        txt.Width(new Rubik.UI.CSSNumber(100, "%"));
+        txt.Width(new Rubik.UI.CSSNumber(100, "%"));        
         var btn = new Rubik.UI.Button();
         btn.Text("Выполнить");
         btn.MarginTop(new Rubik.UI.CSSNumber(80, "%"));
@@ -36,6 +37,7 @@ class MyApp implements Rubik.Apps.IApp {
         panel1.Children.Add(btn);
 
         var grid = new Rubik.UI.Grid();
+        grid.DataManager = new Rubik.Data.PivotDataManager();
         grid.DataManager.Url = "api/mdx";
         grid.Height(new Rubik.UI.CSSNumber(100, "%"));
         grid.Width(new Rubik.UI.CSSNumber(100, "%"));

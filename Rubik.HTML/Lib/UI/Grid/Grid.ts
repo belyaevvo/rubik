@@ -11,22 +11,36 @@ module Rubik.UI
 
     export class Grid extends Control {
 
-        PanelRows: IPanel;
-        PanelCols: IPanel;
+        PanelRows: Panel;
+        PanelCols: Panel;
         ScrollPanel: Panel;
-        CellsPanel: IPanel;
+        CellsPanel: Panel;
         DivScrollPanel: JQuery;
         DivCellsPanel: JQuery;
         DivColsHeaderPanel: JQuery;
         DivRowsHeaderPanel: JQuery;
         DivCrossPanel: JQuery;
-        DataManager: Data.PivotDataManager = new Data.ArtificialPivotDataManager();
+        private dataManager: Data.PivotDataManager;
         SizeManager: SizeManager = new SizeManager();
         FixedAreaSizeManager: SizeManager = new SizeManager();
 
+        get DataManager(): Data.PivotDataManager {
+            return this.dataManager;
+        }
+
+        set DataManager(dataManager: Data.PivotDataManager) {
+            if (this.dataManager != null) {
+                this.dataManager.DataChanged.Detach(new Events.EventHandler<Events.EventArgs>(this.DataChanged, this));
+            }
+            this.dataManager = dataManager;
+            if (this.dataManager != null) {
+                this.dataManager.DataChanged.Attach(new Events.EventHandler<Events.EventArgs>(this.DataChanged, this));
+            }             
+        }
+
         constructor() {
             super();            
-            this.OptimiseConstructForGraphics = true;
+            //this.OptimiseConstructForGraphics = true;
             this.SizeManager.DefaultColWidth = 130;
             this.SizeManager.DefaultRowHeight = 22;
             this.FixedAreaSizeManager.DefaultColWidth = 130;
@@ -34,10 +48,16 @@ module Rubik.UI
 
             this._rootElement.addClass("Grid");            
 
-            this.PanelCols = new Panel();
+            this.HandleChainEvents(false);
+
+            this.PanelCols = new Panel();                        
+            this.PanelCols.HandleChainEvents(false);
             this.PanelRows = new Panel();
+            this.PanelRows.HandleChainEvents(false);
             this.ScrollPanel = new Panel();
+            this.ScrollPanel.HandleChainEvents(false);
             this.CellsPanel = new Panel();
+            this.CellsPanel.HandleChainEvents(false);
             this.DivScrollPanel = $("<div class=\"Control Panel GridScrollPanel\">");
             this.DivCellsPanel = $("<div class=\"Control Panel GridCellsPanel\">");
             this.DivColsHeaderPanel = $("<div class=\"Control Panel GridColsHeaderPanel\">");
@@ -53,12 +73,12 @@ module Rubik.UI
             this.PanelRows.Width(new CSSNumber(this.SizeManager.DefaultColWidth));
            
 
-            //this.ScrollPanel.Children.Add(this.CellsPanel);
+            this.ScrollPanel.Children.Add(this.CellsPanel);
             //this.DivScrollPanel.append(this.DivCellsPanel);            
             this.PanelRows._rootElement.append(this.DivCrossPanel);
             this.PanelRows._rootElement.append(this.DivRowsHeaderPanel);            
             this.PanelCols._rootElement.append(this.DivColsHeaderPanel);
-            this.ScrollPanel._rootElement.append(this.DivCellsPanel);
+            //this.ScrollPanel._rootElement.append(this.DivCellsPanel);
 
             this.Children.Add(this.PanelRows);
             this.Children.Add(this.PanelCols);            
@@ -70,8 +90,7 @@ module Rubik.UI
             this.OnShow.Attach(new Events.ShowEventHandler(this._This_Show, this));
             this.ScrollPanel.OnScroll.Attach(new Events.JQueryEventHandler(this._Scroll, this));
             //this.DivScrollPanel.scroll(function (eventObject: JQueryEventObject) { this._Scroll() }.bind(this));
-
-            this.DataManager.DataChanged.Attach(new Events.EventHandler<Events.EventArgs>(this.DataChanged, this));            
+            //this.DataManager.DataChanged.Attach(new Events.EventHandler<Events.EventArgs>(this.DataChanged, this));            
         }
 
         _This_Resized(eventArgs: Events.ResizeEventArgs) {
@@ -94,10 +113,7 @@ module Rubik.UI
         scrollLeft: number = 0;
 
         _Scroll(eventArgs: Events.JQueryEventArgs) {                  
-            if (this.scrollTimer) {
-                clearTimeout(this.scrollTimer);
-            }
-            this.scrollTimer = setTimeout(function () {
+            var scrollhandler = function () {
                 if (this.inscroll)
                     return;
                 if (this.ScrollPanel._rootElement.scrollTop() != this.scrollTop
@@ -105,9 +121,17 @@ module Rubik.UI
                     this.scrollTop = this.ScrollPanel._rootElement.scrollTop();
                     this.scrollLeft = this.ScrollPanel._rootElement.scrollLeft();
                     this.Draw();
-                }            
-            }.bind(this), 10);
+                }
+            };
+
+            scrollhandler.bind(this)();
             return;
+
+            /*if (this.scrollTimer) {
+                clearTimeout(this.scrollTimer);
+            }
+            this.scrollTimer = setTimeout(scrollhandler.bind(this), 10);
+            return;*/
             /*if (this.inscroll)
                 return;
             if (this.ScrollPanel._rootElement.scrollTop() != this.scrollTop
@@ -115,7 +139,7 @@ module Rubik.UI
                 this.scrollTop = this.ScrollPanel._rootElement.scrollTop();
                 this.scrollLeft = this.ScrollPanel._rootElement.scrollLeft();
                 this.Draw();
-            } */           
+            } */
         }
 
         DataChanged(args: Events.EventArgs): void {
@@ -154,11 +178,13 @@ module Rubik.UI
             this.DivRowsHeaderPanel.css("width", this.PanelRows.ActualWidth());
             this.DivCrossPanel.css("height", this.PanelCols.ActualHeight()-1);
             this.DivCrossPanel.css("width", this.PanelRows.ActualWidth()-1);*/
-
-            this.PanelRows.Width(new CSSNumber(this.FixedAreaSizeManager.GetTotalColsWidth()));
+            
             this.PanelCols.Height(new CSSNumber(this.FixedAreaSizeManager.GetTotalRowsHeight()));
-            this.DivCellsPanel.css("height", this.SizeManager.GetTotalViewHeight());
-            this.DivCellsPanel.css("width", this.SizeManager.GetTotalViewWidth());
+            this.PanelRows.Width(new CSSNumber(this.FixedAreaSizeManager.GetTotalColsWidth()));
+            //this.DivCellsPanel.css("height", this.SizeManager.GetTotalViewHeight());
+            //this.DivCellsPanel.css("width", this.SizeManager.GetTotalViewWidth());
+            this.CellsPanel.Height(new CSSNumber(this.SizeManager.GetTotalViewHeight()));
+            this.CellsPanel.Width(new CSSNumber(this.SizeManager.GetTotalViewWidth()));
 
             this.PanelRows.Height(new CSSNumber(this.ActualHeight()));
             this.PanelCols.MarginLeft(new CSSNumber(this.PanelRows.ActualWidth()))
@@ -188,8 +214,8 @@ module Rubik.UI
             var [startCol, endCol]: [number, number] = this.SizeManager.GetVisibleCols();         
             
             
-            //this.CellsPanel.Children.Clear();
-            this.DivCellsPanel.empty();
+            this.CellsPanel.Children.Clear();
+            //this.DivCellsPanel.empty();
             this.DivColsHeaderPanel.empty();
             this.DivRowsHeaderPanel.empty();
 
@@ -210,13 +236,13 @@ module Rubik.UI
                     div.css("height", this.FixedAreaSizeManager.GetRowHeight(row));
                     this.DivColsHeaderPanel.append(div);*/
                     if (lastkey != this.DataManager.getColKey(col, row)) {
-                        var cell: GridCell = new GridCell();
-                        cell._rootElement.addClass("GridColHeaderCell");
+                        var cell: GridCell = new GridCell();                        
+                        cell.AddClass("GridColHeaderCell");
                         if (col == startCol) {
-                            cell._rootElement.addClass("GridFirstColHeaderCell");
+                            cell.AddClass("GridFirstColHeaderCell");
                         }
                         if (row == 0) {
-                            cell._rootElement.addClass("GridFirstRowHeaderCell");
+                            cell.AddClass("GridFirstRowHeaderCell");
                         }
                         cell.Text(this.DataManager.getColMember(col, row).caption);
                         cell.Left(new CSSNumber(this.SizeManager.GetColLeft(col) - this.scrollLeft))
@@ -224,13 +250,13 @@ module Rubik.UI
                         cell.Top(new CSSNumber(this.FixedAreaSizeManager.GetRowTop(row)));
                         cell.Height(new CSSNumber(this.FixedAreaSizeManager.GetRowHeight(row)));
                         cells.push(cell);
+                        //this.DivColsHeaderPanel.append(cell._rootElement);  
                     }
                     else {                        
                         var cell: GridCell = cells[cells.length - 1];
                         cell.Width(new CSSNumber(cell.Width().Value + this.SizeManager.GetColWidth(col)));
                     }
-                    lastkey = this.DataManager.getColKey(col, row);
-                    //this.DivColsHeaderPanel.append(cell._rootElement);  
+                    lastkey = this.DataManager.getColKey(col, row);                    
                 }
             }
             
@@ -252,12 +278,12 @@ module Rubik.UI
                     this.DivRowsHeaderPanel.append(div);*/
                     if (lastkey != this.DataManager.getRowKey(col, row)) {
                         var cell: GridCell = new GridCell();
-                        cell._rootElement.addClass("GridRowHeaderCell");
+                        cell.AddClass("GridRowHeaderCell");
                         if (col == 0) {
-                            cell._rootElement.addClass("GridFirstColHeaderCell");
+                            cell.AddClass("GridFirstColHeaderCell");
                         }
                         if (row == startRow) {
-                            cell._rootElement.addClass("GridFirstRowHeaderCell");
+                            cell.AddClass("GridFirstRowHeaderCell");
                         }
                         cell.Text(this.DataManager.getRowMember(col, row).caption);
                         cell.Left(new CSSNumber(this.FixedAreaSizeManager.GetColLeft(col)))
@@ -265,13 +291,13 @@ module Rubik.UI
                         cell.Top(new CSSNumber(this.SizeManager.GetRowTop(row) - this.scrollTop));
                         cell.Height(new CSSNumber(this.SizeManager.GetRowHeight(row)));
                         cells.push(cell);
+                        //this.DivRowsHeaderPanel.append(cell._rootElement);  
                     }
                     else {                        
                         var cell: GridCell = cells[cells.length - 1];
                         cell.Height(new CSSNumber(cell.ActualHeight() + this.SizeManager.GetRowHeight(row)));
                     }     
-                    lastkey = this.DataManager.getRowKey(col, row);               
-                    //this.DivRowsHeaderPanel.append(cell._rootElement);  
+                    lastkey = this.DataManager.getRowKey(col, row);                             
                 }
             }
             this.DivRowsHeaderPanel.append(cells.map(function (value, index, array) { return array[index]._rootElement; }));
@@ -283,25 +309,15 @@ module Rubik.UI
                 //column.Width(new CSSNumber(this.SizeManager.GetColWidth(col)));
                 //var left = this.SizeManager.GetColLeft(col);
                 //var top = this.SizeManager.GetRowTop(startRow);//this.SizeManager.GetRowTop(startRow)
-                for (var row = startRow; row <= endRow; row++) {                                        
-                    /*var div = $("<div class=\"Control GridCell\">");
-                    var span = $("<span class=\"GridCell-content\">");
-                    span.text(this.DataManager.getCellFormattedValue(col, row));
-                    div.append(span)
-                    div.css("left", this.SizeManager.GetColLeft(col) );
-                    div.css("width", this.SizeManager.GetColWidth(col) );
-                    div.css("top", this.SizeManager.GetRowTop(row) );
-                    div.css("height", this.SizeManager.GetRowHeight(row));
-                    //this.DivCellsPanel.append(div);                    
-                    cells.push(div);        */
+                for (var row = startRow; row <= endRow; row++) {                                                            
                     var cell: GridCell = new GridCell();                   
                     cell.Text(this.DataManager.getCellFormattedValue(col, row));              
                     cell.Left(new CSSNumber(this.SizeManager.GetColLeft(col)))
                     cell.Width(new CSSNumber(this.SizeManager.GetColWidth(col)));
                     cell.Top(new CSSNumber(this.SizeManager.GetRowTop(row)));
                     cell.Height(new CSSNumber(this.SizeManager.GetRowHeight(row)));
-                    this.DivCellsPanel.append(cell._rootElement);  
-                    //this.CellsPanel.Children.Add(cell);
+                    //this.DivCellsPanel.append(cell._rootElement);  
+                    this.CellsPanel.Children.Add(cell);
                     //cells.Add(cell);
                     //column.Children.Add(cell);
                 }

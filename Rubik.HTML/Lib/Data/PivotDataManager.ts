@@ -86,7 +86,7 @@ module Rubik.Data {
         getColKey(col: number, row: number): any {
             var key: string = "";
             for (var r = 0; r <= row; r++) {
-                key+=this.getColMember(col, r).unique_name;
+                key+=this.getColMember(col, r).uniqueName;
             }
             return key;
         }
@@ -95,7 +95,7 @@ module Rubik.Data {
             var key: string = "";
             for (var c = 0; c <= col; c++) {
                 if (key != "") key += "_";
-                key += this.getRowMember(c, row).unique_name;
+                key += this.getRowMember(c, row).uniqueName;
             }
             return key;
         }
@@ -111,7 +111,7 @@ module Rubik.Data {
 
         getCellFormattedValue(col: number, row: number): string {
             if (this.Data != null) {
-                var index: number = col * this.getRowsCount() + row;
+                var index: number = row * this.getColsCount() + col;
                 return this.Data.cells[index].formattedValue;
             }
             return null;
