@@ -34,7 +34,7 @@ module Rubik.UI
             return this._rootElement;
         }
 
-        OnClick: Events..ClickEvent = new Events.ClickEvent();
+        OnClick: Events.ClickEvent = new Events.ClickEvent();
         OnMouseDown: Events.MouseDownEvent = new Events.MouseDownEvent();
         OnMouseUp: Events.MouseUpEvent = new Events.MouseUpEvent();
         OnMouseMove: Events.MouseMoveEvent = new Events.MouseMoveEvent();
