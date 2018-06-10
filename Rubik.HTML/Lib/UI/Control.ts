@@ -34,7 +34,7 @@ module Rubik.UI
             return this._rootElement;
         }
 
-        OnClick: Events..ClickEvent = new Events.ClickEvent();
+        OnClick: Events.ClickEvent = new Events.ClickEvent();
         OnMouseDown: Events.MouseDownEvent = new Events.MouseDownEvent();
         OnMouseUp: Events.MouseUpEvent = new Events.MouseUpEvent();
         OnMouseMove: Events.MouseMoveEvent = new Events.MouseMoveEvent();
@@ -268,7 +268,7 @@ module Rubik.UI
             if (this.DOMConstructed) {
                 if (this.OnScroll.Handlers.length > 0 && !this._OnScrollAttached) {
                     this._OnScrollAttached = true;
-                    this._rootElement.on("scroll", { _this: this, _callback: this._OnScroll }, this._RestoreThis);
+                    this._rootElement.on("scroll", { _this: this, _callback: this._OnScroll }, this._RestoreThis);                    
                 }
                 else if (this._OnScrollAttached) {
                     this._OnScrollAttached = false;
