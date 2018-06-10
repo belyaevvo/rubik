@@ -14,7 +14,7 @@
     <RootNamespace>Rubik</RootNamespace>
     <AssemblyName>Rubik.HTML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -148,9 +148,11 @@
     <TypeScriptCompile Include="Lib\Schema\SchemaObject.ts" />
     <TypeScriptCompile Include="Lib\Data\PivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Button.ts" />
+    <TypeScriptCompile Include="Lib\UI\FrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\GridCell.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\Grid.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\CellsScrollPanel.ts" />
+    <TypeScriptCompile Include="Lib\UI\IFrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\SizeManager.ts" />
     <TypeScriptCompile Include="Lib\UI\IButton.d.ts" />
     <TypeScriptCompile Include="Lib\UI\ILabel.d.ts" />
@@ -255,7 +257,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>10202</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
