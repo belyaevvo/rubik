@@ -69,6 +69,7 @@
     <Content Include="Content\Rubik.css" />
     <Content Include="Content\Skins\Blue.css" />
     <Content Include="Global.asax" />
+    <TypeScriptCompile Include="Lib\Data\Tree\TreeView.ts" />
     <Content Include="package.json" />
     <Content Include="Lib\tsconfig.json" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
@@ -127,14 +128,19 @@
     <Content Include="Lib\Data\DataAccessor.ts" />
     <Content Include="Lib\Data\DataAccessResult.ts" />
     <Content Include="Lib\Data\DataAdapter.ts" />
-    <TypeScriptCompile Include="Lib\Data\ArtificialPivotDataManager.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\ArtificialPivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\Data\DataAccessStatuses.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPulledEvent.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPushedEvent.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\IGridDataMember.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\Tree\ITreeNode.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\TreeNodeDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\IAccessInfo.d.ts" />
     <TypeScriptCompile Include="Lib\Data\IDataAccessor.d.ts" />
     <TypeScriptCompile Include="Lib\Data\IDataAccessResult.d.ts" />
     <TypeScriptCompile Include="Lib\Data\IDataAdapter.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\IGridDataSource.d.ts" />
+    <TypeScriptCompile Include="Lib\Data\Tree\TreeNode.ts" />
     <TypeScriptCompile Include="Lib\IApp.d.ts" />
     <Content Include="Lib\UI\Panel.ts" />
     <TypeScriptCompile Include="Lib\Schema\Axis.ts" />
@@ -146,7 +152,7 @@
     <TypeScriptCompile Include="Lib\Schema\Member.ts" />
     <TypeScriptCompile Include="Lib\Schema\Schema.ts" />
     <TypeScriptCompile Include="Lib\Schema\SchemaObject.ts" />
-    <TypeScriptCompile Include="Lib\Data\PivotDataManager.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\PivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Button.ts" />
     <TypeScriptCompile Include="Lib\UI\FrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\GridCell.ts" />
