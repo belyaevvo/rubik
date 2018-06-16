@@ -1,8 +1,8 @@
 ﻿/// <reference path="Lib/IApp.d.ts" />
 /// <reference path="Lib/Events/Events.ts"/>
 /// <reference path="Lib/UI/Panel.ts"/>
-/// <reference path="Lib/Data/PivotDataManager.ts"/>
-/// <reference path="Lib/Data/ArtificialPivotDataManager.ts"/>
+/// <reference path="Lib/Data/Grid/PivotDataManager.ts"/>
+/// <reference path="Lib/Data/Grid/ArtificialPivotDataManager.ts"/>
 /// <reference path="Lib/UI/SplitContainer.ts"/>
 /// <reference path="Lib/UI/Grid/Grid.ts"/>
 /// <reference path="Lib/UI/MultilineTextBox.ts"/>
@@ -30,22 +30,23 @@ class MyApp implements Rubik.Apps.IApp {
         btn.Text("Выполнить");
         btn.MarginTop(new Rubik.UI.CSSNumber(80, "%"));
         
-        btn.OnClick.Attach(new Rubik.Events.ClickEventHandler(function (args: Rubik.Events.ClickEventArgs) {
-            grid.DataManager.GetData(txt.Text());
+        btn.OnClick.Attach(new Rubik.Events.ClickEventHandler(function (args: Rubik.Events.ClickEventArgs) {            
+            dataSource.GetData(txt.Text());
         }.bind(this), this));
         panel1.Children.Add(txt);
         panel1.Children.Add(btn);
 
         var grid = new Rubik.UI.Grid();
-        grid.DataManager = new Rubik.Data.PivotDataManager();
-        grid.DataManager.Url = "api/mdx";
+        var dataSource = new Rubik.Data.PivotDataManager();
+        dataSource.Url = "api/mdx";
+        grid.DataSource = dataSource;        
         grid.Height(new Rubik.UI.CSSNumber(100, "%"));
         grid.Width(new Rubik.UI.CSSNumber(100, "%"));
         panel2.Children.Add(grid);
         splitter.Panel1.Children.Add(panel1);
         splitter.Panel2.Children.Add(panel2);
         splitter.ConstructDOM(container);
-        grid.DataManager.GetData(txt.Text());
+        dataSource.GetData(txt.Text());
         
         //this.element.innerHTML += "The time is: ";
         //this.span = document.createElement('span');
