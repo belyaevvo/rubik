@@ -6,8 +6,6 @@
         Icon: string;
         HasChildren: boolean;
         Level: number;
-        Expanded: boolean;        
-        Expand();
-        Collapse();
+        Expanded: boolean;               
     }
 }

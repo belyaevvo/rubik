@@ -1,8 +1,9 @@
 ﻿/// <reference path="Lib/IApp.d.ts" />
 /// <reference path="Lib/Events/Events.ts"/>
 /// <reference path="Lib/UI/Panel.ts"/>
+/// <reference path="Lib/Data/Grid/MDDataSource.ts"/>
 /// <reference path="Lib/Data/Grid/PivotDataManager.ts"/>
-/// <reference path="Lib/Data/Grid/ArtificialPivotDataManager.ts"/>
+/// <reference path="Lib/Data/Grid/ArtificialDataSource.ts"/>
 /// <reference path="Lib/UI/SplitContainer.ts"/>
 /// <reference path="Lib/UI/Grid/Grid.ts"/>
 /// <reference path="Lib/UI/MultilineTextBox.ts"/>
@@ -37,7 +38,7 @@ class MyApp implements Rubik.Apps.IApp {
         panel1.Children.Add(btn);
 
         var grid = new Rubik.UI.Grid();
-        var dataSource = new Rubik.Data.PivotDataManager();
+        var dataSource = new Rubik.Data.MDDataSource();
         dataSource.Url = "api/mdx";
         grid.DataSource = dataSource;        
         grid.Height(new Rubik.UI.CSSNumber(100, "%"));

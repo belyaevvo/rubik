@@ -1,10 +1,10 @@
 ﻿/// <reference path="../../Events/Event.ts" />
-/// <reference path="PivotDataManager.ts" />
+/// <reference path="MDDataSource.ts" />
 
 module Rubik.Data {
     
 
-    export class ArtificialPivotDataManager extends PivotDataManager {
+    export class ArtificialDataSource extends MDDataSource {
         Url: string = null;
         
         

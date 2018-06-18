@@ -21,6 +21,17 @@
             this.parent = node;
         }
 
+        get Populated(): boolean {
+            if (this.View != null && this.View.VirtualMode) {
+                return this.populated;
+            }
+            return true;
+        }
+
+        set Populated(value: boolean) {
+            this.populated = value;
+        }
+
         set View(view: TreeView) {
             this.view = view;
             this.Children.ToArray().forEach(function (node, index, array) {
@@ -33,6 +44,9 @@
         }
 
         HasChildren(): boolean {
+            if (this.View != null && this.View.VirtualMode && !this.Populated) {
+                return true;
+            }
             return this.Children.Count() > 0;
         }
 

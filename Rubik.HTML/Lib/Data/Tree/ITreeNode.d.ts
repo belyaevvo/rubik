@@ -6,8 +6,10 @@
         Icon: string;
         Tag: any;
                 
-        Parent: ITreeNode;
+        Parent: ITreeNode;        
         View: TreeView;
+
+        Populated: boolean;
 
         HasChildren(): boolean; 
 

@@ -6,6 +6,7 @@
         RootNode: TreeNode;
 
         NodeModified: Events.Event<TreeViewEventArgs> = new Events.Event<TreeViewEventArgs>();
+        VirtualModeCreateChildren: Events.Event<TreeViewEventArgs> = new Events.Event<TreeViewEventArgs>();
         BeforeExpand: Events.Event<TreeViewCancelEventArgs> = new Events.Event<TreeViewCancelEventArgs>();
         Expanded: Events.Event<TreeViewEventArgs> = new Events.Event<TreeViewEventArgs>();
         BeforeCollapse: Events.Event<TreeViewCancelEventArgs> = new Events.Event<TreeViewCancelEventArgs>();
@@ -38,6 +39,9 @@
                 if (action) action(node);
                 //var args = new TreeViewEventArgs(this);                
                 this.Expanded.Invoke(args);
+                if (this.VirtualMode && !node.Populated) {
+                    this.VirtualModeCreateChildren.Invoke(args);
+                }
             }
         }
 

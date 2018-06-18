@@ -1,6 +1,5 @@
 ﻿/// <reference path="../Control.ts" />
 /// <reference path="../../Data/Grid/IGridDataSource.d.ts" />
-/// <reference path="../../Data/Grid/ArtificialPivotDataManager.ts" />
 /// <reference path="SizeManager.ts" />
 /// <reference path="GridCell.ts" />
 /// <reference path="../../../Scripts/typings/jquery/jquery.d.ts" />

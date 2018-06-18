@@ -69,6 +69,7 @@
     <Content Include="Content\Rubik.css" />
     <Content Include="Content\Skins\Blue.css" />
     <Content Include="Global.asax" />
+    <TypeScriptCompile Include="Lib\Data\Grid\MDDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\Tree\TreeView.ts" />
     <Content Include="package.json" />
     <Content Include="Lib\tsconfig.json" />
@@ -128,7 +129,7 @@
     <Content Include="Lib\Data\DataAccessor.ts" />
     <Content Include="Lib\Data\DataAccessResult.ts" />
     <Content Include="Lib\Data\DataAdapter.ts" />
-    <TypeScriptCompile Include="Lib\Data\Grid\ArtificialPivotDataManager.ts" />
+    <TypeScriptCompile Include="Lib\Data\Grid\ArtificialDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\DataAccessStatuses.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPulledEvent.ts" />
     <TypeScriptCompile Include="Lib\Data\DataPushedEvent.ts" />

@@ -75,6 +75,16 @@
             return null;            
         }
 
+        expand(col: number, row: number): void {
+            var node = this.getNodeByIndex(row);
+            node.Expand();
+        }
+
+        collapse(col: number, row: number): void {
+            var node = this.getNodeByIndex(row);
+            node.Collapse();
+        }
+
         isPopulated(): boolean {
             return this.RootNode.HasChildren();
         }
@@ -91,25 +101,46 @@
         }
 
         GetDescenantsData(node: TreeNode): void {
-            for (var i = 0; i < node.Children.Count(); i++) {
-                var nd = node.Children.ElementAt(i);
-                var member = new NodeDataMember();
-                member.Key = nd.Key;
-                member.Caption = nd.Caption;
-                this.Data.push(member);               
-                if (nd.Expanded()) {
-                    this.GetDescenantsData(nd);
+            var index = this.getNodeIndex(node);
+            if (index >= 0) {
+                for (var nd of node.Children.ToArray()) {
+                    var member = new NodeDataMember();
+                    member.Key = nd.Key;
+                    member.Caption = nd.Caption;
+                    member.Node = nd;
+                    this.Data.splice(index++,0,member);
+                    if (nd.Expanded()) {
+                        this.GetDescenantsData(nd);
+                    }
                 }
             }
         }
 
-        
+        protected getNodeIndex(node: TreeNode): number {           
+            var index = 0;
+            for (var el of this.Data) {
+                if (el.Key == node.Key) {
+                    return index;
+                }
+                index++;
+            }
+            return -1;
+        }
+
+        protected getNodeByIndex(index: number): TreeNode {
+            var member = this.Data[index];
+            if (member) {
+                return (<NodeDataMember>member).Node;
+            }            
+            return null;
+        }
     }
 
     export class NodeDataMember implements IGridDataMember {
         Key: string;
         Caption: string;
         Icon: string;
+        Node: TreeNode;
         HasChildren: boolean = false;
         Level: number = 0;
         Expanded: boolean = false;;

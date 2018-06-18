@@ -14,6 +14,8 @@ declare module Rubik.Data {
         getRowKey(col: number, row: number): any;
         getCellValue(col: number, row: number): any;
         getCellFormattedValue(col: number, row: number): string;
+        expand(col: number, row: number): void;
+        collapse(col: number, row: number): void;
         isPopulated(): boolean;
     }
 }
