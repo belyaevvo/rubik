@@ -57,6 +57,7 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Content\Packages\fontAwesome\css\font-awesome.min.css" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -66,13 +67,29 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Packages\requirejs\bin\r.js" />
+    <Content Include="Content\Packages\requirejs\require.js" />
     <Content Include="Content\Rubik.css" />
     <Content Include="Content\Skins\Blue.css" />
     <Content Include="Global.asax" />
     <TypeScriptCompile Include="Lib\Data\Grid\MDDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\Tree\TreeView.ts" />
+    <TypeScriptCompile Include="Lib\Schema\CalculatedMember.ts" />
+    <TypeScriptCompile Include="Lib\Schema\CalculatedSet.ts" />
+    <TypeScriptCompile Include="Lib\Schema\InfoObject.ts" />
+    <TypeScriptCompile Include="Lib\Schema\Interfaces.ts" />
+    <TypeScriptCompile Include="Lib\Schema\MeasureInfo.ts" />
+    <TypeScriptCompile Include="Lib\Schema\MemberSelectionEnum.ts" />
+    <TypeScriptCompile Include="Lib\Schema\SelectedMember.ts" />
     <Content Include="package.json" />
     <Content Include="Lib\tsconfig.json" />
+    <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Packages\requirejs\package.json" />
+    <Content Include="Content\Packages\requirejs\README.md" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\Classical\classical.js" />
     <Content Include="Scripts\Classical\Tutorials\Getting Started.txt" />
@@ -148,12 +165,13 @@
     <TypeScriptCompile Include="Lib\Schema\Cube.ts" />
     <TypeScriptCompile Include="Lib\Schema\Dimension.ts" />
     <TypeScriptCompile Include="Lib\Schema\Hierarchy.ts" />
+    <TypeScriptCompile Include="Lib\Schema\HierarchySet.ts" />
     <TypeScriptCompile Include="Lib\Schema\Level.ts" />
     <TypeScriptCompile Include="Lib\Schema\Measure.ts" />
     <TypeScriptCompile Include="Lib\Schema\Member.ts" />
     <TypeScriptCompile Include="Lib\Schema\Schema.ts" />
     <TypeScriptCompile Include="Lib\Schema\SchemaObject.ts" />
-    <TypeScriptCompile Include="Lib\Data\Grid\PivotDataManager.ts" />
+    <TypeScriptCompile Include="Lib\Data\PivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Button.ts" />
     <TypeScriptCompile Include="Lib\UI\FrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\GridCell.ts" />
@@ -172,6 +190,7 @@
     <Content Include="Lib\UI\MultilineTextBox.ts" />
     <TypeScriptCompile Include="Lib\UI\ITextBox.d.ts" />
     <Content Include="Lib\UI\Label.ts" />
+    <TypeScriptCompile Include="Lib\UI\Pivot\IPivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\SplitterGrip_Orientations.ts" />
     <Content Include="Lib\UI\TextBox.ts" />
     <TypeScriptCompile Include="Scripts\Classical\classical.d.ts" />

@@ -1,7 +1,11 @@
-﻿module Rubik.Data {
+﻿/// <reference path="IGridDataSource.d.ts" />
+/// <reference path="IGridDataMember.d.ts" />
+/// <reference path="../Tree/TreeNode.ts" />
+/// <reference path="../Tree/TreeView.ts" />
 
-    export class TreeNodeDataSource implements IGridDataSource {
-     
+module Rubik.Data {
+
+    export class TreeNodeDataSource implements IGridDataSource {     
 
         Data: IGridDataMember[] = new Array();
 
@@ -16,6 +20,8 @@
 
         constructor() {
             this.View.NodeModified.Attach(new Events.EventHandler<TreeViewEventArgs>(this.OnNodeModified, this));
+            this.View.Expanded.Attach(new Events.EventHandler<TreeViewEventArgs>(this.OnNodeModified, this));
+            this.View.Collapsed.Attach(new Events.EventHandler<TreeViewEventArgs>(this.OnNodeModified, this));
         }        
 
         getColsCount(): number {
@@ -40,11 +46,11 @@
         }
 
 
-        getColMember(col: number, row: number): any {
+        getColMember(col: number, row: number): IGridDataMember {
             return null;
         }
 
-        getRowMember(col: number, row: number): any {
+        getRowMember(col: number, row: number): IGridDataMember {
             try {
                 return this.Data[row];
             }
@@ -60,9 +66,11 @@
 
         getRowKey(col: number, row: number): any {
             var key: string = "";
-            for (var c = 0; c <= col; c++) {
-                if (key != "") key += "_";
-                key += this.getRowMember(c, row).uniqueName;
+            if (row != null) {
+                for (var c = 0; c <= col; c++) {
+                    if (key != "") key += "_";
+                    key += this.getRowMember(c, row).Key;
+                }
             }
             return key;
         }
@@ -90,8 +98,19 @@
         }
         
 
-        private OnNodeModified(args: TreeViewEventArgs) {            
+        private OnNodeModified(args: TreeViewEventArgs) {
+            var index = this.getNodeIndex(args.Node);
+            if (index >= 0) {
+                var member: NodeDataMember = this.Data[index] as NodeDataMember;
+                member.Key = args.Node.Key;
+                member.Caption = args.Node.Caption;
+                member.Node = args.Node;
+                member.HasChildren = args.Node.HasChildren();
+                member.Expanded = args.Node.Expanded();
+                member.Level = args.Node.Level-1;
+            }
             this.GetDescenantsData(args.Node);
+            this.DataChanged.Invoke(new Events.EventArgs(this));
         }
 
 
@@ -100,20 +119,34 @@
             this.GetDescenantsData(this.RootNode);
         }
 
-        GetDescenantsData(node: TreeNode): void {
-            var index = this.getNodeIndex(node);
-            if (index >= 0) {
+        GetDescenantsData(node: TreeNode): void {            
+            if (node.Expanded()) {
+                var index = this.getNodeIndex(node);
                 for (var nd of node.Children.ToArray()) {
                     var member = new NodeDataMember();
                     member.Key = nd.Key;
                     member.Caption = nd.Caption;
                     member.Node = nd;
-                    this.Data.splice(index++,0,member);
+                    member.HasChildren = nd.HasChildren();
+                    member.Expanded = nd.Expanded();
+                    member.Level = nd.Level - 1;
+                    this.Data.splice(++index, 0, member);
                     if (nd.Expanded()) {
                         this.GetDescenantsData(nd);
                     }
                 }
-            }
+            } else if (node.Populated) {
+                index = this.getNodeIndex(node);
+                index++;
+                while (this.Data.length > index) {
+                    if ((this.Data[index] as NodeDataMember).Node.IsDescendant(node)) {
+                        this.Data.splice(index, 1);
+                    }
+                    else {
+                        break;
+                    }
+                }
+            }                    
         }
 
         protected getNodeIndex(node: TreeNode): number {           

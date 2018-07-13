@@ -2,9 +2,9 @@
 using System.Web;
 using System.ComponentModel;
 
-namespace Rubik
+namespace Rubik.Server.Schema
 {
-    public class InfoObject : Server.Schema.SchemaObject
+    public class InfoObject : SchemaObject
     {
         public string Name
         {

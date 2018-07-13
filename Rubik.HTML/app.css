@@ -1,5 +1,6 @@
 ﻿@import url("Content/Rubik.css");
 @import url("Content/Skins/Blue.css");
+@import url('Content/Packages/fontAwesome/css/font-awesome.min.css');
 
 #content {
     height: 100%;

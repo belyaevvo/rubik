@@ -2,7 +2,10 @@
 
     export class TreeView{
 
-        VirtualMode: boolean;
+        private popLevel: number = 0;
+        private popNode: TreeNode;
+
+        VirtualMode: boolean = false;
         RootNode: TreeNode;
 
         NodeModified: Events.Event<TreeViewEventArgs> = new Events.Event<TreeViewEventArgs>();
@@ -23,11 +26,39 @@
             this.RootNode.View = this;            
         }
 
+        FindNode(key: string, startNode: TreeNode = null): TreeNode {
+            if (startNode == null) {
+                startNode = this.RootNode;
+            }
+            if (startNode.Key===key) {
+                return startNode
+            }
+            for (var node of startNode.Children.ToArray()) {
+                var fnode = this.FindNode(key, node);
+                if (fnode != null) {
+                    return fnode;
+                }
+            }
+            return null;
+        }
+
         OnNodeModified(node: TreeNode): void {
             var args = new TreeViewCancelEventArgs(this);
             args.Node = node;
             args.Action = Action.None;
-            this.NodeModified.Invoke(args);            
+            this.NodeModified.Invoke(args);
+            if (this.VirtualMode) {
+                if (node.Level < this.popLevel && (node == this.popNode || node.IsDescendant(this.popNode))) {
+                    for (var child of node.Children.ToArray()) {
+                        if (!child.Populated) {
+                            var args = new TreeViewCancelEventArgs(this);
+                            args.Node = child;
+                            args.Action = Action.None;
+                            this.VirtualModeCreateChildren.Invoke(args);
+                        }
+                    }                    
+                }
+            }
         }
 
         OnExpand(node: TreeNode, action?: (node: TreeNode) => void): void {
@@ -42,6 +73,28 @@
                 if (this.VirtualMode && !node.Populated) {
                     this.VirtualModeCreateChildren.Invoke(args);
                 }
+            }
+        }
+
+        Populate(level: number, node: TreeNode = null): void {            
+            if (node == null) {
+                node = this.RootNode;
+                if (!node.Expanded()) {
+                    this.popLevel = level;
+                    this.popNode = node;
+                    node.Expand();
+                    return;
+                }             
+            }
+            var args = new TreeViewEventArgs(this);
+            args.Node = node;
+            args.Action = Action.None;
+            this.popLevel = level;
+            this.popNode = node;
+
+            //Не создает если уже популирована нода;                                
+            if (this.VirtualMode && !node.Populated) {
+                this.VirtualModeCreateChildren.Invoke(args);            
             }
         }
 

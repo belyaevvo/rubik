@@ -16,6 +16,7 @@ License: https://typescriptui.codeplex.com/license
 /// <reference path="../Exceptions/IncorrectTypeException.ts" />
 /// <reference path="../Utils.ts" />
 /// <reference path="IList.d.ts" />
+
 module Rubik.Collections
 {
     /** A generic IList implementation. */
@@ -258,3 +259,4 @@ module Rubik.Collections
         }
     }
 }
+

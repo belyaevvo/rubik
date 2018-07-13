@@ -83,7 +83,7 @@
             var indices: Array<number> = Object.keys(this.RowsSize).map(Number);
             var top: number = this.DefaultRowHeight * index;
             for (var i = 0; i < indices.length; i++) {
-                if (index < indices[i])
+                if (index <= indices[i])
                     break;
                 top = this.RowsSize[indices[i]] - this.DefaultRowHeight;
             }
@@ -94,7 +94,7 @@
             var indices: Array<number> = Object.keys(this.ColsSize).map(Number);
             var left: number = this.DefaultColWidth * index;
             for (var i = 0; i < indices.length; i++) {
-                if (index < indices[i])
+                if (index <= indices[i])
                     break;
                 left = this.ColsSize[indices[i]] - this.DefaultColWidth;
             }
@@ -127,7 +127,10 @@
             return width;
         }
 
-        GetTotalViewHeight(): number {
+        
+
+        
+         GetTotalViewHeight(): number {
             var indices: Array<number> = Object.keys(this.RowsSize).map(Number);
             var height: number = this.DefaultRowHeight * (this._rowsCount + 1);
             for (var i = 0; i < indices.length; i++) {
@@ -144,6 +147,8 @@
             }
             return Math.round(width * this.ScaleX);
         }
+
+         
 
         private DetermineVisibleRows() {
 

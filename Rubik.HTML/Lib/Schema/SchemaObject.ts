@@ -1,6 +1,10 @@
-﻿module Rubik.Schema {
-    export class SchemaObject {
-        public Caption: string;
+﻿/// <reference path="Interfaces.ts" />
+
+module Rubik.Server.Schema {
+    export class SchemaObject implements ISchemaObject{
         public UniqueName: string;
     }
 }
+
+
+

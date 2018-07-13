@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Rubik.Server.Schema
 {
-    public class CalculatedSet : Server.Schema.SchemaObject
+    public class CalculatedSet : SchemaObject
     {
     }
 }

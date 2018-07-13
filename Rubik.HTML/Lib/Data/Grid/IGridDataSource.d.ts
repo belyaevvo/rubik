@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../Events/Event.ts" />
+/// <reference path="IGridDataMember.d.ts" />
 
 declare module Rubik.Data {
     export interface IGridDataSource {
@@ -8,8 +9,8 @@ declare module Rubik.Data {
         getFixedColsCount(): number;
         getFixedRowsCount(): number;
         //getDataRow(row: number): any[];
-        getColMember(col: number, row: number): any;
-        getRowMember(col: number, row: number): any;
+        getColMember(col: number, row: number): IGridDataMember;
+        getRowMember(col: number, row: number): IGridDataMember;
         getColKey(col: number, row: number): any;
         getRowKey(col: number, row: number): any;
         getCellValue(col: number, row: number): any;

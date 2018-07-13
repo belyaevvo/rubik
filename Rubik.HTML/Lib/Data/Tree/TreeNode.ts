@@ -1,4 +1,6 @@
-﻿module Rubik.Data {
+﻿/// <reference path="ITreeNode.d.ts" />
+
+module Rubik.Data {
 
     export class TreeNode implements ITreeNode{        
         Key: string;
@@ -6,6 +8,7 @@
         Icon: string;
         Tag: any;
 
+        protected level: number = 0;
         protected parent: TreeNode = null;
         protected view: TreeView = null;
         protected expanded: boolean = false;
@@ -13,12 +16,19 @@
         protected selected: boolean = false;
         protected populated: boolean = false;
 
+        get Level(): number {
+            return this.level;
+        }
+
         get Parent(): TreeNode {
             return this.parent;
         }
 
         set Parent(node: TreeNode) {
             this.parent = node;
+            if (node != null) {
+                this.level = node.Level + 1;
+            }
         }
 
         get Populated(): boolean {
@@ -50,9 +60,25 @@
             return this.Children.Count() > 0;
         }
 
+        IsDescendant(node: TreeNode): boolean {
+            var thenode: TreeNode = this;
+            while (thenode.Parent != null) {
+                if (thenode.Parent == node) {
+                    return true
+                }
+                thenode = thenode.Parent;
+            }
+            return false;
+        }
+
+        IsAscendant(node: TreeNode): boolean {
+            return node.IsDescendant(this);
+        }
+
         Expanded(): boolean {
             return this.expanded;
         }
+       
 
         Collapsed(): boolean {
             return !this.expanded;
@@ -120,10 +146,11 @@
                     node.View = null;
                     node.Parent = null;
                 }.bind(this));
-            }
+            }                        
             if (this.View != null) {
                 this.View.OnNodeModified(this);
-            }
+            }          
+            this.Populated = true;
         }
     }
 }

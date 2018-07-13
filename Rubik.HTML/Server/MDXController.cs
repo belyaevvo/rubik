@@ -8,6 +8,7 @@ using Microsoft.AnalysisServices.AdomdClient;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using System.Data;
 
 namespace Rubik.HTML
 {
@@ -21,16 +22,21 @@ namespace Rubik.HTML
             public string sessionId { get; set; }
             public string query { get; set; }
         }
+
+        public class MetaDataParameters
+        {
+            public string sessionId { get; set; }
+            public string schema { get; set; }
+            public Dictionary<string, string> restrictions { get; set; }
+        }
         // GET api/<controller>/5
         //[AcceptVerbs("GET","POST")]    
         //[ActionName("execute")]    
         //[HttpGet]
         [HttpPost]    
         public HttpResponseMessage Execute([FromBody] ExecuteParameters args)
-        {
-            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP.4; Data Source=https://bi.galaktikasoft.com/olap/2016/msmdpump.dll; Catalog=AdventureWorksDW2012 MD-EE;");
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");
-            con.Open();
+        {            
+            AdomdConnection con = AcquireConnection();            
             AdomdCommand cmd = con.CreateCommand();
             cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
             CellSet cst= cmd.ExecuteCellSet();
@@ -39,6 +45,37 @@ namespace Rubik.HTML
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;            
+        }
+
+        [HttpPost]
+        public HttpResponseMessage GetMetaData([FromBody] MetaDataParameters args)
+        {
+            AdomdConnection con = AcquireConnection();
+            var restrictions = new AdomdRestrictionCollection();
+            foreach (var restriction in args.restrictions.Select(s => new AdomdRestriction(s.Key, s.Value)))
+            {
+                restrictions.Add(restriction);
+            }
+            DataSet ds = con.GetSchemaDataSet(args.schema,restrictions);
+            string json = CreateJsonDataSet(ds);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            return response;
+        }
+
+       
+
+        private AdomdConnection AcquireConnection()
+        {
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP.4; Data Source=https://bi.galaktikasoft.com/olap/2016/msmdpump.dll; Catalog=AdventureWorksDW2012 MD-EE;");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");
+            con.Open();
+            return con;
+        }
+
+        private string CreateJsonDataSet(DataSet ds)
+        {
+            return JsonConvert.SerializeObject(ds, Formatting.Indented);
         }
 
         private string CreateJsonCellSet(CellSet cst)

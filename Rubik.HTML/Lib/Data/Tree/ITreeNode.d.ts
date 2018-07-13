@@ -23,6 +23,9 @@
         Check(check: boolean): void;
         Select(select: boolean): void;
 
+        IsDescendant(node: ITreeNode): boolean;
+        IsAscendant(node: ITreeNode): boolean;
+
         Children: Collections.IList<ITreeNode>;
         
     }
