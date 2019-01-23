@@ -70,7 +70,7 @@ ul, ol
     display: none;
 }
 
-.Control
+.Control, .FrameworkElement
 {
     position: absolute;
     top: 0%;
@@ -390,6 +390,7 @@ ul, ol
     text-overflow:ellipsis;
     width: auto;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .GridHeaderCell-text {
@@ -420,6 +421,15 @@ ul, ol
     opacity: .6;
 }
 
+.GridHeaderCell-icon {
+    cursor: default;
+    font-size: 16px!important;
+    height: 16px;
+    width: 16px;
+    margin-left: 3px;
+    margin-right: 3px;    
+}
+
 .GridCell {
     border: solid;
     border-color: rgb(192,192,192);
@@ -440,6 +450,7 @@ ul, ol
     border-right-width: 0px;
     text-align: right;
     text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
 .GridCell-text {
