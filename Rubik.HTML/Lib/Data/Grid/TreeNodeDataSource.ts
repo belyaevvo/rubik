@@ -98,7 +98,7 @@ module Rubik.Data {
         }
         
 
-        private OnNodeModified(args: TreeViewEventArgs) {
+        private OnNodeModified(args: TreeViewEventArgs) {             
             var index = this.getNodeIndex(args.Node);
             if (index >= 0) {
                 var member: NodeDataMember = this.Data[index] as NodeDataMember;
@@ -106,10 +106,16 @@ module Rubik.Data {
                 member.Caption = args.Node.Caption;
                 member.Node = args.Node;
                 member.HasChildren = args.Node.HasChildren();
-                member.Expanded = args.Node.Expanded();
-                member.Level = args.Node.Level-1;
+                member.Expanded = args.Node.Expanded();                
+                member.Icon = args.Node.Icon;
+                member.Level = args.Node.Level - 1;  
+                member.Populated = args.Node.Populated;              
+                if (args.Node.Populated) {
+                    this.GetDescenantsData(args.Node);
+                }
+            } else if (args.Node == this.RootNode) {
+                this.GetDescenantsData(args.Node);               
             }
-            this.GetDescenantsData(args.Node);
             this.DataChanged.Invoke(new Events.EventArgs(this));
         }
 
@@ -119,9 +125,10 @@ module Rubik.Data {
             this.GetDescenantsData(this.RootNode);
         }
 
-        GetDescenantsData(node: TreeNode): void {            
+        GetDescenantsData(node: TreeNode): number {            
             if (node.Expanded()) {
-                var index = this.getNodeIndex(node);
+                var index: number = this.getNodeIndex(node);
+                var startidx: number = index;
                 for (var nd of node.Children.ToArray()) {
                     var member = new NodeDataMember();
                     member.Key = nd.Key;
@@ -129,24 +136,31 @@ module Rubik.Data {
                     member.Node = nd;
                     member.HasChildren = nd.HasChildren();
                     member.Expanded = nd.Expanded();
+                    member.Icon = nd.Icon;
                     member.Level = nd.Level - 1;
+                    member.Populated = nd.Populated;
                     this.Data.splice(++index, 0, member);
                     if (nd.Expanded()) {
-                        this.GetDescenantsData(nd);
+                        index+=this.GetDescenantsData(nd);
                     }
                 }
+                return index - startidx;
             } else if (node.Populated) {
-                index = this.getNodeIndex(node);
+                var count = 0;
+                var index: number = this.getNodeIndex(node);
                 index++;
                 while (this.Data.length > index) {
                     if ((this.Data[index] as NodeDataMember).Node.IsDescendant(node)) {
                         this.Data.splice(index, 1);
+                        count++;
                     }
                     else {
                         break;
                     }
                 }
-            }                    
+                return -count;
+            }
+            return 0;                    
         }
 
         protected getNodeIndex(node: TreeNode): number {           
@@ -176,7 +190,8 @@ module Rubik.Data {
         Node: TreeNode;
         HasChildren: boolean = false;
         Level: number = 0;
-        Expanded: boolean = false;;
+        Expanded: boolean = false;
+        Populated: boolean = false;
         Expand() { }
         Collapse() { }
     }

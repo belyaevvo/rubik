@@ -17,7 +17,7 @@ License: https://typescriptui.codeplex.com/license
 declare module Rubik.UI
 {
     /** Defines a SplitContainer control. */
-    export interface ISplitContainer extends IControl
+    export interface ISplitContainer extends IContentControl
     {
         /** The top or left panel of the split container. */
         Panel1: IPanel;

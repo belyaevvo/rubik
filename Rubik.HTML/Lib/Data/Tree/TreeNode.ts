@@ -15,6 +15,7 @@ module Rubik.Data {
         protected checked: boolean = false;
         protected selected: boolean = false;
         protected populated: boolean = false;
+        protected populateaction: (node: TreeNode) => void;
 
         get Level(): number {
             return this.level;
@@ -29,6 +30,10 @@ module Rubik.Data {
             if (node != null) {
                 this.level = node.Level + 1;
             }
+        }
+
+        set PopulateAction(action: (node: TreeNode) => void) {
+            this.populateaction = action;            
         }
 
         get Populated(): boolean {
@@ -146,11 +151,19 @@ module Rubik.Data {
                     node.View = null;
                     node.Parent = null;
                 }.bind(this));
-            }                        
-            if (this.View != null) {
+            }                      
+            if (this.View != null) {                
+                if (this.View.VirtualMode) {
+                    if (this.populateaction != null) {
+                        this.populateaction(this);
+                        this.populateaction = null;
+                    }
+                    else {
+                        this.Populated = true;
+                    }
+                }               
                 this.View.OnNodeModified(this);
-            }          
-            this.Populated = true;
+            }                     
         }
     }
 }

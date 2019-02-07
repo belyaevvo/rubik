@@ -12,12 +12,12 @@ License: https://typescriptui.codeplex.com/license
 
 /// <reference path="IButton.d.ts" />
 /// <reference path="Label.ts" />
-/// <reference path="Control.ts" />
+/// <reference path="ContentControl.ts" />
 
 module Rubik.UI
 {
     /** A basic button control implementation. */
-    export class Button extends Control implements IButton
+    export class Button extends ContentControl implements IButton
     {
         /** The label control which is the button's text. */
         TextLabel: ILabel;

@@ -66,13 +66,18 @@
             args.Node = node;
             args.Action = Action.Expand;
             this.BeforeExpand.Invoke(args);
-            if (!args.Cancel) {
+            if (!args.Cancel) {  
                 if (action) action(node);
-                //var args = new TreeViewEventArgs(this);                
-                this.Expanded.Invoke(args);
+                this.Expanded.Invoke(args);              
+                //var args = new TreeViewEventArgs(this);                                
                 if (this.VirtualMode && !node.Populated) {
+                   /* node.PopulateAction = function (nd: TreeNode) {
+                        //if (action) action(node);
+                        node.Populated = true;
+                        //this.Expanded.Invoke(args);
+                    }.bind(this);*/
                     this.VirtualModeCreateChildren.Invoke(args);
-                }
+                }                
             }
         }
 

@@ -11,12 +11,12 @@ Modifications:
 License: https://typescriptui.codeplex.com/license
 */
 
-/// <reference path="IControl.d.ts" />
+/// <reference path="ContentControl.ts" />
 
 declare module Rubik.UI
 {
     /** Defines a Panel control. */
-    export interface IPanel extends IControl
+    export interface IPanel extends IContentControl
     {
     }
 }

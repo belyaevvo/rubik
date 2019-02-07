@@ -21,6 +21,7 @@ namespace Rubik.HTML
         {
             public string sessionId { get; set; }
             public string query { get; set; }
+            public Server.Schema.Schema schema { get; set; }
         }
 
         public class MetaDataParameters

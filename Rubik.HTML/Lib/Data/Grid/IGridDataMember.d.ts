@@ -7,5 +7,6 @@
         HasChildren: boolean;
         Level: number;
         Expanded: boolean;               
+        Populated: boolean; 
     }
 }

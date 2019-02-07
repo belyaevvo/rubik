@@ -15,13 +15,21 @@ License: https://typescriptui.codeplex.com/license
 
 module Rubik.UI
 {
-    export class Panel extends Control implements IPanel
+    export class Panel extends ContentControl implements IPanel
     {
+        Layout: PanelLayout = PanelLayout.None;
+
         constructor()
         {
             super();
 
             this._rootElement.addClass("Panel");            
         }
+    }
+
+    export enum PanelLayout {
+        None,
+        Table,
+        Stack
     }
 }

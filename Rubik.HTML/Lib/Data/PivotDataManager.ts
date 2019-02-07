@@ -1,17 +1,25 @@
 ﻿/// <reference path="Grid/IGridDataSource.d.ts" />
 /// <reference path="Grid/MDDataSource.ts" />
 /// <reference path="Grid/TreeNodeDataSource.ts" />
+/// <reference path="../Schema/Schema.ts" />
 
 module Rubik.Data {    
 
     export class PivotDataManager {
         Url: string = null;
 
+        SessionId: string;
+
         DataMember: string = null;
 
         DataSource: MDDataSource = new MDDataSource();
 
-        MetaDataSource: TreeNodeDataSource = new TreeNodeDataSource();
+        Schema: Rubik.Server.Schema.Schema = new Rubik.Server.Schema.Schema();
+
+        CubeChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
+        DataChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();        
+        SchemaChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
+        
 
         set Command(command: string) {
             this.GetData(command,
@@ -26,64 +34,10 @@ module Rubik.Data {
         }
 
         constructor()
-        {
-            this.MetaDataSource.View.VirtualModeCreateChildren.Attach(new Events.EventHandler < TreeViewEventArgs>(this.OnVirtualModeCreateChildren, this))
+        {            
         }
 
-        OnVirtualModeCreateChildren(args: TreeViewEventArgs) {
-            if (args.Node.Level == 0) {
-                this.GetMetaData("MDSCHEMA_DIMENSIONS", [{ Key: "CUBE_NAME", Value: this.DataMember }], function (data) {
-                    var nodes: Collections.List<TreeNode> = new Collections.List<TreeNode>();
-                    for (var row of data.rowsetTable) {
-                        var node = new TreeNode();
-                        node.Key = row["DIMENSION_UNIQUE_NAME"];                        
-                        node.Caption = row["DIMENSION_CAPTION"];
-                        node.Tag = row["DIMENSION_UNIQUE_NAME"];                        
-                        nodes.Add(node);
-                    }
-                    args.Node.Children.AddRange(nodes);                    
-                }, null);
-            } else if (args.Node.Level == 1) {
-                this.GetMetaData("MDSCHEMA_HIERARCHIES", [{ Key: "CUBE_NAME", Value: this.DataMember },{ Key: "DIMENSION_UNIQUE_NAME", Value: args.Node.Tag }], function (data) {
-                    var nodes: Collections.List<TreeNode> = new Collections.List<TreeNode>();
-                    for (var row of data.rowsetTable) {
-                        var node = new TreeNode();
-                        node.Key = row["HIERARCHY_UNIQUE_NAME"];
-                        node.Caption = row["HIERARCHY_CAPTION"];
-                        node.Tag = row["HIERARCHY_UNIQUE_NAME"];
-                        nodes.Add(node);                        
-                    }
-                    args.Node.Children.AddRange(nodes);
-                }, null);
-            } else if (args.Node.Level == 2) {
-                this.GetMetaData("MDSCHEMA_LEVELS", [{ Key: "CUBE_NAME", Value: this.DataMember }, { Key: "HIERARCHY_UNIQUE_NAME", Value: args.Node.Tag }], function (data) {
-                    var nodes: Collections.List<TreeNode> = new Collections.List<TreeNode>();
-                    for (var row of data.rowsetTable) {
-                        var node = new TreeNode();
-                        node.Key = row["LEVEL_UNIQUE_NAME"];
-                        node.Caption = row["LEVEL_CAPTION"];
-                        node.Tag = row["LEVEL_UNIQUE_NAME"];
-                        nodes.Add(node);
-                    }
-                    args.Node.Children.AddRange(nodes);
-                }, null);
-            } else if (args.Node.Level == 3) {
-                this.GetMetaData("MDSCHEMA_MEMBERS", [{ Key: "CUBE_NAME", Value: this.DataMember }, { Key: "LEVEL_UNIQUE_NAME", Value: args.Node.Tag }], function (data) {
-                    var nodes: Collections.List<TreeNode> = new Collections.List<TreeNode>();
-                    for (var row of data.rowsetTable) {
-                        var node = new TreeNode();
-                        node.Key = row["MEMBER_UNIQUE_NAME"];
-                        node.Caption = row["MEMBER_CAPTION"];
-                        node.Tag = row["MEMBER_UNIQUE_NAME"];
-                        node.Populated = true;
-                        nodes.Add(node);
-                    }
-                    args.Node.Children.AddRange(nodes);
-                }, null);
-            }
-
-        }
-        
+                
 
         GetData(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
             if (this.Url != null) {                
@@ -91,7 +45,7 @@ module Rubik.Data {
                     url: this.Url + '/execute',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId:'aaa', query:command },
+                    data: { sessionId: this.SessionId, query: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -110,13 +64,14 @@ module Rubik.Data {
         }
 
         GetMetaData(schema: string, restrictions: any[], onsuccess: (data: any) => void, onerror: (error: any) => void): void {
-            if (this.Url != null) {                
+            if (this.Url != null) {
+                restrictions.splice(0, 0, { Key: "CUBE_NAME", Value: this.DataMember });                
                 $.ajax({
                     url: this.Url + '/getmetadata',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
                     data: {
-                        sessionId: 'aaa', schema: schema, restrictions: restrictions
+                        sessionId: this.SessionId, schema: schema, restrictions: restrictions
                     },
                     dataType: 'json',
                     success: function (data) {

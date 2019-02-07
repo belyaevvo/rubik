@@ -2,8 +2,7 @@
 
 module Rubik.Data {
 
-    export class MDDataSource implements IGridDataSource {
-        Url: string = null;
+    export class MDDataSource implements IGridDataSource {        
 
         data: any = null;
 
@@ -123,27 +122,7 @@ module Rubik.Data {
             return this._isPopulated;
         }
         
-        /*
-        GetData(command: string): void {
-            if (this.Url != null) {
-                $.ajax({
-                    url: this.Url + '/execute',
-                    type: 'POST',
-                    //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: 'aaa', query: command },
-                    dataType: 'json',
-                    success: function (data) {
-                        this.Data = data;
-                        this._isPopulated = true;
-                        this.DataChanged.Invoke(new Events.EventArgs(this));
-                    }.bind(this),
-                    error: function (error) {
-                        this._isPopulated = false;
-                        alert(error.responseText); //or whatever
-                    }
-                });
-            }
-        }*/
+       
     }
 
     export class MDDataMember implements IGridDataMember {
@@ -152,7 +131,8 @@ module Rubik.Data {
         Icon: string;        
         HasChildren: boolean = false;
         Level: number = 0;
-        Expanded: boolean = false;            
+        Expanded: boolean = false;
+        Populated: boolean = false;
 
         initialize(member: any): MDDataMember {
             this.Key = member.uniqueName;
@@ -160,6 +140,7 @@ module Rubik.Data {
             this.Expanded = member.drilledDown;
             this.HasChildren = member.childCount > 0;
             this.Level = member.levelDepth;
+            this.Populated = this.HasChildren ? member.drilledDown : true;
             return this;
         }         
     }

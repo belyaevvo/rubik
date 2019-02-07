@@ -16,7 +16,7 @@ License: https://typescriptui.codeplex.com/license
 
 module Rubik.UI
 {
-    export class SplitContainer extends Control implements ISplitContainer
+    export class SplitContainer extends ContentControl implements ISplitContainer
     {
         Panel1: IPanel;
         Panel2: IPanel;
@@ -51,8 +51,8 @@ module Rubik.UI
 
             this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized, this));
 
-            this.Width(new CSSNumber(100, "%"));
-            this.Height(new CSSNumber(100, "%"));
+            this.Width("100%");
+            this.Height("100%");
         }
 
         ConstructDOM(parent: JQuery, onComplete:()=>void = null): void
@@ -130,49 +130,49 @@ module Rubik.UI
             var perc = this.MainSplitterGrip.SplitterDistance();
             var OK = true;
             if (this.MainSplitterGrip.Orientation() === SplitterGrip_Orientations.Horizontal)
-            {
-                var minHeight = this.Panel1.MinHeight();
+            {                
+                var minHeight = CSSNumber.FromString(<string>this.Panel1.MinHeight(""));
                 var minHeightVal = minHeight.Units === "px" ? (minHeight.Value / this.ActualHeight()) * 100 : minHeight.Value;
                 if (!minHeight.Auto && perc < minHeightVal)
                 {
                     perc = minHeightVal;
-                    this.MainSplitterGrip.Top(new CSSNumber(perc, "%"));
+                    this.MainSplitterGrip.Top(new CSSNumber(perc, "%").ToString());
                     OK = false;
                 }
 
                 if (OK)
                 {
-                    minHeight = this.Panel2.MinHeight();
+                    minHeight = CSSNumber.FromString(<string>this.Panel2.MinHeight(""));
                     minHeightVal = minHeight.Units === "px" ? (minHeight.Value / this.ActualHeight()) * 100 : minHeight.Value;
                     minHeightVal = 100 - minHeightVal;
                     if (!minHeight.Auto && perc > minHeightVal)
                     {
                         perc = minHeightVal;
-                        this.MainSplitterGrip.Top(new CSSNumber(perc, "%"));
+                        this.MainSplitterGrip.Top(new CSSNumber(perc, "%").ToString());
                         OK = false;
                     }
                 }
             }
             else
             {
-                var minWidth = this.Panel1.MinWidth();
+                var minWidth = CSSNumber.FromString(<string>this.Panel1.MinWidth(""));
                 var minWidthVal = minWidth.Units === "px" ? (minWidth.Value / this.ActualWidth()) * 100 : minWidth.Value;
                 if (!minWidth.Auto && perc < minWidthVal)
                 {
                     perc = minWidthVal;
-                    this.MainSplitterGrip.Left(new CSSNumber(perc, "%"));
+                    this.MainSplitterGrip.Left(new CSSNumber(perc, "%").ToString());
                     OK = false;
                 }
 
                 if (OK)
                 {
-                    minWidth = this.Panel2.MinWidth();
+                    minWidth = CSSNumber.FromString(<string>this.Panel2.MinWidth(""));
                     minWidthVal = minWidth.Units === "px" ? (minWidth.Value / this.ActualWidth()) * 100 : minWidth.Value;
                     minWidthVal = 100 - minWidthVal;
                     if (!minWidth.Auto && perc > minWidthVal)
                     {
                         perc = minWidthVal;
-                        this.MainSplitterGrip.Left(new CSSNumber(perc, "%"));
+                        this.MainSplitterGrip.Left(new CSSNumber(perc, "%").ToString());
                         OK = false;
                     }
                 }
@@ -181,32 +181,32 @@ module Rubik.UI
 
             if (this.MainSplitterGrip.Orientation() === SplitterGrip_Orientations.Horizontal)
             {
-                this.Panel1.Height(new CSSNumber(perc, "%"));
-                this.Panel2.Height(new CSSNumber(100 - perc, "%"));
-                this.Panel2.Top(new CSSNumber(perc, "%"));
+                this.Panel1.Height(new CSSNumber(perc, "%").ToString());
+                this.Panel2.Height(new CSSNumber(100 - perc, "%").ToString());
+                this.Panel2.Top(new CSSNumber(perc, "%").ToString());
             }
             else
             {
-                this.Panel1.Width(new CSSNumber(perc, "%"));
-                this.Panel2.Width(new CSSNumber(100 - perc, "%"));
-                this.Panel2.Left(new CSSNumber(perc, "%"));
+                this.Panel1.Width(new CSSNumber(perc, "%").ToString());
+                this.Panel2.Width(new CSSNumber(100 - perc, "%").ToString());
+                this.Panel2.Left(new CSSNumber(perc, "%").ToString());
             }
         }
         MainSplitterGrip_OnOrientationChanged(eventArgs: Events.OrientationChangedEventArgs)
         {
             if (this.MainSplitterGrip.Orientation() === SplitterGrip_Orientations.Horizontal)
             {
-                this.Panel1.Width(new CSSNumber(100, "%"));
-                this.Panel2.Width(new CSSNumber(100, "%"));
-                this.Panel1.Left(new CSSNumber(0));
-                this.Panel2.Left(new CSSNumber(0));
+                this.Panel1.Width(new CSSNumber(100, "%").ToString());
+                this.Panel2.Width(new CSSNumber(100, "%").ToString());
+                this.Panel1.Left(new CSSNumber(0).ToString());
+                this.Panel2.Left(new CSSNumber(0).ToString());
             }
             else
             {
-                this.Panel1.Height(new CSSNumber(100, "%"));
-                this.Panel2.Height(new CSSNumber(100, "%"));
-                this.Panel1.Top(new CSSNumber(0));
-                this.Panel2.Top(new CSSNumber(0));
+                this.Panel1.Height(new CSSNumber(100, "%").ToString());
+                this.Panel2.Height(new CSSNumber(100, "%").ToString());
+                this.Panel1.Top(new CSSNumber(0).ToString());
+                this.Panel2.Top(new CSSNumber(0).ToString());
             }
             this.MainSplitterGrip.SplitterDistance(this.MainSplitterGrip.SplitterDistance());
         }

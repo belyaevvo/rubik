@@ -1,12 +1,13 @@
 ﻿module Rubik.UI {
 
-    export class GridHeaderCell extends Control {
+    export class GridHeaderCell extends FrameworkElement {
         _div: JQuery = null;
         _span: JQuery = null;
         _level: number = 0;
         _icon: string;
         _expanded: boolean = false;
         _hasChildren: boolean = false;
+        _populated: boolean = false;
         _col: number;
         _row: number;
 
@@ -19,9 +20,7 @@
             this._span = $(document.createElement('span'));
             this._span.addClass("GridHeaderCell-text");
             this._div.append(this._span);
-            this._rootElement.append(this._div);
-            this.AttachEvents = false;
-            this._HandleChainEvents = false;
+            this._rootElement.append(this._div);            
         }
 
         SetDataColRow(col: number, row: number): void {
@@ -31,7 +30,8 @@
 
         set Expanded(expanded: boolean) {
 
-            this._span.remove(".GridHeaderCell-expandstate");                
+            //this._span.remove(".GridHeaderCell-expandstate");                
+            this._div.remove(".GridHeaderCell-expandstate");                
             if (expanded == null) {
                 this._hasChildren = false;
                 this._expanded = false;
@@ -42,8 +42,9 @@
                 var span = $(document.createElement('span'));
                 span.addClass("GridHeaderCell-expandstate");
                 span.addClass("fa");
-                span.addClass(expanded ? "fa-caret-down" : "fa-caret-right");                
-                this._span.prepend(span);                                
+                span.addClass(expanded ? (this._populated ? "fa-caret-down" :"fa-spinner fa-pulse fa-3x fa-fw") : "fa-caret-right");                                
+                //this._span.prepend(span);       
+                this._div.prepend(span);                         
             }
         }
 
@@ -51,12 +52,28 @@
             return this._expanded;
         }
 
+        set Populated(populated: boolean) {
+            var span = this._div.children(".GridHeaderCell-expandstate")[0];
+            if (span) {                
+                $(span).removeClass("fa-caret-down fa-caret-right fa-spinner fa-pulse fa-3x fa-fw")
+                $(span).addClass(this._expanded ? populated ? "fa-caret-down" : "fa-spinner fa-pulse fa-3x fa-fw" : "fa-caret-right");                                
+            }
+            this._populated = true;
+        }
+
+        get Populated(): boolean {
+            return this._populated;
+        }
+
         Icon(icon: string): string {
             if (icon != null) {
-                this._rootElement.remove(".GridHeaderCell-icon");                
+                //this._span.remove(".GridHeaderCell-icon");                
+                this._div.remove(".GridHeaderCell-icon");                
                 var img = $(document.createElement('img'));
-                img.addClass("GridHeaderCell-icon");                
-                this._span.append(img);                
+                img.addClass("GridHeaderCell-icon");
+                img.attr("src", icon);       
+                //this._span.prepend(img); 
+                this._span.before(img);                   
             }
             return this._icon;
         }        
@@ -75,13 +92,13 @@
 
         Text(text: string | number | boolean = null): string {
             if (text != null) {
-                this._span.text(text);
+                this._span.text(text);                
             }
             return this._span.text();
         }
     }
 
-    export class GridCell extends Control
+    export class GridCell extends FrameworkElement
     {
         _div: JQuery = null;        
         _span: JQuery = null;                
@@ -95,9 +112,7 @@
             this._span = $(document.createElement('span'));
             this._span.addClass("GridCell-text");
             this._div.append(this._span);
-            this._rootElement.append(this._div);
-            this.AttachEvents = false;
-            this._HandleChainEvents = false;
+            this._rootElement.append(this._div);            
         }
 
         SetDataColRow(col: number, row: number): void {
@@ -110,6 +125,13 @@
                 this._span.text(text);
             }
             return this._span.text();            
+        }
+
+        Content(html: string): string {
+            if (html != null) {
+                this._div.html(html);
+            }
+            return this._div.html();
         }
     }
 

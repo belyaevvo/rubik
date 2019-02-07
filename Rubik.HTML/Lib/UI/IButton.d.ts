@@ -11,12 +11,12 @@ Modifications:
 License: https://typescriptui.codeplex.com/license
 */
 
-/// <reference path="IControl.d.ts" />
+/// <reference path="ContentControl.ts" />
 
 declare module Rubik.UI
 {
     /** Defines a Button control. */
-    export interface IButton extends IControl
+    export interface IButton extends IContentControl
     {
         /** The text of the button. */
         Text(value?: string): string;

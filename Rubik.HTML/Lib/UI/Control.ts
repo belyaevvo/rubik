@@ -13,6 +13,7 @@ License: https://typescriptui.codeplex.com/license
 /// <reference path="../Collections/Collections_BuildRefs.d.ts" />
 /// <reference path="CSSNumber.ts" />
 /// <reference path="IControl.d.ts" />
+/// <reference path="FrameworkElement.ts" />
 /// <reference path="../Animation/FadeAnimator.ts" />
 /// <reference path="UI Static.ts" />
 /// <reference path="../Animation/Animation.ts" />
@@ -24,16 +25,17 @@ module Rubik.UI
     
 
     var __UIDGenerator = 0;
-    export class Control implements IControl
+    export class Control extends FrameworkElement implements IControl
     {
         __UID: number = __UIDGenerator++;
-        
-        _rootElement: JQuery = null;
-        AnimationElement(): JQuery
-        {
-            return this._rootElement;
-        }
+                
+       
 
+       
+
+        DOMConstructed: boolean;
+        OptimiseConstructForGraphics: boolean = false;
+                
         OnClick: Events.ClickEvent = new Events.ClickEvent();
         OnMouseDown: Events.MouseDownEvent = new Events.MouseDownEvent();
         OnMouseUp: Events.MouseUpEvent = new Events.MouseUpEvent();
@@ -56,17 +58,17 @@ module Rubik.UI
 
         TargetDocumentFor_MouseUp: boolean = true;
         TargetDocumentFor_MouseMove: boolean = true;
-
-        Children: Collections.IList<IControl> = new Collections.List<IControl>();
+        
 
         _Enabled: boolean = true;
-
-        OptimiseConstructForGraphics: boolean = false;
+        
         AttachEvents: boolean = true;
         static OptimiseConstructForGraphics_DelayTime = 30;
 
         constructor()
         {
+            super();
+            this._rootElement.addClass("Control");            
             this.OnClick.OnHandlerAttachedContext = this.OnClick.OnHandlerDettachedContext = this;
             this.OnClick.OnHandlerAttached = this.OnClick.OnHandlerDettached = this._OnOnClickChanged;
             this.OnMouseDown.OnHandlerAttachedContext = this.OnMouseDown.OnHandlerDettachedContext = this;
@@ -84,18 +86,14 @@ module Rubik.UI
             this.OnKeyUp.OnHandlerAttachedContext = this.OnKeyUp.OnHandlerDettachedContext = this;
             this.OnKeyUp.OnHandlerAttached = this.OnKeyUp.OnHandlerDettached = this._OnOnKeyUpChanged;
             this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
-            this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;
+            this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;                      
+                                    
+            this.DisableSelection();            
             
+        }
 
-            this.OnResize.Attach(new Events.ResizeEventHandler(this._This_Resized_ChainHandler, this));
-            this.OnMove.Attach(new Events.MoveEventHandler(this._This_Moved_ChainHandler, this));
-
-            this._rootElement = $(document.createElement('div'));
-            this._rootElement.addClass("Control");
-            //this._rootElement =$("<div class=\"Control\">");
-            this.DisableSelection();
-
-            this.Children.OnModified.Attach(new Collections.CollectionModifiedEventHandler<IControl>(this._OnChildren_Modified, this));            
+        AnimationElement(): JQuery {
+            return this._rootElement;
         }
 
         _RestoreThis(jqEvent: JQueryEventObject)
@@ -396,71 +394,35 @@ module Rubik.UI
             }
         }
 
+        
+       
 
-        _OnChildren_Modified(eventArgs: Collections.CollectionModifiedEventArgs<IControl>): void
-        {
-            if (this.DOMConstructed)
+        OnChildrenModified(args: Collections.CollectionModifiedEventArgs<IControl>) {
             {
-                switch (eventArgs.Modification)
-                {
-                    case Collections.CollectionModifications.Add:
-                        for (var i = 0; i < eventArgs.ModifiedElements.Count(); i++)
-                        {
-                            eventArgs.ModifiedElements.ElementAt(i).ConstructDOM(this._rootElement);
-                        }
-                        break;
-                    case Collections.CollectionModifications.Remove:
-                        for (var i = 0; i < eventArgs.ModifiedElements.Count(); i++)
-                        {
-                            eventArgs.ModifiedElements.ElementAt(i).DestroyDOM();
-                        }
-                        break;
-                    case Collections.CollectionModifications.Reorder:
-                        for (var i = 0; i < eventArgs.ModifiedElements.Count(); i++)
-                        {
-                            var cObj = eventArgs.ModifiedElements.ElementAt(i);
-                            cObj.DestroyDOM();
-                            cObj.ConstructDOM(this._rootElement);
-                        }
-                        break;                    
+                if (this.DOMConstructed) {
+                    switch (args.Modification) {
+                        case Collections.CollectionModifications.Add:
+                            for (var i = 0; i < args.ModifiedElements.Count(); i++) {
+                                args.ModifiedElements.ElementAt(i).ConstructDOM(this._rootElement);
+                            }
+                            break;
+                        case Collections.CollectionModifications.Remove:
+                            for (var i = 0; i < args.ModifiedElements.Count(); i++) {
+                                args.ModifiedElements.ElementAt(i).DestroyDOM();
+                            }
+                            break;
+                        case Collections.CollectionModifications.Reorder:
+                            for (var i = 0; i < args.ModifiedElements.Count(); i++) {
+                                var cObj = args.ModifiedElements.ElementAt(i);
+                                cObj.DestroyDOM();
+                                cObj.ConstructDOM(this._rootElement);
+                            }
+                            break;
+                    }
                 }
             }
         }
-
-        _This_Resized_ChainHandler_Timeout: number = -1;
-        _This_Resized_ChainHandler(eventArgs: Events.ResizeEventArgs)
-        {
-            if (this._HandleChainEvents && this._This_Resized_ChainHandler_Timeout === -1)
-            {
-                var _this = this;
-                this._This_Resized_ChainHandler_Timeout = setTimeout(function ()
-                {
-                    for (var i = 0; i < _this.Children.Count(); i++)
-                    {
-                        _this.Children.ElementAt(i).OnResize.Invoke(eventArgs);
-                    }
-                    _this._This_Resized_ChainHandler_Timeout = -1;
-                }, 100);
-            }
-        }
-        _This_Moved_ChainHandler_Timeout: number = -1;
-        _This_Moved_ChainHandler(eventArgs: Events.MoveEventArgs)
-        {
-            if (this._HandleChainEvents && this._This_Moved_ChainHandler_Timeout === -1)
-            {
-                var _this = this;
-                this._This_Moved_ChainHandler_Timeout = setTimeout(function ()
-                {
-                    for (var i = 0; i < _this.Children.Count(); i++)
-                    {
-                        _this.Children.ElementAt(i).OnMove.Invoke(eventArgs);
-                    }
-                    _this._This_Moved_ChainHandler_Timeout = -1;
-                }, 100);
-            }
-        }
-
-        DOMConstructed: boolean = false;
+        
         ConstructDOM(parent: JQuery, onComplete:()=>void = null): void
         {
             if (!this.DOMConstructed)
@@ -484,61 +446,7 @@ module Rubik.UI
                     this._rootElement.on("keydown", { _this: this, _callback: this._OnKeyDown }, this._RestoreThis);
                 }
             }
-
-            if (!this.OptimiseConstructForGraphics)
-            {
-                for (var i = 0; i < this.Children.Count(); i++)
-                {
-                    var child = this.Children.ElementAt(i);
-                    child.ConstructDOM(this._rootElement);
-                }
-                if (onComplete)
-                {
-                    onComplete();
-                }
-            }
-            else if(this.Children.Count() > 0)
-            {
-                var i = 0;
-                var _this = this;
-                var func = function ()
-                {
-                    var child = _this.Children.ElementAt(i);
-                    if (!!child)
-                    {
-                        child.OptimiseConstructForGraphics = true;
-                        child.ConstructDOM(_this._rootElement, function ()
-                        {
-                            i++;
-                            if (i < _this.Children.Count())
-                            {
-                                setTimeout(func, Control.OptimiseConstructForGraphics_DelayTime);
-                            }
-                            else if (onComplete)
-                            {
-                                onComplete();
-                            }
-                        });
-                    }
-                    else
-                    {
-                        i++;
-                        if (i < _this.Children.Count())
-                        {
-                            setTimeout(func, Control.OptimiseConstructForGraphics_DelayTime);
-                        }
-                        else if (onComplete)
-                        {
-                            onComplete();
-                        }
-                    }
-                };
-                func();
-            }
-            else if (onComplete)
-            {
-                onComplete();
-            }
+           
         }
         DestroyDOM(): void
         {
@@ -556,80 +464,11 @@ module Rubik.UI
                 this.DOMConstructed = false;
                 this._OnScrollAttached = false;
             }
-
-            for (var i = 0; i < this.Children.Count(); i++)
-            {
-                this.Children.ElementAt(i).DestroyDOM();
-            }
+           
         }
         
-        ID(value: string = null): string
-        {
-            if (value !== null)
-            {
-                this._rootElement.attr("id", value);
-            }
-            return this._rootElement.attr("id");
-        }
-
-        GetStyle(name: string): string
-        {
-            return this._rootElement.css(name);
-        }
-        ApplyStyle(name: string, value: string): void
-        {
-            this._rootElement.css(name, value);
-        }
-        ApplyStyles(cssProps: any): void
-        {
-            this._rootElement.css(cssProps);
-        }
-        AddClass(name: string): void
-        {
-            if (!this.HasClass(name))
-            {
-                this._rootElement.addClass(name);
-            }
-        }
-        RemoveClass(name: string): void
-        {
-            this._rootElement.removeClass(name);
-        }
-        HasClass(name: string): boolean
-        {
-            return this._rootElement.hasClass(name);
-        }
-
-        BackColor(color: string = null): string
-        {
-            if (color !== null)
-            {
-                this._rootElement.css("background-color", color);
-            }
-            return this._rootElement.css("background-color");
-        }
-        ForeColor(color?: string): string
-        {
-            if (color !== null)
-            {
-                this._rootElement.css("color", color);
-            }
-            return this._rootElement.css("color");
-        }
-
-        CSSNumberStyle(style: string, value: CSSNumber = null): CSSNumber
-        {
-            if (value !== null)
-            {
-                this._rootElement.css(style, value.ToString());  
-                //If we call only to set style value, we must avoid get value back
-                return value;
-            }
-            return CSSNumber.FromString(this._rootElement.css(style));
-        }
         
-
-        /*Width(value?: string | number): any {
+        Width(value?: string | number): any {
             if (value !== null) {
                 this._rootElement.width(value);
                 this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
@@ -637,27 +476,18 @@ module Rubik.UI
             else {
                 return this._rootElement.width();
             }
-        }*/
-
-        Width(value: CSSNumber = null): CSSNumber
-        {
-            var result = this.CSSNumberStyle("width", value);            
-            if (value !== null)
-            {
-                this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
-            }
-            return result;
         }
 
-        Height(value: CSSNumber = null): CSSNumber
-        {
-            var result = this.CSSNumberStyle("height", value);
-            if (value !== null)
-            {
+        Height(value?: string | number): any {
+            if (value !== null) {
+                this._rootElement.height(value);
                 this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
             }
-            return result;
+            else {
+                return this._rootElement.height();
+            }
         }
+        
 
         ActualWidth(): number
         {
@@ -668,44 +498,46 @@ module Rubik.UI
             return this._rootElement.outerHeight();
         }
 
-        Top(value: CSSNumber = null): CSSNumber
-        {
-            var result = this.CSSNumberStyle("top", value);
-            this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
-            return result;
-        }
-        Bottom(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("bottom", value);
-        }
-        Left(value: CSSNumber = null): CSSNumber
-        {
-            var result = this.CSSNumberStyle("left", value);
-            this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
-            return result;
-        }
-        Right(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("right", value);
+        Top(value?: string | number): number | void {                               
+            if (value !== null) {
+                this._rootElement.css("top", value);
+                this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+            }
+            else {
+                return this._rootElement.position().top;
+            }
         }
 
-        MarginTop(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("margin-top", value);
+        Bottom(value ?: string | number): number | void {        
+                if (value !== null) {
+                    this._rootElement.css("bottom", value);
+                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+                }
+                else {
+                    return this._rootElement.position().top + this._rootElement.outerHeight(true);
+                }
         }
 
-        MarginLeft(value: CSSNumber = null): CSSNumber {
-            return this.CSSNumberStyle("margin-left", value);
+        Left(value ?: string | number): number | void {        
+                if (value !== null) {
+                    this._rootElement.css("left", value);
+                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+                }
+                else {
+                    return this._rootElement.position().left;
+                }
         }
 
-        MarginBottom(value: CSSNumber = null): CSSNumber {
-            return this.CSSNumberStyle("margin-bottom", value);
+        Right(value?: string | number): number | void {        
+                if (value !== null) {
+                    this._rootElement.css("right", value);
+                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+                }
+                else {
+                    return this._rootElement.position().left + this._rootElement.outerWidth(true);
+                }
         }
-
-        MarginRight(value: CSSNumber = null): CSSNumber {
-            return this.CSSNumberStyle("margin-right", value);            
-        }
-
+        
 
         PageTop(): number
         {
@@ -724,33 +556,12 @@ module Rubik.UI
             return this._rootElement.offset().left + this.ActualWidth();
         }
 
-        MinWidth(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("min-width", value);
-        }
-        MinHeight(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("min-height", value);
-        }
-        MaxWidth(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("max-width", value);
-        }
-        MaxHeight(value: CSSNumber = null): CSSNumber
-        {
-            return this.CSSNumberStyle("max-height", value);
-        }
+       
 
         _parentVisible: boolean = true;
         SetParentVisible(value: boolean): void
         {
-            this._parentVisible = value;
-
-            var len = this.Children.Count();
-            for (var i = 0; i < len; i++)
-            {
-                this.Children.ElementAt(i).SetParentVisible(value);
-            }
+            this._parentVisible = value;           
         }
         ActuallyVisible(): boolean
         {
@@ -763,55 +574,24 @@ module Rubik.UI
                 this._rootElement.css({
                     visibility: value ? "" : "hidden",
                     display: ""
-                });
-
-                var len = this.Children.Count();
-                for (var i = 0; i < len; i++)
-                {
-                    this.Children.ElementAt(i).SetParentVisible(value);
-                }
+                });               
             }
             return this._rootElement.css("visibility") !== "hidden" && this._rootElement.css("display") !== "none";
         }
         EnableByParent(): void
         {
-            this._HandleEnableSet(this._Enabled);
-            if (this._Enabled)
-            {
-                for (var i = 0; i < this.Children.Count(); i++)
-                {
-                    this.Children.ElementAt(i).EnableByParent();                    
-                }
-            }
+            this._HandleEnableSet(this._Enabled);           
         }
         DisableByParent(): void
         {
-            this._HandleEnableSet(false);
-            for (var i = 0; i < this.Children.Count(); i++)
-            {
-                this.Children.ElementAt(i).DisableByParent();
-            }
+            this._HandleEnableSet(false);            
         }
         _WasSelectionEnabled: boolean = false;
         Enabled(value: boolean = null): boolean
         {
             if (value !== null)
             {
-                this._Enabled = value;
-
-                for (var i = 0; i < this.Children.Count(); i++)
-                {
-                    var elem = this.Children.ElementAt(i);
-                    if (this._Enabled)
-                    {
-                        elem.EnableByParent();
-                    }
-                    else
-                    {
-                        elem.DisableByParent();
-                    }
-                }
-
+                this._Enabled = value;                
                 this._HandleEnableSet(this._Enabled);
             }
             return this._Enabled;
@@ -880,12 +660,12 @@ module Rubik.UI
             if (!this.Visible())
             {
                 this.Enabled(false);
-                var _this = this;
+                var __this = this;
                 animator.Show(this, function ()
                 {
-                    _this.Enabled(true);
-                    _this.Visible(true);
-                    _this.OnShow.Invoke(new Events.ShowEventArgs(_this));
+                    __this.Enabled(true);
+                    __this.Visible(true);
+                    __this.OnShow.Invoke(new Events.ShowEventArgs(__this));
                     if (callback !== null)
                         callback();
                 });
@@ -900,14 +680,14 @@ module Rubik.UI
             if (this.Visible())
             {
                 this.Enabled(false);
-                var _this = this;
+                var __this = this;
                 setTimeout(function ()
                 {
-                    animator.Hide(_this, function ()
+                    animator.Hide(__this, function ()
                     {
-                        _this.Enabled(true);
-                        _this.Visible(false);
-                        _this.OnHide.Invoke(new Events.HideEventArgs(_this));
+                        __this.Enabled(true);
+                        __this.Visible(false);
+                        __this.OnHide.Invoke(new Events.HideEventArgs(__this));
                         if (callback !== null)
                             callback();
                     });
