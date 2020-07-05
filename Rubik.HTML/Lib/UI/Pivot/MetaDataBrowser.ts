@@ -3,8 +3,9 @@
 ///<reference path='../../Data/Grid/TreeNodeDataSource.ts'/>
 ///<reference path='../../Schema/TypedSchemaObject.ts'/>
 
+
 module Rubik.UI.Pivot {
-    export class MetaDataBrowser extends PivotControl{
+    export class MetaDataBrowser extends PivotControl {
 
         private gridpanel: Rubik.UI.Panel;
 
@@ -14,6 +15,7 @@ module Rubik.UI.Pivot {
         constructor() {
             super();
             this._rootElement.addClass("MetaDataBrowser");
+            this.AllowDrag();
             this.gridpanel = new Rubik.UI.Panel();
             this.Grid.AddClass("GridNoBorder");
             this.Grid.ExpandLastColumn = true;            
@@ -24,6 +26,17 @@ module Rubik.UI.Pivot {
             this.MetaDataSource.View.VirtualModeCreateChildren.Attach(new Events.EventHandler<Rubik.Data.TreeViewEventArgs>(this.OnVirtualModeCreateChildren, this))
             this.Grid.Height("100%");
             this.Grid.Width("100%");            
+        }
+
+
+        DragStarted(dragsource: DragDropObject): GhostControl {
+            var [col, row] = this.Grid.GetColRowFromPoint(dragsource.position.x, dragsource.position.y);
+            var mbr = this.MetaDataSource.getRowMember(col, row);
+            DragDrop.SetData((mbr as Rubik.Data.NodeDataMember).Node, "TypedSchemaObject");
+            var ghost: GhostControl = new GhostControl();
+            ghost.Text(mbr.Caption);
+            ghost.Image(mbr.Icon);            
+            return ghost;
         }
 
         OnVirtualModeCreateChildren(args: Rubik.Data.TreeViewEventArgs) {

@@ -16,6 +16,7 @@ License: https://typescriptui.codeplex.com/license
 /// <reference path="FrameworkElement.ts" />
 /// <reference path="../Animation/FadeAnimator.ts" />
 /// <reference path="UI Static.ts" />
+/// <reference path="DragDrop.ts" />
 /// <reference path="../Animation/Animation.ts" />
 /// <reference path="../Animation/IAnimator.d.ts" />
 /// <reference path="../../Scripts/typings/jquery/jquery.d.ts" />
@@ -26,12 +27,10 @@ module Rubik.UI
 
     var __UIDGenerator = 0;
     export class Control extends FrameworkElement implements IControl
-    {
+    {        
+
         __UID: number = __UIDGenerator++;
                 
-       
-
-       
 
         DOMConstructed: boolean;
         OptimiseConstructForGraphics: boolean = false;
@@ -50,6 +49,14 @@ module Rubik.UI
         OnKeyPress: Events.KeyPressEvent = new Events.KeyPressEvent();
         OnKeyUp: Events.KeyUpEvent = new Events.KeyUpEvent();
         OnScroll: Events.JQueryEvent = new Events.JQueryEvent();
+
+        OnDraggedEnter: DraggedEnterEvent = new DraggedEnterEvent();
+        OnDraggedOver: Events.SimpleEvent = new Events.SimpleEvent();
+        OnDraggedOut: Events.SimpleEvent = new Events.SimpleEvent();
+        OnDropped: Events.SimpleEvent = new Events.SimpleEvent();
+        OnDragStarted: DragStartedEvent = new DragStartedEvent();
+        OnDragDelta: Events.SimpleEvent = new Events.SimpleEvent();
+        OnDragCompleted: Events.SimpleEvent = new Events.SimpleEvent();
 
         /*static OnClickEventName: string = "click";
         static OnMouseDownEventName: string = "mousedown touchstart";
@@ -86,8 +93,23 @@ module Rubik.UI
             this.OnKeyUp.OnHandlerAttachedContext = this.OnKeyUp.OnHandlerDettachedContext = this;
             this.OnKeyUp.OnHandlerAttached = this.OnKeyUp.OnHandlerDettached = this._OnOnKeyUpChanged;
             this.OnScroll.OnHandlerAttachedContext = this.OnScroll.OnHandlerDettachedContext = this;
-            this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged;                      
-                                    
+            this.OnScroll.OnHandlerAttached = this.OnScroll.OnHandlerDettached = this._OnOnScrollChanged; 
+
+            /*this.OnDraggedEnter.OnHandlerAttachedContext = this.OnDraggedEnter.OnHandlerDettachedContext = this;
+            this.OnDraggedEnter.OnHandlerAttached = this.OnDraggedEnter.OnHandlerDettached = this._OnDraggedEnter;
+            this.OnDraggedOver.OnHandlerAttachedContext = this.OnDraggedOver.OnHandlerDettachedContext = this;
+            this.OnDraggedOver.OnHandlerAttached = this.OnDraggedOver.OnHandlerDettached = this._OnDraggedOver;
+            this.OnDraggedOut.OnHandlerAttachedContext = this.OnDraggedOut.OnHandlerDettachedContext = this;
+            this.OnDraggedOut.OnHandlerAttached = this.OnDraggedOut.OnHandlerDettached = this._OnDraggedOut;
+            this.OnDropped.OnHandlerAttachedContext = this.OnDropped.OnHandlerDettachedContext = this;
+            this.OnDropped.OnHandlerAttached = this.OnDropped.OnHandlerDettached = this._OnDropped;
+            this.OnDragStarted.OnHandlerAttachedContext = this.OnDragStarted.OnHandlerDettachedContext = this;
+            this.OnDragStarted.OnHandlerAttached = this.OnDragStarted.OnHandlerDettached = this._OnDragStarted;
+            this.OnDragDelta.OnHandlerAttachedContext = this.OnDragDelta.OnHandlerDettachedContext = this;
+            this.OnDragDelta.OnHandlerAttached = this.OnDragDelta.OnHandlerDettached = this._OnDragDelta;
+            this.OnDragCompleted.OnHandlerAttachedContext = this.OnDragCompleted.OnHandlerDettachedContext = this;
+            this.OnDragCompleted.OnHandlerAttached = this.OnDragCompleted.OnHandlerDettached = this._OnDragCompleted;*/
+           
             this.DisableSelection();            
             
         }
@@ -767,6 +789,66 @@ module Rubik.UI
                 this._HandleChainEvents = value;
             }
             return this._HandleChainEvents;
+        }
+
+        AllowDrag(): void {
+            this.CanDrag = true;
+            this._rootElement.addClass('dragsource');
+        }
+
+        AllowDrop(): void {
+            this._rootElement.addClass('droptarget');
+            if (this.ID() == null) {
+                this.ID('uid' + this.__UID.toString());
+            }
+        }
+
+        
+        DraggedEnter(): boolean {
+            if (this.ActuallyEnabled()) {
+                var args: DraggedEnterEventArgs = new DraggedEnterEventArgs(this, false);
+                this.OnDraggedEnter.Invoke(args);
+                return args.EnableDrop;
+            }
+            return false;
+        }
+
+        DraggedOver(): void {
+            if (this.ActuallyEnabled()) {
+                this.OnDraggedOver.Invoke(new Events.EventArgs(this));
+            }
+        }
+        DraggedOut(): void {
+            if (this.ActuallyEnabled()) {
+                this.OnDraggedOut.Invoke(new Events.EventArgs(this));
+            }
+        }
+
+        Dropped(): void {
+            if (this.ActuallyEnabled()) {
+                this.OnDropped.Invoke(new Events.EventArgs(this));
+            }
+        }
+
+        CanDrag: boolean = false;
+
+        DragStarted(dragsource: DragDropObject): GhostControl {            
+            if (this.ActuallyEnabled()) {
+                var ghost: GhostControl = new GhostControl();
+                this.OnDragStarted.Invoke(new DragStartedEventArgs(this, dragsource, ghost));
+                return ghost;
+            }
+            return null;
+        }
+        DragDelta(): void {
+            if (this.ActuallyEnabled()) {
+                this.OnDragDelta.Invoke(new Events.EventArgs(this));
+            }
+        }
+        DragCompleted(): void {
+            if (this.ActuallyEnabled()) {
+                this.OnDragCompleted.Invoke(new Events.EventArgs(this));
+            }
         }
       
     }

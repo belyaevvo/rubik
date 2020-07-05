@@ -82,6 +82,7 @@ module Rubik.UI
             this.PanelRows.Width(this.SizeManager.DefaultColWidth);
            
 
+            this.ScrollPanel.Children.Add(this.PanelRows);
             this.ScrollPanel.Children.Add(this.CellsPanel);
             //this.DivScrollPanel.append(this.DivCellsPanel);            
             this.PanelRows._rootElement.append(this.DivCrossPanel);
@@ -89,7 +90,7 @@ module Rubik.UI
             this.PanelCols._rootElement.append(this.DivColsHeaderPanel);
             //this.ScrollPanel._rootElement.append(this.DivCellsPanel);
 
-            this.Children.Add(this.PanelRows);
+            //this.Children.Add(this.PanelRows);
             this.Children.Add(this.PanelCols);            
             this.Children.Add(this.ScrollPanel);
             //this._rootElement.append(this.DivScrollPanel);
@@ -103,6 +104,15 @@ module Rubik.UI
             //this.DataManager.DataChanged.Attach(new Events.EventHandler<Events.EventArgs>(this.DataChanged, this));            
         }
 
+        GetColRowFromPoint(x: number, y: number): [number, number] {
+            var elem = document.elementFromPoint(x, y);
+            var cell = $(elem).closest('.GridCell')[0] || $(elem).closest('.GridHeaderCell')[0];
+            var col = +cell.getAttribute("data-col");
+            var row = +cell.getAttribute("data-row");
+            return [col, row];
+        }
+
+
         _Clicked(args: Events.ClickEventArgs) {                        
             if (args.jqEvent.target.classList.contains("GridHeaderCell-expandstate")) {
                 var cell = $(args.jqEvent.target).closest('.GridHeaderCell')[0];
@@ -111,26 +121,26 @@ module Rubik.UI
                 var mbr: Rubik.Data.IGridDataMember;
                 if (cell.classList.contains("GridColHeaderCell")) {
                     mbr = this.DataSource.getColMember(col, row);
-                }          
+                }
                 if (cell.classList.contains("GridRowHeaderCell")) {
                     mbr = this.DataSource.getRowMember(col, row);
                 }
-                if (mbr!=null && mbr.HasChildren) {                     
+                if (mbr != null && mbr.HasChildren) {
                     /*args.jqEvent.target.classList.remove("fa-caret-down");
                     args.jqEvent.target.classList.remove("fa-caret-right");
                     args.jqEvent.target.classList.remove("fa-spinner");
                     args.jqEvent.target.classList.remove("fa-spin");
                     args.jqEvent.target.classList.add("fa-spinner");
-                    args.jqEvent.target.classList.add("fa-spin");*/                    
+                    args.jqEvent.target.classList.add("fa-spin");*/
                     if (mbr.Expanded) {
                         this.DataSource.collapse(col, row);
                     }
                     else {
                         this.DataSource.expand(col, row);
-                    }                 
+                    }
                 }
-                
-            }
+
+            }            
         }
 
         _This_Resized(eventArgs: Events.ResizeEventArgs) {
@@ -240,19 +250,22 @@ module Rubik.UI
             //this.DivCellsPanel.css("height", this.SizeManager.GetTotalViewHeight());
             //this.DivCellsPanel.css("width", this.SizeManager.GetTotalViewWidth());
             this.CellsPanel.Height(this.SizeManager.GetTotalViewHeight());
-            this.CellsPanel.Width(this.SizeManager.GetTotalViewWidth());
+            this.CellsPanel.Width(this.SizeManager.GetTotalViewWidth());            
+            this.CellsPanel.MarginLeft(this.PanelRows.ActualWidth())
 
-            this.PanelRows.Height(this.ActualHeight());
+            //this.PanelRows.Height(this.ActualHeight());
+            this.PanelRows.Height(this.SizeManager.GetTotalViewHeight());
             this.PanelCols.MarginLeft(this.PanelRows.ActualWidth())
             this.PanelCols.Width(this.ActualWidth() - this.PanelRows.ActualWidth());
             this.ScrollPanel.MarginTop(this.PanelCols.ActualHeight())
-            this.ScrollPanel.MarginLeft(this.PanelRows.ActualWidth())
+            //this.ScrollPanel.MarginLeft(this.PanelRows.ActualWidth())            
             this.ScrollPanel.Height(this.ActualHeight() - this.PanelCols.ActualHeight());
-            this.ScrollPanel.Width(this.ActualWidth() - this.PanelRows.ActualWidth());
+            //this.ScrollPanel.Width(this.ActualWidth() - this.PanelRows.ActualWidth());
+            this.ScrollPanel.Width(this.ActualWidth());
 
             this.DivColsHeaderPanel.css("height", this.PanelCols.ActualHeight());
             this.DivColsHeaderPanel.css("width", this.PanelCols.ActualWidth());
-            this.DivRowsHeaderPanel.css("margin-top", this.PanelCols.ActualHeight());
+            //this.DivRowsHeaderPanel.css("margin-top", this.PanelCols.ActualHeight());
             this.DivRowsHeaderPanel.css("height", this.PanelRows.ActualHeight() - this.PanelCols.ActualHeight());
             this.DivRowsHeaderPanel.css("width", this.PanelRows.ActualWidth());
             this.DivCrossPanel.css("height", this.PanelCols.ActualHeight());
@@ -261,7 +274,7 @@ module Rubik.UI
         }
 
         Draw(): void {
-            if (!this.DataSource.isPopulated())
+            if (this.DataSource && !this.DataSource.isPopulated())
                 return;
             var scrollTop: number = this.scrollTop;            
             var scrollLeft: number = this.scrollLeft;
@@ -362,7 +375,8 @@ module Rubik.UI
                         rowcell.Populated = mbr.Populated;                    
                         rowcell.Left(this.FixedAreaSizeManager.GetColLeft(col))
                         rowcell.Width(this.FixedAreaSizeManager.GetColWidth(col));
-                        rowcell.Top(this.SizeManager.GetRowTop(row) - this.scrollTop);
+                        //rowcell.Top(this.SizeManager.GetRowTop(row) - this.scrollTop);
+                        rowcell.Top(this.SizeManager.GetRowTop(row));
                         rowcell.Height(this.SizeManager.GetRowHeight(row));
                         rowcell.SetDataColRow(col, row);  
                         rowcells.push(rowcell);

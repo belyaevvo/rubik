@@ -12,7 +12,7 @@ License: https://typescriptui.codeplex.com/license
 
 /// <reference path="../Scripts/typings/jquery/jquery.d.ts" />
               
-declare module Rubik.Apps
+declare namespace Rubik.Apps
 {
     /** Defines an Application */
     export interface IApp

@@ -20,6 +20,10 @@
 
         ID(value: string = null): string {
             if (value !== null) {
+                var oldid = this._rootElement.attr("id");
+                if (oldid !== null) {
+                    delete Elements[oldid];
+                }
                 this._rootElement.attr("id", value);
                 Elements[value] = this;
             }

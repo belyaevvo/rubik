@@ -11,13 +11,12 @@ License: https://typescriptui.codeplex.com/license
 */
 
 /// <reference path="IPanel.d.ts" />
-/// <reference path="Control.ts" />
+
 
 module Rubik.UI
 {
     export class Panel extends ContentControl implements IPanel
     {
-        Layout: PanelLayout = PanelLayout.None;
 
         constructor()
         {
@@ -25,11 +24,6 @@ module Rubik.UI
 
             this._rootElement.addClass("Panel");            
         }
-    }
 
-    export enum PanelLayout {
-        None,
-        Table,
-        Stack
     }
 }

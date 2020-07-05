@@ -4,8 +4,9 @@
     "noEmitOnError": true,
     "removeComments": false,
     "sourceMap": true,    
-    "target": "es5",    
+    "target": "es5",
     "outFile": "../Build/rubik.js"
+    //"module": "System"
   },
   "exclude": [
     "node_modules",

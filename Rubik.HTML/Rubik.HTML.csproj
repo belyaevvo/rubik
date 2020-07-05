@@ -14,7 +14,7 @@
     <RootNamespace>Rubik</RootNamespace>
     <AssemblyName>Rubik.HTML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -605,6 +605,10 @@
     <TypeScriptCompile Include="Lib\Data\Grid\TableDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\Grid\MDDataSource.ts" />
     <TypeScriptCompile Include="Lib\Data\Tree\TreeView.ts" />
+    <TypeScriptCompile Include="Lib\Resources\language-en.ts" />
+    <TypeScriptCompile Include="Lib\Resources\LanguageMessages.ts" />
+    <TypeScriptCompile Include="Lib\Resources\localization.ts" />
+    <TypeScriptCompile Include="Lib\Resources\language-ru.ts" />
     <TypeScriptCompile Include="Lib\Schema\CalculatedMember.ts" />
     <TypeScriptCompile Include="Lib\Schema\CalculatedSet.ts" />
     <TypeScriptCompile Include="Lib\Schema\InfoObject.ts" />
@@ -662,7 +666,7 @@
     <TypeScriptCompile Include="Lib\Animation\NotificationRestackAnimator.ts" />
     <TypeScriptCompile Include="Lib\Animation\PageWindowAnimator.ts" />
     <TypeScriptCompile Include="Lib\Animation\SelectionWindowAnimator.ts" />
-    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="Lib\app.ts" />
     <TypeScriptCompile Include="Lib\Collections\Collections_BuildRefs.d.ts" />
     <TypeScriptCompile Include="Lib\Collections\IComparer.d.ts" />
     <TypeScriptCompile Include="Lib\Collections\IList.d.ts" />
@@ -724,12 +728,15 @@
     <Content Include="Lib\UI\MultilineTextBox.ts" />
     <TypeScriptCompile Include="Lib\UI\ITextBox.d.ts" />
     <Content Include="Lib\UI\Label.ts" />
+    <Content Include="Lib\UI\GridPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\IPivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\MetaDataBrowser.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotArea.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotControl.ts" />
+    <TypeScriptCompile Include="Lib\UI\Pivot\PivotLayout.ts" />
     <TypeScriptCompile Include="Lib\UI\SplitterGrip_Orientations.ts" />
     <Content Include="Lib\UI\TextBox.ts" />
+    <Content Include="Lib\UI\StackPanel.ts" />
     <TypeScriptCompile Include="Scripts\Classical\classical.d.ts" />
     <TypeScriptCompile Include="Scripts\Classical\Tutorials\Introduction.ts" />
     <TypeScriptCompile Include="Scripts\typings\html2canvas\html2canvas.d.ts" />

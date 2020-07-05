@@ -228,13 +228,32 @@ ul, ol
     height: auto;
 }
 
+    .Panel.GridLayout > .Control {
+        position: relative;
+    }
+    
+
     .Panel.RelativeLayout
     {
         margin: 15px;
     }
 
-.SplitContainer
-{
+    .Panel.NoIndent {
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    .Panel.SmallIndent {
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+    }
+    
+
+.SplitContainer {
 }
 
     .SplitContainer > .Panel
@@ -451,6 +470,7 @@ ul, ol
     text-align: right;
     text-overflow:ellipsis;
     white-space: nowrap;
+    height:100%;
 }
 
 .GridCell-text {
@@ -484,8 +504,8 @@ ul, ol
 }
 
 
-.Expandable
-{
+
+.Expandable {
     min-height: 32px;
     width: 100%;
     border: 1px solid;
@@ -745,6 +765,15 @@ ul, ol
         {
             text-align: justify;
         }
+
+.GridPanel {
+    display: grid;
+    display: -ms-grid;
+    grid-gap: 1em;
+}
+    .GridPanel > .Control {
+        position: relative;
+    }
 
 .StackPanel
 {
@@ -1372,6 +1401,8 @@ ul, ol
         z-index: 2;
         cursor: pointer;
     }
+
+
 
 .StackPanel.ListBox
 {
@@ -2126,4 +2157,16 @@ ul, ol
     left: auto;
     margin-right: 3px;
     margin-bottom: 3px;
+}
+
+.GridLayout {
+    display: grid;
+    display: -ms-grid;
+}
+
+
+.PivotArea-content {
+    background-color: white;
+    border: 1px;
+    border-style: solid;
 }

@@ -12,4 +12,5 @@ module Rubik.UI.Pivot {
             this.pivotDataManager = pm;
         }
     }
+    
 }

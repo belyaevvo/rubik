@@ -44,6 +44,14 @@ module Rubik
     {
         return getType(x) === "[object Array]";
     };
+
+    /** @returns true if the object is an array */
+    export var exists = function (x: JQuery): boolean {        
+        return x && x.length !== 0;
+    };
+
+    
+
     /** Stops a jQuery event from bubbling and prevents default browser behaviour.
         Ignores certain events based on keyboard conditions to ensure F5 and other such buttons still work.
     */
@@ -224,6 +232,17 @@ module Rubik
         return n + field.substr(0, pad);
     };
 
+    export var repeat = function (str:string, n:number) {
+        n = n || 1;        
+        return Array(n + 1).join(str);
+    };
+
+    /*(<any>String.prototype).repeat = (<any>String.prototype).repeat || function (n) {
+        n = n || 1;
+        return Array(n + 1).join(this);
+    };*/
+
+
     (<any>Function.prototype).trace = function ()
     {
         var trace = [];
@@ -265,3 +284,5 @@ module Rubik
         return "anonymous";
     };
 }
+
+

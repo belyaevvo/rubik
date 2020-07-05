@@ -442,5 +442,11 @@ module Rubik.Events
             super(Sender);
         }
     }
+
+    export class SimpleEvent extends Event<EventArgs> { }
+
+    export class SimpleEventHandler extends EventHandler<EventArgs> { }
+
+    
    
 }

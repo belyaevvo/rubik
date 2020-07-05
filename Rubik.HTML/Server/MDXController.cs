@@ -39,7 +39,8 @@ namespace Rubik.HTML
         {            
             AdomdConnection con = AcquireConnection();            
             AdomdCommand cmd = con.CreateCommand();
-            cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
+            //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
+            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Вес] } ON 0, [Объект учета].[НПО].AllMembers ON 1 FROM [Сбыт]";
             CellSet cst= cmd.ExecuteCellSet();
             string json=CreateJsonCellSet(cst);            
             con.Close();
@@ -68,8 +69,9 @@ namespace Rubik.HTML
 
         private AdomdConnection AcquireConnection()
         {
-            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP.4; Data Source=https://bi.galaktikasoft.com/olap/2016/msmdpump.dll; Catalog=AdventureWorksDW2012 MD-EE;");
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;
         }
