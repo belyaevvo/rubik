@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Text;
 using System.Data;
+using Rubik.Server.Json;
 
 namespace Rubik.HTML
 {
@@ -40,9 +41,10 @@ namespace Rubik.HTML
             AdomdConnection con = AcquireConnection();            
             AdomdCommand cmd = con.CreateCommand();
             //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
-            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Вес] } ON 0, [Объект учета].[НПО].AllMembers ON 1 FROM [Сбыт]";
-            CellSet cst= cmd.ExecuteCellSet();
-            string json=CreateJsonCellSet(cst);            
+            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объекты учета].[Все].Children DIMENSION PROPERTIES [MEMBER_CAPTION],[Объект учета].[Объекты учета].[Полное наименование] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
+            CellSet cst = cmd.ExecuteCellSet();
+            string json = CreateJsonCellSet(cst);  
+            //string json2 = CreateJsonCellSet2(cst);
             con.Close();
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -70,7 +72,8 @@ namespace Rubik.HTML
         private AdomdConnection AcquireConnection()
         {
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;
@@ -100,17 +103,17 @@ namespace Rubik.HTML
                     myJson.WritePropertyName("columns");
                     if (cst.Axes.Count > 0)
                     {                        
-                        WriteAxis(myJson, cst.Axes[0]);
+                        WriteAxis(myJson, cst.Axes[0], cst.OlapInfo.AxesInfo.Axes[0]);
                     }
                     
                     myJson.WritePropertyName("rows");
                     if (cst.Axes.Count > 1)
                     {                     
-                        WriteAxis(myJson, cst.Axes[1]);
+                        WriteAxis(myJson, cst.Axes[1], cst.OlapInfo.AxesInfo.Axes[1]);
                     }
 
                     myJson.WritePropertyName("filters");
-                    WriteAxis(myJson, cst.FilterAxis);
+                    WriteAxis(myJson, cst.FilterAxis, cst.OlapInfo.AxesInfo.FilterAxis);
 
                     myJson.WritePropertyName("cells");
                     myJson.WriteStartArray();
@@ -137,11 +140,96 @@ namespace Rubik.HTML
             }
         }
 
-        private void WriteAxis(JsonWriter myJson, Axis axis)
-        {
+        private string CreateJsonCellSet2(CellSet cst) {
+            var contractResolver = new CellSetContractResolver();
+
+            contractResolver.AddInclude("CellSet", new List<string>() {
+                    "Axes",
+                    "Cells"
+                });
+            contractResolver.AddInclude("Cell", new List<string>() {
+                    "Value",
+                    "FormattedValue"
+                });
+            contractResolver.AddInclude("Axis", new List<string>() {
+                    "Set",
+                    "Name"
+                });
+            contractResolver.AddInclude("Set", new List<string>() {
+                    //"Hierarchies",
+                    "Tuples"
+                });
+            contractResolver.AddInclude("Hierarchy", new List<string>() {
+                    "Caption",
+                    "DefaultMember",
+                    "UniqueName"
+                });
+            contractResolver.AddInclude("Tuple", new List<string>() {
+                    "Members",
+                    "TupleOrdinal"
+                });
+            contractResolver.AddInclude("Member", new List<string>() {                    
+                    "Caption",
+                    "UniqueName",
+                    "ChildCount",
+                    "LevelDepth",
+                    "DrilledDown",
+                    "LevelName",
+                    "ParentSameAsPrevious",
+                    "MemberProperties"
+                });
+            contractResolver.AddInclude("MemberProperty", new List<string>() {
+                    "Name",
+                    "UniqueName",
+                    "Value"
+                });
+
+            var settings = new JsonSerializerSettings()
+            {
+                ContractResolver = contractResolver,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            //settings.Converters.Add(new CellSetJsonConverter(cst.Axes[0].Set.Tuples.Count, cs.Axes[1].Set.Tuples.Count));
+            var json= JsonConvert.SerializeObject(cst, Formatting.Indented, settings);
+            return json;
+            
+        }
+
+        private void WriteAxis(JsonWriter myJson, Axis axis, OlapInfoAxis axisInfo)
+        {            
             myJson.WriteStartObject();
             //myJson.WritePropertyName("name");
-            //myJson.WriteValue(axis.Name);            
+            //myJson.WriteValue(axis.Name);       
+            myJson.WritePropertyName("hierarchies");
+            myJson.WriteStartArray();
+            foreach (var hier in axisInfo.Hierarchies) {
+                myJson.WriteStartObject();
+                //myJson.WritePropertyName("caption");
+                //myJson.WriteValue(hier.Caption);
+                myJson.WritePropertyName("uniqueName");
+                myJson.WriteValue(hier.Name);
+                myJson.WritePropertyName("properties");
+                myJson.WriteStartArray();
+                foreach (var prop in hier.HierarchyProperties)
+                {
+                    if (!IsIntrinsic(prop.Name))
+                    {
+                        myJson.WriteStartObject();
+                        myJson.WritePropertyName("uniqueName");
+                        myJson.WriteValue(hier.Name + ".[" + prop.Name + "]");
+                        myJson.WriteEndObject();
+                    }
+                }
+                myJson.WriteEndArray();
+                //myJson.WritePropertyName("defaultMember");
+                //myJson.WriteValue(hier.DefaultMember);
+                //myJson.WritePropertyName("name");
+                //myJson.WriteValue(hier.Name);
+                //myJson.WritePropertyName("hierarchyOrigin");
+                //myJson.WriteValue(hier.HierarchyOrigin);                
+                myJson.WriteEndObject();
+            }
+            myJson.WriteEndArray();
             myJson.WritePropertyName("positions");
             myJson.WriteStartArray();
             foreach (var pos in axis.Positions)
@@ -164,13 +252,39 @@ namespace Rubik.HTML
                     myJson.WriteValue(mbr.DrilledDown);
                     myJson.WritePropertyName("parentSameAsPrevious");
                     myJson.WriteValue(mbr.ParentSameAsPrevious);
-                    myJson.WriteEndObject();
+                    myJson.WritePropertyName("properties");
+                    myJson.WriteStartArray();
+                    foreach (var prop in mbr.MemberProperties) {
+                        myJson.WriteStartObject();
+                        myJson.WritePropertyName("name");
+                        myJson.WriteValue(prop.Name);
+                        myJson.WritePropertyName("uniqueName");
+                        myJson.WriteValue(prop.UniqueName);
+                        myJson.WritePropertyName("value");
+                        myJson.WriteValue(prop.Value);                        
+                        myJson.WriteEndObject();
+                    }
+                    myJson.WriteEndArray();
+                    myJson.WriteEndObject();                    
                 }
                 myJson.WriteEndArray();
                 myJson.WriteEndObject();                
             }
             myJson.WriteEndArray();
             myJson.WriteEndObject();
+        }
+
+        private bool IsIntrinsic(string name)
+        {
+            var intrinsic = new string[] {
+                "PARENT_UNIQUE_NAME",
+                "MEMBER_UNIQUE_NAME",
+                "MEMBER_CAPTION",
+                "LEVEL_UNIQUE_NAME",
+                "LEVEL_NUMBER",
+                "DISPLAY_INFO"
+            };
+            return intrinsic.Contains(name);
         }
     }
 }

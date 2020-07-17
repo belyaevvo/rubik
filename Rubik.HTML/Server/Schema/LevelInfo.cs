@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Rubik.Server.Schema
 {
@@ -17,6 +18,11 @@ namespace Rubik.Server.Schema
         }
 
         public CubeInfo Cube
+        {
+            get; set;
+        }
+
+        public List<MemberInfo> Members
         {
             get; set;
         }

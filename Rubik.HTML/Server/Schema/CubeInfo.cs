@@ -11,5 +11,10 @@ namespace Rubik.Server.Schema
         {
             get; set;
         }
+
+        public List<MeasureInfo> Measures
+        {
+            get; set;
+        }
     }
 }
