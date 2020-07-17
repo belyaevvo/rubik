@@ -2,7 +2,7 @@
 /// <reference path="Events/Events.ts"/>
 /// <reference path="UI/Panel.ts"/>
 /// <reference path="Data/Grid/MDDataSource.ts"/>
-/// <reference path="Data/PivotDataManager.ts"/>
+/// <reference path="DataHub/PivotDataManager.ts"/>
 /// <reference path="Data/Grid/ArtificialDataSource.ts"/>
 /// <reference path="UI/SplitContainer.ts"/>
 /// <reference path="UI/Grid/Grid.ts"/>
@@ -11,6 +11,7 @@
 /// <reference path="UI/Pivot/MetaDataBrowser.ts"/>
 /// <reference path="UI/Pivot/PivotLayout.ts"/>
 /// <reference path="../Scripts/typings/jquery/jquery.d.ts"/>
+
 
 class MyApp implements Rubik.Apps.IApp {
     private MainContainer: JQuery = null;
@@ -21,7 +22,38 @@ class MyApp implements Rubik.Apps.IApp {
     Run(args: string[] = [], container: JQuery = $("body")): void {
         this.StartArgs = args;
         this.MainContainer = container;        
+
+        //this.Test();
         
+        
+
+        var app = new Rubik.UI.Pivot.PivotAplication();
+        app.Height("100%");
+        app.Width("100%");
+
+        var portalConnection = new Rubik.DataHub.PortalConnection();
+        portalConnection.Url = "api/mdx";
+
+        var xmlaConnection = new Rubik.DataHub.XmlaConnection();
+        xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
+        xmlaConnection.Database = "Сбыт";
+        
+
+        var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
+        //var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
+        pivotManager.DataMember = "Сбыт";
+
+        app.PivotDataManager = pivotManager;
+
+       
+        app.ConstructDOM(container);  
+
+        Rubik.UI.DragDrop.Initialize();
+
+        //pivotManager.Command = "SELECT NON EMPTY { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].AllMembers ON 1 FROM [Сбыт] WHERE ([Дата].[Год].[2020])";
+        pivotManager.Command = "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].Members DIMENSION PROPERTIES [Объект учета].[Объект учета].[НПО] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
+
+        /*
         var mainsplitter = new Rubik.UI.SplitContainer();
         var dimpanel = new Rubik.UI.Panel();        
         var gridpanel = new Rubik.UI.Panel();
@@ -30,11 +62,11 @@ class MyApp implements Rubik.Apps.IApp {
 
         mainsplitter.Panel1.Children.Add(dimsplitter);        
 
-        var pivotManager = new Rubik.Data.PivotDataManager();
+        var pivotManager = new Rubik.DataHub.PivotDataManager();
         pivotManager.Url = "api/mdx";
         pivotManager.DataMember = "Сбыт";
-        
 
+        
         var grid = new Rubik.UI.Grid();        
         //var dataSource = new Rubik.Data.MDDataSource();        
         grid.DataSource = pivotManager.DataSource;
@@ -63,12 +95,42 @@ class MyApp implements Rubik.Apps.IApp {
         Rubik.UI.DragDrop.Initialize();
         
         pivotManager.Command = "SELECT NON EMPTY { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].AllMembers ON 1 FROM [Сбыт] WHERE ([Дата].[Год].[2020])";        
-        metadatabrowser.MetaDataSource.View.Populate(0);
+        metadatabrowser.MetaDataSource.View.Populate(0);*/
         
         //this.element.innerHTML += "The time is: ";
         //this.span = document.createElement('span');
         //this.element.appendChild(this.span);
         //this.span.innerText = new Date().toUTCString();
+        
+    }
+
+    Test(): void {        
+
+        var xmla = new Xmla({async:true});        
+        xmla.addListener({
+            events: Xmla.EVENT_DISCOVER_SUCCESS,
+            handler: function (eventName, eventData) {
+                var requestType = eventData.requestType;                
+                switch (requestType) {
+                    case Xmla.DISCOVER_DATASOURCES:                        
+                        break;
+                    case Xmla.DBSCHEMA_CATALOGS:                        
+                        break;
+                    case Xmla.MDSCHEMA_CUBES:                        
+                        break;
+                    case Xmla.MDSCHEMA_HIERARCHIES:                        
+                        break;
+                    case Xmla.MDSCHEMA_MEASURES:
+                        break;
+                }
+            }            
+        });        
+        xmla.discoverDBCatalogs({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", withCredentials: true, restrictions: restrictions, tag: "UUID" } as Xmla.DiscoverOptions);
+        var restrictions = {};
+        restrictions["CATALOG_NAME"] = "Сбыт";
+        restrictions["CUBE_NAME"] = "Сбыт";
+        xmla.discoverMDDimensions({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", withCredentials: true, restrictions: restrictions,  tag: "UUID2" } as Xmla.DiscoverOptions);
+        
     }
 
 }
