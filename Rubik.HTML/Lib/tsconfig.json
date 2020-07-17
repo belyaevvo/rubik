@@ -3,8 +3,15 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,
-    "sourceMap": true,    
+    "sourceMap": true,
+    "allowJs": true,
     "target": "es5",
+    "lib": [
+      "ES5",
+      "ES2015.Promise",
+      "DOM",
+      "ScriptHost"
+    ],
     "outFile": "../Build/rubik.js"
     //"module": "System"
   },
