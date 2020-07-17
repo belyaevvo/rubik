@@ -434,10 +434,11 @@ ul, ol
     cursor: default;
     font-size: 16px!important;
     height: 16px;
-    width: 10px;
+    width: 16px;
     margin-left: 3px;
     margin-right: 3px;
     opacity: .6;
+    text-align: center;
 }
 
 .GridHeaderCell-icon {
@@ -2169,4 +2170,8 @@ ul, ol
     background-color: white;
     border: 1px;
     border-style: solid;
+}
+
+.PivotArea-content.dropenabled {
+    border-color: gold;    
 }

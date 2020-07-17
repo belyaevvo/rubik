@@ -14,10 +14,10 @@
     <RootNamespace>Rubik</RootNamespace>
     <AssemblyName>Rubik.HTML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -599,7 +599,20 @@
     <Content Include="Content\Rubik.css" />
     <Content Include="Content\Skins\Blue.css" />
     <Content Include="Global.asax" />
+    <TypeScriptCompile Include="Lib\Collections\Dictionary.ts" />
     <TypeScriptCompile Include="Lib\Common\Point.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\OlapInfoObjectFactory.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\PivotConnection.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\PortalConnection.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CellSet.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\DataAxis.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyAxis.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyTypedSchemaObject.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\Measure.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\xmla.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Lib\DataHub\XmlaConnection.ts" />
     <TypeScriptCompile Include="Lib\Data\Grid\GridDataRow.ts" />
     <TypeScriptCompile Include="Lib\Data\Grid\GridDataTable.ts" />
     <TypeScriptCompile Include="Lib\Data\Grid\TableDataSource.ts" />
@@ -609,13 +622,22 @@
     <TypeScriptCompile Include="Lib\Resources\LanguageMessages.ts" />
     <TypeScriptCompile Include="Lib\Resources\localization.ts" />
     <TypeScriptCompile Include="Lib\Resources\language-ru.ts" />
-    <TypeScriptCompile Include="Lib\Schema\CalculatedMember.ts" />
-    <TypeScriptCompile Include="Lib\Schema\CalculatedSet.ts" />
-    <TypeScriptCompile Include="Lib\Schema\InfoObject.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Interfaces.ts" />
-    <TypeScriptCompile Include="Lib\Schema\MeasureInfo.ts" />
-    <TypeScriptCompile Include="Lib\Schema\MemberSelectionEnum.ts" />
-    <TypeScriptCompile Include="Lib\Schema\SelectedMember.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CalculatedMember.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CalculatedSet.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CubeInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\InfoObject.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\Interfaces.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\LevelInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\MeasureInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\MemberInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\MemberProperty.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\MemberSelectionEnum.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\PropertyInfo.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\SelectedMember.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\DimensionInfo.ts" />
+    <Content Include="Lib\Externals\polyfill.js" />
+    <Content Include="Lib\Externals\xmla.js" />
     <Content Include="package.json" />
     <Content Include="Lib\tsconfig.json" />
     <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.eot" />
@@ -648,7 +670,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <TypeScriptCompile Include="Lib\Schema\TypedSchemaObject.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\TypedSchemaObject.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
@@ -697,17 +719,11 @@
     <TypeScriptCompile Include="Lib\Data\Tree\TreeNode.ts" />
     <TypeScriptCompile Include="Lib\IApp.d.ts" />
     <Content Include="Lib\UI\Panel.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Axis.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Cube.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Dimension.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Hierarchy.ts" />
-    <TypeScriptCompile Include="Lib\Schema\HierarchySet.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Level.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Measure.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Member.ts" />
-    <TypeScriptCompile Include="Lib\Schema\Schema.ts" />
-    <TypeScriptCompile Include="Lib\Schema\SchemaObject.ts" />
-    <TypeScriptCompile Include="Lib\Data\PivotDataManager.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\Axis.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchySet.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\Schema.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\SchemaObject.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\PivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Button.ts" />
     <TypeScriptCompile Include="Lib\UI\ContentControl.ts" />
     <TypeScriptCompile Include="Lib\UI\DragDrop.ts" />
@@ -731,6 +747,7 @@
     <Content Include="Lib\UI\GridPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\IPivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\MetaDataBrowser.ts" />
+    <TypeScriptCompile Include="Lib\UI\Pivot\PivotApplication.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotArea.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotLayout.ts" />
@@ -766,6 +783,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ResultMember.cs" />
+    <Compile Include="Server\Json\CellSetContractResolver.cs" />
     <Compile Include="Server\Schema\Cell.cs" />
     <Compile Include="Server\Schema\CellSet.cs" />
     <Compile Include="Server\Schema\Position.cs" />
