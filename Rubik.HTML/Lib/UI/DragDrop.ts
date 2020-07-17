@@ -68,51 +68,49 @@ module Rubik.UI {
                       
 
         static DragStart(source: IDragSource, dragsource: DragDropObject): void {
-            this.ghost = source.DragStarted(dragsource);
-            if (this.ghost != null) {
-                this.dragging = true;
+            this.ghost = new GhostControl();
+            this.dragging = source.DragStarted(dragsource, this.ghost);
+            if (this.dragging) {                
                 this.source = source;
                 document.body.appendChild(this.ghost.Element().get(0));
             }
             
         }
         static DragMove(position: Rubik.Common.Point, target: EventTarget): void {
-            if (this.ghost) {
+            if (this.dragging) {
 
                 this.ghost.Left(position.x + 10);
                 this.ghost.Top(position.y + 10);
 
-                var elem = $(target).closest('.droptarget');
-                if (Rubik.exists(elem)) {
-                    if (this.source) this.source.DragDelta();
-                    var destination = Elements[elem.attr("id")] as IDropTarget;                    
-                    if (this.target != destination) {
-                        if (this.target && this.enabledrop) {
-                            this.target.DraggedOut();
-                        }
-                        if (destination) {
-                            this.enabledrop = destination.DraggedEnter();
-                        }
-                        this.target = destination;                        
+                
+                if (this.source) this.source.DragDelta();                         
+                var destination = this.FindElement(target, '.droptarget') as IDropTarget;                    
+                if (this.target != destination) {
+                    if (this.target) {
+                        this.target.DraggedOut();
+                    }                    
+                    this.enabledrop = false;    
+                    if (destination) {
+                        this.enabledrop = destination.DraggedEnter();
                     }
-                    if (this.enabledrop) this.target.DraggedOver();                                        
+                    this.target = destination;                                     
                 }
+                if (this.target && this.enabledrop) this.target.DraggedOver();                                                        
             }
         }
         static DragEnd(target: EventTarget): void {
-            if (this.ghost) {
-                var elem = $(target).closest('.droptarget');
-                if (elem) {
-                    if (this.source) this.source.DragCompleted();                    
-                    var destination = Elements[elem.attr("id")] as IDropTarget;
-                    if (destination) destination.Dropped();
+            if (this.dragging) {
+                var destination = this.FindElement(target, '.droptarget') as IDropTarget;  
+                if (destination) {
+                    if (this.source) this.source.DragCompleted();                                        
+                    destination.Dropped();
                 }
                 this.DragStop();
             }
         }
 
         static DragStop(): void {
-            if (this.ghost) {                
+            if (this.dragging) {                
                 this.ghost.Element().remove();
                 this.ghost = null;
                 this.dragging = false;
@@ -139,7 +137,15 @@ module Rubik.UI {
         static IsDataExists(format: string): boolean {
             if (Object.keys(this.Data).length === 0)
                 return false;
-            return Object.hasOwnProperty(format);            
+            return this.Data.hasOwnProperty(format);            
+        }
+
+        private static FindElement(target: EventTarget, selector: string): object {
+            var elem = $(target).closest(selector);
+            if (elem.length > 0) {
+                return Elements[elem.attr("id")];
+            }
+            return null;
         }
     }
 
@@ -195,7 +201,7 @@ module Rubik.UI {
 
     
     export class DragStartedEventArgs extends Events.EventArgs {
-        constructor(public Sender: UI.IControl, public dragsource: DragDropObject, public ghost: GhostControl) {
+        constructor(public Sender: UI.IControl, public DragSource: DragDropObject, public Ghost: GhostControl, public EnableDrag: boolean) {
             super(Sender);
         }
     }
@@ -214,7 +220,7 @@ module Rubik.UI {
 
     export interface IDragSource {
         CanDrag: boolean;
-        DragStarted(dragsource: DragDropObject): GhostControl;
+        DragStarted(dragsource: DragDropObject, ghost: GhostControl): boolean;
         DragDelta(): void;
         DragCompleted(): void;
 

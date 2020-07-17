@@ -15,19 +15,19 @@ module Rubik.UI.Pivot {
             var panel = new Rubik.UI.GridPanel();            
             panel.Columns = 2;
             this.FiltersArea = new PivotArea();
-            this.FiltersArea.Role = PivotAreaRoleEnum.Filters;            
+            this.FiltersArea.Role = Rubik.DataHub.AxisRoleEnum.Filters;            
             this.FiltersArea.Height("100%");
             this.FiltersArea.Width("100%");
             this.ColsArea = new PivotArea();
-            this.ColsArea.Role = PivotAreaRoleEnum.Cols;
+            this.ColsArea.Role = Rubik.DataHub.AxisRoleEnum.Cols;
             this.ColsArea.Height("100%");
             this.ColsArea.Width("100%");
             this.RowsArea = new PivotArea();
-            this.RowsArea.Role = PivotAreaRoleEnum.Rows;
+            this.RowsArea.Role = Rubik.DataHub.AxisRoleEnum.Rows;
             this.RowsArea.Height("100%");
             this.RowsArea.Width("100%");
             this.DataArea = new PivotArea();
-            this.DataArea.Role = PivotAreaRoleEnum.Data;
+            this.DataArea.Role = Rubik.DataHub.AxisRoleEnum.Data;
             this.DataArea.Height("100%");
             this.DataArea.Width("100%");
 
@@ -40,8 +40,11 @@ module Rubik.UI.Pivot {
             
         }
 
+        get PivotDataManager(): Rubik.DataHub.PivotDataManager {
+            return this.pivotDataManager;
+        }
 
-        set PivotDataManager(pm: Rubik.Data.PivotDataManager) {
+        set PivotDataManager(pm: Rubik.DataHub.PivotDataManager) {
             this.pivotDataManager = pm;
             this.FiltersArea.PivotDataManager = pm;
             this.ColsArea.PivotDataManager = pm;

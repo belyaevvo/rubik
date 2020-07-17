@@ -369,7 +369,7 @@ module Rubik.UI
                         }
                         var mbr = this.DataSource.getRowMember(col, row);                        
                         rowcell.Level(mbr.Level);                        
-                        rowcell.Text(mbr.Caption);
+                        rowcell.Text(mbr.Caption);                        
                         rowcell.Icon(mbr.Icon);
                         rowcell.Expanded = mbr.HasChildren ? mbr.Expanded : null;
                         rowcell.Populated = mbr.Populated;                    

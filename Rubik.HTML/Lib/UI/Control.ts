@@ -794,6 +794,9 @@ module Rubik.UI
         AllowDrag(): void {
             this.CanDrag = true;
             this._rootElement.addClass('dragsource');
+            if (this.ID() == null) {
+                this.ID('uid' + this.__UID.toString());
+            }
         }
 
         AllowDrop(): void {
@@ -808,6 +811,12 @@ module Rubik.UI
             if (this.ActuallyEnabled()) {
                 var args: DraggedEnterEventArgs = new DraggedEnterEventArgs(this, false);
                 this.OnDraggedEnter.Invoke(args);
+                if (args.EnableDrop) {
+                    this.AddClass("dropenabled")
+                }
+                else {
+                    this.AddClass("dropdisabled")
+                }
                 return args.EnableDrop;
             }
             return false;
@@ -815,28 +824,32 @@ module Rubik.UI
 
         DraggedOver(): void {
             if (this.ActuallyEnabled()) {
-                this.OnDraggedOver.Invoke(new Events.EventArgs(this));
+                this.OnDraggedOver.Invoke(new Events.EventArgs(this));                
             }
         }
         DraggedOut(): void {
             if (this.ActuallyEnabled()) {
                 this.OnDraggedOut.Invoke(new Events.EventArgs(this));
+                this.RemoveClass("dropenabled")
+                this.RemoveClass("dropdisabled")
             }
         }
 
         Dropped(): void {
             if (this.ActuallyEnabled()) {
                 this.OnDropped.Invoke(new Events.EventArgs(this));
+                this.RemoveClass("dropenabled")
+                this.RemoveClass("dropdisabled")
             }
         }
 
         CanDrag: boolean = false;
 
-        DragStarted(dragsource: DragDropObject): GhostControl {            
-            if (this.ActuallyEnabled()) {
-                var ghost: GhostControl = new GhostControl();
-                this.OnDragStarted.Invoke(new DragStartedEventArgs(this, dragsource, ghost));
-                return ghost;
+        DragStarted(dragsource: DragDropObject, ghost: GhostControl): boolean {            
+            if (this.ActuallyEnabled()) {                
+                var args = new DragStartedEventArgs(this, dragsource, ghost, true);
+                this.OnDragStarted.Invoke(args);
+                return args.EnableDrag;
             }
             return null;
         }

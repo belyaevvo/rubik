@@ -4,18 +4,25 @@
 
 module Rubik.UI.Pivot {
     export class PivotArea extends PivotControl {
-        _areapanel_OnDraggedEnter(arg0: any): any {
-            throw new Error("Method not implemented.");
-        }
+       
         private areapanel: Rubik.UI.StackPanel;
         private labelpanel: Rubik.UI.Panel;
-        private role: PivotAreaRoleEnum;
+        private role: Rubik.DataHub.AxisRoleEnum;
         _div: JQuery = null;
         _span: JQuery = null;
         _img: JQuery = null;
 
         Grid: Grid = new Grid();
         Label: Label = new Label();
+
+        get PivotDataManager(): Rubik.DataHub.PivotDataManager {
+            return this.pivotDataManager;
+        }
+
+        set PivotDataManager(pm: Rubik.DataHub.PivotDataManager) {
+            this.pivotDataManager = pm;
+            this.pivotDataManager.SchemaChanged.Attach(new Events.SimpleEventHandler(this.pivotDataManager_SchemaChanged, this));
+        }
 
         constructor() {
             super();
@@ -27,7 +34,8 @@ module Rubik.UI.Pivot {
             this.areapanel.AddClass("PivotArea-content");
             this.areapanel.AddClass("NoIndent");
             this.areapanel.AllowDrop();
-            this.areapanel.OnDraggedEnter.Attach(new DraggedEnterEventHandler(this.areapanel_OnDraggedEnter,this));
+            this.areapanel.OnDraggedEnter.Attach(new DraggedEnterEventHandler(this.areapanel_OnDraggedEnter, this));
+            this.areapanel.OnDropped.Attach(new Events.SimpleEventHandler(this.areapanel_OnDropped, this));            
             this._div = $(document.createElement('div'));
             this._img = $(document.createElement('img'));            
             this._div.append(this._img);
@@ -44,26 +52,26 @@ module Rubik.UI.Pivot {
             this.Grid.Width("100%");
         }
 
-        get Role(): PivotAreaRoleEnum {
+        get Role(): Rubik.DataHub.AxisRoleEnum {
             return this.role;
         }
 
-        set Role(role: PivotAreaRoleEnum) {            
+        set Role(role: Rubik.DataHub.AxisRoleEnum) {            
              this.role = role;
             switch (role) {
-                case PivotAreaRoleEnum.Filters:
+                case Rubik.DataHub.AxisRoleEnum.Filters:
                     this._img.attr("src", "/Content/icons/mppivotcontrols_axis_filter.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaFilters"));
                     break;
-                case PivotAreaRoleEnum.Cols:
+                case Rubik.DataHub.AxisRoleEnum.Cols:
                     this._img.attr("src", "/Content/icons/mppivotcontrols_axis_col.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaCols"));
                     break;
-                case PivotAreaRoleEnum.Rows:
+                case Rubik.DataHub.AxisRoleEnum.Rows:
                     this._img.attr("src", "/Content/icons/mppivotcontrols_axis_row.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaRows"));
                     break;
-                case PivotAreaRoleEnum.Data:
+                case Rubik.DataHub.AxisRoleEnum.Data:
                     this._img.attr("src", "/Content/icons/mppivotcontrols_sum.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaData"));
                     break;
@@ -71,7 +79,22 @@ module Rubik.UI.Pivot {
         }
 
         areapanel_OnDraggedEnter(args: DraggedEnterEventArgs) {
-            args.EnableDrop = true;
+            var so = DragDrop.GetData("TypedSchemaObject") as Rubik.DataHub.TypedSchemaObject;
+            if (so) {
+                args.EnableDrop = so.ObjectType == Rubik.DataHub.ObjectTypeEnum.Measure && this.Role == Rubik.DataHub.AxisRoleEnum.Data ||
+                    so.ObjectType != Rubik.DataHub.ObjectTypeEnum.Measure && this.Role != Rubik.DataHub.AxisRoleEnum.Data;
+            }
+             return false;
+        }
+
+        areapanel_OnDropped(args: Events.EventArgs) {
+            var info = DragDrop.GetData("InfoObject") as DataHub.MeasureInfo | DataHub.MemberInfo | DataHub.LevelInfo | DataHub.HierarchyInfo | DataHub.DimensionInfo;
+            this.PivotDataManager.Schema.SetObjectAxis(info, this.Role);
+        }
+
+        pivotDataManager_SchemaChanged(args: Events.EventArgs) {
+            var ax = this.PivotDataManager.Schema.GetAxis(this.Role);
+            this.areapanel.Children.Clear();
         }
         
     }
@@ -79,10 +102,5 @@ module Rubik.UI.Pivot {
     export class PivotAreaItem extends Control {
     }
 
-    export enum PivotAreaRoleEnum {        
-        Filters = -1,
-        Cols = 0,
-        Rows = 1,
-        Data = 2
-    }
+    
 }

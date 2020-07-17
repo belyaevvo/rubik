@@ -1,7 +1,7 @@
-﻿/// <reference path="../../Data/PivotDataManager.ts"/>
+﻿/// <reference path="../../DataHub/PivotDataManager.ts"/>
 
 module Rubik.UI.Pivot {
     export interface IPivotControl {
-        PivotDataManager: Rubik.Data.PivotDataManager;
+        PivotDataManager: Rubik.DataHub.PivotDataManager;
     }
 }
