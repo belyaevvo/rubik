@@ -93,14 +93,69 @@ module Rubik.UI.Pivot {
         }
 
         pivotDataManager_SchemaChanged(args: Events.EventArgs) {
-            var ax = this.PivotDataManager.Schema.GetAxis(this.Role);
-            this.areapanel.Children.Clear();
+            if (this.Role == DataHub.AxisRoleEnum.Data) {
+                this.areapanel.Children.Clear();
+                for (var msr of this.PivotDataManager.Schema.Data.Measures.ToArray()) {
+                    var item = new PivotAreaItem();
+                    item.Text(msr.Info.Caption);
+                    this.areapanel.Children.Add(item);
+                }
+            }
+            else if (this.Role != DataHub.AxisRoleEnum.None) {
+                var ax = this.PivotDataManager.Schema.GetAxis(this.Role) as DataHub.HierarchyAxis;
+                this.areapanel.Children.Clear();
+                for (var set of ax.Sets.ToArray()) {
+                    var item = new PivotAreaItem();
+                    item.Text(set.Info.Caption);
+                    this.areapanel.Children.Add(item);
+                }
+            }
         }
         
     }
 
     export class PivotAreaItem extends Control {
+        _div: JQuery = null;
+        _span: JQuery = null;
+        _img: JQuery = null;
+
+        constructor() {
+            super();
+            this._rootElement.addClass("PivotAreaItem");
+            //this._span = $("<span class=\"GridCell-content\">");                        
+            this._div = $(document.createElement('div'));
+            this._div.addClass("PivotAreaItem-content");
+            this._img = $(document.createElement('img'));
+            this._img.addClass("PivotAreaItem-img");
+            this._div.append(this._img);
+            this._span = $(document.createElement('span'));
+            this._span.addClass("PivotAreaItem-text");
+            this._div.append(this._span);
+            this._rootElement.append(this._div);            
+        }
+
+        Text(text: string | number | boolean = null): string {
+            if (text != null) {
+                this._span.text(text);
+            }
+            return this._span.text();
+        }
+
+        Content(html: string): string {
+            if (html != null) {
+                this._div.html(html);
+            }
+            return this._div.html();
+        }
+
+        Image(url: string): string {
+            if (url != null) {
+                this._img.attr('src', url);
+            }
+            return this._img.attr('src');
+        }
+
     }
+}
 
     
-}

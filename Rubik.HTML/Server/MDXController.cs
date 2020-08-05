@@ -72,8 +72,8 @@ namespace Rubik.HTML
         private AdomdConnection AcquireConnection()
         {
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
-            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;

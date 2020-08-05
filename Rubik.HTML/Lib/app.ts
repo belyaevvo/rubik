@@ -39,8 +39,8 @@ class MyApp implements Rubik.Apps.IApp {
         xmlaConnection.Database = "Сбыт";
         
 
-        var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
-        //var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
+        //var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
+        var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
         pivotManager.DataMember = "Сбыт";
 
         app.PivotDataManager = pivotManager;
@@ -51,7 +51,7 @@ class MyApp implements Rubik.Apps.IApp {
         Rubik.UI.DragDrop.Initialize();
 
         //pivotManager.Command = "SELECT NON EMPTY { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].AllMembers ON 1 FROM [Сбыт] WHERE ([Дата].[Год].[2020])";
-        pivotManager.Command = "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].Members DIMENSION PROPERTIES [Объект учета].[Объект учета].[НПО] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
+        pivotManager.Command = "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].Members ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
 
         /*
         var mainsplitter = new Rubik.UI.SplitContainer();

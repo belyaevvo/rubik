@@ -53,8 +53,8 @@ module Rubik.DataHub {
                     break;
             }
             if (hier) {
-                var src_axis = this.GetHierarchyAxis(hier.HierarchyName);
-                var dst_axis = this.GetAxis(axis);
+                var src_axis = this.GetAxisOfHierarchy(hier.HierarchyName);
+                var dst_axis = this.GetAxis(axis) as HierarchyAxis;
                 if (src_axis) {
                     src_axis.Sets.Remove(hier);
                 }
@@ -88,7 +88,7 @@ module Rubik.DataHub {
             }
         }
 
-        public GetHierarchyAxisRole(uniquename: string): AxisRoleEnum {            
+        public GetAxisRoleOfHierarchy(uniquename: string): AxisRoleEnum {            
             var hier = this.GetHierarchySet(uniquename);
             if (hier) {
                 if (this.Filters.Sets.Contains(hier)) return AxisRoleEnum.Filters;
@@ -98,11 +98,11 @@ module Rubik.DataHub {
             return AxisRoleEnum.None;
         }
 
-        public GetHierarchyAxis(uniquename: string): HierarchyAxis {
-            return this.GetAxis(this.GetHierarchyAxisRole(uniquename));
+        public GetAxisOfHierarchy(uniquename: string): HierarchyAxis {
+            return this.GetAxis(this.GetAxisRoleOfHierarchy(uniquename)) as HierarchyAxis;
         }
 
-        public GetAxis(role: AxisRoleEnum): HierarchyAxis {
+        public GetAxis(role: AxisRoleEnum): Axis {
             switch (role) {
                 case AxisRoleEnum.None:
                     return null;
@@ -112,6 +112,8 @@ module Rubik.DataHub {
                     return this.Rows;
                 case AxisRoleEnum.Filters:
                     return this.Filters;
+                case AxisRoleEnum.Data:
+                    return this.Data;
             }            
         }
 

@@ -2170,8 +2170,14 @@ ul, ol
     background-color: white;
     border: 1px;
     border-style: solid;
+    overflow-y: auto;
 }
 
 .PivotArea-content.dropenabled {
     border-color: gold;    
+}
+
+.PivotAreaItem-content {
+    white-space: nowrap;
+    font-size: 13px;
 }
