@@ -604,6 +604,7 @@
     <TypeScriptCompile Include="Lib\DataHub\OlapInfoObjectFactory.ts" />
     <TypeScriptCompile Include="Lib\DataHub\PivotConnection.ts" />
     <TypeScriptCompile Include="Lib\DataHub\PortalConnection.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\ActionCoordinate.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\CellSet.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\DataAxis.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyAxis.ts" />

@@ -50,7 +50,7 @@ module Rubik.DataHub {
         
        
         set Command(command: string) {
-            this.GetData(command,
+            this.GetDataSet(command,
                 function (data) {
                     this.DataSource._isPopulated = true;     
                     this.DataSource.Data = data;                    
@@ -70,8 +70,8 @@ module Rubik.DataHub {
             }, this));
         }
                 
-        GetData(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
-            this.Connection.GetData(command, onsuccess, onerror);
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            this.Connection.GetDataSet(command, onsuccess, onerror);
         }
 
         GetMetaData(schema: string, restrictions: object, onsuccess: (data: any) => void, onerror: (error: any) => void): void {

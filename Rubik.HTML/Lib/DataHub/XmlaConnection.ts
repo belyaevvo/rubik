@@ -3,8 +3,7 @@
     export class XmlaConnection implements IPivotConnection {
 
         xmla: Xmla = new Xmla({ async: true });
-
-        olapinfo: OlapInfoObjectFactory = new OlapInfoObjectFactory(this);
+        
 
         Url: string;
 
@@ -56,12 +55,21 @@
             } as Xmla.Listener);
         }
 
-        GetData(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
             if (this.Url != null) {
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
                 this.xmla.executeMultiDimensional({ url: this.Url, withCredentials: true, statement: command, properties: properties, tag: handler } as Xmla.ExecuteOptions);               
+            }
+        }
+
+        GetRowSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
+                var properties = {}
+                properties[Xmla.PROP_CATALOG] = this.Database;
+                this.xmla.executeTabular({ url: this.Url, withCredentials: true, statement: command, properties: properties, tag: handler } as Xmla.ExecuteOptions);
             }
         }
 
@@ -75,7 +83,14 @@
             }
         }
        
-
+        Execute(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
+                var properties = {}
+                properties[Xmla.PROP_CATALOG] = this.Database;
+                this.xmla.execute({ url: this.Url, withCredentials: true, statement: command, properties: properties, tag: handler } as Xmla.ExecuteOptions);
+            }
+        }
 
         private static fetchCellSet(dataset: Xmla.Dataset): ICellSet {
             var cst: ICellSet;

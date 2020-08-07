@@ -5,16 +5,85 @@ module Rubik.DataHub {
 
         private objects: object = {};   
         private connection: IPivotConnection;
+        private initialized: boolean = false;
+        private resolved: boolean = false;
+        private datamember: string = null;
+        private defaultHierarchies: object = {};
 
-        DataMember: string = null;
+        get DataMember(): string {
+            return this.datamember;
+        }
+
+        set DataMember(datamember: string) {
+            this.datamember = datamember;
+            this.init = this.Initialize();
+            //this.Initialize();
+        }
+        
 
         constructor(connection: IPivotConnection) {
             this.connection = connection;
         }
 
-        GetInfoObject(schemaobject: TypedSchemaObject): Promise<InfoObject> {
+        async Initialize() {
+            if (this.DataMember) {
+                if (!this.initialized) {
+                    this.initialized = true;
+                    var restrictions = {};
+                    restrictions["CUBE_NAME"] = this.DataMember;
+                    var data = await this.getMetaData(this.getSchema(ObjectTypeEnum.Cube), restrictions);
+                    if (data.rowsetTable[0]["PREFERRED_QUERY_PATTERNS"] == 0) {
+                        //Multidimensional
+                        var action = { ObjectType: ObjectTypeEnum.Action, UniqueName: "MPAnnotations" } as TypedSchemaObject
+                        var rs = await this.getMetaData(this.getSchema(action.ObjectType), this.getRestrictions(action, { CoordinateType: CoordinateTypeEnum.Cube, Coordinate: this.DataMember, Invocation: InvocationEnum.All } as ActionCoordinate));
+                        if (rs.rowsetTable.length > 0) {
+                            this.defaultHierarchies = {};
+                            var content: string = rs.rowsetTable[0]["CONTENT"];
+                            for (var item of content.split("~")) {
+                                var match = item.match(/(?<dimension>.*).DEFAULT_HIERARCHY=(?<default_hierarchy>.*)/i)
+                                if (match) {
+                                    this.defaultHierarchies[match[1]] = match[2];
+                                }
+                            }
+                        }
+                        this.resolved = true;
+                    }
+                    else {
+                        //Tabular
+                        var rs = await this.getRowSet("SELECT [Parameter] as par, [Value] as val FROM [" + data.rowsetTable[0]["CATALOG_NAME"] + "].[$_GlobalSettings] WHERE [Category]='Default Tuple' AND [Parameter]='Tuple_" + this.DataMember + "'");
+                        this.resolved = true;
+                    }
+                }
+            }
+        }
+
+        private init: Promise<void>;
+
+       /* private init: Promise<void> = new Promise<void>(function(resolve, reject) {
+            if (this.initialized) return;
+            this.initialized = true;
+            console.log('init');
+            resolve();
+        }.bind(this));*/
+
+        private getMetaData(schema: string, restrictions: object): Promise<any> {
             var self = this;
+            return new Promise<any>(function (resolve, reject) {
+                self.connection.GetMetaData(schema, restrictions, resolve, reject);
+            });
+        }
+
+        private getRowSet(command: string): Promise<any> {
+            var self = this;
+            return new Promise<any>(function (resolve, reject) {
+                self.connection.GetRowSet(command, resolve, reject);
+            });
+        }
+
+        GetInfoObject(schemaobject: TypedSchemaObject): Promise<InfoObject> {
+            var self = this;            
             return new Promise<InfoObject>(function (resolve, reject) {
+                self.init.then(() => { 
                 var info = self.getInfoObject(schemaobject);
                 if (info) {
                     resolve(info);
@@ -27,13 +96,15 @@ module Rubik.DataHub {
                         return reject();
                     }
                         , reject);
-                }
+                    }
+                });
             });                        
         }
 
         GetInfoObjectCollection(objtype: ObjectTypeEnum, parent?: InfoObject, treeop?: TreeOpEnum): Promise<InfoObject[]> {            
             var self = this;
             return new Promise<InfoObject[]>(function (resolve, reject) {
+                self.init.then(() => {
                 if (parent && parent.ObjectType == ObjectTypeEnum.Member && objtype == ObjectTypeEnum.Member && (parent as MemberInfo).ChildCount==0) {
                     return resolve([]);
                 }
@@ -57,7 +128,8 @@ module Rubik.DataHub {
                         return resolve(infos);
                     }
                         , reject);
-                }
+                    }
+                });
             });                                   
         }
 
@@ -84,10 +156,12 @@ module Rubik.DataHub {
                     return "MDSCHEMA_MEMBERS";
                 case ObjectTypeEnum.Property:
                     return "MDSCHEMA_PROPERTIES";
+                case ObjectTypeEnum.Action:
+                    return "MDSCHEMA_ACTIONS";
             }
         }
 
-        getRestrictions(schemaobject: TypedSchemaObject, treeop?: TreeOpEnum): object {
+        getRestrictions(schemaobject: TypedSchemaObject, parameter?: any): object {
             var restrictions = {};
             switch (schemaobject.ObjectType) {
                 case ObjectTypeEnum.Cube:
@@ -108,13 +182,25 @@ module Rubik.DataHub {
                 case ObjectTypeEnum.Member:
                     if (this.DataMember) restrictions["CUBE_NAME"] = this.DataMember;
                     restrictions["MEMBER_UNIQUE_NAME"] = schemaobject.UniqueName;
+                    var treeop = parameter as TreeOpEnum;
                     if (treeop) {
                         restrictions["TREE_OP"] = treeop.valueOf();
                     }
-                    break;                                    
+                    break;
+                case ObjectTypeEnum.Action:
+                    if (this.DataMember) restrictions["CUBE_NAME"] = this.DataMember;
+                    restrictions["ACTION_NAME"] = schemaobject.UniqueName;
+                    var coordinate = parameter as ActionCoordinate;
+                    if (coordinate) {
+                        restrictions["COORDINATE_TYPE"] = coordinate.CoordinateType.valueOf();
+                        restrictions["COORDINATE"] = coordinate.Coordinate;
+                        restrictions["INVOCATION"] = coordinate.Invocation.valueOf();
+                    }
+                    break;                                   
             }
             return restrictions;
         }
+        
 
         getSchemaObject(row: object, objectType: ObjectTypeEnum): TypedSchemaObject {
             var schemaobject = new TypedSchemaObject();
@@ -156,7 +242,7 @@ module Rubik.DataHub {
                     dim.Name = row["DIMENSION_CAPTION"];
                     dim.UniqueName = row["DIMENSION_UNIQUE_NAME"];                                   
                     dim.Cube_UniqueName = row["CUBE_NAME"];
-                    dim.DefaultHierarchy = row["DEFAULT_HIERARCHY"];
+                    dim.DefaultHierarchy = this.defaultHierarchies[dim.UniqueName] ? this.defaultHierarchies[dim.UniqueName] : row["DEFAULT_HIERARCHY"];
                     obj = dim;
                     break;
                 case ObjectTypeEnum.Measure:
@@ -228,4 +314,6 @@ module Rubik.DataHub {
             parent.nestedObjects[this.getNestedInfoObjectCollectionKey(objtype, treeop)] = collection;
         }
     }
+
+    
 }

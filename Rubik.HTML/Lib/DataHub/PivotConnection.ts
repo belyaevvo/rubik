@@ -7,9 +7,13 @@
 
         Database: string;
         
-        GetData(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void;
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void;
+
+        GetRowSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void;
 
         GetMetaData(schema: string, restrictions: object, onsuccess: (data: any) => void, onerror: (error: any) => void): void;
+
+        Execute(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void;
 
                 
     }

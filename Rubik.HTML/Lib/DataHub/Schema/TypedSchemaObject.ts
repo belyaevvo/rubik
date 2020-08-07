@@ -18,7 +18,8 @@
         Hierarchy,
         Level,
         Member,
-        Property
+        Property,
+        Action
     }
     
 }

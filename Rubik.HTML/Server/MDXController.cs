@@ -21,7 +21,7 @@ namespace Rubik.HTML
         public class ExecuteParameters
         {
             public string sessionId { get; set; }
-            public string query { get; set; }
+            public string command { get; set; }
             public Server.Schema.Schema schema { get; set; }
         }
 
@@ -31,25 +31,89 @@ namespace Rubik.HTML
             public string schema { get; set; }
             public Dictionary<string, string> restrictions { get; set; }
         }
+        
         // GET api/<controller>/5
         //[AcceptVerbs("GET","POST")]    
         //[ActionName("execute")]    
         //[HttpGet]
-        [HttpPost]    
+        [HttpPost]
         public HttpResponseMessage Execute([FromBody] ExecuteParameters args)
-        {            
-            AdomdConnection con = AcquireConnection();            
-            AdomdCommand cmd = con.CreateCommand();
-            //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
-            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объекты учета].[Все].Children DIMENSION PROPERTIES [MEMBER_CAPTION],[Объект учета].[Объекты учета].[Полное наименование] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
-            CellSet cst = cmd.ExecuteCellSet();
-            string json = CreateJsonCellSet(cst);  
-            //string json2 = CreateJsonCellSet2(cst);
-            con.Close();
+        {
+            AdomdConnection con = AcquireConnection();
+            AdomdCommand cmd = con.CreateCommand();            
+            cmd.CommandText = args.command;
+            var rdr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            if (rdr != null)
+            {                
+                var metadata_table = rdr.GetSchemaTable();
+                if (metadata_table != null)
+                {
+                    foreach (DataRow row in metadata_table.Rows)
+                    {
+                        dt.Columns.Add(new DataColumn(row[0].ToString()));
+                    }
+                }
+
+                if (dt.Columns.Count >= rdr.FieldCount)
+                {
+                    while (rdr.Read())
+                    {
+                        var values = new object[rdr.FieldCount];
+                        for (int i = 0; i < rdr.FieldCount; i++)
+                        {
+                            values[i] = rdr[i];
+                        }
+                        dt.Rows.Add(values);
+                    }
+                }
+                rdr.Close();
+            }            
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);            
+            string json = CreateJsonDataSet(ds);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;            
         }
+
+
+        // GET api/<controller>/5
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]
+        public HttpResponseMessage ExecuteNonQuery([FromBody] ExecuteParameters args)
+        {
+            AdomdConnection con = AcquireConnection();
+            AdomdCommand cmd = con.CreateCommand();
+            cmd.CommandText = args.command;
+            cmd.ExecuteNonQuery();                        
+            var response = Request.CreateResponse(HttpStatusCode.OK);            
+            return response;
+        }
+
+
+        // GET api/<controller>/5
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]
+        public HttpResponseMessage ExecuteCellSet([FromBody] ExecuteParameters args)
+        {
+            AdomdConnection con = AcquireConnection();
+            AdomdCommand cmd = con.CreateCommand();
+            //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
+            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.command) ? args.command : "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объекты учета].[Все].Children DIMENSION PROPERTIES [MEMBER_CAPTION],[Объект учета].[Объекты учета].[Полное наименование] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
+            CellSet cst = cmd.ExecuteCellSet();
+            string json = CreateJsonCellSet(cst);
+            //string json2 = CreateJsonCellSet2(cst);
+            con.Close();
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            return response;
+        }
+
 
         [HttpPost]
         public HttpResponseMessage GetMetaData([FromBody] MetaDataParameters args)
@@ -72,8 +136,9 @@ namespace Rubik.HTML
         private AdomdConnection AcquireConnection()
         {
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
-            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp2.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;

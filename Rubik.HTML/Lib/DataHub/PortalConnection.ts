@@ -1,8 +1,7 @@
 ﻿module Rubik.DataHub {
 
     export class PortalConnection implements IPivotConnection{
-
-        olapinfo: OlapInfoObjectFactory = new OlapInfoObjectFactory(this);
+        
 
         Url: string;
 
@@ -11,13 +10,37 @@
         Database: string;
         
         
-        GetData(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                $.ajax({
+                    url: this.Url + '/executecellset',
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8',
+                    data: { sessionId: this.SessionId, command: command },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (onsuccess)
+                            onsuccess(data);
+                    },
+                    error: function (error) {
+                        if (onerror) {
+                            onerror(error);
+                        }
+                        else {
+                            alert(error.responseText);
+                        }
+                    }
+                });
+            }
+        }
+
+        GetRowSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/execute',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, query: command },
+                    data: { sessionId: this.SessionId, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -63,6 +86,29 @@
             }
         }
 
+        Execute(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                $.ajax({
+                    url: this.Url + '/executenonquery',
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8',
+                    data: { sessionId: this.SessionId, command: command },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (onsuccess)
+                            onsuccess(data);
+                    },
+                    error: function (error) {
+                        if (onerror) {
+                            onerror(error);
+                        }
+                        else {
+                            alert(error.responseText);
+                        }
+                    }
+                });
+            }
+        }
         
     }
 }
