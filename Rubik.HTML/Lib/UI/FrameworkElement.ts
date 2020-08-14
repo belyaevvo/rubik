@@ -108,6 +108,13 @@
             return this._rootElement.outerHeight();
         }
 
+        ClientWidth(): number {
+            return this._rootElement.get(0).clientWidth;
+        }
+        ClientHeight(): number {
+            return this._rootElement.get(0).clientHeight;
+        }
+
         Top(value?: string | number): number | void {            
             if (value !== null) {
                 this._rootElement.css("top", value);                

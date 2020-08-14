@@ -19,8 +19,8 @@ module Rubik.DataHub {
         Rows: IAxis;
         Filters: IAxis;
         Data: IAxis;
-        CalculatedMembers: List<ICalculatedMember>;
-        CalculatedSets: List<ICalculatedSet>;
+        CustomMembers: List<ICustomMember>;
+        CustomSets: List<ICustomSet>;
         CubeName: string;
     }
 
@@ -47,11 +47,11 @@ module Rubik.DataHub {
 
     }
 
-    export interface ICalculatedMember extends ISchemaObject {
-
+    export interface ICustomMember extends ISchemaObject {
+        Expression: string;
     }
 
-    export interface ICalculatedSet extends ISchemaObject {
+    export interface ICustomSet extends ISchemaObject {
 
     }
 
@@ -65,5 +65,12 @@ module Rubik.DataHub {
 
         GetInfoObjectCollection(objtype: Rubik.DataHub.ObjectTypeEnum, parent?: InfoObject, treeop?: Rubik.DataHub.TreeOpEnum): Promise<InfoObject[]>;
         
+    }
+
+    export interface IQueryGenerator {
+
+        GetQueryString(schema: Schema): string;
+        
+
     }
 }

@@ -2,7 +2,7 @@
 /// <reference path="SchemaObject.ts" />
 
 module Rubik.DataHub {
-    export class CalculatedSet extends SchemaObject implements ICalculatedSet {
+    export class CustomSet extends SchemaObject implements ICustomSet {
 
     }
 }

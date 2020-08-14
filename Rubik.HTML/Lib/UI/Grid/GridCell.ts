@@ -1,6 +1,8 @@
 ﻿module Rubik.UI {
 
     export class GridHeaderCell extends FrameworkElement {
+        _leftedge: JQuery = null;
+        _rightedge: JQuery = null;
         _div: JQuery = null;
         _span: JQuery = null;
         _level: number = 0;
@@ -14,13 +16,17 @@
         constructor() {
             super();
             this._rootElement.addClass("GridHeaderCell");
-            //this._span = $("<span class=\"GridCell-content\">");                        
+            //this._span = $("<span class=\"GridCell-content\">");                         
+            this._rightedge = $(document.createElement('div'));
+            this._rightedge.addClass("resizeX");           
             this._div = $(document.createElement('div'));
             this._div.addClass("GridHeaderCell-content");
             this._span = $(document.createElement('span'));
             this._span.addClass("GridHeaderCell-text");
-            this._div.append(this._span);
-            this._rootElement.append(this._div);            
+            this._div.append(this._span);                  
+            //this._rootElement.append(this._leftedge);            
+            this._rootElement.append(this._div);                   
+            this._rootElement.append(this._rightedge);
         }
 
         SetDataColRow(col: number, row: number): void {
@@ -65,8 +71,8 @@
             return this._populated;
         }
 
-        Icon(icon: string): string {
-            if (icon != null) {
+        Icon(icon?: string): string {
+            if (icon) {
                 //this._span.remove(".GridHeaderCell-icon");                
                 this._div.remove(".GridHeaderCell-icon");                
                 var img = $(document.createElement('img'));
@@ -78,8 +84,8 @@
             return this._icon;
         }        
 
-        Level(level: number): number {
-            if (level != null) {
+        Level(level?: number): number {
+            if (level) {
                 this._rootElement.remove(".GridHeaderCell-indent");
                 for (var i = 0; i < level; i++) {
                     var div = $(document.createElement('div'));
@@ -90,9 +96,10 @@
             return this._level;
         }
 
-        Text(text: string | number | boolean = null): string {
-            if (text != null) {
-                this._span.text(text);                
+        Text(text?: string): string {
+            if (text) {
+                this._span.text(text);
+                this._span.attr("title", text.toString());
             }
             return this._span.text();
         }
@@ -100,19 +107,24 @@
 
     export class GridCell extends FrameworkElement
     {
+        _leftedge: JQuery = null;
+        _rightedge: JQuery = null;
         _div: JQuery = null;        
         _span: JQuery = null;                
 
         constructor() {
             super();
             this._rootElement.addClass("GridCell");
-            //this._span = $("<span class=\"GridCell-content\">");                        
+            //this._span = $("<span class=\"GridCell-content\">");        
+            this._rightedge = $(document.createElement('div'));
+            this._rightedge.addClass("resizeX");                          
             this._div = $(document.createElement('div'));
             this._div.addClass("GridCell-content");
             this._span = $(document.createElement('span'));
             this._span.addClass("GridCell-text");
             this._div.append(this._span);
-            this._rootElement.append(this._div);            
+            this._rootElement.append(this._div);     
+            this._rootElement.append(this._rightedge);       
         }
 
         SetDataColRow(col: number, row: number): void {
@@ -120,15 +132,15 @@
             this._rootElement.attr("data-row", row);
         }
 
-        Text(text: string | number | boolean = null): string {
-            if (text != null) {
+        Text(text?: string): string {
+            if (text) {
                 this._span.text(text);
             }
             return this._span.text();            
         }
 
-        Content(html: string): string {
-            if (html != null) {
+        Content(html?: string): string {
+            if (html) {
                 this._div.html(html);
             }
             return this._div.html();

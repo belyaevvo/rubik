@@ -318,9 +318,16 @@ ul, ol
     bottom: auto;
     left: 0px;
     width: auto;
-    height: auto;        
+    height: auto;      
 }
 
+.GridColumnResize .Control, .GridColumnResize .FrameworkElement {
+    cursor:col-resize !important;
+}
+
+.GridRowResize .Control, .GridRowResize .FrameworkElement {
+    cursor: row-resize !important;
+}
 
 
 .GridColsHeaderPanel {
@@ -329,7 +336,7 @@ ul, ol
     border-top-width: 0px;
     border-left-width: 0px;
     border-bottom-width: 0px;
-    border-right-width: 0px;
+    border-right-width: 0px;    
 }
 
 .GridRowsHeaderPanel {
@@ -338,14 +345,25 @@ ul, ol
     border-top-width: 0px;
     border-left-width: 0px;
     border-bottom-width: 0px;
-    border-right-width: 0px;
+    border-right-width: 0px;    
 }
 
 .GridCellsPanel {   
+    background-color: white;
 }
 
 .GridScrollPanel {
     overflow: auto;
+}
+
+.GridScrollPanelX {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.GridScrollPanelY {
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .GridColHeaderCell {
@@ -410,6 +428,7 @@ ul, ol
     width: auto;
     overflow: hidden;
     white-space: nowrap;
+    height: 100%;
 }
 
 .GridHeaderCell-text {
@@ -439,6 +458,15 @@ ul, ol
     margin-right: 3px;
     opacity: .6;
     text-align: center;
+}
+
+.GridHeaderCell .resizeX {
+    cursor:col-resize;                
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    top: 0px;    
+    right: 0px;        
 }
 
 .GridHeaderCell-icon {
@@ -492,6 +520,16 @@ ul, ol
     white-space: nowrap;    
 }
 
+.GridCell .resizeX {
+    cursor:col-resize;                
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    top: 0px;    
+    right: 0px;        
+}
+
+
 .GridRowHeaderCell .GridCell-content {      
     text-align: left;
     text-overflow:ellipsis;
@@ -504,6 +542,33 @@ ul, ol
     border: none !important;
 }
 
+
+.LoadingPanel
+{
+    top: 0px;
+    right: auto;
+    bottom: auto;
+    left: 0px;
+    width: 100%;
+    height: 100%;      
+    background-color: rgba(0,0,0,0.2);    
+}
+
+    .LoadingPanel .LoadingMessage 
+    {
+        background-color: white;        
+        position: absolute;        
+        height: 60px;
+        width: 200px;    
+        top: 50%;   
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -50px;
+    }
+
+    .LoadingPanel .LoadingIcon  {           
+        margin: 5px;
+    }
 
 
 .Expandable {

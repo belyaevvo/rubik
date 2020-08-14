@@ -85,7 +85,7 @@
             for (var i = 0; i < indices.length; i++) {
                 if (index <= indices[i])
                     break;
-                top = this.RowsSize[indices[i]] - this.DefaultRowHeight;
+                top += this.RowsSize[indices[i]] - this.DefaultRowHeight;
             }
             return top - this.top + Math.round(this.top * this.ScaleY) - this.offsetY;
         }
@@ -96,7 +96,7 @@
             for (var i = 0; i < indices.length; i++) {
                 if (index <= indices[i])
                     break;
-                left = this.ColsSize[indices[i]] - this.DefaultColWidth;
+                left += this.ColsSize[indices[i]] - this.DefaultColWidth;
             }
             return left - this.left + Math.round(this.left * this.ScaleX) - this.offsetX;
         }
@@ -132,7 +132,7 @@
         
          GetTotalViewHeight(): number {
             var indices: Array<number> = Object.keys(this.RowsSize).map(Number);
-            var height: number = this.DefaultRowHeight * (this._rowsCount + 1);
+            var height: number = this.DefaultRowHeight * (this._rowsCount);
             for (var i = 0; i < indices.length; i++) {
                 height += this.RowsSize[indices[i]] - this.DefaultRowHeight;
             }
@@ -141,7 +141,7 @@
 
         GetTotalViewWidth(): number {
             var indices: Array<number> = Object.keys(this.ColsSize).map(Number);
-            var width: number = this.DefaultColWidth * (this._colsCount + 1);
+            var width: number = this.DefaultColWidth * (this._colsCount);
             for (var i = 0; i < indices.length; i++) {
                 width += this.ColsSize[indices[i]] - this.DefaultColWidth;
             }

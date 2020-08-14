@@ -165,6 +165,7 @@
     <Content Include="Content\icons\find1.ico" />
     <Content Include="Content\icons\fn.ico" />
     <Content Include="Content\icons\FormatFont.bmp" />
+    <Content Include="Content\icons\Loading_icon.gif" />
     <Content Include="Content\icons\member.ico" />
     <Content Include="Content\icons\MetaPlan.ico" />
     <Content Include="Content\icons\MetaPlan1.ico" />
@@ -578,6 +579,7 @@
     <Content Include="Content\icons\smallarrow1.ico" />
     <Content Include="Content\icons\smallarrowblack.ico" />
     <Content Include="Content\icons\smallarrowblue.ico" />
+    <Content Include="Content\icons\spiner.gif" />
     <Content Include="Content\icons\table.ico" />
     <Content Include="Content\icons\view.ico" />
     <Content Include="Content\icons\xlpivot.ico" />
@@ -601,6 +603,7 @@
     <Content Include="Global.asax" />
     <TypeScriptCompile Include="Lib\Collections\Dictionary.ts" />
     <TypeScriptCompile Include="Lib\Common\Point.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\MDXQueryGenerator.ts" />
     <TypeScriptCompile Include="Lib\DataHub\OlapInfoObjectFactory.ts" />
     <TypeScriptCompile Include="Lib\DataHub\PivotConnection.ts" />
     <TypeScriptCompile Include="Lib\DataHub\PortalConnection.ts" />
@@ -623,8 +626,8 @@
     <TypeScriptCompile Include="Lib\Resources\LanguageMessages.ts" />
     <TypeScriptCompile Include="Lib\Resources\localization.ts" />
     <TypeScriptCompile Include="Lib\Resources\language-ru.ts" />
-    <TypeScriptCompile Include="Lib\DataHub\Schema\CalculatedMember.ts" />
-    <TypeScriptCompile Include="Lib\DataHub\Schema\CalculatedSet.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CustomMember.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\CustomSet.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\CubeInfo.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyInfo.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\InfoObject.ts" />
@@ -732,6 +735,7 @@
     <TypeScriptCompile Include="Lib\UI\Grid\GridCell.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\Grid.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\CellsScrollPanel.ts" />
+    <TypeScriptCompile Include="Lib\UI\Grid\GridResizer.ts" />
     <TypeScriptCompile Include="Lib\UI\IFrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\SizeManager.ts" />
     <TypeScriptCompile Include="Lib\UI\IButton.d.ts" />
@@ -747,11 +751,13 @@
     <Content Include="Lib\UI\Label.ts" />
     <Content Include="Lib\UI\GridPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\IPivotControl.ts" />
+    <TypeScriptCompile Include="Lib\UI\Pivot\LoadingPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\MetaDataBrowser.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotApplication.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotArea.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotLayout.ts" />
+    <TypeScriptCompile Include="Lib\UI\Pivot\PivotView.ts" />
     <TypeScriptCompile Include="Lib\UI\SplitterGrip_Orientations.ts" />
     <Content Include="Lib\UI\TextBox.ts" />
     <Content Include="Lib\UI\StackPanel.ts" />

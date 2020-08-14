@@ -4,6 +4,8 @@
 
         Cube_UniqueName: string;
         Dimension_UniqueName: string;
+        DefaultMember: string;
+        AllMember: string;
         
 
         get Dimension(): Promise<DimensionInfo> {

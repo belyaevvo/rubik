@@ -19,7 +19,7 @@ module Rubik.UI {
         static ghost: GhostControl = null; 
         static Data: object = {};
         private static dragSource: DragDropObject = new DragDropObject();             
-        private static dropTarget: object = {};
+        private static dropTarget: DragDropObject = new DragDropObject(); 
 
         static Initialize(): void {
             document.onmousedown = function (e) {
@@ -59,8 +59,8 @@ module Rubik.UI {
 
             document.onmouseup = function (e) {
                 if (this.ghost) {
-                    this.DragEnd(e.target);
-                }
+                    this.DragEnd(new Rubik.Common.Point(e.pageX, e.pageY), e.target);
+                }                
                 this.dragSource.elem = null;
             }.bind(this);
 
@@ -91,16 +91,23 @@ module Rubik.UI {
                     }                    
                     this.enabledrop = false;    
                     if (destination) {
+                        this.dropTarget.elem = $(target).closest('.droptarget');
+                        this.dropTarget.target = target;
+                        this.dropTarget.position = new Rubik.Common.Point(position.x, position.y);
                         this.enabledrop = destination.DraggedEnter();
                     }
                     this.target = destination;                                     
                 }
-                if (this.target && this.enabledrop) this.target.DraggedOver();                                                        
+                if (this.target && this.enabledrop) {
+                    this.dropTarget.position = new Rubik.Common.Point(position.x, position.y);
+                    this.target.DraggedOver();
+                }                 
             }
         }
-        static DragEnd(target: EventTarget): void {
+        static DragEnd(position: Rubik.Common.Point, target: EventTarget): void {
             if (this.dragging) {
                 var destination = this.FindElement(target, '.droptarget') as IDropTarget;  
+                this.dropTarget.position = new Rubik.Common.Point(position.x, position.y);                        
                 if (destination) {
                     if (this.source) this.source.DragCompleted();                                        
                     destination.Dropped();
@@ -115,6 +122,7 @@ module Rubik.UI {
                 this.ghost = null;
                 this.dragging = false;
                 this.dragSource = new DragDropObject();
+                this.dropTarget = new DragDropObject();
             }
             this.Data = {};
         }

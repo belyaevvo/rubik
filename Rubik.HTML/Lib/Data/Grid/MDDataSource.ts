@@ -97,18 +97,25 @@ module Rubik.Data {
         getColKey(col: number, row: number): any {
             var key: string = "";
             for (var r = 0; r <= row; r++) {
-                key += this.getColMember(col, r).Key;
+                var mbr = this.getColMember(col, r);
+                if (mbr) {
+                    if (key != "") key += "_";
+                    key += mbr.Key;
+                }
             }
-            return key;
+            return key == "" ? null : key;
         }
 
         getRowKey(col: number, row: number): any {
             var key: string = "";
             for (var c = 0; c <= col; c++) {
-                if (key != "") key += "_";
-                key += this.getRowMember(c, row).Key;
+                var mbr = this.getRowMember(c, row);
+                if (mbr) {
+                    if (key != "") key += "_";
+                    key += mbr.Key;
+                }                
             }
-            return key;
+            return key == "" ? null : key;
         }
 
         getCellValue(col: number, row: number): any {

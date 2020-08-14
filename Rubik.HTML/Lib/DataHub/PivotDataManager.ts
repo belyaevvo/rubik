@@ -17,6 +17,8 @@ module Rubik.DataHub {
 
         DataInfo: OlapInfoObjectFactory;
 
+        QueryGenerator: IQueryGenerator;
+
         Schema: Rubik.DataHub.Schema;
 
         CubeInfo: CubeInfo = null;
@@ -24,6 +26,10 @@ module Rubik.DataHub {
         CubeChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
         DataChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
         SchemaChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
+
+        CommandStarted: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
+        CommandComplete: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
+        CommandCancel: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
         
         get DataMember(): string {
             return this.datamember;
@@ -50,12 +56,16 @@ module Rubik.DataHub {
         
        
         set Command(command: string) {
+            this.CommandStarted.Invoke(new Events.EventArgs(this));
             this.GetDataSet(command,
                 function (data) {
+                    this.CommandComplete.Invoke(new Events.EventArgs(this));
                     this.DataSource._isPopulated = true;     
                     this.DataSource.Data = data;                    
                 }.bind(this),
                 function (error) {
+                    this.CommandCancel.Invoke(new Events.EventArgs(this));
+                    this.CommandComplete.Invoke(new Events.EventArgs(this));
                     this.DataSource._isPopulated = false;    
                     alert(error.responseText);                     
                 }.bind(this));
@@ -64,13 +74,15 @@ module Rubik.DataHub {
        
         constructor(connection: IPivotConnection) {
             this.Connection = connection;
-            this.Schema = new Rubik.DataHub.Schema(this);            
+            this.Schema = new Rubik.DataHub.Schema(this);
+            this.QueryGenerator = new MDXQueryGenerator();
             this.Schema.SchemaChanged.Attach(new Events.SimpleEventHandler((args: Events.EventArgs) => {
                 this.SchemaChanged.Invoke(args);
+                this.Command = this.QueryGenerator.GetQueryString(this.Schema);
             }, this));
         }
                 
-        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {            
             this.Connection.GetDataSet(command, onsuccess, onerror);
         }
 

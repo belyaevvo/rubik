@@ -9,6 +9,7 @@ module Rubik.DataHub {
         protected factory: IInfoObjectFactory;
 
         public Name: string;        
+        public Description: string;
 
         public get Caption(): string {
             return this.caption || this.Name;            

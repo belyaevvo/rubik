@@ -8,15 +8,65 @@
         SessionId: string;
 
         Database: string;
-        
-        
+
+        BeginSession(onsuccess: (sessionId: string) => void, onerror: (error: any) => void): void {
+            var self = this;
+            if (this.Url != null) {
+                $.ajax({
+                    url: this.Url + '/BeginSession',
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8',
+                    data: { database: self.Database },
+                    dataType: 'json',
+                    success: function (data) {
+                        self.SessionId = data.SessionId;                     
+                        if (onsuccess)
+                            onsuccess(data.SessionId);
+                    },
+                    error: function (error) {
+                        if (onerror) {
+                            onerror(error);
+                        }
+                        else {
+                            alert(error.responseText);
+                        }
+                    }
+                });
+            }
+        }
+
+        EndSession(onsuccess: () => void, onerror: (error: any) => void): void {
+            var self = this;
+            if (this.Url != null) {
+                $.ajax({
+                    url: this.Url + '/EndSession',
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8',
+                    data: { sessionId: self.SessionId },
+                    dataType: 'json',
+                    success: function (data) {                        
+                        if (onsuccess)
+                            onsuccess();
+                    },
+                    error: function (error) {
+                        if (onerror) {
+                            onerror(error);
+                        }
+                        else {
+                            alert(error.responseText);
+                        }
+                    }
+                });
+            }
+        }
+       
         GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/executecellset',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, command: command },
+                    data: { sessionId: this.SessionId, database: this.Database, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -40,7 +90,7 @@
                     url: this.Url + '/execute',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, command: command },
+                    data: { sessionId: this.SessionId, database: this.Database, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -67,7 +117,7 @@
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
                     data: {
-                        sessionId: this.SessionId, schema: schema, restrictions: restarr
+                        sessionId: this.SessionId, database: this.Database, schema: schema, restrictions: restarr
                     },
                     dataType: 'json',
                     success: function (data) {
@@ -92,7 +142,7 @@
                     url: this.Url + '/executenonquery',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, command: command },
+                    data: { sessionId: this.SessionId, database: this.Database, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)

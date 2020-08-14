@@ -40,7 +40,7 @@ module Rubik.DataHub {
                             this.defaultHierarchies = {};
                             var content: string = rs.rowsetTable[0]["CONTENT"];
                             for (var item of content.split("~")) {
-                                var match = item.match(/(?<dimension>.*).DEFAULT_HIERARCHY=(?<default_hierarchy>.*)/i)
+                                var match = item.match(/(.*).DEFAULT_HIERARCHY=(.*)/i);
                                 if (match) {
                                     this.defaultHierarchies[match[1]] = match[2];
                                 }
@@ -58,13 +58,88 @@ module Rubik.DataHub {
         }
 
         private init: Promise<void>;
+      
+       
 
-       /* private init: Promise<void> = new Promise<void>(function(resolve, reject) {
-            if (this.initialized) return;
-            this.initialized = true;
-            console.log('init');
-            resolve();
-        }.bind(this));*/
+        async GetInfoObject(schemaobject: TypedSchemaObject): Promise<InfoObject> {
+            var self = this;            
+            await self.init;
+              
+            var info = self.getInfoObject(schemaobject);
+            if (info) {
+                return info;
+            }
+            else {
+                var data = await self.getMetaData(this.getSchema(schemaobject.ObjectType), self.getRestrictions(schemaobject));
+                for (var row of data.rowsetTable) {
+                    return self.createInfoObject(row, schemaobject.ObjectType);
+                }
+            }
+            return null;
+
+           /* , (data) => {
+                        for (var row of data.rowsetTable) {
+                            return resolve(self.createInfoObject(row, schemaobject.ObjectType));                            
+                        }
+                        return reject();
+                    }
+                        , reject);
+                    }
+                });
+            });                        */
+        }
+
+        async GetInfoObjectCollection(objtype: ObjectTypeEnum, parent?: InfoObject, parameter?: any): Promise<InfoObject[]> {            
+            var self = this;            
+            await self.init;
+            if (parent && parent.ObjectType == ObjectTypeEnum.Member && objtype == ObjectTypeEnum.Member && (parent as MemberInfo).ChildCount==0) {
+                return [];
+            }
+            var nested = self.getNestedInfoObjectCollection(objtype, parent, parameter);
+            if (nested) {
+                return nested;
+            }
+            else {
+                var data = await self.getMetaData(self.getSchema(objtype), self.getRestrictions(parent, parameter))
+                var infos = [];
+                for (var row of data.rowsetTable) {
+                    var info = self.getInfoObject(self.getSchemaObject(row, objtype));
+                    if (info) {
+                        infos.push(info);
+                    }
+                    else {
+                        infos.push(self.createInfoObject(row, objtype));
+                    }
+                }
+                self.setNestedInfoObjectCollection(objtype, parent, infos, parameter);
+                return infos;
+                    /*, (data) => {
+                    var infos = [];
+                    for (var row of data.rowsetTable) {
+                        var info = self.getInfoObject(self.getSchemaObject(row, objtype));
+                        if (info) {
+                            infos.push(info);
+                        }
+                        else {
+                            infos.push(self.createInfoObject(row, objtype));
+                        }
+                    }
+                    self.setNestedInfoObjectCollection(objtype, parent, infos, treeop);
+                    return resolve(infos);
+                }
+                    , reject);
+                }
+            });
+            });*/
+            }                       
+        }
+
+        async GetAncestorInfo(objtype: ObjectTypeEnum, obj: InfoObject): Promise<InfoObject> {
+            return this.GetInfoObject(this.getSchemaObject(obj.row, objtype));
+        }
+
+        Reset(): void {
+        }
 
         private getMetaData(schema: string, restrictions: object): Promise<any> {
             var self = this;
@@ -80,67 +155,14 @@ module Rubik.DataHub {
             });
         }
 
-        GetInfoObject(schemaobject: TypedSchemaObject): Promise<InfoObject> {
-            var self = this;            
-            return new Promise<InfoObject>(function (resolve, reject) {
-                self.init.then(() => { 
-                var info = self.getInfoObject(schemaobject);
-                if (info) {
-                    resolve(info);
-                }
-                else {
-                    self.connection.GetMetaData(self.getSchema(schemaobject.ObjectType), self.getRestrictions(schemaobject), (data) => {
-                        for (var row of data.rowsetTable) {
-                            return resolve(self.createInfoObject(row, schemaobject.ObjectType));                            
-                        }
-                        return reject();
-                    }
-                        , reject);
-                    }
-                });
-            });                        
-        }
-
-        GetInfoObjectCollection(objtype: ObjectTypeEnum, parent?: InfoObject, treeop?: TreeOpEnum): Promise<InfoObject[]> {            
+        private getDataSet(command: string): Promise<any> {
             var self = this;
-            return new Promise<InfoObject[]>(function (resolve, reject) {
-                self.init.then(() => {
-                if (parent && parent.ObjectType == ObjectTypeEnum.Member && objtype == ObjectTypeEnum.Member && (parent as MemberInfo).ChildCount==0) {
-                    return resolve([]);
-                }
-                var nested = self.getNestedInfoObjectCollection(objtype, parent, treeop);
-                if (nested) {
-                    return resolve(nested);
-                }
-                else {
-                    self.connection.GetMetaData(self.getSchema(objtype), self.getRestrictions(parent, treeop), (data) => {
-                        var infos = [];
-                        for (var row of data.rowsetTable) {
-                            var info = self.getInfoObject(self.getSchemaObject(row, objtype));
-                            if (info) {
-                                infos.push(info);
-                            }
-                            else {
-                                infos.push(self.createInfoObject(row, objtype));
-                            }
-                        }
-                        self.setNestedInfoObjectCollection(objtype, parent, infos, treeop);
-                        return resolve(infos);
-                    }
-                        , reject);
-                    }
-                });
-            });                                   
+            return new Promise<any>(function (resolve, reject) {
+                self.connection.GetDataSet(command, resolve, reject);
+            });
         }
 
-        GetAncestorInfo(objtype: ObjectTypeEnum, obj: InfoObject): Promise<InfoObject> {
-            return this.GetInfoObject(this.getSchemaObject(obj.row, objtype));
-        }
-
-        Reset(): void {
-        }
-
-        getSchema(objectType: ObjectTypeEnum): string {
+        private getSchema(objectType: ObjectTypeEnum): string {
             switch (objectType) {
                 case ObjectTypeEnum.Cube:
                     return "MDSCHEMA_CUBES";
@@ -161,7 +183,7 @@ module Rubik.DataHub {
             }
         }
 
-        getRestrictions(schemaobject: TypedSchemaObject, parameter?: any): object {
+        private getRestrictions(schemaobject: TypedSchemaObject, parameter?: any): object {
             var restrictions = {};
             switch (schemaobject.ObjectType) {
                 case ObjectTypeEnum.Cube:
@@ -202,7 +224,7 @@ module Rubik.DataHub {
         }
         
 
-        getSchemaObject(row: object, objectType: ObjectTypeEnum): TypedSchemaObject {
+        private getSchemaObject(row: object, objectType: ObjectTypeEnum): TypedSchemaObject {
             var schemaobject = new TypedSchemaObject();
             schemaobject.ObjectType = objectType;
             switch (objectType) {
@@ -228,13 +250,14 @@ module Rubik.DataHub {
             return schemaobject;
         }
 
-        createInfoObject(row: object, objtype: ObjectTypeEnum): InfoObject {
+        private createInfoObject(row: object, objtype: ObjectTypeEnum): InfoObject {
             var obj: InfoObject = null;
             switch (objtype) {
                 case ObjectTypeEnum.Cube:
                     var cube = new CubeInfo(this);
                     cube.Name = row["CUBE_NAME"];
-                    cube.UniqueName = row["CUBE_NAME"];                                        
+                    cube.UniqueName = row["CUBE_NAME"];
+                    cube.Description = row["DESCRIPTION"];                                       
                     obj = cube;
                     break;
                 case ObjectTypeEnum.Dimension:
@@ -243,6 +266,7 @@ module Rubik.DataHub {
                     dim.UniqueName = row["DIMENSION_UNIQUE_NAME"];                                   
                     dim.Cube_UniqueName = row["CUBE_NAME"];
                     dim.DefaultHierarchy = this.defaultHierarchies[dim.UniqueName] ? this.defaultHierarchies[dim.UniqueName] : row["DEFAULT_HIERARCHY"];
+                    dim.Description = row["DESCRIPTION"];     
                     obj = dim;
                     break;
                 case ObjectTypeEnum.Measure:
@@ -258,6 +282,9 @@ module Rubik.DataHub {
                     hier.UniqueName = row["HIERARCHY_UNIQUE_NAME"];                    
                     hier.Cube_UniqueName = row["CUBE_NAME"];
                     hier.Dimension_UniqueName = row["DIMENSION_UNIQUE_NAME"];
+                    hier.AllMember = row["ALL_MEMBER"];
+                    hier.DefaultMember = row["DEFAULT_MEMBER"];
+                    hier.Description = row["DESCRIPTION"];     
                     obj = hier;
                     break;
                 case ObjectTypeEnum.Level:
@@ -267,6 +294,7 @@ module Rubik.DataHub {
                     lvl.Cube_UniqueName = row["CUBE_NAME"];
                     lvl.Dimension_UniqueName = row["DIMENSION_UNIQUE_NAME"];
                     lvl.Hierarchy_UniqueName = row["HIERARCHY_UNIQUE_NAME"];
+                    lvl.Description = row["DESCRIPTION"];     
                     obj = lvl;
                     break;
                 case ObjectTypeEnum.Member:
@@ -281,36 +309,36 @@ module Rubik.DataHub {
                     obj = mbr;
                     break;
             }
-            obj.row = row;
+            obj.row = row;            
             this.registerInfoObject(obj);
             return obj;
         }
 
-        registerInfoObject(obj: InfoObject) {
+        private registerInfoObject(obj: InfoObject) {
             this.objects[this.getInfoObjectKey(obj)] = obj;
         }
 
-        getInfoObject(schemaobject: TypedSchemaObject): InfoObject {
+        private getInfoObject(schemaobject: TypedSchemaObject): InfoObject {
             return this.objects[this.getInfoObjectKey(schemaobject)];
         }
 
-        getInfoObjectKey(schemaobject: TypedSchemaObject): string {
+        private getInfoObjectKey(schemaobject: TypedSchemaObject): string {
             if (schemaobject.ObjectType == ObjectTypeEnum.Cube) return "CUBE." + schemaobject.UniqueName;
             if (schemaobject.ObjectType == ObjectTypeEnum.Database) return "DATABASE." + schemaobject.UniqueName;
             return schemaobject.UniqueName;
         }
 
-        getNestedInfoObjectCollectionKey(objtype: ObjectTypeEnum, treeop?: TreeOpEnum): string {
+        private getNestedInfoObjectCollectionKey(objtype: ObjectTypeEnum, treeop?: TreeOpEnum): string {
             var key = ObjectTypeEnum[objtype] + 's';
             if (treeop && objtype == ObjectTypeEnum.Member) key = TreeOpEnum[treeop] + key;
             return key;
         }
 
-        getNestedInfoObjectCollection(objtype: ObjectTypeEnum, parent: InfoObject, treeop?: TreeOpEnum): InfoObject[] {
+        private getNestedInfoObjectCollection(objtype: ObjectTypeEnum, parent: InfoObject, treeop?: TreeOpEnum): InfoObject[] {
             return parent.nestedObjects[this.getNestedInfoObjectCollectionKey(objtype, treeop)];
         }
 
-        setNestedInfoObjectCollection(objtype: ObjectTypeEnum, parent: InfoObject, collection: InfoObject[], treeop?: TreeOpEnum): void {
+        private setNestedInfoObjectCollection(objtype: ObjectTypeEnum, parent: InfoObject, collection: InfoObject[], treeop?: TreeOpEnum): void {
             parent.nestedObjects[this.getNestedInfoObjectCollectionKey(objtype, treeop)] = collection;
         }
     }

@@ -55,6 +55,24 @@
             } as Xmla.Listener);
         }
 
+        BeginSession(onsuccess: (sessionId: string) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
+                var properties = {}
+                properties[Xmla.PROP_CATALOG] = this.Database;
+                this.xmla.executeTabular({ url: this.Url, withCredentials: true, statement: "", properties: properties, tag: handler } as Xmla.ExecuteOptions);
+            }
+        }
+
+        EndSession(onsuccess: () => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
+                var properties = {}
+                properties[Xmla.PROP_CATALOG] = this.Database;
+                this.xmla.executeTabular({ url: this.Url, withCredentials: true, statement: "", properties: properties, tag: handler } as Xmla.ExecuteOptions);
+            }
+        }
+
         GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
             if (this.Url != null) {
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;

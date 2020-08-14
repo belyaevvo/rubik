@@ -1,8 +1,7 @@
 ﻿/// <reference path="Interfaces.ts" />
 /// <reference path="Axis.ts" />
 /// <reference path="MeasureInfo.ts" />
-/// <reference path="CalculatedMember.ts" />
-/// <reference path="CalculatedSet.ts" />
+
 
 
 
@@ -11,12 +10,12 @@ module Rubik.DataHub {
         private manager: Rubik.DataHub.PivotDataManager;
         public hierarchies: Collections.Dictionary<HierarchySet> = new Collections.Dictionary<HierarchySet>();
         public measures: Collections.Dictionary<Measure> = new Collections.Dictionary<Measure>();
-        public Columns: HierarchyAxis = new HierarchyAxis();
-        public Rows: HierarchyAxis = new HierarchyAxis();
-        public Filters: HierarchyAxis = new HierarchyAxis();
+        public Columns: HierarchyAxis = new HierarchyAxis(AxisRoleEnum.Cols);
+        public Rows: HierarchyAxis = new HierarchyAxis(AxisRoleEnum.Rows);
+        public Filters: HierarchyAxis = new HierarchyAxis(AxisRoleEnum.Filters);
         public Data: DataAxis = new DataAxis();
-        public CalculatedMembers: List<CalculatedMember> = new Rubik.Collections.List<CalculatedMember>();
-        public CalculatedSets: List<CalculatedSet> = new Rubik.Collections.List<CalculatedSet>();
+        public CustomMembers: List<CustomMember> = new Rubik.Collections.List<CustomMember>();
+        public CustomSets: List<CustomSet> = new Rubik.Collections.List<CustomSet>();
         public CubeName: string;
 
         SchemaChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
@@ -134,6 +133,11 @@ module Rubik.DataHub {
         public OnCubeChanged(args: Events.EventArgs): void {
             var self = this;
             this.hierarchies = new Collections.Dictionary<HierarchySet>();
+            this.CubeName = this.manager.DataMember;
+            this.Columns = new HierarchyAxis(AxisRoleEnum.Cols);
+            this.Rows = new HierarchyAxis(AxisRoleEnum.Rows);
+            this.Filters = new HierarchyAxis(AxisRoleEnum.Filters);
+            this.Data = new DataAxis();
             this.manager.CubeInfo.Hierarchies.then(hiers => {
                 //this.hierarchies.                
                 for (var hier of hiers) {
@@ -141,7 +145,7 @@ module Rubik.DataHub {
                     hs.HierarchyName = hier.UniqueName;
                     hs.Info = hier;
                     this.hierarchies.add(hier.UniqueName, hs);
-                }
+                }                
             });
 
             this.measures = new Collections.Dictionary<Measure>();

@@ -55,7 +55,9 @@
         _xmlnsSchemaInstance = "http://www.w3.org/2001/XMLSchema-instance",
         _xmlnsSchemaInstancePrefix = "xsi",
         _xmlnsRowset = _xmlnsXmla + ":rowset",
-        _xmlnsDataset = _xmlnsXmla + ":mddataset"
+        _xmlnsDataset = _xmlnsXmla + ":mddataset",
+        _xmlnsEngine = "http://schemas.microsoft.com/analysisservices/2003/engine",
+        _xmlnsIsEngine = "xmlns=\"" + _xmlnsEngine + "\""
     ;
 
     var _createXhr;
@@ -684,6 +686,23 @@
     var _xmlaDISCOVER = "DISCOVER_";
     var _xmlaMDSCHEMA = "MDSCHEMA_";
     var _xmlaDBSCHEMA = "DBSCHEMA_";
+
+    /**
+    *
+    *
+    *
+    *
+    *
+    *
+    */
+
+    Xmla.HEADER_SESSION = "Session";
+    Xmla.HEADER_BEGIN_SESSION = "BeginSession";
+    Xmla.HEADER_END_SESSION = "EndSession";
+    Xmla.HEADER_PROTOCOL_CAPABILITIES = "ProtocolCapabilities";
+    Xmla.HEADER_CAPABILITY = "Capability";
+    Xmla.HEADER_SESSION_ID = "SessionId";
+
 
     /**
     *   Can be used as value for the <code>requestType</code> option in the options object passed to the to
@@ -1824,11 +1843,37 @@
         *   @return {string} The SOAP message.
         **/
         getXmlaSoapMessage: function getXmlaSoapMessage(options) {
-            var method = options.method,
-                msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+            var method = options.method;
+            var header = "";
+
+            if (options.header || options.SessionId) {
+                header = "\n <" + _xmlnsSOAPenvelopePrefix + ":Header>";
+                if (options.header) {
+                    if (options.header == Xmla.HEADER_BEGIN_SESSION) {
+                        header += "\n <" + Xmla.HEADER_BEGIN_SESSION + " " + _xmlnsIsXmla + " />";
+                    }
+                    else if (options.header == Xmla.HEADER_END_SESSION) {
+                        header += "\n <" + Xmla.HEADER_END_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=" + options.SessionId + " />";
+                    }
+                    else if (options.header == Xmla.HEADER_PROTOCOL_CAPABILITIES) {
+                        header += "\n <" + Xmla.HEADER_PROTOCOL_CAPABILITIES + " " + _xmlnsIsEngine + " >";
+                        for (var prop in options.header.ProtocolCapabilities) {
+                            header += "\n <" + Xmla.HEADER_CAPABILITY + " >" + options.header.ProtocolCapabilities[prop] + "</" + Xmla.HEADER_CAPABILITY + " >";
+                        }
+                        header += "\n </" + Xmla.HEADER_PROTOCOL_CAPABILITIES + " >";
+                    }
+                }
+                else if (options.SessionId) {
+                    header += "\n <" + Xmla.HEADER_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=" + options.SessionId + " />";
+                }
+                header += "\n </" + _xmlnsSOAPenvelopePrefix + ":Header>";
+            }
+
+            var msg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 "\n<" + _xmlnsSOAPenvelopePrefix + ":Envelope" +
                 " " + _xmlnsIsSOAPenvelope +
                 " " + _SOAPencodingStyle + ">" +
+                + header +
                 "\n <" + _xmlnsSOAPenvelopePrefix + ":Body>" +                
                 "\n  <" + method + " " + _xmlnsIsXmla + " " + _SOAPencodingStyle + ">"
             ;

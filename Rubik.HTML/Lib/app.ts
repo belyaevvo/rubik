@@ -23,7 +23,7 @@ class MyApp implements Rubik.Apps.IApp {
         this.StartArgs = args;
         this.MainContainer = container;        
 
-        //this.Test();
+        this.Test2();
         
         
 
@@ -31,8 +31,9 @@ class MyApp implements Rubik.Apps.IApp {
         app.Height("100%");
         app.Width("100%");
 
-        var portalConnection = new Rubik.DataHub.PortalConnection();
+        var portalConnection = new Rubik.DataHub.PortalConnection();        
         portalConnection.Url = "api/mdx";
+        portalConnection.Database = "Сбыт";
 
         var xmlaConnection = new Rubik.DataHub.XmlaConnection();
         xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
@@ -132,6 +133,54 @@ class MyApp implements Rubik.Apps.IApp {
         xmla.discoverMDDimensions({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", withCredentials: true, restrictions: restrictions,  tag: "UUID2" } as Xmla.DiscoverOptions);
         
     }
+
+    Test2(): void {
+
+        var portalConnection = new Rubik.DataHub.PortalConnection();
+        portalConnection.Url = "api/mdx";
+        portalConnection.Database = "Сбыт";
+        
+        portalConnection.BeginSession((sessionId) => {
+            portalConnection.GetDataSet("SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].Members*[Товар].[Товар].Members ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ",
+                (data) => {
+                    portalConnection.EndSession(() => { }, (err) => { alert(err)});
+                },
+                (err) => { }
+            );
+            /*var restrictions = {};
+            restrictions["CATALOG_NAME"] = "Сбыт";
+            restrictions["CUBE_NAME"] = "Сбыт";
+            portalConnection.GetMetaData("MDSCHEMA_CUBES", restrictions, (data) => {
+                alert('success GetMetaData')
+            },
+                (err) => { alert('error GetMetaData')});*/
+
+            portalConnection.Execute("<Cancel xmlns='http://schemas.microsoft.com/analysisservices/2003/engine'></Cancel>", (data) => {
+                alert('success Cancel')
+            },
+                (err) => { alert('error Cancel') });
+            
+        }, (err) => { alert(err); });
+        
+           
+    }
+
+    asPromise(context: any, callbackFunction: (...params) => void, ...args): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            args.push((data) => {
+                resolve(data);
+            });
+            args.push((err) => {
+                reject(err);
+            });
+            
+            if (context) {
+                callbackFunction.call(context, ...args);
+            } else {
+                callbackFunction(...args);
+            }
+    });
+}
 
 }
 

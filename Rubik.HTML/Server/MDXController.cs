@@ -13,25 +13,62 @@ using Rubik.Server.Json;
 
 namespace Rubik.HTML
 {
-    
-        
+
+
     public class MDXController : ApiController
     {
+
+        public class SessionParameters
+        {
+            public string sessionId { get; set; }
+            public string database { get; set; }            
+        }
 
         public class ExecuteParameters
         {
             public string sessionId { get; set; }
-            public string command { get; set; }
-            public Server.Schema.Schema schema { get; set; }
+            public string database { get; set; }
+            public string command { get; set; }            
         }
 
         public class MetaDataParameters
         {
             public string sessionId { get; set; }
+            public string database { get; set; }
             public string schema { get; set; }
             public Dictionary<string, string> restrictions { get; set; }
         }
-        
+
+        // GET api/<controller>/5
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]
+        public HttpResponseMessage BeginSession([FromBody] SessionParameters args)
+        {
+            AdomdConnection con = AcquireConnection(args.database);
+            var response = Request.CreateResponse(HttpStatusCode.OK);            
+            var json = JsonConvert.SerializeObject(new { SessionId = con.SessionID }, Formatting.Indented);
+            con.Close(false);
+            response.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            return response;
+        }
+
+        // GET api/<controller>/5
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]
+        public HttpResponseMessage EndSession([FromBody] SessionParameters args)
+        {
+            AdomdConnection con = AcquireConnection(args.database, args.sessionId);
+            var response = Request.CreateResponse(HttpStatusCode.OK);            
+            con.Close();
+            response.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+
+            return response;
+        }
+
         // GET api/<controller>/5
         //[AcceptVerbs("GET","POST")]    
         //[ActionName("execute")]    
@@ -39,7 +76,7 @@ namespace Rubik.HTML
         [HttpPost]
         public HttpResponseMessage Execute([FromBody] ExecuteParameters args)
         {
-            AdomdConnection con = AcquireConnection();
+            AdomdConnection con = AcquireConnection(args.database, args.sessionId);            
             AdomdCommand cmd = con.CreateCommand();            
             cmd.CommandText = args.command;
             var rdr = cmd.ExecuteReader();
@@ -68,11 +105,12 @@ namespace Rubik.HTML
                     }
                 }
                 rdr.Close();
-            }            
+            }
+            con.Close(args.sessionId == null ? true : false);
             DataSet ds = new DataSet();
             ds.Tables.Add(dt);            
             string json = CreateJsonDataSet(ds);
-            var response = Request.CreateResponse(HttpStatusCode.OK);
+            var response = Request.CreateResponse(HttpStatusCode.OK);            
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;            
         }
@@ -85,11 +123,13 @@ namespace Rubik.HTML
         [HttpPost]
         public HttpResponseMessage ExecuteNonQuery([FromBody] ExecuteParameters args)
         {
-            AdomdConnection con = AcquireConnection();
-            AdomdCommand cmd = con.CreateCommand();
+            AdomdConnection con = AcquireConnection(args.database, args.sessionId);
+            AdomdCommand cmd = con.CreateCommand();                        
             cmd.CommandText = args.command;
-            cmd.ExecuteNonQuery();                        
-            var response = Request.CreateResponse(HttpStatusCode.OK);            
+            cmd.ExecuteNonQuery();
+            con.Close(args.sessionId == null ? true : false);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent("{}", Encoding.UTF8, "application/json");
             return response;
         }
 
@@ -101,14 +141,14 @@ namespace Rubik.HTML
         [HttpPost]
         public HttpResponseMessage ExecuteCellSet([FromBody] ExecuteParameters args)
         {
-            AdomdConnection con = AcquireConnection();
+            AdomdConnection con = AcquireConnection(args.database, args.sessionId);
             AdomdCommand cmd = con.CreateCommand();
             //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
             cmd.CommandText = args != null && !string.IsNullOrEmpty(args.command) ? args.command : "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объекты учета].[Все].Children DIMENSION PROPERTIES [MEMBER_CAPTION],[Объект учета].[Объекты учета].[Полное наименование] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
             CellSet cst = cmd.ExecuteCellSet();
             string json = CreateJsonCellSet(cst);
             //string json2 = CreateJsonCellSet2(cst);
-            con.Close();
+            con.Close(args.sessionId == null ? true : false);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;
@@ -118,7 +158,7 @@ namespace Rubik.HTML
         [HttpPost]
         public HttpResponseMessage GetMetaData([FromBody] MetaDataParameters args)
         {
-            AdomdConnection con = AcquireConnection();
+            AdomdConnection con = AcquireConnection(args.database, args.sessionId);
             var restrictions = new AdomdRestrictionCollection();
             foreach (var restriction in args.restrictions.Select(s => new AdomdRestriction(s.Key, s.Value)))
             {
@@ -126,6 +166,7 @@ namespace Rubik.HTML
             }
             DataSet ds = con.GetSchemaDataSet(args.schema,restrictions);
             string json = CreateJsonDataSet(ds);
+            con.Close(args.sessionId == null ? true : false);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;
@@ -133,12 +174,13 @@ namespace Rubik.HTML
 
        
 
-        private AdomdConnection AcquireConnection()
+        private AdomdConnection AcquireConnection(string database, string sessionId = null)
         {
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp2.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=" + database + ";");
+            con.SessionID = sessionId;
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;
