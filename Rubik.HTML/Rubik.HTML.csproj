@@ -57,9 +57,6 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="..\xmla4js\src\Xmla.js">
-      <Link>Lib\Externals\Xmla.js</Link>
-    </Content>
     <Content Include="Content\icons\1000.ico" />
     <Content Include="Content\icons\1001.ico" />
     <Content Include="Content\icons\10181.ico" />
