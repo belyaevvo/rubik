@@ -641,6 +641,7 @@
     <TypeScriptCompile Include="Lib\DataHub\Schema\SelectedMember.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\DimensionInfo.ts" />
     <Content Include="Lib\Externals\polyfill.js" />
+    <Content Include="Lib\Externals\Xmla.js" />
     <Content Include="package.json" />
     <Content Include="Lib\tsconfig.json" />
     <Content Include="Content\Packages\fontAwesome\fonts\fontawesome-webfont.eot" />
