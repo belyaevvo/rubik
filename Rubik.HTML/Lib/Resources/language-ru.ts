@@ -6,7 +6,8 @@ namespace Rubik.Resources {
         pivotAreaFilters: "Фильтры",
         pivotAreaData: "Значения",
         pivotAreaCols: "Столбцы",
-        pivotAreaRows: "Строки"
+        pivotAreaRows: "Строки",
+        pivotViewLoadingMessage: "Выполняется..."
     }
 
     Localization.locales["ru"] = Rubik.Resources.russianStrings;

@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubik.HTML", "Rubik.HTML\Ru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeScript UI", "typescriptui\Main\TypeScript UI.csproj", "{B40009C5-59E2-4A90-AE98-5B878F56D327}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xmla", "xmla", "{5FB238E1-24B4-4D6B-8EA4-A5FCD74D98F0}"
+	ProjectSection(SolutionItems) = preProject
+		xmla4js\src\Xmla.js = xmla4js\src\Xmla.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

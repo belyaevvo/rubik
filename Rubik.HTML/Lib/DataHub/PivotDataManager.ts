@@ -9,7 +9,9 @@ module Rubik.DataHub {
 
         private objects: {};   
         private datamember: string = null;
-        private _connection: IPivotConnection
+        private _connection: IPivotConnection;
+        private _session: IPivotSession = null;
+        private _cmdCount: number = 0;
 
         SessionId: string;
 
@@ -53,22 +55,42 @@ module Rubik.DataHub {
         get Connection(): IPivotConnection {
             return this._connection
         }
+
+        get IsRunning(): boolean {
+            return this._cmdCount > 0;
+        }
         
        
         set Command(command: string) {
-            this.CommandStarted.Invoke(new Events.EventArgs(this));
-            this.GetDataSet(command,
-                function (data) {
-                    this.CommandComplete.Invoke(new Events.EventArgs(this));
-                    this.DataSource._isPopulated = true;     
-                    this.DataSource.Data = data;                    
-                }.bind(this),
-                function (error) {
-                    this.CommandCancel.Invoke(new Events.EventArgs(this));
-                    this.CommandComplete.Invoke(new Events.EventArgs(this));
-                    this.DataSource._isPopulated = false;    
-                    alert(error.responseText);                     
-                }.bind(this));
+
+            var startCommand = () => {
+                this._cmdCount++;
+                this.CommandStarted.Invoke(new Events.EventArgs(this));
+                this.GetDataSet(command,
+                    (data, session) => {
+                        this._cmdCount--;
+                        this.CommandComplete.Invoke(new Events.EventArgs(this));
+                        this.DataSource.Data = data;
+                    },
+                    (error, session) => {                        
+                        //this.DataSource.Data = null;
+                        if (session && !session.Cancelled()) {
+                            this._cmdCount--;
+                            this.CommandComplete.Invoke(new Events.EventArgs(this));
+                            alert(error.responseText);
+                        }
+                    });
+            };
+
+            if (this._session) {
+                this.Cancel(() => {}, (error) => { alert(error.responseText); });
+                startCommand();
+            }
+            else {
+                startCommand();
+            }
+
+            
         }
 
        
@@ -81,9 +103,34 @@ module Rubik.DataHub {
                 this.Command = this.QueryGenerator.GetQueryString(this.Schema);
             }, this));
         }
-                
-        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {            
-            this.Connection.GetDataSet(command, onsuccess, onerror);
+
+        Cancel(onsuccess: () => void, onerror: (error: any) => void): void {
+            if (this._session) {                            
+                this._session.Cancel(() => {                    
+                    onsuccess();
+                }, onerror);
+                this._cmdCount--;
+                this.CommandCancel.Invoke(new Events.EventArgs(this));
+                this.CommandComplete.Invoke(new Events.EventArgs(this));   
+            }
+            else {
+                onsuccess();
+            }
+        }
+
+        GetDataSet(command: string, onsuccess: (data: any, session: IPivotSession) => void, onerror: (error: any, session: IPivotSession) => void): void {
+            this.Connection.BeginSession((session) => {
+                this._session = session;
+                this.Connection.GetDataSet(command, (data) => {
+                    onsuccess(data, session);
+                    this.Connection.EndSession(session, () => { if (this._session == session) this._session = null; }, (error) => { });
+                }, (error) => {
+                    onerror(error, session);
+                    this.Connection.EndSession(session, () => { if (this._session == session) this._session = null; }, (error) => { });
+                }, session);
+            }, (error) => {
+                onerror(error, null);
+            });            
         }
 
         GetMetaData(schema: string, restrictions: object, onsuccess: (data: any) => void, onerror: (error: any) => void): void {

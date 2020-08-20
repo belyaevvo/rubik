@@ -4,5 +4,6 @@
         pivotAreaData: string;
         pivotAreaCols: string;
         pivotAreaRows: string;
+        pivotViewLoadingMessage: string;
     }
 }

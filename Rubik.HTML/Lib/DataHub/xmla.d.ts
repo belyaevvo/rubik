@@ -6,6 +6,10 @@ declare class Xmla {
     static METHOD_DISCOVER: string;
     static METHOD_EXECUTE: string;
 
+    static HEADER_BEGIN_SESSION: string;
+    static HEADER_END_SESSION: string;
+    static HEADER_PROTOCOL_CAPABILITIES: string;
+
     static EVENT_REQUEST: string;
     static EVENT_SUCCESS: string;
     static EVENT_ERROR: string;
@@ -139,6 +143,9 @@ declare namespace Xmla {
         username: string;
         password: string;        
         withCredentials: boolean;
+        header: string;
+        sessionId: string;
+        protocolCapabilities: object;
         properties: object; 
         tag: any;       
     }
@@ -166,6 +173,7 @@ declare namespace Xmla {
     }
 
     export interface ExecuteData extends AdvancedOptions {
+        resultset: Xmla.Rowset;
         dataset: Xmla.Dataset;
     }
 

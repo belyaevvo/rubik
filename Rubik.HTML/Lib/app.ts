@@ -23,7 +23,7 @@ class MyApp implements Rubik.Apps.IApp {
         this.StartArgs = args;
         this.MainContainer = container;        
 
-        this.Test2();
+        //this.Test2();
         
         
 
@@ -37,11 +37,12 @@ class MyApp implements Rubik.Apps.IApp {
 
         var xmlaConnection = new Rubik.DataHub.XmlaConnection();
         xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
+        xmlaConnection.WithCredentials = true;
         xmlaConnection.Database = "Сбыт";
         
 
-        //var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
-        var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
+        var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
+        //var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
         pivotManager.DataMember = "Сбыт";
 
         app.PivotDataManager = pivotManager;
@@ -136,17 +137,25 @@ class MyApp implements Rubik.Apps.IApp {
 
     Test2(): void {
 
+        //var portalConnection = new Rubik.DataHub.PortalConnection();
+        //portalConnection.Url = "api/mdx";
+        //portalConnection.Database = "Сбыт";
+
         var portalConnection = new Rubik.DataHub.PortalConnection();
         portalConnection.Url = "api/mdx";
         portalConnection.Database = "Сбыт";
-        
-        portalConnection.BeginSession((sessionId) => {
+
+        var sess: Rubik.DataHub.IPivotSession;
+        portalConnection.BeginSession((session) => {
             portalConnection.GetDataSet("SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].Members*[Товар].[Товар].Members ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ",
                 (data) => {
-                    portalConnection.EndSession(() => { }, (err) => { alert(err)});
+                    portalConnection.EndSession(session, () => { }, (err) => { alert(err); });
                 },
-                (err) => { }
+                (err) => { alert(err);},
+                session
             );
+
+            session.Cancel(() => { }, (err) => { });
             /*var restrictions = {};
             restrictions["CATALOG_NAME"] = "Сбыт";
             restrictions["CUBE_NAME"] = "Сбыт";
@@ -154,13 +163,15 @@ class MyApp implements Rubik.Apps.IApp {
                 alert('success GetMetaData')
             },
                 (err) => { alert('error GetMetaData')});*/
+                        
 
-            portalConnection.Execute("<Cancel xmlns='http://schemas.microsoft.com/analysisservices/2003/engine'></Cancel>", (data) => {
+            /*portalConnection.Execute("<Cancel xmlns='http://schemas.microsoft.com/analysisservices/2003/engine'></Cancel>", (data) => {
                 alert('success Cancel')
             },
-                (err) => { alert('error Cancel') });
+                (err) => { alert('error Cancel') });*/
             
         }, (err) => { alert(err); });
+
         
            
     }

@@ -6,6 +6,7 @@ namespace Rubik.Resources {
         pivotAreaFilters: "Filters",
         pivotAreaData: "Values",
         pivotAreaCols: "Columns",
-        pivotAreaRows: "Rows"
+        pivotAreaRows: "Rows",
+        pivotViewLoadingMessage: "Executing..."
     }
 }

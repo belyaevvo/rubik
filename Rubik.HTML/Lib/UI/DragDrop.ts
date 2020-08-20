@@ -18,8 +18,8 @@ module Rubik.UI {
         static enabledrop: boolean = false;
         static ghost: GhostControl = null; 
         static Data: object = {};
-        private static dragSource: DragDropObject = new DragDropObject();             
-        private static dropTarget: DragDropObject = new DragDropObject(); 
+        static dragSource: DragDropObject = new DragDropObject();             
+        static dropTarget: DragDropObject = new DragDropObject(); 
 
         static Initialize(): void {
             document.onmousedown = function (e) {
@@ -96,6 +96,9 @@ module Rubik.UI {
                         this.dropTarget.position = new Rubik.Common.Point(position.x, position.y);
                         this.enabledrop = destination.DraggedEnter();
                     }
+                    else {
+                        this.dropTarget = new DragDropObject();                        
+                    }
                     this.target = destination;                                     
                 }
                 if (this.target && this.enabledrop) {
@@ -108,8 +111,8 @@ module Rubik.UI {
             if (this.dragging) {
                 var destination = this.FindElement(target, '.droptarget') as IDropTarget;  
                 this.dropTarget.position = new Rubik.Common.Point(position.x, position.y);                        
-                if (destination) {
-                    if (this.source) this.source.DragCompleted();                                        
+                if (this.source) this.source.DragCompleted();   
+                if (destination && this.enabledrop) {                                                         
                     destination.Dropped();
                 }
                 this.DragStop();
@@ -123,6 +126,9 @@ module Rubik.UI {
                 this.dragging = false;
                 this.dragSource = new DragDropObject();
                 this.dropTarget = new DragDropObject();
+                this.target = null;
+                this.source = null;
+                this.enabledrop = false;
             }
             this.Data = {};
         }

@@ -1,6 +1,6 @@
 ﻿module Rubik.DataHub {
     export interface ICellSet {
-        cells: ICell[];
+        cells: Rubik.Collections.IObjectDictionary<ICell>;
         columns: IResultAxis;
         rows: IResultAxis;
         filters: IResultAxis;
@@ -13,7 +13,7 @@
 
     export interface ICell {
         value: any;
-        formattedValue: string;
+        fmtValue: string;
     }
 
     export interface IPosition {

@@ -7,7 +7,9 @@
         public static _select: string = " select ";
         public static _nonEmpty: string = " non empty ";
         public static _dimProperties: string = " dimension properties ";
-        public static _intrinsicDimProperties: string = "[MEMBER_CAPTION]";
+        public static _cellProperties: string = " CELL PROPERTIES VALUE, FORMATTED_VALUE";        
+        //public static _intrinsicDimProperties: string = "[MEMBER_UNIQUE_NAME],[MEMBER_CAPTION]";
+        public static _intrinsicDimProperties: string = "";
         public static _onColumns: string = " on columns ";
         public static _onRows: string = " on rows ";
         public static _from: string = " from ";
@@ -26,6 +28,7 @@
         public static _descendants: string = "descendants";
         public static _children: string = ".children";
         public static _drilldownlevel: string = "drilldownlevel";
+        
 
         private static curlyBrackets(str: string): string {
             return "{" + str + "}";
@@ -67,8 +70,11 @@
         }
 
 
-        public GetQueryString(schema: Schema): string {            
-            return this.GetWithString(schema) + MDXQueryGenerator._select + this.GetSelectString(schema) + MDXQueryGenerator._from + this.GetFromString(schema);
+        public GetQueryString(schema: Schema): string {
+            return this.GetWithString(schema)
+                + MDXQueryGenerator._select + this.GetSelectString(schema)
+                + MDXQueryGenerator._from + this.GetFromString(schema)
+                + MDXQueryGenerator._cellProperties;
         }
 
         private GetWithString(schema: Schema): string {
@@ -127,7 +133,8 @@
                     .map((value, index, arr) => { return this.GetHierarchyPropertyString(value); })
                     .filter((value) => { return value; })
                     .join(MDXQueryGenerator._propertiesSeparator);
-                axisString += MDXQueryGenerator._dimProperties + MDXQueryGenerator._intrinsicDimProperties + dimProperties;
+                if (dimProperties)
+                    axisString += MDXQueryGenerator._dimProperties + MDXQueryGenerator._intrinsicDimProperties + dimProperties;
             }
             return axisString;
         }

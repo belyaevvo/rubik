@@ -43,6 +43,9 @@ namespace Rubik.Resources {
             if (result === undefined) {
                 result = this.locales["en"][strName];
             }
+            if (result === undefined) {
+                result = strName;
+            }
             return result;
         },
         getLocales: function (): Array<string> {

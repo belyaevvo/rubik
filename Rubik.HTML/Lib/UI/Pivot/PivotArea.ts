@@ -37,7 +37,8 @@ module Rubik.UI.Pivot {
             this.areapanel.AllowDrop();
             this.areapanel.OnDragStarted.Attach(new DragStartedEventHandler(this.areapanel_OnDragStarted, this));
             this.areapanel.OnDraggedEnter.Attach(new DraggedEnterEventHandler(this.areapanel_OnDraggedEnter, this));
-            this.areapanel.OnDropped.Attach(new Events.SimpleEventHandler(this.areapanel_OnDropped, this));            
+            this.areapanel.OnDropped.Attach(new Events.SimpleEventHandler(this.areapanel_OnDropped, this));
+            this.areapanel.OnDragCompleted.Attach(new Events.SimpleEventHandler(this.areapanel_OnDragCompleted, this));
             this._div = $(document.createElement('div'));
             this._img = $(document.createElement('img'));            
             this._div.append(this._img);
@@ -114,9 +115,17 @@ module Rubik.UI.Pivot {
         }
 
         areapanel_OnDropped(args: Events.EventArgs) {
-            var info = DragDrop.GetData("InfoObject") as DataHub.MeasureInfo | DataHub.MemberInfo | DataHub.LevelInfo | DataHub.HierarchyInfo | DataHub.DimensionInfo;                        
-            this.PivotDataManager.Schema.SetObjectAxis(info, this.Role);
+            var info = DragDrop.GetData("InfoObject") as DataHub.MeasureInfo | DataHub.MemberInfo | DataHub.LevelInfo | DataHub.HierarchyInfo | DataHub.DimensionInfo;                              
+            this.PivotDataManager.Schema.SetObjectAxis(info, this.Role, this.GetIndexFromPoint(DragDrop.dropTarget.position.x, DragDrop.dropTarget.position.y));
         }
+
+        areapanel_OnDragCompleted(args: Events.EventArgs) {
+            if (!DragDrop.target) {
+                var info = DragDrop.GetData("InfoObject") as DataHub.MeasureInfo | DataHub.MemberInfo | DataHub.LevelInfo | DataHub.HierarchyInfo | DataHub.DimensionInfo;
+                this.PivotDataManager.Schema.SetObjectAxis(info, DataHub.AxisRoleEnum.None);
+            }
+        }
+
 
         pivotDataManager_SchemaChanged(args: Events.EventArgs) {
             if (this.Role == DataHub.AxisRoleEnum.Data) {

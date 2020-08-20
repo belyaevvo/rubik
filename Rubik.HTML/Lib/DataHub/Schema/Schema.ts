@@ -26,7 +26,7 @@ module Rubik.DataHub {
         }
         
 
-        public SetObjectAxis(infoobject: MeasureInfo | MemberInfo | LevelInfo | HierarchyInfo | DimensionInfo, axis: AxisRoleEnum, index: number = -1): void {            
+        public SetObjectAxis(infoobject: MeasureInfo | MemberInfo | LevelInfo | HierarchyInfo | DimensionInfo, axisRole: AxisRoleEnum, index: number = -1): void {            
             var hier: HierarchySet = null;
             switch (infoobject.ObjectType) {
                 case ObjectTypeEnum.Dimension:
@@ -41,7 +41,7 @@ module Rubik.DataHub {
                 case ObjectTypeEnum.Measure:
                     var msr = this.GetMeasure(infoobject.UniqueName);
                     this.Data.Measures.Remove(msr)
-                    if (axis == AxisRoleEnum.Data) {
+                    if (axisRole == AxisRoleEnum.Data) {
                         if (index < 0 || index >= this.Data.Measures.Count()) {
                             this.Data.Measures.Add(msr);
                         }
@@ -53,12 +53,12 @@ module Rubik.DataHub {
             }
             if (hier) {
                 var src_axis = this.GetAxisOfHierarchy(hier.HierarchyName);
-                var dst_axis = this.GetAxis(axis) as HierarchyAxis;
+                var dst_axis = this.GetHierarchyAxis(axisRole) as HierarchyAxis;
                 if (src_axis) {
                     src_axis.Sets.Remove(hier);
                 }
                 if (dst_axis) {
-                    if (index < 0 || index >= src_axis.Sets.Count()) {
+                    if (index < 0 || index >= dst_axis.Sets.Count()) {
                         dst_axis.Sets.Add(hier);
                     }
                     else {
@@ -99,6 +99,19 @@ module Rubik.DataHub {
 
         public GetAxisOfHierarchy(uniquename: string): HierarchyAxis {
             return this.GetAxis(this.GetAxisRoleOfHierarchy(uniquename)) as HierarchyAxis;
+        }
+
+        public GetHierarchyAxis(role: AxisRoleEnum): Axis {
+            switch (role) {
+                case AxisRoleEnum.None:
+                    return null;
+                case AxisRoleEnum.Cols:
+                    return this.Columns;
+                case AxisRoleEnum.Rows:
+                    return this.Rows;
+                case AxisRoleEnum.Filters:
+                    return this.Filters;                
+            }
         }
 
         public GetAxis(role: AxisRoleEnum): Axis {

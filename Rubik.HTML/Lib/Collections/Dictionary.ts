@@ -1,5 +1,9 @@
 ﻿module Rubik.Collections {
 
+    export interface IObjectDictionary<T> {
+        [key: string]: T;
+    }
+
     export interface IDictionary<T> {
         add(key: string, value: T): void;
         remove(key: string): void;
@@ -56,5 +60,6 @@
         toLookup(): IDictionary<T> {
             return this;
         }
+        
     }
 }

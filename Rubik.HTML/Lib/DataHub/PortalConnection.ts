@@ -9,7 +9,7 @@
 
         Database: string;
 
-        BeginSession(onsuccess: (sessionId: string) => void, onerror: (error: any) => void): void {
+        BeginSession(onsuccess: (session: PortalSession) => void, onerror: (error: any) => void): void {
             var self = this;
             if (this.Url != null) {
                 $.ajax({
@@ -18,10 +18,12 @@
                     //contentType: 'application/json; charset=utf-8',
                     data: { database: self.Database },
                     dataType: 'json',
-                    success: function (data) {
-                        self.SessionId = data.SessionId;                     
+                    success: function (data) {                        
+                        var session = new PortalSession();
+                        session.connection = self;
+                        session.sessionId = data.SessionId;                        
                         if (onsuccess)
-                            onsuccess(data.SessionId);
+                            onsuccess(session);
                     },
                     error: function (error) {
                         if (onerror) {
@@ -35,14 +37,14 @@
             }
         }
 
-        EndSession(onsuccess: () => void, onerror: (error: any) => void): void {
+        EndSession(session: PortalSession, onsuccess: () => void, onerror: (error: any) => void): void {
             var self = this;
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/EndSession',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: self.SessionId },
+                    data: { sessionId: session.sessionId },
                     dataType: 'json',
                     success: function (data) {                        
                         if (onsuccess)
@@ -60,13 +62,13 @@
             }
         }
        
-        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        GetDataSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void, session?: PortalSession): void {
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/executecellset',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, database: this.Database, command: command },
+                    data: { sessionId: session ? session.sessionId : null, database: this.Database, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -84,13 +86,15 @@
             }
         }
 
-        GetRowSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        
+
+        GetRowSet(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void, session?: PortalSession): void {
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/execute',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, database: this.Database, command: command },
+                    data: { sessionId: session ? session.sessionId : null, database: this.Database, command: command },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -108,7 +112,7 @@
             }
         }
 
-        GetMetaData(schema: string, restrictions: object, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        GetMetaData(schema: string, restrictions: object, onsuccess: (data: any) => void, onerror: (error: any) => void, session?: PortalSession): void {
             if (this.Url != null) {
                 if (!restrictions) restrictions = {};                
                 var restarr = Object.keys(restrictions).map((key) => ({ Key: key, Value: restrictions[key] })); 
@@ -117,7 +121,7 @@
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
                     data: {
-                        sessionId: this.SessionId, database: this.Database, schema: schema, restrictions: restarr
+                        sessionId: session ? session.sessionId : null, database: this.Database, schema: schema, restrictions: restarr
                     },
                     dataType: 'json',
                     success: function (data) {
@@ -136,13 +140,37 @@
             }
         }
 
-        Execute(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+        Execute(command: string, onsuccess: (data: any) => void, onerror: (error: any) => void, session?: PortalSession): void {
             if (this.Url != null) {
                 $.ajax({
                     url: this.Url + '/executenonquery',
                     type: 'POST',
                     //contentType: 'application/json; charset=utf-8',
-                    data: { sessionId: this.SessionId, database: this.Database, command: command },
+                    data: { sessionId: session ? session.sessionId:null, database: this.Database, command: command },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (onsuccess)
+                            onsuccess(data);
+                    },
+                    error: function (error) {
+                        if (onerror) {
+                            onerror(error);
+                        }
+                        else {
+                            alert(error.responseText);
+                        }
+                    }
+                });
+            }
+        }
+
+        Cancel(session: PortalSession, onsuccess: (data: any) => void, onerror: (error: any) => void): void {
+            if (this.Url != null) {
+                $.ajax({
+                    url: this.Url + '/cancel',
+                    type: 'POST',
+                    //contentType: 'application/json; charset=utf-8',
+                    data: { sessionId: session.sessionId, database: this.Database },
                     dataType: 'json',
                     success: function (data) {
                         if (onsuccess)
@@ -160,5 +188,25 @@
             }
         }
         
+    }
+
+    export class PortalSession implements IPivotSession {
+        connection: PortalConnection = null;
+        sessionId: string = null;
+        cancelled: boolean = false;
+        Cancel(onsuccess: () => void, onerror: (error: any) => void): void {
+            if (this.connection && this.sessionId) {
+                this.cancelled = true; 
+                this.connection.Cancel(this,
+                    (data) => { onsuccess(); },
+                    (err) => { onerror(err) }
+                );
+            }
+        }
+        Cancelled(): boolean {
+            var cancelled = this.cancelled;
+            this.cancelled = false;
+            return cancelled;
+        }
     }
 }

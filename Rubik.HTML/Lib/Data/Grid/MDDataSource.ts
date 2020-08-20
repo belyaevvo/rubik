@@ -10,17 +10,20 @@ module Rubik.Data {
 
         set Data(data: any) {
             this.data = data;
-            if (data.columns) {
-                this.colIndexer = new Indexer(data.columns.hierarchies);
-            }
-            else {
-                this.colIndexer = new Indexer([]);
-            }
-            if (data.rows) {
-                this.rowIndexer = new Indexer(data.rows.hierarchies);
-            }
-            else {
-                this.rowIndexer = new Indexer([]);
+            this._isPopulated = data != null;
+            if (data) {
+                if (data.columns) {
+                    this.colIndexer = new Indexer(data.columns.hierarchies);
+                }
+                else {
+                    this.colIndexer = new Indexer([]);
+                }
+                if (data.rows) {
+                    this.rowIndexer = new Indexer(data.rows.hierarchies);
+                }
+                else {
+                    this.rowIndexer = new Indexer([]);
+                }
             }
             this.DataChanged.Invoke(new Events.EventArgs(this));
         }
@@ -121,7 +124,10 @@ module Rubik.Data {
         getCellValue(col: number, row: number): any {
             if (this.Data != null) {
                 var index: number = col * this.getRowsCount() + row;
-                return this.Data.cells[index].value;
+                var cell = this.Data.cells[index];
+                if (cell) {
+                    return cell.value;
+                }                
             }
             return null;
             //return col.toString() + "," + row.toString();
@@ -130,7 +136,10 @@ module Rubik.Data {
         getCellFormattedValue(col: number, row: number): string {
             if (this.Data != null) {
                 var index: number = row * this.getColsCount() + col;
-                return this.Data.cells[index].formattedValue;
+                var cell = this.Data.cells[index];
+                if (cell) {
+                    return cell.fmtValue;
+                }
             }
             return null;
             //return col.toString() + "," + row.toString();
@@ -228,6 +237,9 @@ module Rubik.Data {
                 }
                 else {
                     mbr = new MDDataMember().initialize(members[idx.hierarchyIndex]);
+                    /*if (idx.hierarchyIndex < (this.hierarchies.length - 1))
+                        mbr.Level = 0;*/
+                    mbr.Level = 0;
                 }
             }
             catch (exception) {

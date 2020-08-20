@@ -1846,25 +1846,25 @@
             var method = options.method;
             var header = "";
 
-            if (options.header || options.SessionId) {
+            if (options.header || options.sessionId) {
                 header = "\n <" + _xmlnsSOAPenvelopePrefix + ":Header>";
                 if (options.header) {
                     if (options.header == Xmla.HEADER_BEGIN_SESSION) {
                         header += "\n <" + Xmla.HEADER_BEGIN_SESSION + " " + _xmlnsIsXmla + " />";
                     }
                     else if (options.header == Xmla.HEADER_END_SESSION) {
-                        header += "\n <" + Xmla.HEADER_END_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=" + options.SessionId + " />";
+                        header += "\n <" + Xmla.HEADER_END_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=\"" + options.sessionId + "\" />";
                     }
                     else if (options.header == Xmla.HEADER_PROTOCOL_CAPABILITIES) {
                         header += "\n <" + Xmla.HEADER_PROTOCOL_CAPABILITIES + " " + _xmlnsIsEngine + " >";
-                        for (var prop in options.header.ProtocolCapabilities) {
-                            header += "\n <" + Xmla.HEADER_CAPABILITY + " >" + options.header.ProtocolCapabilities[prop] + "</" + Xmla.HEADER_CAPABILITY + " >";
+                        for (var prop in options.protocolCapabilities) {
+                            header += "\n <" + Xmla.HEADER_CAPABILITY + " >" + options.protocolCapabilities[prop] + "</" + Xmla.HEADER_CAPABILITY + " >";
                         }
                         header += "\n </" + Xmla.HEADER_PROTOCOL_CAPABILITIES + " >";
                     }
                 }
-                else if (options.SessionId) {
-                    header += "\n <" + Xmla.HEADER_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=" + options.SessionId + " />";
+                else if (options.sessionId) {
+                    header += "\n <" + Xmla.HEADER_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=\"" + options.sessionId + "\" />";
                 }
                 header += "\n </" + _xmlnsSOAPenvelopePrefix + ":Header>";
             }
@@ -1873,7 +1873,7 @@
                 "\n<" + _xmlnsSOAPenvelopePrefix + ":Envelope" +
                 " " + _xmlnsIsSOAPenvelope +
                 " " + _SOAPencodingStyle + ">" +
-                + header +
+                header +
                 "\n <" + _xmlnsSOAPenvelopePrefix + ":Body>" +                
                 "\n  <" + method + " " + _xmlnsIsXmla + " " + _SOAPencodingStyle + ">"
             ;
@@ -1890,19 +1890,16 @@
                         _getXmlaSoapList("Restrictions", "RestrictionList", options.restrictions, "   ") +
                         _getXmlaSoapList("Properties", "PropertyList", options.properties, "   ");
                     break;
-                case Xmla.METHOD_EXECUTE:
-                    if (!options.statement) {
-                        Xmla.Exception._newError(
-                            "MISSING_REQUEST_TYPE",
-                            "Xmla._getXmlaSoapMessage",
-                            options
-                        )._throw();
+                case Xmla.METHOD_EXECUTE:                    
+                    msg += "\n   <Command>";
+                    if (options.statement.length > 0 && options.statement.charAt(0) == '<') {
+                        msg += "\n" + options.statement;
+                    }                        
+                    else if (options.statement != null) {
+                        msg += "\n    <Statement>" + _xmlEncode(options.statement) + "</Statement>";
                     }
-                    msg += "\n   <Command>" +
-                        "\n    <Statement>" + _xmlEncode(options.statement) + "</Statement>" +
-                        "\n   </Command>" +
-                        _getXmlaSoapList("Properties", "PropertyList", options.properties, "   ")
-                    ;
+                    msg += "\n   </Command>";
+                    msg += _getXmlaSoapList("Properties", "PropertyList", options.properties, "   ");                    
                     break;
                 default:
                     //we used to throw an exception here,
@@ -2111,12 +2108,18 @@
                     );
                 }
                 else {
+                    var sessionId = null;
+                    var sessionheader = _getElementsByTagNameNS(responseXml, _xmlnsXmla, "", "Session");
+                    if (sessionheader.length > 0) {
+                        sessionId = _getAttribute(sessionheader[0], "SessionId")                        
+                    }
+                    request.sessionId = sessionId;
                     switch (method) {
                         case Xmla.METHOD_DISCOVER:
                             request.rowset = response = new Xmla.Rowset(responseXml, request.requestType, this);
                             break;
                         case Xmla.METHOD_EXECUTE:
-                            var resultset = null, dataset = null;
+                            var resultset = null, dataset = null;                            
                             var format = request.properties[Xmla.PROP_FORMAT];
                             switch (format) {
                                 case Xmla.PROP_FORMAT_TABULAR:
@@ -2125,7 +2128,9 @@
                                 case Xmla.PROP_FORMAT_MULTIDIMENSIONAL:
                                     response = dataset = new Xmla.Dataset(responseXml);
                                     break;
-                            }
+                                default:
+                                    break;
+                            }                     
                             request.resultset = resultset;
                             request.dataset = dataset;
                             break;
@@ -2226,7 +2231,7 @@
             }
             _applyProps(properties, this.options.properties, false)
             if (!properties[Xmla.PROP_CONTENT]) properties[Xmla.PROP_CONTENT] = Xmla.PROP_CONTENT_SCHEMADATA;
-            if (!properties[Xmla.PROP_FORMAT]) options.properties[Xmla.PROP_FORMAT] = Xmla.PROP_FORMAT_MULTIDIMENSIONAL;
+            //if (!properties[Xmla.PROP_FORMAT]) options.properties[Xmla.PROP_FORMAT] = Xmla.PROP_FORMAT_MULTIDIMENSIONAL;
             var request = _applyProps(options, {
                 method: Xmla.METHOD_EXECUTE
             }, true);

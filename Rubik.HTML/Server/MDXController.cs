@@ -18,6 +18,8 @@ namespace Rubik.HTML
     public class MDXController : ApiController
     {
 
+        static Dictionary<string, AdomdCommand> runningCommands = new Dictionary<string, AdomdCommand>();
+
         public class SessionParameters
         {
             public string sessionId { get; set; }
@@ -38,6 +40,9 @@ namespace Rubik.HTML
             public string schema { get; set; }
             public Dictionary<string, string> restrictions { get; set; }
         }
+        
+
+       
 
         // GET api/<controller>/5
         //[AcceptVerbs("GET","POST")]    
@@ -69,6 +74,36 @@ namespace Rubik.HTML
             return response;
         }
 
+
+        // GET api/<controller>/5
+        //[AcceptVerbs("GET","POST")]    
+        //[ActionName("execute")]    
+        //[HttpGet]
+        [HttpPost]
+        public HttpResponseMessage Cancel([FromBody] SessionParameters args)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);            
+            if (args.sessionId != null)
+            {
+                if (runningCommands.ContainsKey(args.sessionId))
+                {
+                    var cmd = runningCommands[args.sessionId];
+                    if (cmd != null)
+                    {
+                        cmd.Cancel();                        
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            response.Content = new StringContent("{}", Encoding.UTF8, "application/json");
+
+            return response;
+        }
+
         // GET api/<controller>/5
         //[AcceptVerbs("GET","POST")]    
         //[ActionName("execute")]    
@@ -77,7 +112,8 @@ namespace Rubik.HTML
         public HttpResponseMessage Execute([FromBody] ExecuteParameters args)
         {
             AdomdConnection con = AcquireConnection(args.database, args.sessionId);            
-            AdomdCommand cmd = con.CreateCommand();            
+            AdomdCommand cmd = con.CreateCommand();
+            RegisterCommand(args.sessionId,cmd);      
             cmd.CommandText = args.command;
             var rdr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
@@ -106,6 +142,7 @@ namespace Rubik.HTML
                 }
                 rdr.Close();
             }
+            UnRegisterCommand(args.sessionId);
             con.Close(args.sessionId == null ? true : false);
             DataSet ds = new DataSet();
             ds.Tables.Add(dt);            
@@ -114,6 +151,8 @@ namespace Rubik.HTML
             response.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return response;            
         }
+
+        
 
 
         // GET api/<controller>/5
@@ -124,9 +163,11 @@ namespace Rubik.HTML
         public HttpResponseMessage ExecuteNonQuery([FromBody] ExecuteParameters args)
         {
             AdomdConnection con = AcquireConnection(args.database, args.sessionId);
-            AdomdCommand cmd = con.CreateCommand();                        
+            AdomdCommand cmd = con.CreateCommand();
+            RegisterCommand(args.sessionId, cmd);
             cmd.CommandText = args.command;
             cmd.ExecuteNonQuery();
+            UnRegisterCommand(args.sessionId);
             con.Close(args.sessionId == null ? true : false);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent("{}", Encoding.UTF8, "application/json");
@@ -141,17 +182,26 @@ namespace Rubik.HTML
         [HttpPost]
         public HttpResponseMessage ExecuteCellSet([FromBody] ExecuteParameters args)
         {
-            AdomdConnection con = AcquireConnection(args.database, args.sessionId);
-            AdomdCommand cmd = con.CreateCommand();
-            //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
-            cmd.CommandText = args != null && !string.IsNullOrEmpty(args.command) ? args.command : "SELECT { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объекты учета].[Все].Children DIMENSION PROPERTIES [MEMBER_CAPTION],[Объект учета].[Объекты учета].[Полное наименование] ON 1 FROM [Сбыт] CELL PROPERTIES VALUE,FORMATTED_VALUE,FORMAT_STRING,UPDATEABLE ";
-            CellSet cst = cmd.ExecuteCellSet();
-            string json = CreateJsonCellSet(cst);
-            //string json2 = CreateJsonCellSet2(cst);
-            con.Close(args.sessionId == null ? true : false);
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(json, Encoding.UTF8, "application/json");
-            return response;
+            try
+            {
+                AdomdConnection con = AcquireConnection(args.database, args.sessionId);
+                AdomdCommand cmd = con.CreateCommand();
+                RegisterCommand(args.sessionId, cmd);
+                //cmd.CommandText = args!=null && !string.IsNullOrEmpty(args.query) ? args.query : "SELECT NON EMPTY { [Measures].[Internet Sales Amount] } ON 0, HIERARCHIZE ( [Geography].[City].AllMembers ) ON 1 FROM [Adventure Works]";
+                cmd.CommandText = args.command;
+                CellSet cst = cmd.ExecuteCellSet();
+                string json = CreateJsonCellSet(cst);
+                //string json2 = CreateJsonCellSet2(cst);
+                UnRegisterCommand(args.sessionId);
+                con.Close(args.sessionId == null ? true : false);
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                return response;
+            }
+            catch (Exception ex) {
+                var response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);                
+                return response;
+            }
         }
 
 
@@ -184,6 +234,22 @@ namespace Rubik.HTML
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
             return con;
+        }
+
+        private void RegisterCommand(string sessionId, AdomdCommand cmd)
+        {
+            if (sessionId != null)
+            {
+                runningCommands[sessionId] = cmd;
+            }
+        }
+
+        private void UnRegisterCommand(string sessionId)
+        {
+            if (sessionId != null)
+            {
+                runningCommands.Remove(sessionId);
+            }
         }
 
         private string CreateJsonDataSet(DataSet ds)
@@ -223,17 +289,21 @@ namespace Rubik.HTML
                     WriteAxis(myJson, cst.FilterAxis, cst.OlapInfo.AxesInfo.FilterAxis);
 
                     myJson.WritePropertyName("cells");
-                    myJson.WriteStartArray();
+                    myJson.WriteStartObject();
                     for (int i = 0; i < cst.Axes[0].Positions.Count * cst.Axes[1].Positions.Count; i++)
                     {
-                        myJson.WriteStartObject();
-                        myJson.WritePropertyName("value");
-                        myJson.WriteValue(cst[i].Value);                        
-                        myJson.WritePropertyName("formattedValue");
-                        myJson.WriteValue(cst[i].FormattedValue);
-                        myJson.WriteEndObject();
+                        if (cst[i].Value != null)
+                        {
+                            myJson.WritePropertyName(i.ToString());
+                            myJson.WriteStartObject();
+                            myJson.WritePropertyName("value");
+                            myJson.WriteValue(cst[i].Value);
+                            myJson.WritePropertyName("fmtValue");
+                            myJson.WriteValue(cst[i].FormattedValue);
+                            myJson.WriteEndObject();
+                        }
                     }
-                    myJson.WriteEndArray();
+                    myJson.WriteEndObject();
                     myJson.WriteEndObject();
 
                 }
