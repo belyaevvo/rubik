@@ -172,7 +172,7 @@ function _ajax(options){
     var xhr, args, headers, header,
         handlerCalled = false,
         handler = function(){
-            handlerCalled = true;
+            handlerCalled = true;            
             switch (xhr.readyState){
                 case 0:
                     if (_isFun(options.aborted)) {
@@ -1912,16 +1912,16 @@ Xmla.prototype = {
         var method = options.method;
         var header = "";
 
-        if (options.header || options.sessionId) {
+        if (options.methodheader || options.sessionId) {
             header = "\n <" + _xmlnsSOAPenvelopePrefix + ":Header>";
-            if (options.header) {
-                if (options.header == Xmla.HEADER_BEGIN_SESSION) {
+            if (options.methodheader) {
+                if (options.methodheader == Xmla.HEADER_BEGIN_SESSION) {
                     header += "\n <" + Xmla.HEADER_BEGIN_SESSION + " " + _xmlnsIsXmla + " />";
                 }
-                else if (options.header == Xmla.HEADER_END_SESSION) {
+                else if (options.methodheader == Xmla.HEADER_END_SESSION) {
                     header += "\n <" + Xmla.HEADER_END_SESSION + " " + _xmlnsIsXmla + " " + Xmla.HEADER_SESSION_ID + "=\"" + options.sessionId + "\" />";
                 }
-                else if (options.header == Xmla.HEADER_PROTOCOL_CAPABILITIES) {
+                else if (options.methodheader == Xmla.HEADER_PROTOCOL_CAPABILITIES) {
                     header += "\n <" + Xmla.HEADER_PROTOCOL_CAPABILITIES + " " + _xmlnsIsEngine + " >";
                     for (var prop in options.protocolCapabilities) {
                         header += "\n <" + Xmla.HEADER_CAPABILITY + " >" + options.protocolCapabilities[prop] + "</" + Xmla.HEADER_CAPABILITY + " >";
@@ -7513,7 +7513,7 @@ Xmla.Dataset.Axis.prototype = {
 *   @return {string} The hierarchy specified by the argument index or name, or the current hierarchy if the argument is omitted.
 */
     hierarchy: function(hierarchyIndexOrName){
-        if (_isUnd(hierarchyIndexOrName)) index = this._hierarchyIndex;
+        if (_isUnd(hierarchyIndexOrName)) hierarchyIndexOrName = this._hierarchyIndex;
         var index, hierarchyName, hierarchy;
         if (_isNum(hierarchyIndexOrName)) {
             if (hierarchyIndexOrName !== parseInt(hierarchyIndexOrName, 10)
@@ -7870,10 +7870,10 @@ Xmla.Dataset.Cellset.prototype = {
             this._getCellNode();
             return this._cellOrd;
         }
-        else {
-            this._idx = 0;
-            return -1;
-        }
+        /*else {                   !!!!
+                this._idx = 0;
+                return -1;
+            }*/
     },
 /**
 *   Returns the internal cell pointer. This is the fysical cell pointer.

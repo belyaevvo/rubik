@@ -7513,7 +7513,7 @@ Xmla.Dataset.Axis.prototype = {
 *   @return {string} The hierarchy specified by the argument index or name, or the current hierarchy if the argument is omitted.
 */
     hierarchy: function(hierarchyIndexOrName){
-        if (_isUnd(hierarchyIndexOrName)) index = this._hierarchyIndex;
+        if (_isUnd(hierarchyIndexOrName)) hierarchyIndexOrName = this._hierarchyIndex;
         var index, hierarchyName, hierarchy;
         if (_isNum(hierarchyIndexOrName)) {
             if (hierarchyIndexOrName !== parseInt(hierarchyIndexOrName, 10)

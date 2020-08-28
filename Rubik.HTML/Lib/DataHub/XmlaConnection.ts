@@ -11,7 +11,6 @@
 
         Database: string;
 
-        WithCredentials: boolean = false;
         
 
         constructor() {
@@ -75,7 +74,7 @@
                 } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
-                this.xmla.execute({ url: this.Url, withCredentials: this.WithCredentials, statement: "", header: Xmla.HEADER_BEGIN_SESSION, properties: properties, tag: handler } as Xmla.ExecuteOptions);
+                this.xmla.execute({ url: this.Url, statement: "", methodheader: Xmla.HEADER_BEGIN_SESSION, properties: properties, tag: handler } as Xmla.ExecuteOptions);
             }
         }
 
@@ -84,7 +83,7 @@
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
-                this.xmla.execute({ url: this.Url, withCredentials: this.WithCredentials, statement: "", header: Xmla.HEADER_END_SESSION, sessionId: session.sessionId ? session.sessionId : null, properties: properties, tag: handler } as Xmla.ExecuteOptions);
+                this.xmla.execute({ url: this.Url, statement: "", methodheader: Xmla.HEADER_END_SESSION, sessionId: session.sessionId ? session.sessionId : null, properties: properties, tag: handler } as Xmla.ExecuteOptions);
             }
         }
 
@@ -93,7 +92,7 @@
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
-                this.xmla.executeMultiDimensional({ url: this.Url, withCredentials: this.WithCredentials, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);               
+                this.xmla.executeMultiDimensional({ url: this.Url, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);               
             }
         }
 
@@ -104,7 +103,7 @@
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
-                this.xmla.executeTabular({ url: this.Url, withCredentials: this.WithCredentials, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);
+                this.xmla.executeTabular({ url: this.Url, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);
             }
         }
 
@@ -114,7 +113,7 @@
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
-                this.xmla.discover({ url: this.Url, withCredentials: this.WithCredentials, requestType: schema, restrictions: restrictions, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.DiscoverOptions);                               
+                this.xmla.discover({ url: this.Url, requestType: schema, restrictions: restrictions, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.DiscoverOptions);                               
             }
         }
        
@@ -123,7 +122,7 @@
                 var handler = { onsuccess: onsuccess, onerror: onerror } as XmlaEventHandler;
                 var properties = {}
                 properties[Xmla.PROP_CATALOG] = this.Database;
-                this.xmla.execute({ url: this.Url, withCredentials: this.WithCredentials, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);
+                this.xmla.execute({ url: this.Url, statement: command, properties: properties, tag: handler, sessionId: session ? session.sessionId : null } as Xmla.ExecuteOptions);
             }
         }
 
@@ -154,7 +153,7 @@
                 while (axis.hasMoreHierarchies()) {
                     var hr = axis.hierarchy();
                     var hier = { uniqueName: hr.name, index: hr.index } as IResultHierarchy;
-                    hier.properties = this.fetchProperties<IHierarchyProperty>(hr, (key, value) => { return { uniqueName: this.decodeXMLValue(key) } as IHierarchyProperty });
+                    hier.properties = this.fetchProperties<IHierarchyProperty>(hr.properties, (key, value) => { return { uniqueName: this.decodeXMLValue(key) } as IHierarchyProperty });
                     hierarchies.push(hier);
                     axis.nextHierarchy();
                 }

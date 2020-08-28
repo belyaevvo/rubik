@@ -23,7 +23,7 @@ class MyApp implements Rubik.Apps.IApp {
         this.StartArgs = args;
         this.MainContainer = container;        
 
-        //this.Test2();
+        this.Test6();
         
         
 
@@ -36,8 +36,7 @@ class MyApp implements Rubik.Apps.IApp {
         portalConnection.Database = "Сбыт";
 
         var xmlaConnection = new Rubik.DataHub.XmlaConnection();
-        xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
-        xmlaConnection.WithCredentials = true;
+        xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";        
         xmlaConnection.Database = "Сбыт";
         
 
@@ -127,15 +126,176 @@ class MyApp implements Rubik.Apps.IApp {
                 }
             }            
         });        
-        xmla.discoverDBCatalogs({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", withCredentials: true, restrictions: restrictions, tag: "UUID" } as Xmla.DiscoverOptions);
+        xmla.discoverDBCatalogs({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", restrictions: restrictions, tag: "UUID" } as Xmla.DiscoverOptions);
         var restrictions = {};
         restrictions["CATALOG_NAME"] = "Сбыт";
         restrictions["CUBE_NAME"] = "Сбыт";
-        xmla.discoverMDDimensions({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", withCredentials: true, restrictions: restrictions,  tag: "UUID2" } as Xmla.DiscoverOptions);
+        xmla.discoverMDDimensions({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", restrictions: restrictions,  tag: "UUID2" } as Xmla.DiscoverOptions);
         
     }
 
     Test2(): void {
+
+        //var portalConnection = new Rubik.DataHub.PortalConnection();
+        //portalConnection.Url = "api/mdx";
+        //portalConnection.Database = "Сбыт";
+
+        var xmlaConnection = new Rubik.DataHub.XmlaConnection();
+        xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
+        xmlaConnection.Database = "Сбыт";
+
+
+        xmlaConnection.GetDataSet("select  non empty {[Дата].[Календарь]} * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from [Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE ",
+            (data) => {
+                alert('test');
+            }, (error) => {
+                alert('error');
+            });
+        
+                   
+    }
+
+    Test3(): void {       
+        
+         
+        var handler = function (e) {                        
+                // Responses beyond a certain size blow up the memory limits in Chrome                
+                //xhr.abort();
+                //throw 'Outsize response - throw it away'
+                //return            
+            switch (xhr.readyState) {
+                case 0:                    
+                    break;
+                case 4:
+                    //See https://www.w3.org/TR/cors/#cross-origin-request-with-preflight-0 
+                    //Preflight request is acceptable if the HTTP status code is in the 2xx range
+                    //Specifically, Windows IIS may return a 204 rather than a 200 code to the OPTIONS request
+                    if (xhr.status >= 200 && xhr.status <= 299) {
+                        var parser: DOMParser = new DOMParser();
+                        parser.parseFromString(xhr.response, "text/xml");                        
+                    }
+                    else {                        
+                    }
+                    break;
+            }
+        };
+
+
+        var msg="<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">" + 
+            "<SOAP-ENV:Header></SOAP-ENV:Header>" +
+                    "<SOAP-ENV:Body>" +
+                        "<Execute xmlns=\"urn:schemas-microsoft-com:xml-analysis\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">" +
+                            "<Command>" +
+                            //"<Statement>select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1) * descendants([Объект учета].[Объект учета], 1) * descendants([Товар].[Товар], 1) on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE </Statement>" +
+                            "<Statement>select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1) * descendants([Объект учета].[Объект учета], 1) on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE </Statement>" +
+                                "</Command>" +
+                                "<Properties>" +
+                                "<PropertyList>" +
+                                "<Catalog>Сбыт</Catalog>" +
+                                "<Format>Multidimensional</Format>" +
+                                "<Content>SchemaData</Content>" +
+                                "<Timeout>3600</Timeout>" +
+                                "<BeginRange>0</BeginRange>" +
+                                "<EndRange>1</EndRange>" + 
+                                "</PropertyList>" +
+                                "</Properties>" +
+                                "</Execute>" +
+                                "</SOAP-ENV:Body>" +
+                                "</SOAP-ENV:Envelope>" 
+            ;
+        var xhr = new (<any>window).XMLHttpRequest();
+
+        var args = ["POST", "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", true];        
+        
+        xhr.open.apply(xhr, args);
+        xhr.responseType = "blob";
+
+        xhr.withCredentials = true;
+
+        xhr.onreadystatechange = handler;
+        xhr.setRequestHeader("Accept", "text/xml, application/xml, application/soap+xml");
+        xhr.setRequestHeader("Content-Type", "text/xml");
+        xhr.send(msg);
+    }
+    
+
+    Test4(): void {
+
+        let receivedLength = 0; // количество байт, полученных на данный момент
+        let chunks = []; // массив полученных двоичных фрагментов (составляющих тело ответа)
+
+        (async () => {
+
+            
+
+            var msg = "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">" +
+                "<SOAP-ENV:Header></SOAP-ENV:Header>" +
+                "<SOAP-ENV:Body>" +
+                "<Execute xmlns=\"urn:schemas-microsoft-com:xml-analysis\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">" +
+                "<Command>" +
+                //"<Statement>select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1) * descendants([Объект учета].[Объект учета], 1) * descendants([Товар].[Товар], 1) on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE </Statement>" +
+                "<Statement>select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE </Statement>" +
+                "</Command>" +
+                "<Properties>" +
+                "<PropertyList>" +
+                "<Catalog>Сбыт</Catalog>" +
+                "<Format>Multidimensional</Format>" +
+                "<Content>SchemaData</Content>" +
+                "<Timeout>3600</Timeout>" +              
+                "</PropertyList>" +
+                "</Properties>" +
+                "</Execute>" +
+                "</SOAP-ENV:Body>" +
+                "</SOAP-ENV:Envelope>"
+                ;
+
+            const headers = new Headers();
+            headers.append("Content-Type", "text/xml");
+
+            var response = await fetch("http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "include", // include, *same-origin, omit
+                headers: headers,
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *client
+                body: msg
+            });
+
+            if (response.status == 200) {
+                var reader = response.body.getReader();
+
+
+                const contentLength = +response.headers.get('Content-Length');
+
+                var parser: Rubik.DataHub.XmlaParser = new Rubik.DataHub.XmlaParser();
+
+
+                // Шаг 3: считываем данные:            
+                while (true) {
+                    const { done, value } = await reader.read();
+
+                    if (done) {
+                        parser.parser.close();
+                        break;
+                    }
+
+                    chunks.push(value);
+                    receivedLength += value.length;
+                    var result = this.Utf8ArrayToStr(value);
+                    parser.parser.write(result);
+
+                    console.log(`Получено ${receivedLength} из ${contentLength}`);
+                    //console.log(result);
+                }
+            }
+
+        })();
+    }
+
+
+    Test5(): void {
 
         //var portalConnection = new Rubik.DataHub.PortalConnection();
         //portalConnection.Url = "api/mdx";
@@ -151,7 +311,7 @@ class MyApp implements Rubik.Apps.IApp {
                 (data) => {
                     portalConnection.EndSession(session, () => { }, (err) => { alert(err); });
                 },
-                (err) => { alert(err);},
+                (err) => { alert(err); },
                 session
             );
 
@@ -163,18 +323,69 @@ class MyApp implements Rubik.Apps.IApp {
                 alert('success GetMetaData')
             },
                 (err) => { alert('error GetMetaData')});*/
-                        
+
 
             /*portalConnection.Execute("<Cancel xmlns='http://schemas.microsoft.com/analysisservices/2003/engine'></Cancel>", (data) => {
                 alert('success Cancel')
             },
                 (err) => { alert('error Cancel') });*/
-            
+
         }, (err) => { alert(err); });
 
-        
-           
     }
+
+
+    Test6(): void {
+
+        var xmlaClient: Rubik.DataHub.XmlaClient = new Rubik.DataHub.XmlaClient();
+
+        var properties = {}
+        properties[Xmla.PROP_CATALOG] = "Сбыт";
+        //var command = "select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE";
+        //xmlaClient.executeMultiDimensional({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", statement: command, properties: properties } as Xmla.ExecuteOptions);               
+
+        var restrictions = {};
+        restrictions["CATALOG_NAME"] = "Сбыт";
+        restrictions["CUBE_NAME"] = "Сбыт";
+        xmlaClient.discoverMDCubes({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", restrictions: restrictions, properties: properties } as Xmla.DiscoverOptions);
+
+        
+    }
+
+
+
+    Utf8ArrayToStr(array): string {
+    var out, i, len, c;
+    var char2, char3;
+
+    out = "";
+    len = array.length;
+    i = 0;
+    while (i < len) {
+        c = array[i++];
+        switch (c >> 4) {
+            case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+                // 0xxxxxxx
+                out += String.fromCharCode(c);
+                break;
+            case 12: case 13:
+                // 110x xxxx   10xx xxxx
+                char2 = array[i++];
+                out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                break;
+            case 14:
+                // 1110 xxxx  10xx xxxx  10xx xxxx
+                char2 = array[i++];
+                char3 = array[i++];
+                out += String.fromCharCode(((c & 0x0F) << 12) |
+                    ((char2 & 0x3F) << 6) |
+                    ((char3 & 0x3F) << 0));
+                break;
+        }
+    }
+
+    return out;
+}
 
     asPromise(context: any, callbackFunction: (...params) => void, ...args): Promise<any> {
         return new Promise<any>((resolve, reject) => {
@@ -184,14 +395,14 @@ class MyApp implements Rubik.Apps.IApp {
             args.push((err) => {
                 reject(err);
             });
-            
+
             if (context) {
                 callbackFunction.call(context, ...args);
             } else {
                 callbackFunction(...args);
             }
-    });
-}
+        });
+    }
 
 }
 

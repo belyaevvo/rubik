@@ -143,7 +143,7 @@ declare namespace Xmla {
         username: string;
         password: string;        
         withCredentials: boolean;
-        header: string;
+        methodheader: string;
         sessionId: string;
         protocolCapabilities: object;
         properties: object; 
@@ -203,6 +203,7 @@ declare namespace Xmla.Dataset {
     export interface Hierarchy {
         index: number;
         name: string;
+        properties: object;
     }
 
     export interface CellSet {
