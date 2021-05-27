@@ -55,7 +55,7 @@ body
         opacity: 1;
     }
 
-ul, ol
+/*ul, ol
 {
     list-style-position: inside;
     padding: 0px;
@@ -63,7 +63,7 @@ ul, ol
     width: 92%;
     height: auto;
     display: inline-block;
-}
+}*/
 
 .js .NoJSMessage
 {
@@ -433,7 +433,8 @@ ul, ol
 
 .GridHeaderCell-text {
     white-space: nowrap;
-    font-size: 13px;    
+    font-size: 11px;    
+    vertical-align: middle;
 }
 
 .GridHeaderCell-indent {
@@ -458,6 +459,7 @@ ul, ol
     margin-right: 3px;
     opacity: .6;
     text-align: center;
+    vertical-align: middle;
 }
 
 .GridHeaderCell .resizeX {
@@ -476,6 +478,7 @@ ul, ol
     width: 16px;
     margin-left: 3px;
     margin-right: 3px;    
+    vertical-align: middle;
 }
 
 .GridCell {
@@ -504,7 +507,8 @@ ul, ol
 
 .GridCell-text {
     white-space: nowrap;
-    font-size: 13px;    
+    font-size: 11px;    
+    vertical-align: middle;
 }
 
 .GridCell-indent {
@@ -538,8 +542,45 @@ ul, ol
 }
 
 
-.GridNoBorder .GridHeaderCell, .GridNoBorder .GridHeaderCell-content,  .GridNoBorder .GridHeaderCell-indent,  .GridNoBorder .GridCell,  .GridNoBorder .GridCell-content {
+.MetaDataGrid .GridHeaderCell, .MetaDataGrid .GridHeaderCell-content,  .MetaDataGrid .GridHeaderCell-indent,  .MetaDataGrid .GridCell,  .MetaDataGrid .GridCell-content {
     border: none !important;
+}
+
+.MetaDataGrid {
+    background-color:white;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.GhostControl {
+    border: none;    
+    text-align: left;    
+}
+
+.Ghost-content {    
+    text-align: left;    
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 100%;
+}
+
+.Ghost-text {
+    white-space: nowrap;
+    font-size: 11px;    
+    vertical-align: middle;
+}
+
+
+.Ghost-img {
+    cursor: default;
+    font-size: 16px!important;
+    height: 16px;
+    width: 16px;
+    margin-left: 3px;
+    margin-right: 3px;    
+    vertical-align: middle;
 }
 
 
@@ -2230,12 +2271,24 @@ ul, ol
     display: -ms-grid;
 }
 
+.PivotArea-header {    
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
+.PivotArea-header img {        
+    cursor: default;    
+    height: 16px;
+    width: 16px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
 .PivotArea-content {
     background-color: white;
     border: 1px;
     border-style: solid;
-    overflow-y: auto;
+    overflow-y: auto;    
 }
 
 .PivotArea-content.dropenabled {
@@ -2245,6 +2298,8 @@ ul, ol
 .PivotAreaItem {
     border-style: solid;
     border-color:transparent;
+    border-width: 1px;
+    padding: 0px !important;
 }
 
 .PivotArea-content.dropenabled .PivotAreaItem:hover {    
@@ -2253,5 +2308,72 @@ ul, ol
 
 .PivotAreaItem-content {
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 11px;    
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.PivotAreaItem-text {
+    vertical-align: top;
+}
+
+.PivotAreaItem-img {
+    cursor: default;
+    font-size: 16px!important;
+    height: 16px;
+    width: 16px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.PivotAreaItem-button {
+    cursor: default;
+    font-size: 16px!important;
+    height: 16px;
+    width: 16px;
+    margin-left: 3px;
+    margin-right: 3px;
+    position:absolute;
+    left:auto;
+    right: 0px;    
+    text-align: center;
+}
+
+.PivotAreaItem-button:hover {
+    background-color: whitesmoke;
+    color: blue;
+}
+
+.PivotView .GridColsHeaderPanel .GridHeaderCell-content {
+    text-align: center;
+}
+
+.PivotApplication {
+    font: 11px Verdana, Geneva, sans-serif;
+}
+
+
+/* Let's get this party started */
+.PivotApplication ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+ 
+/* Track */
+.PivotApplication ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.PivotApplication ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
+}
+.PivotApplication ::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,0,0,0.1); 
 }
