@@ -5,5 +5,6 @@
         pivotAreaCols: string;
         pivotAreaRows: string;
         pivotViewLoadingMessage: string;
+        measuresCaption: string;
     }
 }

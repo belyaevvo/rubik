@@ -32,7 +32,7 @@ module Rubik.UI.Pivot {
             this._rootElement.addClass("MetaDataBrowser");
             this.AllowDrag();
             this.gridpanel = new Rubik.UI.Panel();
-            this.Grid.AddClass("GridNoBorder");
+            this.Grid.AddClass("MetaDataGrid");
             this.Grid.ExpandLastColumn = true;            
             this.gridpanel.Children.Add(this.Grid);
             this.Children.Add(this.gridpanel);
@@ -60,11 +60,11 @@ module Rubik.UI.Pivot {
                     var nodes: Collections.List<Rubik.Data.TreeNode> = new Collections.List<Rubik.Data.TreeNode>();
                     var node = new Rubik.Data.TreeNode();
                     node.Key = "[Measures]";
-                    node.Caption = "Меры";
+                    node.Caption = Rubik.Resources.Localization.getString("measuresCaption");
                     node.Tag = new Rubik.DataHub.TypedSchemaObject();
                     node.Tag.UniqueName = "[Measures]";
                     node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Dimension;
-                    node.Icon = "/Content/icons/mppivotcontrols_dimension_measures.png";                    
+                    node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension_measures.png";                    
                     nodes.Add(node);
                     for (var row of data.rowsetTable) {
                         if (row["DIMENSION_UNIQUE_NAME"] != "[Measures]") {
@@ -75,10 +75,10 @@ module Rubik.UI.Pivot {
                             node.Tag.UniqueName = row["DIMENSION_UNIQUE_NAME"];
                             node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Dimension;                                                        
                             if (row["DIMENSION_TYPE"] == 1) {
-                                node.Icon = "/Content/icons/mppivotcontrols_dimension_time.png";
+                                node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension_time.png";
                             }
                             else {
-                                node.Icon = "/Content/icons/mppivotcontrols_dimension.png";
+                                node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension.png";
                             }
                             nodes.Add(node);
                         }                        
@@ -95,7 +95,7 @@ module Rubik.UI.Pivot {
                         node.Tag = new Rubik.DataHub.TypedSchemaObject();
                         node.Tag.UniqueName = row["MEASURE_UNIQUE_NAME"];
                         node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Measure;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_measure.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_measure.png";
                         node.Populated = true;                        
                         nodes.Add(node);
                     }
@@ -112,13 +112,13 @@ module Rubik.UI.Pivot {
                         node.Tag.UniqueName = row["HIERARCHY_UNIQUE_NAME"];
                         node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Hierarchy;
                         if (row["HIERARCHY_ORIGIN"] == 1) {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy.png";
                         }
                         else if (row["HIERARCHY_ORIGIN"] == 3) {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy_parentchild.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy_parentchild.png";
                         }
                         else {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy_attribute.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy_attribute.png";
                         }
                         nodes.Add(node);
                     }
@@ -136,7 +136,7 @@ module Rubik.UI.Pivot {
                         node.Tag = new Rubik.DataHub.TypedSchemaObject();
                         node.Tag.UniqueName = row["LEVEL_UNIQUE_NAME"];
                         node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Level;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_members_close.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_members_close.png";
                         nodes.Add(node);
                     }
                     for (var row of data.rowsetTable) {
@@ -149,7 +149,7 @@ module Rubik.UI.Pivot {
                         if (row["LEVEL_TYPE"] == 1) {
                             inclevel = 0;
                         }
-                        node.Icon = "/Content/icons/mppivotcontrols_level_" + (row["LEVEL_NUMBER"] + inclevel) + ".png";                        
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_level_" + (row["LEVEL_NUMBER"] + inclevel) + ".png";                        
                         nodes.Add(node);
                     }
                     args.Node.Children.AddRange(nodes);
@@ -164,7 +164,7 @@ module Rubik.UI.Pivot {
                         node.Tag = new Rubik.DataHub.TypedSchemaObject();
                         node.Tag.UniqueName = row["MEMBER_UNIQUE_NAME"];
                         node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Member;                         
-                        node.Icon = "/Content/icons/mppivotcontrols_member.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_member.png";
                         if (row["CHILDREN_CARDINALITY"]==0) {
                             node.Populated = true;
                         }
@@ -182,7 +182,7 @@ module Rubik.UI.Pivot {
                         node.Tag = new Rubik.DataHub.TypedSchemaObject();
                         node.Tag.UniqueName = row["MEMBER_UNIQUE_NAME"];
                         node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Member;
-                        node.Icon = "/Content/icons/mppivotcontrols_member.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_member.png";
                         if (row["CHILDREN_CARDINALITY"] == 0) {
                             node.Populated = true;
                         }
@@ -204,7 +204,7 @@ module Rubik.UI.Pivot {
                     node.Tag = new Rubik.DataHub.TypedSchemaObject();
                     node.Tag.UniqueName = "[Measures]";
                     node.Tag.ObjectType = Rubik.DataHub.ObjectTypeEnum.Dimension;
-                    node.Icon = "/Content/icons/mppivotcontrols_dimension_measures.png";
+                    node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension_measures.png";
                     nodes.Add(node);
                     for (var info of data) {
                         if (info.UniqueName != "[Measures]") {
@@ -213,10 +213,10 @@ module Rubik.UI.Pivot {
                             node.Caption = info.Name;
                             node.Tag = info;                            
                             if (info.row["DIMENSION_TYPE"] == 1) {
-                                node.Icon = "/Content/icons/mppivotcontrols_dimension_time.png";
+                                node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension_time.png";
                             }
                             else {
-                                node.Icon = "/Content/icons/mppivotcontrols_dimension.png";
+                                node.Icon = ContentRoot + "/icons/mppivotcontrols_dimension.png";
                             }
                             nodes.Add(node);
                         }
@@ -231,7 +231,7 @@ module Rubik.UI.Pivot {
                         node.Key = info.UniqueName;
                         node.Caption = info.Name;
                         node.Tag = info;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_measure.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_measure.png";
                         node.Populated = true;
                         nodes.Add(node);
                     }
@@ -246,13 +246,13 @@ module Rubik.UI.Pivot {
                         node.Caption = info.Name;
                         node.Tag = info                        
                         if (info.row["HIERARCHY_ORIGIN"] == 1) {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy.png";
                         }
                         else if (info.row["HIERARCHY_ORIGIN"] == 3) {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy_parentchild.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy_parentchild.png";
                         }
                         else {
-                            node.Icon = "/Content/icons/mppivotcontrols_hierarchy_attribute.png";
+                            node.Icon = ContentRoot + "/icons/mppivotcontrols_hierarchy_attribute.png";
                         }
                         nodes.Add(node);
                     }
@@ -268,7 +268,7 @@ module Rubik.UI.Pivot {
                         node.Key = info.UniqueName + ".Members";
                         node.Caption = "Элементы";
                         node.Tag = info;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_members_close.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_members_close.png";
                         nodes.Add(node);
                     }
                     for (var info of data) {
@@ -279,7 +279,7 @@ module Rubik.UI.Pivot {
                         if (info.row["LEVEL_TYPE"] == 1) {
                             inclevel = 0;
                         }
-                        node.Icon = "/Content/icons/mppivotcontrols_level_" + (info.row["LEVEL_NUMBER"] + inclevel) + ".png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_level_" + (info.row["LEVEL_NUMBER"] + inclevel) + ".png";
                         nodes.Add(node);
                     }
                     args.Node.Children.AddRange(nodes);
@@ -292,7 +292,7 @@ module Rubik.UI.Pivot {
                         node.Key = args.Node.Key +'|' + info.UniqueName;
                         node.Caption = info.Name;
                         node.Tag = info;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_member.png";
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_member.png";
                         if (info.row["CHILDREN_CARDINALITY"] == 0) {
                             node.Populated = true;
                         }
@@ -307,8 +307,8 @@ module Rubik.UI.Pivot {
                         var node = new Rubik.Data.TreeNode();
                         node.Key = args.Node.Key + '|' + info.UniqueName;
                         node.Caption = info.Name;
-                        node.Tag = info;                        
-                        node.Icon = "/Content/icons/mppivotcontrols_member.png";
+                        node.Tag = info;                                                                        
+                        node.Icon = ContentRoot + "/icons/mppivotcontrols_member.png";
                         if (info.row["CHILDREN_CARDINALITY"] == 0) {
                             node.Populated = true;
                         }

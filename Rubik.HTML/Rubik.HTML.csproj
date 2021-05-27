@@ -14,7 +14,7 @@
     <RootNamespace>Rubik</RootNamespace>
     <AssemblyName>Rubik.HTML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
@@ -612,6 +612,7 @@
     <TypeScriptCompile Include="Lib\DataHub\Schema\CellSet.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\DataAxis.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyAxis.ts" />
+    <TypeScriptCompile Include="Lib\DataHub\Schema\MeasureSet.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\HierarchyTypedSchemaObject.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\Measure.ts" />
     <TypeScriptCompile Include="Lib\DataHub\xmla.d.ts">
@@ -643,6 +644,7 @@
     <TypeScriptCompile Include="Lib\DataHub\Schema\PropertyInfo.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\SelectedMember.ts" />
     <TypeScriptCompile Include="Lib\DataHub\Schema\DimensionInfo.ts" />
+    <Content Include="Lib\Externals\fetch.js" />
     <Content Include="Lib\Externals\polyfill.js" />
     <Content Include="Lib\Externals\sax.js" />
     <Content Include="Lib\Externals\Xmla.js" />
@@ -657,8 +659,6 @@
     <Content Include="Content\icons\Thumbs.db" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\Classical\classical.js" />
-    <Content Include="Scripts\Classical\Tutorials\Getting Started.txt" />
-    <Content Include="Scripts\Classical\Tutorials\introduction.html" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
@@ -733,6 +733,7 @@
     <TypeScriptCompile Include="Lib\DataHub\Schema\SchemaObject.ts" />
     <TypeScriptCompile Include="Lib\DataHub\PivotDataManager.ts" />
     <TypeScriptCompile Include="Lib\UI\Button.ts" />
+    <Content Include="Lib\UI\CanvasBox.ts" />
     <TypeScriptCompile Include="Lib\UI\ContentControl.ts" />
     <TypeScriptCompile Include="Lib\UI\DragDrop.ts" />
     <TypeScriptCompile Include="Lib\UI\FrameworkElement.ts" />
@@ -740,12 +741,16 @@
     <TypeScriptCompile Include="Lib\UI\Grid\Grid.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\CellsScrollPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\GridResizer.ts" />
+    <TypeScriptCompile Include="Lib\UI\ICanvasBox.d.ts" />
     <TypeScriptCompile Include="Lib\UI\IFrameworkElement.ts" />
     <TypeScriptCompile Include="Lib\UI\Grid\SizeManager.ts" />
     <TypeScriptCompile Include="Lib\UI\IButton.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\IImageBox.d.ts" />
     <TypeScriptCompile Include="Lib\UI\ILabel.d.ts" />
+    <Content Include="Lib\UI\ImageBox.ts" />
     <TypeScriptCompile Include="Lib\UI\IMultilineTextBox.d.ts" />
     <TypeScriptCompile Include="Lib\UI\IPanel.d.ts" />
+    <TypeScriptCompile Include="Lib\UI\Windows\IResizeGrip.d.ts" />
     <TypeScriptCompile Include="Lib\UI\ISplitContainer.d.ts" />
     <TypeScriptCompile Include="Lib\UI\ISplitterGrip.d.ts" />
     <Content Include="Lib\UI\SplitContainer.ts" />
@@ -754,6 +759,7 @@
     <TypeScriptCompile Include="Lib\UI\ITextBox.d.ts" />
     <Content Include="Lib\UI\Label.ts" />
     <Content Include="Lib\UI\GridPanel.ts" />
+    <TypeScriptCompile Include="Lib\UI\Windows\ITitleBar.d.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\IPivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\LoadingPanel.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\MetaDataBrowser.ts" />
@@ -762,13 +768,16 @@
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotControl.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotLayout.ts" />
     <TypeScriptCompile Include="Lib\UI\Pivot\PivotView.ts" />
+    <Content Include="Lib\UI\Windows\ResizeGrip.ts" />
     <TypeScriptCompile Include="Lib\UI\SplitterGrip_Orientations.ts" />
     <Content Include="Lib\UI\TextBox.ts" />
     <Content Include="Lib\UI\StackPanel.ts" />
+    <Content Include="Lib\UI\Windows\Window.ts" />
+    <Content Include="Lib\UI\Windows\TitleBar.ts" />
+    <TypeScriptCompile Include="Lib\UI\Windows\IWindow.d.ts" />
     <TypeScriptCompile Include="Lib\Xml\XmlParser.ts" />
     <TypeScriptCompile Include="Lib\Xml\XsdParser.ts" />
     <TypeScriptCompile Include="Scripts\Classical\classical.d.ts" />
-    <TypeScriptCompile Include="Scripts\Classical\Tutorials\Introduction.ts" />
     <TypeScriptCompile Include="Scripts\typings\html2canvas\html2canvas.d.ts" />
     <TypeScriptCompile Include="Lib\UI\CSSNumber.ts" />
     <TypeScriptCompile Include="Lib\Collections\CollectionModifications.ts" />
@@ -857,7 +866,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>10202</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

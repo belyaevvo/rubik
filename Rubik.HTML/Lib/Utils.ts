@@ -45,11 +45,74 @@ module Rubik
         return getType(x) === "[object Array]";
     };
 
+    
+    export function _isBool(arg) {
+        return typeof (arg) === "boolean";
+    }
+
+    export function _isUnd(arg) {
+        return typeof (arg) === "undefined";
+    }
+
+    export function _isArr(arg) {
+        return arg && arg.constructor === Array;
+    }
+
+    export function _isNum(arg) {
+        return typeof (arg) === "number";
+    }
+
+    export function _isFun(arg) {
+        return typeof (arg) === "function";
+    }
+
+    export function _isStr(arg) {
+        return typeof (arg) === "string";
+    }
+
+    export function _isObj(arg) {
+        return arg && typeof (arg) === "object";
+    }
+
+
+    export function isEmpty(val) {
+        return (val === undefined || val == null || val.length <= 0) ? true : false;
+    }
+
+    export function _extend(object, properties, overwrite?: boolean) {
+        if (properties && (!object)) {
+            object = {};
+        }
+        var property;
+        for (property in properties) {
+            if (properties.hasOwnProperty(property)) {
+                if (overwrite || !object[property]) {
+                    object[property] = properties[property];
+                }
+            }
+        }
+        return object;
+    }
+    
+
     /** @returns true if the object is an array */
     export var exists = function (x: JQuery): boolean {        
         return x && x.length !== 0;
     };
 
+    /** @returns true if the object is an array */
+    export var asArray = function (x: any): any[] {
+        if (x) {
+            if (isArray(x)) {
+                return x;
+            }
+            else {
+                return [x];
+            }
+        }
+        return null;
+    };
+    
     
 
     /** Stops a jQuery event from bubbling and prevents default browser behaviour.

@@ -13,14 +13,15 @@
 /// <reference path="../Scripts/typings/jquery/jquery.d.ts"/>
 
 
-class MyApp implements Rubik.Apps.IApp {
+class PivotApplication implements Rubik.Apps.IApp {
+
     private MainContainer: JQuery = null;
-    private StartArgs: string[] = null;
+    private Config: object = null;
 
    
     
-    Run(args: string[] = [], container: JQuery = $("body")): void {
-        this.StartArgs = args;
+    Run(config: object = null, container: JQuery = $("body")): void {
+        this.Config = config;
         this.MainContainer = container;        
 
         this.Test6();
@@ -40,8 +41,8 @@ class MyApp implements Rubik.Apps.IApp {
         xmlaConnection.Database = "Сбыт";
         
 
-        var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
-        //var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
+        //var pivotManager = new Rubik.DataHub.PivotDataManager(xmlaConnection);       
+        var pivotManager = new Rubik.DataHub.PivotDataManager(portalConnection);
         pivotManager.DataMember = "Сбыт";
 
         app.PivotDataManager = pivotManager;
@@ -144,13 +145,23 @@ class MyApp implements Rubik.Apps.IApp {
         xmlaConnection.Url = "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll";
         xmlaConnection.Database = "Сбыт";
 
+        var restrictions = {};
+        restrictions["CATALOG_NAME"] = "Сбыт";
+        restrictions["CUBE_NAME"] = "Сбыт";
 
-        xmlaConnection.GetDataSet("select  non empty {[Дата].[Календарь]} * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from [Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE ",
+        xmlaConnection.GetMetaData(Xmla.MDSCHEMA_CUBES, restrictions,
+            (data) => {
+            alert('test');
+        }, (error) => {
+            alert('error');
+        });
+
+        /*xmlaConnection.GetDataSet("select  non empty {[Дата].[Календарь]} * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from [Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE ",
             (data) => {
                 alert('test');
             }, (error) => {
                 alert('error');
-            });
+            });*/
         
                    
     }
@@ -341,13 +352,14 @@ class MyApp implements Rubik.Apps.IApp {
 
         var properties = {}
         properties[Xmla.PROP_CATALOG] = "Сбыт";
-        //var command = "select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE";
-        //xmlaClient.executeMultiDimensional({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", statement: command, properties: properties } as Xmla.ExecuteOptions);               
+        var command = "select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1)  on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE";
+        //var command = "select  non empty { [Дата].[Календарь] } * descendants([Дата].[Месяц], 1) on columns, non empty descendants([Объект учета].[Объекты учета], 1) * descendants([Объект учета].[Объект учета], 1) * descendants([Товар].[Товар], 1) on rows  from[Сбыт] CELL PROPERTIES VALUE, FORMATTED_VALUE";
+        xmlaClient.executeMultiDimensional({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", statement: command, properties: properties } as Xmla.ExecuteOptions);               
 
-        var restrictions = {};
+        /*var restrictions = {};
         restrictions["CATALOG_NAME"] = "Сбыт";
         restrictions["CUBE_NAME"] = "Сбыт";
-        xmlaClient.discoverMDCubes({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", restrictions: restrictions, properties: properties } as Xmla.DiscoverOptions);
+        xmlaClient.discoverMDCubes({ url: "http://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll", restrictions: restrictions, properties: properties } as Xmla.DiscoverOptions);*/
 
         
     }
@@ -406,10 +418,61 @@ class MyApp implements Rubik.Apps.IApp {
 
 }
 
+var ContentRoot = "Content";
 
-var TheApp = null;
+$.fn.pivotApplication = function (config) {
+    // this or $(this) is $(".my_selected .element")    
+
+    if (config != null) {        
+        if (config.contentroot) {
+            ContentRoot = config.contentroot;
+        }
+        var connection: Rubik.DataHub.IPivotConnection = null;
+        var datamember: string = null;
+        if (config.connection) {            
+            switch (config.connection.type) {
+                case "xmla":
+                    connection = new Rubik.DataHub.XmlaConnection();
+                    break;
+                case "portal":
+                    connection = new Rubik.DataHub.PortalConnection();
+                    break;                
+            }
+            connection.Url = config.connection.url;
+            connection.Database = config.connection.database;            
+        }
+
+        var app = new Rubik.UI.Pivot.PivotAplication();
+        app.Height("100%");
+        app.Width("100%");
+        var pivotManager = new Rubik.DataHub.PivotDataManager(connection);
+        if (config.name) pivotManager.Name = config.name;
+        pivotManager.DataMember = config.datamember;        
+        app.PivotDataManager = pivotManager;
+    }
+        
+
+    app.ConstructDOM($(this));    
+
+    Rubik.UI.DragDrop.Initialize();
+
+    //pivotManager.Command = "SELECT NON EMPTY { [Measures].[Вес] } ON 0, NON EMPTY [Объект учета].[Объект учета].AllMembers ON 1 FROM [Сбыт] WHERE ([Дата].[Год].[2020])";
+    
+
+    if (config && config.schema) {
+        pivotManager.Load(config.schema);
+    }    
+    if (config && config.command) {
+        pivotManager.Command = config.command;
+    }
+    //TheApp = new PivotApplication();
+    //TheApp.Run(config, $(this));
+}
+
+
+/*
 $(function () {
-    TheApp = new MyApp();    
+    TheApp = new PivotApplication();    
     TheApp.Run([],$("#content"));
 });
-
+*/

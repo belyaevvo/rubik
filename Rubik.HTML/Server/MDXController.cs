@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 using Rubik.Server.Json;
+using System.Security.Principal;
 
 namespace Rubik.HTML
 {
@@ -214,7 +215,7 @@ namespace Rubik.HTML
             {
                 restrictions.Add(restriction);
             }
-            DataSet ds = con.GetSchemaDataSet(args.schema,restrictions);
+            DataSet ds = con.GetSchemaDataSet(args.schema,restrictions);            
             string json = CreateJsonDataSet(ds);
             con.Close(args.sessionId == null ? true : false);
             var response = Request.CreateResponse(HttpStatusCode.OK);
@@ -222,18 +223,18 @@ namespace Rubik.HTML
             return response;
         }
 
-       
+
 
         private AdomdConnection AcquireConnection(string database, string sessionId = null)
-        {
+        {           
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://bi.galaktika-soft.com/olap/2012/msmdpump.dll; Initial Catalog=AdventureWorksDW2012 MD-EE;");            
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrbi.lukoil.com/msolap/; Initial Catalog=Сбыт;");
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp2.srv.lukoil.com/msolap/; Initial Catalog=Сбыт;");
-            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolap/; Initial Catalog=" + database + ";");
+            AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=https://ptrolapapp.srv.lukoil.com/msolaptst/msmdpump.dll; Initial Catalog=" + database + ";");
             con.SessionID = sessionId;
             //AdomdConnection con = new AdomdConnection("Provider=MSOLAP; Data Source=hyperion\\sql2005; Catalog=Adventure Works DW;");            
             con.Open();
-            return con;
+            return con;            
         }
 
         private void RegisterCommand(string sessionId, AdomdCommand cmd)

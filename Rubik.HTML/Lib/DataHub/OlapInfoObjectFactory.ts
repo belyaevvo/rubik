@@ -305,7 +305,8 @@ module Rubik.DataHub {
                     mbr.Cube_UniqueName = row["CUBE_NAME"];
                     mbr.Dimension_UniqueName = row["DIMENSION_UNIQUE_NAME"];
                     mbr.Hierarchy_UniqueName = row["HIERARCHY_UNIQUE_NAME"];
-                    mbr.Level_UniqueName = row["LEVEL_UNIQUE_NAME"];       
+                    mbr.Level_UniqueName = row["LEVEL_UNIQUE_NAME"];
+                    mbr.Parent_UniqueName = row["PARENT_UNIQUE_NAME"];
                     obj = mbr;
                     break;
             }

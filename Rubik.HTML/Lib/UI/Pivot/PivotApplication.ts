@@ -5,9 +5,12 @@
         private dimpanel: Rubik.UI.Panel;
         private gridpanel: Rubik.UI.Panel;
         private dimsplitter: Rubik.UI.SplitContainer;
+
+        static ContentRoot: string = "Content";
+
         PivotView: Rubik.UI.Pivot.PivotView;
         MetaDataBrowser: Rubik.UI.Pivot.MetaDataBrowser;
-        PivotLayout: Rubik.UI.Pivot.PivotLayout;
+        PivotLayout: Rubik.UI.Pivot.PivotLayout;        
 
         get PivotDataManager(): Rubik.DataHub.PivotDataManager {
             return this.pivotDataManager;

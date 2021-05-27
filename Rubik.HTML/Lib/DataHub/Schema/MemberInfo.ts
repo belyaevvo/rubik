@@ -6,6 +6,7 @@
         Dimension_UniqueName: string;
         Hierarchy_UniqueName: string;
         Level_UniqueName: string;
+        Parent_UniqueName: string;
         ChildCount: number;
 
         get Cube(): Promise<CubeInfo> {

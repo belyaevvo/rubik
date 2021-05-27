@@ -1,5 +1,7 @@
 ﻿module Rubik.DataHub {
 
+    var _exceptionHlp = "http://code.google.com/p/xmla4js/wiki/ExceptionCodes";
+
     var _soap = "http://schemas.xmlsoap.org/soap/",
         _xmlnsSOAPenvelope = _soap + "envelope/",
         _xmlnsSOAPenvelopePrefix = "SOAP-ENV",
@@ -38,7 +40,7 @@
             }
         }
         return object;
-    };
+    }
 
     function getXmlaSoapMessage(options: any) {
         var method = options.method;
@@ -109,7 +111,7 @@
             "\n</" + _xmlnsSOAPenvelopePrefix + ":Envelope>"
             ;
         return msg;
-    };    
+    };
 
     function _getXmlaSoapList(container, listType, items, indent) {
         if (!indent) indent = "";
@@ -154,58 +156,68 @@
         }
         return value;
     };
+    
 
-    function _isUnd(arg) {
-        return typeof (arg) === "undefined";
-    };
-    function _isArr(arg) {
-        return arg && arg.constructor === Array;
-    };
-    function _isNum(arg) {
-        return typeof (arg) === "number";
-    };
-    function _isFun(arg) {
-        return typeof (arg) === "function";
-    };
-    function _isStr(arg) {
-        return typeof (arg) === "string";
-    };
-    function _isObj(arg) {
-        return arg && typeof (arg) === "object";
-    };
+    var remain: Uint8Array = new Uint8Array(0);        
 
-    function Utf8ArrayToStr(array): string {
+    function Utf8ArrayToStr(array: Uint8Array): string {
         var out, i, len, c;
         var char2, char3;
+        var isremain = false;
+        out = "";                
+          
+        len = array.length + remain.length;
 
-        out = "";
-        len = array.length;
+        function getItem(index: number): any {
+            if (index < remain.length)
+                return remain[index];
+            else
+                return array[index - remain.length];
+        }
+
         i = 0;
         while (i < len) {
-            c = array[i++];
+            c = getItem(i++);
             switch (c >> 4) {
                 case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
                     // 0xxxxxxx
-                    out += String.fromCharCode(c);
+                    out += String.fromCharCode(c);                    
                     break;
                 case 12: case 13:
                     // 110x xxxx   10xx xxxx
-                    char2 = array[i++];
-                    out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                    if (i < len) {
+                        char2 = getItem(i++);
+                        out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                    }
+                    else {
+                        isremain = true;
+                        remain = array.slice(i - 1 - remain.length);
+                    }
                     break;
                 case 14:
                     // 1110 xxxx  10xx xxxx  10xx xxxx
-                    char2 = array[i++];
-                    char3 = array[i++];
-                    out += String.fromCharCode(((c & 0x0F) << 12) |
-                        ((char2 & 0x3F) << 6) |
-                        ((char3 & 0x3F) << 0));
-                    break;
+                    if (i < (len - 1)) {
+                        char2 = getItem(i++);
+                        char3 = getItem(i++);
+                        out += String.fromCharCode(((c & 0x0F) << 12) |
+                            ((char2 & 0x3F) << 6) |
+                            ((char3 & 0x3F) << 0));
+                    }
+                    else {
+                        isremain = true;
+                        remain = array.slice(i - 1 - remain.length);
+                    }
+                    break;                
             }
+        }
+        if (!isremain) {
+            remain = new Uint8Array(0);
         }
 
         return out;
     }
+
+    
 
     export class XmlaClient {
         static METHOD_DISCOVER = "Discover";
@@ -296,16 +308,157 @@
             else {
                 this.options = {};
             }
+            
+            this.listeners[XmlaClient.EVENT_REQUEST] = [];
+            this.listeners[XmlaClient.EVENT_SUCCESS] = [];
+            this.listeners[XmlaClient.EVENT_ERROR] = [];
+
+            this.listeners[XmlaClient.EVENT_DISCOVER] = [];
+            this.listeners[XmlaClient.EVENT_DISCOVER_SUCCESS] = [];
+            this.listeners[XmlaClient.EVENT_DISCOVER_ERROR] = [];
+
+            this.listeners[XmlaClient.EVENT_EXECUTE] = [];
+            this.listeners[XmlaClient.EVENT_EXECUTE_SUCCESS] = [];
+            this.listeners[XmlaClient.EVENT_EXECUTE_ERROR] = [];
         }
         
 
-        listeners: object;
+        listeners: any = {};
+        
+
         options: any;
 
         setOptions(options: object) {
         }
+        
+
         addListener(...args: any[]) {
+            var n = args.length, handler, scope;
+            switch (n) {
+                case 0:
+                    XmlaClientException._newError(
+                        "NO_EVENTS_SPECIFIED",
+                        "Xmla.addListener",
+                        null
+                    )._throw();
+                case 1:
+                    var arg = args[0];
+                    if (_isObj(arg)) {
+                        var events;
+                        if (_isArr(arg)) this._addListeners(arg)
+                        else
+                            if (events = arg.events || arg.event) {
+                                if (_isStr(events)) events = (events === "all") ? XmlaClient.EVENT_ALL : events.split(",");
+                                if (!(_isArr(events))) {
+                                    XmlaClientException._newError(
+                                        "WRONG_EVENTS_FORMAT",
+                                        "Xmla.addListener",
+                                        arg
+                                    )._throw();
+                                }
+                                var i;
+                                n = events.length;
+                                for (i = 0; i < n; i++) this._addListener(events[i], arg);
+                            }
+                            else {
+                                scope = arg.scope;
+                                if (_isUnd(scope)) scope = null;
+                                else delete arg.scope;
+                                for (events in arg) {
+                                    handler = arg[events];
+                                    if (_isUnd(handler.scope)) handler.scope = scope;
+                                    this._addListener(events, handler);
+                                }
+                            }
+                    }
+                    else
+                        XmlaClientException._newError(
+                            "WRONG_EVENTS_FORMAT",
+                            "Xmla.addListener",
+                            arg
+                        )._throw();
+                    break;
+                case 2:
+                case 3:
+                    var event = args[0];
+                    scope = args[2];
+                    handler = args[1];
+                    if (_isStr(event) && (_isFun(handler) || (_isObj(handler)))) this._addListener(event, handler, scope);
+                    else {
+                        var arr = [event, handler];
+                        if (scope) arr.push(scope);
+                        this.addListener(arr);
+                    }
+                    break;
+                default:
+                    this._addListeners(arguments);
+            }
         }
+
+        private _addListeners(listeners) {
+            var i, n = listeners.length;
+            for (i = 0; i < n; i++) this.addListener(listeners[i]);
+        }
+
+        private _addListener(name, handler, scope?) {
+            var myListeners = this.listeners[name];
+            if (!myListeners)
+                XmlaClientException._newError(
+                    "UNKNOWN_EVENT",
+                    "Xmla.addListener",
+                    { event: name, handler: handler, scope: scope }
+                )._throw();
+            if (!scope) scope = null;
+            switch (typeof (handler)) {
+                case "function":
+                    myListeners.push({ handler: handler, scope: scope });
+                    break;
+                case "object":
+                    var handlers = handler.handler || handler.handlers;
+                    if (handler.scope) scope = handler.scope;
+                    if (_isFun(handlers)) {
+                        myListeners.push({ handler: handlers, scope: scope });
+                    }
+                    else
+                        if (_isArr(handlers)) {
+                            var i, n = handlers.length;
+                            for (i = 0; i < n; i++) this._addListener(name, handlers[i], scope);
+                        }
+                    break;
+            }
+        }
+
+        private _fireEvent(eventName, eventData, cancelable: boolean = false) {
+            var listeners = this.listeners[eventName];
+            if (!listeners) {
+                XmlaClientException._newError(
+                    "UNKNOWN_EVENT",
+                    "Xmla._fireEvent",
+                    eventName
+                )._throw();
+            }
+            var n = listeners.length, outcome = true;
+            if (n) {
+                var listener, listenerResult, i;
+                for (i = 0; i < n; i++) {
+                    listener = listeners[i];
+                    listenerResult = listener.handler.call(
+                        listener.scope,
+                        eventName,
+                        eventData,
+                        this
+                    );
+                    if (cancelable && listenerResult === false) {
+                        outcome = false;
+                        break;
+                    }
+                }
+            }
+            else //if there is neither a listener nor an error nor a general callback  we explicitly throw the exception.
+                if (eventName === XmlaClient.EVENT_ERROR && !_isFun(eventData.error) && !_isFun(eventData.callback)) eventData.exception._throw();
+            return outcome;
+        }
+
 
         execute(options: any): object {
             var properties = options.properties;
@@ -493,6 +646,7 @@
         }  
 
         request(options: any): Promise<void | Response> {
+            var self = this;
             options = _applyProps(options, this.options, false);
             if (!options.url) {
                 /*ex = Xmla.Exception._newError(
@@ -506,6 +660,14 @@
             options.restrictions = _applyProps(options.restrictions, this.options.restrictions, false);
             delete options.exception;
 
+            if (
+                !self._fireEvent(Xmla.EVENT_REQUEST, options, true) ||
+                (options.method == Xmla.METHOD_DISCOVER && !self._fireEvent(XmlaClient.EVENT_DISCOVER, options)) ||
+                (options.method == Xmla.METHOD_EXECUTE && !self._fireEvent(XmlaClient.EVENT_EXECUTE, options))
+            ) {
+                return null;
+            }
+
             var soapMessage = getXmlaSoapMessage(options);
 
             const headers = new Headers();
@@ -516,6 +678,9 @@
                     headers.append(header, headers[header]);
                 }
             }
+
+            var handler: IXmlaEventHandler = options.handler || {} as IXmlaEventHandler;
+
 
             var fecthOptions: RequestInit = {
                 method: "POST",
@@ -528,29 +693,230 @@
                 body: soapMessage
             };
 
-            return fetch(options.url, fecthOptions).then(async (response) => {
+            return fetch(options.url, fecthOptions).then((response) => {
                 if (response.status >= 200 && response.status <= 299) {
-                    var reader = response.body.getReader();
+                    if (response.body) {
+                        var reader = response.body.getReader();                       
 
-                    var parser: Rubik.Xml.XmlParser = new Rubik.Xml.XmlParser();
+                        var parser: Rubik.Xml.XmlParser = new Rubik.Xml.XmlParser();
 
-                    while (true) {
-                        const { done, value } = await reader.read();
+                        reader.read().then(function processData({ done, value }) {
+                            // Result objects contain two properties:
+                            // done  - true if the stream has already given you all its data.
+                            // value - some data. Always undefined when done is true.
+                            if (done) {                                
+                                parser.close();
+                                if (handler.onsuccess) {
+                                    handler.onsuccess(parser.Result);
+                                }
+                                if (options.method == XmlaClient.METHOD_DISCOVER) {
+                                    self._fireEvent(XmlaClient.EVENT_DISCOVER_SUCCESS, parser.Result);
+                                }
+                                else if (options.method == XmlaClient.METHOD_EXECUTE) {
+                                    self._fireEvent(XmlaClient.EVENT_EXECUTE_SUCCESS, parser.Result);
+                                }
+                                self._fireEvent(XmlaClient.EVENT_SUCCESS, parser.Result);
+                                return;
+                            }
 
-                        if (done) {
-                            parser.close();
-                            break;
-                        }
+                            parser.write(Utf8ArrayToStr(value));     
+                           
+                            // Read some more, and call this function again
+                            return reader.read().then(processData);
+                        });
 
-                        var result = Utf8ArrayToStr(value);
-                        parser.write(result);
+                        /*while (true) {
+                            reader.read().then()
+                            const { done, value } = await reader.read();
 
+                            if (done) {                                
+                                parser.close();
+                                if (handler.onsuccess) {
+                                    handler.onsuccess(parser.Result);
+                                }
+                                if (options.method == XmlaClient.METHOD_DISCOVER) {
+                                    this._fireEvent(XmlaClient.EVENT_DISCOVER_SUCCESS, parser.Result);
+                                }
+                                else if (options.method == XmlaClient.METHOD_EXECUTE) {
+                                    this._fireEvent(XmlaClient.EVENT_EXECUTE_SUCCESS, parser.Result);
+                                }
+                                this._fireEvent(XmlaClient.EVENT_SUCCESS, parser.Result);
+                                break;
+                            }
+                            
+                            parser.write(Utf8ArrayToStr(value));
+
+                        }*/
+                    } else {
+                        var parser: Rubik.Xml.XmlParser = new Rubik.Xml.XmlParser();
+                        parser.write(response.text());
+                        parser.close();
                     }
                 }
+               
             }).catch((reason) => {
-
+                if (handler.onerror) {
+                    handler.onerror(reason);
+                }
+                if (options.method == XmlaClient.METHOD_DISCOVER) {
+                    self._fireEvent(XmlaClient.EVENT_DISCOVER_ERROR, reason);
+                }
+                else if (options.method == XmlaClient.METHOD_EXECUTE) {
+                    self._fireEvent(XmlaClient.EVENT_EXECUTE_ERROR, reason);
+                }
+                self._fireEvent(XmlaClient.EVENT_ERROR, reason);
             });
         }                         
+    }
+
+    export class XmlaClientException {
+
+        
+
+        static TYPE_WARNING: string = "warning";
+        static TYPE_ERROR: string = "error";
+
+        static MISSING_REQUEST_TYPE_CDE = -1;
+        static MISSING_REQUEST_TYPE_MSG = "Missing_Request_Type";
+        static MISSING_REQUEST_TYPE_HLP = _exceptionHlp +
+            "#" + XmlaClientException.MISSING_REQUEST_TYPE_CDE +
+            "_" + XmlaClientException.MISSING_REQUEST_TYPE_MSG;
+        
+        static MISSING_STATEMENT_CDE = -2;
+        static MISSING_STATEMENT_MSG = "Missing_Statement";
+        static MISSING_STATEMENT_HLP = _exceptionHlp +
+            "#" + XmlaClientException.MISSING_STATEMENT_CDE +
+            "_" + XmlaClientException.MISSING_STATEMENT_MSG;
+
+        
+        static MISSING_URL_CDE = -3;
+        static MISSING_URL_MSG = "Missing_URL";
+        static MISSING_URL_HLP = _exceptionHlp +
+            "#" + XmlaClientException.MISSING_URL_CDE +
+            "_" + XmlaClientException.MISSING_URL_MSG;
+
+        
+        static NO_EVENTS_SPECIFIED_CDE = -4;
+        static NO_EVENTS_SPECIFIED_MSG = "No_Events_Specified";
+        static NO_EVENTS_SPECIFIED_HLP = _exceptionHlp +
+            "#" + XmlaClientException.NO_EVENTS_SPECIFIED_CDE +
+            "_" + XmlaClientException.NO_EVENTS_SPECIFIED_MSG;
+
+        
+        static WRONG_EVENTS_FORMAT_CDE = -5;
+        static WRONG_EVENTS_FORMAT_MSG = "Wrong_Events_Format";
+        static WRONG_EVENTS_FORMAT_HLP = _exceptionHlp +
+            "#" + XmlaClientException.NO_EVENTS_SPECIFIED_CDE +
+            "_" + XmlaClientException.NO_EVENTS_SPECIFIED_MSG;
+        
+        static UNKNOWN_EVENT_CDE = -6;
+        static UNKNOWN_EVENT_MSG = "Unknown_Event";
+        static UNKNOWN_EVENT_HLP = _exceptionHlp +
+            "#" + XmlaClientException.UNKNOWN_EVENT_CDE +
+            "_" + XmlaClientException.UNKNOWN_EVENT_MSG;
+        
+        static INVALID_EVENT_HANDLER_CDE = -7;
+        static INVALID_EVENT_HANDLER_MSG = "Invalid_Events_Handler";
+        static INVALID_EVENT_HANDLER_HLP = _exceptionHlp +
+            "#" + XmlaClientException.INVALID_EVENT_HANDLER_CDE +
+            "_" + XmlaClientException.INVALID_EVENT_HANDLER_MSG;
+        
+        static ERROR_PARSING_RESPONSE_CDE = -8;
+        static ERROR_PARSING_RESPONSE_MSG = "Error_Parsing_Response";
+        static ERROR_PARSING_RESPONSE_HLP = _exceptionHlp +
+            "#" + XmlaClientException.ERROR_PARSING_RESPONSE_CDE +
+            "_" + XmlaClientException.ERROR_PARSING_RESPONSE_MSG;
+        
+        static INVALID_FIELD_CDE = -9;
+        static INVALID_FIELD_MSG = "Invalid_Field";
+        static INVALID_FIELD_HLP = _exceptionHlp +
+            "#" + XmlaClientException.INVALID_FIELD_CDE +
+            "_" + XmlaClientException.INVALID_FIELD_MSG;
+
+        
+        static HTTP_ERROR_CDE = -10;
+        static HTTP_ERROR_MSG = "HTTP Error";
+        static HTTP_ERROR_HLP = _exceptionHlp +
+            "#" + XmlaClientException.HTTP_ERROR_CDE +
+            "_" + XmlaClientException.HTTP_ERROR_MSG;
+
+        
+        static INVALID_HIERARCHY_CDE = -11;
+        static INVALID_HIERARCHY_MSG = "Invalid_Hierarchy";
+        static INVALID_HIERARCHY_HLP = _exceptionHlp +
+            "#" + XmlaClientException.INVALID_HIERARCHY_CDE +
+            "_" + XmlaClientException.INVALID_HIERARCHY_MSG;
+
+        
+        static UNEXPECTED_ERROR_READING_MEMBER_CDE = -12;
+        static UNEXPECTED_ERROR_READING_MEMBER_MSG = "Error_Reading_Member";
+        static UNEXPECTED_ERROR_READING_MEMBER_HLP = _exceptionHlp +
+            "#" + XmlaClientException.UNEXPECTED_ERROR_READING_MEMBER_CDE +
+            "_" + XmlaClientException.UNEXPECTED_ERROR_READING_MEMBER_MSG;
+
+        
+        static INVALID_AXIS_CDE = -13;
+        static INVALID_AXIS_MSG = "The requested axis does not exist.";
+        static INVALID_AXIS_HLP = _exceptionHlp +
+            "#" + XmlaClientException.INVALID_AXIS_CDE +
+            "_" + XmlaClientException.INVALID_AXIS_MSG;
+
+        
+        static ILLEGAL_ARGUMENT_CDE = -14;
+        static ILLEGAL_ARGUMENT_MSG = "Illegal arguments";
+        static ILLEGAL_ARGUMENT_HLP = _exceptionHlp +
+            "#" + XmlaClientException.ILLEGAL_ARGUMENT_CDE +
+            "_" + XmlaClientException.ILLEGAL_ARGUMENT_MSG;
+        
+        static ERROR_INSTANTIATING_XMLHTTPREQUEST_CDE = -15;
+        static ERROR_INSTANTIATING_XMLHTTPREQUEST_MSG = "Error creating XML Http Request";
+        static ERROR_INSTANTIATING_XMLHTTPREQUEST_HLP = _exceptionHlp +
+            "#" + XmlaClientException.ERROR_INSTANTIATING_XMLHTTPREQUEST_CDE +
+            "_" + XmlaClientException.ERROR_INSTANTIATING_XMLHTTPREQUEST_MSG;
+
+       
+
+        type: string = null; 
+        code: number = null; 
+        message: string = null; 
+        source: string = null; 
+        helpfile: string = null; 
+        data: string = null;
+        args: any[] = null; 
+        detail: any = null; 
+        actor: any = null; 
+
+        constructor(type, code, message, helpfile, source, data, args?, detail?, actor?) {
+            this.type = type;
+            this.code = code;
+            this.message = message;
+            this.source = source;
+            this.helpfile = helpfile;
+            this.data = data;
+            this.args = args;
+            this.detail = detail;
+            this.actor = actor;
+        }
+
+        _throw() {
+            throw this;
+        }
+
+        static _newError (codeName, source, data) {
+            return new XmlaClientException(
+                XmlaClientException.TYPE_ERROR,
+                XmlaClientException[codeName + "_CDE"],
+                XmlaClientException[codeName + "_MSG"],
+                XmlaClientException[codeName + "_HLP"],
+                source,
+                data
+            );
+        }           
+    }
+
+    interface IXmlaEventHandler {
+        onsuccess: (data: any) => void;
+        onerror: (error: any) => void;
     }
 
 }

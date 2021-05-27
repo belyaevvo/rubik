@@ -53,9 +53,9 @@ module Rubik.UI
             super();            
             //this.OptimiseConstructForGraphics = true;
             this.SizeManager.DefaultColWidth = 130;
-            this.SizeManager.DefaultRowHeight = 22;
+            this.SizeManager.DefaultRowHeight = 20;
             this.FixedAreaSizeManager.DefaultColWidth = 130;
-            this.FixedAreaSizeManager.DefaultRowHeight = 22;
+            this.FixedAreaSizeManager.DefaultRowHeight = 20;
 
             this._rootElement.addClass("Grid");            
 
@@ -281,6 +281,8 @@ module Rubik.UI
 
 
         Resize(): void {
+            const _defaultCellswidth = 0; //1
+            const _defaultRemainingWidth = 0; //20
 
             /*this.PanelRows.Width(new CSSNumber(this.FixedAreaSizeManager.GetTotalColsWidth() + 1));
             this.PanelCols.Height(new CSSNumber(this.FixedAreaSizeManager.GetTotalRowsHeight() + 1));
@@ -304,15 +306,15 @@ module Rubik.UI
             this.DivCrossPanel.css("width", this.PanelRows.ActualWidth()-1);*/
 
             if (this.expandlastcolumn) {
-                var remainingWidth = this.ActualWidth() - this.FixedAreaSizeManager.GetTotalColsWidth() - this.SizeManager.GetTotalColsWidth()
+                var remainingWidth = this.Width() - this.FixedAreaSizeManager.GetTotalColsWidth() - this.SizeManager.GetTotalColsWidth()
                 var lastColWidth = this.SizeManager.ColsCount > 0 ? this.SizeManager.GetColWidth(this.SizeManager.ColsCount - 1) : 0
                     + this.FixedAreaSizeManager.ColsCount > 0 ? this.FixedAreaSizeManager.GetColWidth(this.FixedAreaSizeManager.ColsCount - 1) : 0;
                 remainingWidth = remainingWidth + lastColWidth;
                 if (remainingWidth > 0) {
                     if (this.SizeManager.ColsCount > 0) {
-                        this.SizeManager.SetColWidth(this.SizeManager.ColsCount - 1, remainingWidth-20);
+                        this.SizeManager.SetColWidth(this.SizeManager.ColsCount - 1, remainingWidth - _defaultRemainingWidth);
                     } else if (this.FixedAreaSizeManager.ColsCount > 0) {
-                        this.FixedAreaSizeManager.SetColWidth(this.FixedAreaSizeManager.ColsCount - 1, remainingWidth-20);
+                        this.FixedAreaSizeManager.SetColWidth(this.FixedAreaSizeManager.ColsCount - 1, remainingWidth - _defaultRemainingWidth);
                     }
                 }
             }
@@ -323,26 +325,28 @@ module Rubik.UI
             //this.DivCellsPanel.css("width", this.SizeManager.GetTotalViewWidth());
             this.CellsPanel.Height(this.SizeManager.GetTotalViewHeight());
             var cellswidth = this.SizeManager.GetTotalViewWidth();
-            this.CellsPanel.Width(cellswidth ? cellswidth : 1);            
+            //Непонятно почему остается 1
+            //this.CellsPanel.Width(cellswidth ? cellswidth : 1);            
+            this.CellsPanel.Width(cellswidth ? cellswidth : _defaultCellswidth);            
             //this.CellsPanel.MarginLeft(this.PanelRows.ActualWidth())
 
             //this.PanelRows.Height(this.ActualHeight());
             this.PanelRows.Height(this.SizeManager.GetTotalViewHeight());
             this.PanelCols.MarginLeft(this.PanelRows.ActualWidth())
-            this.PanelCols.Width(this.ActualWidth() - this.PanelRows.ActualWidth());
+            this.PanelCols.Width(this.Width() - this.PanelRows.ActualWidth());
             
             
 
             this.ScrollPanel.MarginTop(this.PanelCols.ActualHeight())
             this.ScrollPanel.MarginLeft(this.PanelRows.ActualWidth());
-            this.ScrollPanel.Height(this.ActualHeight() - this.PanelCols.ActualHeight());
-            this.ScrollPanel.Width(this.ActualWidth() - this.PanelRows.ActualWidth());
+            this.ScrollPanel.Height(this.Height() - this.PanelCols.ActualHeight());
+            this.ScrollPanel.Width(this.Width() - this.PanelRows.ActualWidth());
 
             this.ScrollPanelRows.MarginTop(this.PanelCols.ActualHeight())
             //this.ScrollPanel.MarginLeft(this.PanelRows.ActualWidth())            
             this.ScrollPanelRows.Height(this.ScrollPanel.ClientHeight());
-            //this.ScrollPanel.Width(this.ActualWidth() - this.PanelRows.ActualWidth());            
-            this.ScrollPanelRows.Width(this.ActualWidth());
+            //this.ScrollPanelRows.Width(this.PanelRows.ActualWidth());            
+            this.ScrollPanelRows.Width(this.Width());
 
             this.DivColsHeaderPanel.css("height", this.PanelCols.ActualHeight());
             this.DivColsHeaderPanel.css("width", this.PanelCols.ActualWidth());

@@ -490,7 +490,7 @@ module Rubik.UI
         }
         
         
-        Width(value?: string | number): any {
+        Width(value: string | number = null): any {
             if (value !== null) {
                 this._rootElement.width(value);
                 this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
@@ -500,7 +500,7 @@ module Rubik.UI
             }
         }
 
-        Height(value?: string | number): any {
+        Height(value: string | number = null): any {
             if (value !== null) {
                 this._rootElement.height(value);
                 this.OnResize.Invoke(new Events.ResizeEventArgs(this, null));
@@ -520,7 +520,7 @@ module Rubik.UI
             return this._rootElement.outerHeight();
         }
 
-        Top(value?: string | number): number | void {                               
+        Top(value: string | number = null): number | void {                               
             if (value !== null) {
                 this._rootElement.css("top", value);
                 this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
@@ -530,34 +530,34 @@ module Rubik.UI
             }
         }
 
-        Bottom(value ?: string | number): number | void {        
-                if (value !== null) {
-                    this._rootElement.css("bottom", value);
-                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
-                }
-                else {
-                    return this._rootElement.position().top + this._rootElement.outerHeight(true);
-                }
+        Bottom(value: string | number = null): number | void {        
+            if (value !== null) {
+                this._rootElement.css("bottom", value);
+                this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+            }
+            else {
+                return this._rootElement.position().top + this._rootElement.outerHeight(true);
+            }
         }
 
-        Left(value ?: string | number): number | void {        
-                if (value !== null) {
-                    this._rootElement.css("left", value);
-                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
-                }
-                else {
-                    return this._rootElement.position().left;
-                }
+        Left(value: string | number = null): number | void {        
+            if (value !== null) {
+                this._rootElement.css("left", value);
+                this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+            }
+            else {
+                return this._rootElement.position().left;
+            }
         }
 
-        Right(value?: string | number): number | void {        
-                if (value !== null) {
-                    this._rootElement.css("right", value);
-                    this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
-                }
-                else {
-                    return this._rootElement.position().left + this._rootElement.outerWidth(true);
-                }
+        Right(value: string | number = null): number | void {        
+            if (value !== null) {
+                this._rootElement.css("right", value);
+                this.OnMove.Invoke(new Events.MoveEventArgs(this, null));
+            }
+            else {
+                return this._rootElement.position().left + this._rootElement.outerWidth(true);
+            }
         }
         
 

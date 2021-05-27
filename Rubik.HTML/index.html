@@ -8,6 +8,43 @@
     <script src="Scripts/jquery-3.2.1.js"></script>
     <script src="Scripts/jquery-ui.js"></script>     
     <script src="Build/rubik.js"></script>
+    <script>
+        
+        $(function () {
+            $("body").pivotApplication({
+                "name":"pivotTable_/Portal/Главная/Пользовательские папки/BelyaevVO/Недостачи и излишки на НБ.mpv",
+                "contentroot":"Content",
+                "connection":{"type":"portal","url":"api/mdx","database":"Сбыт"},
+                "schema":{
+                    "CustomMembers":[{"UniqueName":"[Статья баланса].[Статья баланса].[Общий объем перевалки]","Expression":"[Статья баланса].[Статья баланса].&[31]+[Статья баланса].[Статья баланса].&[33]","FormatString":"","SolveOrder":0,"NonEmptyBehavior":""}],
+                    "Filters":[{"HierarchyName":"[Единица измерения].[Единица измерения]","SelectedMembers":[{"UniqueName":"[Единица измерения].[Единица измерения].&[106]","SelectionType":1}],"Properties":[]},{"HierarchyName":"[Товар].[Товары]","SelectedMembers":[{"UniqueName":"[Товар].[Товары].&[99902205]","SelectionType":1},{"UniqueName":"[Товар].[Товары].&[99902204]","SelectionType":1}],"Properties":[]},{"HierarchyName":"[Дата].[Календарь]","SelectedMembers":[{"UniqueName":"[Дата].[Календарь].[Месяц].&[201901]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201902]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201903]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201904]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201905]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201906]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201907]","SelectionType":1},{"UniqueName":"[Дата].[Календарь].[Месяц].&[201908]","SelectionType":1}],"Properties":[]},{"HierarchyName":"[Сценарий].[Сценарий]","SelectedMembers":[{"UniqueName":"[Сценарий].[Сценарий].&[1]","SelectionType":1}],"Properties":[]}],
+                    "Columns":[{"HierarchyName":"[Статья баланса].[Статья баланса]","SelectedMembers":[{"UniqueName":"[Статья баланса].[Статья баланса].[Общий объем перевалки]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[31]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[312]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[313]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[31].[Реализовано потребителям без учета возвратов]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[35]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[351]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3511]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3512]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3513]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3514]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3515]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[352]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3521]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3522]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3524]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[3525]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[2451]","SelectionType":1},{"UniqueName":"[Статья баланса].[Статья баланса].&[2452]","SelectionType":1}],"Properties":[]},{"HierarchyName":"[Measures]"}],
+                    "Rows":[{"HierarchyName":"[Объект учета].[НПО]","SelectedMembers":[{"UniqueName":"[Объект учета].[НПО].[Все]","SelectionType":241},{"UniqueName":"[Объект учета].[НПО].[УНП+]","SelectionType":241},{"UniqueName":"[Объект учета].[НПО].[ЦНП+]","SelectionType":241},{"UniqueName":"[Объект учета].[НПО].[ЮНП+]","SelectionType":241}],"Properties":[]},{"HierarchyName":"[Объект учета].[Тип объекта]","SelectedMembers":[{"UniqueName":"[Объект учета].[Тип объекта].&[1]","SelectionType":1},{"UniqueName":"[Объект учета].[Тип объекта].&[2]","SelectionType":1}],"Properties":[]},{"HierarchyName":"[Объект учета].[Объект учета]","SelectedMembers":[{"UniqueName":"[Объект учета].[Объект учета].[Все]","SelectionType":241}],"Properties":["[Объект учета].[Объект учета].[Объект учета].[Код КССС]","[Объект учета].[Объект учета].[Объект учета].[Адрес]","[Объект учета].[Объект учета].[Объект учета].[Статус]","[Объект учета].[Объект учета].[Объект учета].[Состояние]"]}],
+                    "Data": [{ "MeasureName": "[Measures].[Вес]" }]
+                },
+                "datamember":"Сбыт"                
+                                                
+                /*name: "pivotTable",
+                connection: {
+                    type: "portal",
+                    url: "api/mdx",
+                    database: "Сбыт"
+                },
+                schema: {
+                    Filters: [],
+                    Columns: [{ HierarchyName: "[Дата].[Календарь]" }],
+                    Rows: [
+                        { HierarchyName: "[Объект учета].[Объекты учета]", SelectedMembers: [{ UniqueName: "[Объект учета].[Объекты учета].&[9002199833]"}] },
+                        { HierarchyName: "[Объект учета].[Объект учета]" }
+                    ],
+                    Data: [{ MeasureName: "[Measures].[Вес]" }]
+                },
+                datamember: "Сбыт"*/
+                
+            });
+        });
+
+    </script>
     
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />

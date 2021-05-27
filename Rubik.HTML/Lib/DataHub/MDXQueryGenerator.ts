@@ -24,6 +24,7 @@
         public static _tupleSeparator: string = ", ";
         public static _rowseparator: string = "\r\n";
         public static _generate: string = "generate";
+        public static _allMembers: string = ".allmembers";
         public static _curentMember: string = ".currentmember";
         public static _descendants: string = "descendants";
         public static _children: string = ".children";
@@ -44,7 +45,16 @@
             return "EXCEPT(" + set + "," + eset + ")";
         }
         private static union(set1: string, set2: string): string {
-            return "UNION(" + set1 + "," + set2 + ")";
+            if (!isEmpty(set1) && !isEmpty(set2)) {
+                return "UNION(" + set1 + "," + set2 + ")";
+            }
+            if (!isEmpty(set1)) {
+                return set1;
+            }
+            if (!isEmpty(set2)) {
+                return set2;
+            }
+            return '';
         }
         private static allMembers(hierarchy: string): string {
             return hierarchy + ".ALLMEMBERS";
@@ -80,9 +90,9 @@
         private GetWithString(schema: Schema): string {
             var withString: string = '';
             if (schema.CustomMembers.Count() > 0) {
-                withString = schema.CustomMembers.ToArray()
-                    .map((value, index, arr) => { return this.GetCustomMemberString(value); })
-                    .filter((value) => { return value; })
+                withString = MDXQueryGenerator._with + schema.CustomMembers.ToArray()
+                    .map((item) => { return this.GetCustomMemberString(item); })
+                    .filter((item) => { return item; })
                     .join(MDXQueryGenerator._rowseparator);                
             }
             return withString;
@@ -95,7 +105,8 @@
         private GetWhereString(schema: Schema): string {
             var whereString: string = "";
             var filterAxis = schema.Filters;
-            whereString = filterAxis.Sets.ToArray()
+            whereString = filterAxis.Sets.ToArray()  
+                .concat(this.GetMeasureSet(filterAxis) || [])          
                 .map((value, index, arr) => { return value.HierarchyName; })
                 .filter((value) => { return value; })
                 .join(MDXQueryGenerator._tupleSeparator);            
@@ -119,24 +130,52 @@
         }
 
         private GetSelectString(schema: Schema): string {
-            var selectString: string = "";            
+            var selectString: string = "";
+            //if (schema.GetAxisRoleOfHierarchy("[Measures]") == AxisRoleEnum.None)           
             selectString += this.GetAxisSet(schema.Columns) + MDXQueryGenerator._onColumns + MDXQueryGenerator._parametersSeparator + this.GetAxisSet(schema.Rows) + MDXQueryGenerator._onRows;            
             return selectString;
         }
 
-        private GetAxisSet(axis: HierarchyAxis): string {
+        private GetAxisSet(axis: HierarchyAxis): string {            
             var axisString: string = '{}';
             if (axis.Sets.Count() > 0) {
                 axisString = MDXQueryGenerator.GetNonEmptyString(axis.NonEmpty);
-                axisString += axis.Sets.ToArray().map((value, index, arr) => { return this.GetHierarchySet(value) }).join(MDXQueryGenerator._dimensionSeparator);
-                var dimProperties: string = axis.Sets.ToArray()
-                    .map((value, index, arr) => { return this.GetHierarchyPropertyString(value); })
+                axisString += axis.Sets.ToArray()                    
+                    .map((value, index, arr) => { return this.GetHierarchySet(value) })
+                    .join(MDXQueryGenerator._dimensionSeparator);
+                var dimProperties: string = axis.Sets.ToArray()                    
+                    .map((value) => { return this.GetHierarchyPropertyString(value); })                    
                     .filter((value) => { return value; })
                     .join(MDXQueryGenerator._propertiesSeparator);
                 if (dimProperties)
                     axisString += MDXQueryGenerator._dimProperties + MDXQueryGenerator._intrinsicDimProperties + dimProperties;
             }
+            else {
+                axisString = []
+                    .concat(this.GetMeasureSet(axis) || [])
+                    .map((value, index, arr) => { return this.GetHierarchySet(value) })
+                    .join(MDXQueryGenerator._dimensionSeparator) || '{}';
+            }
             return axisString;
+        }
+
+        private GetMeasureSet(axis: HierarchyAxis): HierarchySet {
+            var schema = axis.Schema;            
+            if (schema.GetAxisRoleOfHierarchy("[Measures]") == AxisRoleEnum.None) {
+                var hier = schema.GetHierarchySet("[Measures]");
+                switch (axis.Role) {
+                    case AxisRoleEnum.Columns:
+                        if (axis.Sets.Count() == 0) return hier;
+                        break;
+                    case AxisRoleEnum.Rows:
+                        if (axis.Sets.Count() == 0 && schema.Columns.Sets.Count()!=0) return hier;
+                        break;
+                    case AxisRoleEnum.Filters:
+                        if (schema.Columns.Sets.Count() != 0 && schema.Rows.Sets.Count() != 0) return hier;
+                        break;
+                }                
+            }            
+            return null;
         }
 
         private static GetNonEmptyString(nonEmptyBehavior: boolean): string {
@@ -152,30 +191,61 @@
             if (hier.SelectedMembers.Count() > 0) {
                 for (var mbr of hier.SelectedMembers.ToArray()) {
                     switch (mbr.SelectionType) {
-                        case MemberSelectionEnum.Children:
-                            selectSet.push(MDXQueryGenerator.children(mbr.UniqueName));
-                            break;
                         case MemberSelectionEnum.Self:
                             selectSet.push(mbr.UniqueName);
                             break;
+                        case MemberSelectionEnum.Children:
+                            selectSet.push(MDXQueryGenerator.children(mbr.UniqueName));
+                            break;                                                
                         case MemberSelectionEnum.Descendants:
                             selectSet.push(MDXQueryGenerator.descandants(mbr.UniqueName));
                             break;
-                        case MemberSelectionEnum.Exclude:
+                        case MemberSelectionEnum.SelfChildren:
+                            selectSet.push(mbr.UniqueName);
+                            selectSet.push(MDXQueryGenerator.children(mbr.UniqueName));
+                            break;                        
+                        case MemberSelectionEnum.SelfDescendants:
+                            selectSet.push(mbr.UniqueName);
+                            selectSet.push(MDXQueryGenerator.descandants(mbr.UniqueName));
+                            break;
+                        case MemberSelectionEnum.ExcludeSelf:
                             exceptSet.push(mbr.UniqueName);
                             break;
+                        case MemberSelectionEnum.ExcludeChildren:
+                            exceptSet.push(MDXQueryGenerator.children(mbr.UniqueName));
+                            break;
+                        case MemberSelectionEnum.ExcludeDescendants:
+                            exceptSet.push(MDXQueryGenerator.descandants(mbr.UniqueName));
+                            break;
+                        case MemberSelectionEnum.ExcludeSelfChildren:
+                            exceptSet.push(mbr.UniqueName);
+                            exceptSet.push(MDXQueryGenerator.children(mbr.UniqueName));
+                            break;
+                        case MemberSelectionEnum.ExcludeSelfDescendants:
+                            exceptSet.push(mbr.UniqueName);
+                            exceptSet.push(MDXQueryGenerator.descandants(mbr.UniqueName));
+                            break;
+                        default:
+                            selectSet.push(mbr.UniqueName);
+                            break;
                     }
-                }
+                }                
                 if (exceptSet.length > 0) {
-                    hierarachyString = MDXQueryGenerator.except(MDXQueryGenerator.curlyBrackets(MDXQueryGenerator.join(MDXQueryGenerator._setSeparator, selectSet)),
+                    hierarachyString = MDXQueryGenerator.except(MDXQueryGenerator.curlyBrackets(MDXQueryGenerator.join(MDXQueryGenerator._setSeparator, selectSet) || MDXQueryGenerator.allMembers(hier.HierarchyName)),
                         MDXQueryGenerator.curlyBrackets(MDXQueryGenerator.join(MDXQueryGenerator._setSeparator, exceptSet)));
                 }
                 else {
-                    hierarachyString = MDXQueryGenerator.curlyBrackets(MDXQueryGenerator.join(MDXQueryGenerator._setSeparator, selectSet));
+                    hierarachyString = MDXQueryGenerator.curlyBrackets(MDXQueryGenerator.join(MDXQueryGenerator._setSeparator, selectSet) || MDXQueryGenerator.allMembers(hier.HierarchyName));
+                }
+                if (hier.LevelName) {
+                    hierarachyString = MDXQueryGenerator.descandants(hierarachyString, hier.LevelName);
                 }
             }
             else {
-                if (hier.Info.AllMember == hier.Info.DefaultMember) {
+                if (hier.LevelName) {
+                    hierarachyString = MDXQueryGenerator.curlyBrackets(hier.LevelName);
+                }
+                else if (hier.Info.AllMember == hier.Info.DefaultMember) {
                     hierarachyString = MDXQueryGenerator.descandants(hier.HierarchyName,"1");
                 }
                 else {
@@ -189,9 +259,9 @@
 
         private GetHierarchyPropertyString(hier: HierarchySet): string {
             var hierarchyPropertyString: string = '';
-            hierarchyPropertyString = hier.Properties.ToArray()
-                .map((value, index, arr) => { return value; })
-                .filter((value) => { return value; })
+            hierarchyPropertyString = hier.Properties.ToArray()                
+                .map((value) => { return value; })             
+                .filter((value) => { return value; })   
                 .join(MDXQueryGenerator._propertiesSeparator);            
             return hierarchyPropertyString;
         }                

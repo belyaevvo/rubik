@@ -19,7 +19,7 @@ module Rubik.UI.Pivot {
             this.FiltersArea.Height("100%");
             this.FiltersArea.Width("100%");
             this.ColsArea = new PivotArea();
-            this.ColsArea.Role = Rubik.DataHub.AxisRoleEnum.Cols;
+            this.ColsArea.Role = Rubik.DataHub.AxisRoleEnum.Columns;
             this.ColsArea.Height("100%");
             this.ColsArea.Width("100%");
             this.RowsArea = new PivotArea();

@@ -63,19 +63,19 @@ module Rubik.UI.Pivot {
              this.role = role;
             switch (role) {
                 case Rubik.DataHub.AxisRoleEnum.Filters:
-                    this._img.attr("src", "/Content/icons/mppivotcontrols_axis_filter.png");
+                    this._img.attr("src", ContentRoot + "/icons/mppivotcontrols_axis_filter.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaFilters"));
                     break;
-                case Rubik.DataHub.AxisRoleEnum.Cols:
-                    this._img.attr("src", "/Content/icons/mppivotcontrols_axis_col.png");
+                case Rubik.DataHub.AxisRoleEnum.Columns:
+                    this._img.attr("src", ContentRoot + "/icons/mppivotcontrols_axis_col.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaCols"));
                     break;
                 case Rubik.DataHub.AxisRoleEnum.Rows:
-                    this._img.attr("src", "/Content/icons/mppivotcontrols_axis_row.png");
+                    this._img.attr("src", ContentRoot + "/icons/mppivotcontrols_axis_row.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaRows"));
                     break;
                 case Rubik.DataHub.AxisRoleEnum.Data:
-                    this._img.attr("src", "/Content/icons/mppivotcontrols_sum.png");
+                    this._img.attr("src", ContentRoot + "/icons/mppivotcontrols_sum.png");
                     this._span.text(Rubik.Resources.Localization.getString("pivotAreaData"));
                     break;
             }
@@ -109,7 +109,8 @@ module Rubik.UI.Pivot {
             var so = DragDrop.GetData("TypedSchemaObject") as Rubik.DataHub.TypedSchemaObject;
             if (so) {
                 args.EnableDrop = so.ObjectType == Rubik.DataHub.ObjectTypeEnum.Measure && this.Role == Rubik.DataHub.AxisRoleEnum.Data ||
-                    so.ObjectType != Rubik.DataHub.ObjectTypeEnum.Measure && this.Role != Rubik.DataHub.AxisRoleEnum.Data;
+                    so.ObjectType != Rubik.DataHub.ObjectTypeEnum.Measure && so.UniqueName != "[Measures]" && this.Role != Rubik.DataHub.AxisRoleEnum.Data ||
+                    so.UniqueName == "[Measures]" && (this.Role == Rubik.DataHub.AxisRoleEnum.Columns || this.Role == Rubik.DataHub.AxisRoleEnum.Rows);
             }
              return false;
         }
@@ -134,7 +135,9 @@ module Rubik.UI.Pivot {
                     var item = new PivotAreaItem();
                     item.Index = this.areapanel.Children.Count();
                     item.Info = msr.Info;
-                    item.Text(msr.Info.Caption);
+                    item.Text(msr.Caption);
+                    item.Image(ContentRoot + "/icons/mppivotcontrols_measure.png");
+                    item.ButtonVisible(false);
                     this.areapanel.Children.Add(item);
                 }
             }
@@ -145,7 +148,11 @@ module Rubik.UI.Pivot {
                     var item = new PivotAreaItem();
                     item.Index = this.areapanel.Children.Count();
                     item.Info = set.Info;
-                    item.Text(set.Info.Caption);
+                    item.Text(set.Caption);
+                    item.Image(set.IsMeasures ?
+                        ContentRoot + "/icons/mppivotcontrols_dimension_measures.png" :
+                        ContentRoot + "/icons/mppivotcontrols_dimension.png");
+                    item.ButtonVisible(!set.IsMeasures);
                     this.areapanel.Children.Add(item);
                 }
             }
@@ -157,6 +164,8 @@ module Rubik.UI.Pivot {
         _div: JQuery = null;
         _span: JQuery = null;
         _img: JQuery = null;
+        //_btn: JQuery = null;
+        btn: Control = null;
         Info: DataHub.HierarchyInfo | DataHub.MeasureInfo = null;
 
         constructor() {
@@ -171,7 +180,26 @@ module Rubik.UI.Pivot {
             this._span = $(document.createElement('span'));
             this._span.addClass("PivotAreaItem-text");
             this._div.append(this._span);
+            this.btn = new Control();
+            this.btn.AddClass("PivotAreaItem-button");
+            this.btn.AddClass("fa");
+            this.btn.AddClass("fa-angle-down");
+            this.btn.OnClick.Attach(new Events.ClickEventHandler(this._button_Click, this));            
+            //this._btn = $(document.createElement('span'));
+            //this._btn.addClass("PivotAreaItem-button fa fa-angle-down");            
+            //this._div.append(this._btn);            
             this._rootElement.append(this._div);            
+        }
+
+        ConstructDOM(parent: JQuery, onComplete: () => void = null): void {
+            this.btn.ConstructDOM(this._div);
+            super.ConstructDOM(parent, onComplete);
+            
+
+        }
+        DestroyDOM(): void {
+            this.btn.DestroyDOM();
+            super.DestroyDOM();            
         }
 
         get Index(): number {
@@ -201,6 +229,17 @@ module Rubik.UI.Pivot {
                 this._img.attr('src', url);
             }
             return this._img.attr('src');
+        }
+
+        ButtonVisible(visible?: boolean): boolean {
+            if (visible!=null) {
+                this.btn.Visible(visible);
+            }
+            return this.btn.Visible();
+        }
+
+        _button_Click(args: Events.ClickEventArgs) {
+
         }
 
     }

@@ -13,7 +13,9 @@ module Rubik.DataHub {
         private _session: IPivotSession = null;
         private _cmdCount: number = 0;
 
+        DeferUpdate: boolean;
         SessionId: string;
+        Name: string = "pivotDataManager";
 
         DataSource: Rubik.Data.MDDataSource = new Rubik.Data.MDDataSource();
 
@@ -23,7 +25,10 @@ module Rubik.DataHub {
 
         Schema: Rubik.DataHub.Schema;
 
-        CubeInfo: CubeInfo = null;
+        //CubeInfo: CubeInfo = null;
+        
+        CubeInfo: Promise<CubeInfo> = null;
+
 
         CubeChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
         DataChanged: Events.Event<Events.EventArgs> = new Events.Event<Events.EventArgs>();
@@ -40,10 +45,10 @@ module Rubik.DataHub {
         set DataMember(datamember: string) {
             this.datamember = datamember;
             this.DataInfo.DataMember = datamember;
-            this.DataInfo.GetInfoObject({ UniqueName: datamember, ObjectType: ObjectTypeEnum.Cube } as TypedSchemaObject).then(cube => {
-                this.CubeInfo = cube as CubeInfo;
-                this.CubeChanged.Invoke(new Events.EventArgs(this));
+            (this.CubeInfo = this.DataInfo.GetInfoObject({ UniqueName: datamember, ObjectType: ObjectTypeEnum.Cube } as TypedSchemaObject) as Promise<CubeInfo>).then(cube => {
+                //this.CubeInfo = cube as CubeInfo;                                
             });            
+            this.CubeChanged.Invoke(new Events.EventArgs(this));
         }
        
 
@@ -99,9 +104,17 @@ module Rubik.DataHub {
             this.Schema = new Rubik.DataHub.Schema(this);
             this.QueryGenerator = new MDXQueryGenerator();
             this.Schema.SchemaChanged.Attach(new Events.SimpleEventHandler((args: Events.EventArgs) => {
+                sessionStorage.setItem(this.Name, this.Schema.jsonData);
                 this.SchemaChanged.Invoke(args);
-                this.Command = this.QueryGenerator.GetQueryString(this.Schema);
+                if (!this.DeferUpdate) {
+                    this.Command = this.QueryGenerator.GetQueryString(this.Schema);
+                }
             }, this));
+        }
+
+        Load(config: any): void {
+            var schema = JSON.parse(sessionStorage.getItem(this.Name)) || config;            
+            this.Schema.Load(schema);
         }
 
         Cancel(onsuccess: () => void, onerror: (error: any) => void): void {
@@ -116,6 +129,10 @@ module Rubik.DataHub {
             else {
                 onsuccess();
             }
+        }
+
+        Update() {
+            this.Command = this.QueryGenerator.GetQueryString(this.Schema);
         }
 
         GetDataSet(command: string, onsuccess: (data: any, session: IPivotSession) => void, onerror: (error: any, session: IPivotSession) => void): void {

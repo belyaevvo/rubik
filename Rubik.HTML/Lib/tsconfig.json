@@ -15,7 +15,18 @@
     "outFile": "../Build/rubik.js"
     //"module": "System"
   },
+  "files": [
+    "Externals/polyfill.js",
+    "Externals/fetch.js",
+    "Externals/sax.js",
+    "Externals/Xmla.js"
+  ],  
+  "include": [
+    "*.ts",
+    "**/*.ts"
+  ],
   "exclude": [
+    "Externals",
     "node_modules",
     "wwwroot"
   ]  

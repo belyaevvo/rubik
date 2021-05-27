@@ -1,10 +1,16 @@
 ﻿module Rubik.DataHub {
     export class TypedSchemaObject extends SchemaObject{
-        ObjectType: ObjectTypeEnum;
+        protected objectType: ObjectTypeEnum;
+
+        get ObjectType(): ObjectTypeEnum { return this.objectType; }
+
+        set ObjectType(objectType: ObjectTypeEnum)  { 
+            this.objectType=objectType; 
+        }
 
         static Create(objtype: ObjectTypeEnum, uniquename: string): TypedSchemaObject {
             var obj = new TypedSchemaObject();
-            obj.ObjectType = objtype;
+            obj.objectType = objtype;
             obj.UniqueName = uniquename;
             return obj;
         }
